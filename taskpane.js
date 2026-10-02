@@ -9106,14 +9106,24 @@ const BORDER_COLORS = {
     "error-arg": "#EF6C00", // amber
     "error-currency-not-found": "#9C27B0", // purple
 };
-const BORDER_EDGES = [
-    Excel.BorderIndex.edgeTop,
-    Excel.BorderIndex.edgeBottom,
-    Excel.BorderIndex.edgeLeft,
-    Excel.BorderIndex.edgeRight,
-];
+// Computed lazily, not at module load time: Excel.BorderIndex is part of
+// Office.js's own runtime API surface, which isn't guaranteed to exist yet
+// the instant this script's top-level code runs (confirmed live 2026-10-01
+// -- on a real hosted origin, unlike localhost, Edge WebView2's Tracking
+// Prevention interfering with Office.js's own initialization left `Excel`
+// undefined at this point, throwing here and aborting the rest of this
+// module's top-level evaluation, which left every other top-level const
+// declared after this one permanently stuck in its temporal dead zone).
+function borderEdges() {
+    return [
+        Excel.BorderIndex.edgeTop,
+        Excel.BorderIndex.edgeBottom,
+        Excel.BorderIndex.edgeLeft,
+        Excel.BorderIndex.edgeRight,
+    ];
+}
 function setCellBorder(range, kind) {
-    for (const edge of BORDER_EDGES) {
+    for (const edge of borderEdges()) {
         const border = range.format.borders.getItem(edge);
         if (kind) {
             // Weight isn't set here: Excel's double-line style has its own fixed
@@ -9413,12 +9423,17 @@ async function saveAnnotations(scopes, formula) {
 // cell is checked separately, since some text values (specifically,
 // Excel's own textual complex-number syntax) are unit-bearing quantities
 // too -- see isComplexNumberText/hasNonNumericValue.
-const NON_NUMERIC_VALUE_TYPES = [
-    Excel.RangeValueType.boolean,
-    Excel.RangeValueType.error,
-    Excel.RangeValueType.richValue,
-    Excel.RangeValueType.unknown,
-];
+// Computed lazily, not at module load time -- see borderEdges's own comment
+// for why: Excel.RangeValueType is Office.js runtime API surface, not
+// guaranteed to exist yet when this script's top-level code runs.
+function nonNumericValueTypes() {
+    return [
+        Excel.RangeValueType.boolean,
+        Excel.RangeValueType.error,
+        Excel.RangeValueType.richValue,
+        Excel.RangeValueType.unknown,
+    ];
+}
 // Matches the magnitude portion of one term (real or imaginary) in
 // Excel's textual complex-number syntax: unsigned digits, an optional
 // decimal point, and an optional exponent.
@@ -9876,7 +9891,7 @@ function hasNonNumericValue(valueTypes, values) {
         if (valueType === Excel.RangeValueType.string) {
             return !isComplexNumberText(values[r][c]);
         }
-        return NON_NUMERIC_VALUE_TYPES.includes(valueType);
+        return nonNumericValueTypes().includes(valueType);
     }));
 }
 // Annotates the current selection, inferring its kind from its shape:
