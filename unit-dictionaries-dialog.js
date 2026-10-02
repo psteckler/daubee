@@ -1,1 +1,3878 @@
-(()=>{"use strict";var e={3977(e,t,n){function i(e){try{return JSON.parse(e),!0}catch(e){return!1}}function r(e){return"object"==typeof e&&null!==e&&!Array.isArray(e)&&Object.values(e).every(e=>Array.isArray(e)&&e.every(e=>"object"==typeof e&&null!==e&&"string"==typeof e.canonicalName&&Array.isArray(e.aliases)&&e.aliases.every(e=>"string"==typeof e)))}n.d(t,{OY:()=>r,aY:()=>i}),n(382)},382(e,t,n){function i(e){return e&&e.__esModule&&Object.prototype.hasOwnProperty.call(e,"default")?e.default:e}var r,o,c,a,l,s,u,p,f,d,h,g,m,y,b,A,k,w,x,C,I,v,O,S,T,j,N,M,E,L,F,D,Y,_,U,q,R,B,K,$,P,H,W,J,G={},Z={},V={};function z(){if(r)return V;function e(e){return null==e}return r=1,V.isNothing=e,V.isObject=function(e){return"object"==typeof e&&null!==e},V.toArray=function(t){return Array.isArray(t)?t:e(t)?[]:[t]},V.repeat=function(e,t){let n="";for(let i=0;i<t;i+=1)n+=e;return n},V.isNegativeZero=function(e){return 0===e&&Number.NEGATIVE_INFINITY===1/e},V.extend=function(e,t){if(t){const n=Object.keys(t);for(let i=0,r=n.length;i<r;i+=1){const r=n[i];e[r]=t[r]}}return e},V}function Q(){if(c)return o;function e(e,t){let n="";const i=e.reason||"(unknown reason)";return e.mark?(e.mark.name&&(n+='in "'+e.mark.name+'" '),n+="("+(e.mark.line+1)+":"+(e.mark.column+1)+")",!t&&e.mark.snippet&&(n+="\n\n"+e.mark.snippet),i+" "+n):i}function t(t,n){Error.call(this),this.name="YAMLException",this.reason=t,this.mark=n,this.message=e(this,!1),Error.captureStackTrace?Error.captureStackTrace(this,this.constructor):this.stack=(new Error).stack||""}return c=1,t.prototype=Object.create(Error.prototype),t.prototype.constructor=t,t.prototype.toString=function(t){return this.name+": "+e(this,t)},o=t}function X(){if(u)return s;u=1;const e=Q(),t=["kind","multi","resolve","construct","instanceOf","predicate","represent","representName","defaultStyle","styleAliases"],n=["scalar","sequence","mapping"];return s=function(i,r){if(r=r||{},Object.keys(r).forEach(function(n){if(-1===t.indexOf(n))throw new e('Unknown option "'+n+'" is met in definition of "'+i+'" YAML type.')}),this.options=r,this.tag=i,this.kind=r.kind||null,this.resolve=r.resolve||function(){return!0},this.construct=r.construct||function(e){return e},this.instanceOf=r.instanceOf||null,this.predicate=r.predicate||null,this.represent=r.represent||null,this.representName=r.representName||null,this.defaultStyle=r.defaultStyle||null,this.multi=r.multi||!1,this.styleAliases=function(e){const t={};return null!==e&&Object.keys(e).forEach(function(n){e[n].forEach(function(e){t[String(e)]=n})}),t}(r.styleAliases||null),-1===n.indexOf(this.kind))throw new e('Unknown kind "'+this.kind+'" is specified for "'+i+'" YAML type.')}}function ee(){if(f)return p;f=1;const e=Q(),t=X();function n(e,t){const n=[];return e[t].forEach(function(e){let t=n.length;n.forEach(function(n,i){n.tag===e.tag&&n.kind===e.kind&&n.multi===e.multi&&(t=i)}),n[t]=e}),n}function i(e){return this.extend(e)}return i.prototype.extend=function(r){let o=[],c=[];if(r instanceof t)c.push(r);else if(Array.isArray(r))c=c.concat(r);else{if(!r||!Array.isArray(r.implicit)&&!Array.isArray(r.explicit))throw new e("Schema.extend argument should be a Type, [ Type ], or a schema definition ({ implicit: [...], explicit: [...] })");r.implicit&&(o=o.concat(r.implicit)),r.explicit&&(c=c.concat(r.explicit))}o.forEach(function(n){if(!(n instanceof t))throw new e("Specified list of YAML types (or a single Type object) contains a non-Type object.");if(n.loadKind&&"scalar"!==n.loadKind)throw new e("There is a non-scalar type in the implicit list of a schema. Implicit resolving of such types is not supported.");if(n.multi)throw new e("There is a multi type in the implicit list of a schema. Multi tags can only be listed as explicit.")}),c.forEach(function(n){if(!(n instanceof t))throw new e("Specified list of YAML types (or a single Type object) contains a non-Type object.")});const a=Object.create(i.prototype);return a.implicit=(this.implicit||[]).concat(o),a.explicit=(this.explicit||[]).concat(c),a.compiledImplicit=n(a,"implicit"),a.compiledExplicit=n(a,"explicit"),a.compiledTypeMap=function(){const e={scalar:{},sequence:{},mapping:{},fallback:{},multi:{scalar:[],sequence:[],mapping:[],fallback:[]}};function t(t){t.multi?(e.multi[t.kind].push(t),e.multi.fallback.push(t)):e[t.kind][t.tag]=e.fallback[t.tag]=t}for(let e=0,n=arguments.length;e<n;e+=1)arguments[e].forEach(t);return e}(a.compiledImplicit,a.compiledExplicit),a},p=i}function te(){if(h)return d;h=1;const e=X();return d=new e("tag:yaml.org,2002:str",{kind:"scalar",construct:function(e){return null!==e?e:""}})}function ne(){if(m)return g;m=1;const e=X();return g=new e("tag:yaml.org,2002:seq",{kind:"sequence",construct:function(e){return null!==e?e:[]}})}function ie(){if(b)return y;b=1;const e=X();return y=new e("tag:yaml.org,2002:map",{kind:"mapping",construct:function(e){return null!==e?e:{}}})}function re(){if(k)return A;k=1;const e=ee();return A=new e({explicit:[te(),ne(),ie()]})}function oe(){if(x)return w;x=1;const e=X();return w=new e("tag:yaml.org,2002:null",{kind:"scalar",resolve:function(e){if(null===e)return!0;const t=e.length;return 1===t&&"~"===e||4===t&&("null"===e||"Null"===e||"NULL"===e)},construct:function(){return null},predicate:function(e){return null===e},represent:{canonical:function(){return"~"},lowercase:function(){return"null"},uppercase:function(){return"NULL"},camelcase:function(){return"Null"},empty:function(){return""}},defaultStyle:"lowercase"})}function ce(){if(I)return C;I=1;const e=X();return C=new e("tag:yaml.org,2002:bool",{kind:"scalar",resolve:function(e){if(null===e)return!1;const t=e.length;return 4===t&&("true"===e||"True"===e||"TRUE"===e)||5===t&&("false"===e||"False"===e||"FALSE"===e)},construct:function(e){return"true"===e||"True"===e||"TRUE"===e},predicate:function(e){return"[object Boolean]"===Object.prototype.toString.call(e)},represent:{lowercase:function(e){return e?"true":"false"},uppercase:function(e){return e?"TRUE":"FALSE"},camelcase:function(e){return e?"True":"False"}},defaultStyle:"lowercase"})}function ae(){if(O)return v;O=1;const e=z(),t=X();function n(e){return e>=48&&e<=57||e>=65&&e<=70||e>=97&&e<=102}function i(e){return e>=48&&e<=55}function r(e){return e>=48&&e<=57}function o(e){let t=e,n=1,i=t[0];if("-"!==i&&"+"!==i||("-"===i&&(n=-1),t=t.slice(1),i=t[0]),"0"===t)return 0;if("0"===i){if("b"===t[1])return n*parseInt(t.slice(2),2);if("x"===t[1])return n*parseInt(t.slice(2),16);if("o"===t[1])return n*parseInt(t.slice(2),8)}return n*parseInt(t,10)}return v=new t("tag:yaml.org,2002:int",{kind:"scalar",resolve:function(e){if(null===e)return!1;const t=e.length;let c=0,a=!1;if(!t)return!1;let l=e[c];if("-"!==l&&"+"!==l||(l=e[++c]),"0"===l){if(c+1===t)return!0;if(l=e[++c],"b"===l){for(c++;c<t;c++){if(l=e[c],"0"!==l&&"1"!==l)return!1;a=!0}return a&&isFinite(o(e))}if("x"===l){for(c++;c<t;c++){if(!n(e.charCodeAt(c)))return!1;a=!0}return a&&isFinite(o(e))}if("o"===l){for(c++;c<t;c++){if(!i(e.charCodeAt(c)))return!1;a=!0}return a&&isFinite(o(e))}}for(;c<t;c++){if(!r(e.charCodeAt(c)))return!1;a=!0}return!!a&&isFinite(o(e))},construct:function(e){return o(e)},predicate:function(t){return"[object Number]"===Object.prototype.toString.call(t)&&t%1==0&&!e.isNegativeZero(t)},represent:{binary:function(e){return e>=0?"0b"+e.toString(2):"-0b"+e.toString(2).slice(1)},octal:function(e){return e>=0?"0o"+e.toString(8):"-0o"+e.toString(8).slice(1)},decimal:function(e){return e.toString(10)},hexadecimal:function(e){return e>=0?"0x"+e.toString(16).toUpperCase():"-0x"+e.toString(16).toUpperCase().slice(1)}},defaultStyle:"decimal",styleAliases:{binary:[2,"bin"],octal:[8,"oct"],decimal:[10,"dec"],hexadecimal:[16,"hex"]}})}function le(){if(T)return S;T=1;const e=z(),t=X(),n=new RegExp("^(?:[-+]?(?:[0-9]+)(?:\\.[0-9]*)?(?:[eE][-+]?[0-9]+)?|\\.[0-9]+(?:[eE][-+]?[0-9]+)?|[-+]?\\.(?:inf|Inf|INF)|\\.(?:nan|NaN|NAN))$"),i=new RegExp("^(?:[-+]?\\.(?:inf|Inf|INF)|\\.(?:nan|NaN|NAN))$"),r=/^[-+]?[0-9]+e/;return S=new t("tag:yaml.org,2002:float",{kind:"scalar",resolve:function(e){return null!==e&&!!n.test(e)&&(!!isFinite(parseFloat(e,10))||i.test(e))},construct:function(e){let t=e.toLowerCase();const n="-"===t[0]?-1:1;return"+-".indexOf(t[0])>=0&&(t=t.slice(1)),".inf"===t?1===n?Number.POSITIVE_INFINITY:Number.NEGATIVE_INFINITY:".nan"===t?NaN:n*parseFloat(t,10)},predicate:function(t){return"[object Number]"===Object.prototype.toString.call(t)&&(t%1!=0||e.isNegativeZero(t))},represent:function(t,n){if(isNaN(t))switch(n){case"lowercase":return".nan";case"uppercase":return".NAN";case"camelcase":return".NaN"}else if(Number.POSITIVE_INFINITY===t)switch(n){case"lowercase":return".inf";case"uppercase":return".INF";case"camelcase":return".Inf"}else if(Number.NEGATIVE_INFINITY===t)switch(n){case"lowercase":return"-.inf";case"uppercase":return"-.INF";case"camelcase":return"-.Inf"}else if(e.isNegativeZero(t))return"-0.0";const i=t.toString(10);return r.test(i)?i.replace("e",".e"):i},defaultStyle:"lowercase"})}function se(){return N?j:(N=1,j=re().extend({implicit:[oe(),ce(),ae(),le()]}))}function ue(){return E?M:(E=1,M=se())}function pe(){if(F)return L;F=1;const e=X(),t=new RegExp("^([0-9][0-9][0-9][0-9])-([0-9][0-9])-([0-9][0-9])$"),n=new RegExp("^([0-9][0-9][0-9][0-9])-([0-9][0-9]?)-([0-9][0-9]?)(?:[Tt]|[ \\t]+)([0-9][0-9]?):([0-9][0-9]):([0-9][0-9])(?:\\.([0-9]*))?(?:[ \\t]*(Z|([-+])([0-9][0-9]?)(?::([0-9][0-9]))?))?$");return L=new e("tag:yaml.org,2002:timestamp",{kind:"scalar",resolve:function(e){return null!==e&&(null!==t.exec(e)||null!==n.exec(e))},construct:function(e){let i=0,r=null,o=t.exec(e);if(null===o&&(o=n.exec(e)),null===o)throw new Error("Date resolve error");const c=+o[1],a=+o[2]-1,l=+o[3];if(!o[4])return new Date(Date.UTC(c,a,l));const s=+o[4],u=+o[5],p=+o[6];if(o[7]){for(i=o[7].slice(0,3);i.length<3;)i+="0";i=+i}o[9]&&(r=6e4*(60*+o[10]+ +(o[11]||0)),"-"===o[9]&&(r=-r));const f=new Date(Date.UTC(c,a,l,s,u,p,i));return r&&f.setTime(f.getTime()-r),f},instanceOf:Date,represent:function(e){return e.toISOString()}})}function fe(){if(Y)return D;Y=1;const e=X();return D=new e("tag:yaml.org,2002:merge",{kind:"scalar",resolve:function(e){return"<<"===e||null===e}})}function de(){if(U)return _;U=1;const e=X(),t="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=\n\r";return _=new e("tag:yaml.org,2002:binary",{kind:"scalar",resolve:function(e){if(null===e)return!1;let n=0;const i=e.length,r=t;for(let t=0;t<i;t++){const i=r.indexOf(e.charAt(t));if(!(i>64)){if(i<0)return!1;n+=6}}return n%8==0},construct:function(e){const n=e.replace(/[\r\n=]/g,""),i=n.length,r=t;let o=0;const c=[];for(let e=0;e<i;e++)e%4==0&&e&&(c.push(o>>16&255),c.push(o>>8&255),c.push(255&o)),o=o<<6|r.indexOf(n.charAt(e));const a=i%4*6;return 0===a?(c.push(o>>16&255),c.push(o>>8&255),c.push(255&o)):18===a?(c.push(o>>10&255),c.push(o>>2&255)):12===a&&c.push(o>>4&255),new Uint8Array(c)},predicate:function(e){return"[object Uint8Array]"===Object.prototype.toString.call(e)},represent:function(e){let n="",i=0;const r=e.length,o=t;for(let t=0;t<r;t++)t%3==0&&t&&(n+=o[i>>18&63],n+=o[i>>12&63],n+=o[i>>6&63],n+=o[63&i]),i=(i<<8)+e[t];const c=r%3;return 0===c?(n+=o[i>>18&63],n+=o[i>>12&63],n+=o[i>>6&63],n+=o[63&i]):2===c?(n+=o[i>>10&63],n+=o[i>>4&63],n+=o[i<<2&63],n+=o[64]):1===c&&(n+=o[i>>2&63],n+=o[i<<4&63],n+=o[64],n+=o[64]),n}})}function he(){if(R)return q;R=1;const e=X(),t=Object.prototype.hasOwnProperty,n=Object.prototype.toString;return q=new e("tag:yaml.org,2002:omap",{kind:"sequence",resolve:function(e){if(null===e)return!0;const i={},r=e;for(let e=0,o=r.length;e<o;e+=1){const o=r[e];let c,a=!1;if("[object Object]"!==n.call(o))return!1;for(c in o)if(t.call(o,c)){if(a)return!1;a=!0}if(!a)return!1;if(t.call(i,c))return!1;Object.defineProperty(i,c,{value:!0})}return!0},construct:function(e){return null!==e?e:[]}})}function ge(){if(K)return B;K=1;const e=X(),t=Object.prototype.toString;return B=new e("tag:yaml.org,2002:pairs",{kind:"sequence",resolve:function(e){if(null===e)return!0;const n=e,i=new Array(n.length);for(let e=0,r=n.length;e<r;e+=1){const r=n[e];if("[object Object]"!==t.call(r))return!1;const o=Object.keys(r);if(1!==o.length)return!1;i[e]=[o[0],r[o[0]]]}return!0},construct:function(e){if(null===e)return[];const t=e,n=new Array(t.length);for(let e=0,i=t.length;e<i;e+=1){const i=t[e],r=Object.keys(i);n[e]=[r[0],i[r[0]]]}return n}})}function me(){if(P)return $;P=1;const e=X(),t=Object.prototype.hasOwnProperty;return $=new e("tag:yaml.org,2002:set",{kind:"mapping",resolve:function(e){if(null===e)return!0;const n=e;for(const e in n)if(t.call(n,e)&&null!==n[e])return!1;return!0},construct:function(e){return null!==e?e:{}}})}function ye(){return W?H:(W=1,H=ue().extend({implicit:[pe(),fe()],explicit:[de(),he(),ge(),me()]}))}function be(){if(J)return Z;J=1;const e=z(),t=Q(),n=function(){if(l)return a;l=1;const e=z();function t(e,t,n,i,r){let o="",c="";const a=Math.floor(r/2)-1;return i-t>a&&(o=" ... ",t=i-a+o.length),n-i>a&&(c=" ...",n=i+a-c.length),{str:o+e.slice(t,n).replace(/\t/g,"→")+c,pos:i-t+o.length}}function n(t,n){return e.repeat(" ",n-t.length)+t}return a=function(i,r){if(r=Object.create(r||null),!i.buffer)return null;r.maxLength||(r.maxLength=79),"number"!=typeof r.indent&&(r.indent=1),"number"!=typeof r.linesBefore&&(r.linesBefore=3),"number"!=typeof r.linesAfter&&(r.linesAfter=2);const o=/\r?\n|\r|\0/g,c=[0],a=[];let l,s=-1;for(;l=o.exec(i.buffer);)a.push(l.index),c.push(l.index+l[0].length),i.position<=l.index&&s<0&&(s=c.length-2);s<0&&(s=c.length-1);let u="";const p=Math.min(i.line+r.linesAfter,a.length).toString().length,f=r.maxLength-(r.indent+p+3);for(let o=1;o<=r.linesBefore&&!(s-o<0);o++){const l=t(i.buffer,c[s-o],a[s-o],i.position-(c[s]-c[s-o]),f);u=e.repeat(" ",r.indent)+n((i.line-o+1).toString(),p)+" | "+l.str+"\n"+u}const d=t(i.buffer,c[s],a[s],i.position,f);u+=e.repeat(" ",r.indent)+n((i.line+1).toString(),p)+" | "+d.str+"\n",u+=e.repeat("-",r.indent+p+3+d.pos)+"^\n";for(let o=1;o<=r.linesAfter&&!(s+o>=a.length);o++){const l=t(i.buffer,c[s+o],a[s+o],i.position-(c[s]-c[s+o]),f);u+=e.repeat(" ",r.indent)+n((i.line+o+1).toString(),p)+" | "+l.str+"\n"}return u.replace(/\n$/,"")}}(),i=ye(),r=Object.prototype.hasOwnProperty,o=/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x84\x86-\x9F\uFFFE\uFFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF]/,c=/[\x85\u2028\u2029]/,s=/[,\[\]{}]/,u=/^(?:!|!!|![0-9A-Za-z-]+!)$/,p=/^(?:!|[^,\[\]{}])(?:%[0-9a-f]{2}|[0-9a-z\-#;/?:@&=+$,_.!~*'()\[\]])*$/i;function f(e){return Object.prototype.toString.call(e)}function d(e){return 10===e||13===e}function h(e){return 9===e||32===e}function g(e){return 9===e||32===e||10===e||13===e}function m(e){return 44===e||91===e||93===e||123===e||125===e}function y(e){if(e>=48&&e<=57)return e-48;const t=32|e;return t>=97&&t<=102?t-97+10:-1}function b(e){return 120===e?2:117===e?4:85===e?8:0}function A(e){return e>=48&&e<=57?e-48:-1}function k(e){switch(e){case 48:return"\0";case 97:return"";case 98:return"\b";case 116:case 9:return"\t";case 110:return"\n";case 118:return"\v";case 102:return"\f";case 114:return"\r";case 101:return"";case 32:return" ";case 34:return'"';case 47:return"/";case 92:return"\\";case 78:return"";case 95:return" ";case 76:return"\u2028";case 80:return"\u2029";default:return""}}function w(e){return e<=65535?String.fromCharCode(e):String.fromCharCode(55296+(e-65536>>10),56320+(e-65536&1023))}function x(e,t,n){"__proto__"===t?Object.defineProperty(e,t,{configurable:!0,enumerable:!0,writable:!0,value:n}):e[t]=n}const C=new Array(256),I=new Array(256);for(let e=0;e<256;e++)C[e]=k(e)?1:0,I[e]=k(e);function v(e,t){this.input=e,this.filename=t.filename||null,this.schema=t.schema||i,this.onWarning=t.onWarning||null,this.legacy=t.legacy||!1,this.json=t.json||!1,this.listener=t.listener||null,this.maxDepth="number"==typeof t.maxDepth?t.maxDepth:100,this.maxTotalMergeKeys="number"==typeof t.maxTotalMergeKeys?t.maxTotalMergeKeys:1e4,this.implicitTypes=this.schema.compiledImplicit,this.typeMap=this.schema.compiledTypeMap,this.length=e.length,this.position=0,this.line=0,this.lineStart=0,this.lineIndent=0,this.depth=0,this.totalMergeKeys=0,this.firstTabInLine=-1,this.documents=[],this.anchorMapTransactions=[]}function O(e,i){const r={name:e.filename,buffer:e.input.slice(0,-1),position:e.position,line:e.line,column:e.position-e.lineStart};return r.snippet=n(r),new t(i,r)}function S(e,t){throw O(e,t)}function T(e,t){e.onWarning&&e.onWarning.call(null,O(e,t))}function j(e,t,n){const i=e.anchorMapTransactions;if(0!==i.length){const n=i[i.length-1];r.call(n,t)||(n[t]={existed:r.call(e.anchorMap,t),value:e.anchorMap[t]})}e.anchorMap[t]=n}function N(e){return{position:e.position,line:e.line,lineStart:e.lineStart,lineIndent:e.lineIndent,firstTabInLine:e.firstTabInLine,tag:e.tag,anchor:e.anchor,kind:e.kind,result:e.result}}function M(e,t){e.position=t.position,e.line=t.line,e.lineStart=t.lineStart,e.lineIndent=t.lineIndent,e.firstTabInLine=t.firstTabInLine,e.tag=t.tag,e.anchor=t.anchor,e.kind=t.kind,e.result=t.result}const E={YAML:function(e,t,n){null!==e.version&&S(e,"duplication of %YAML directive"),1!==n.length&&S(e,"YAML directive accepts exactly one argument");const i=/^([0-9]+)\.([0-9]+)$/.exec(n[0]);null===i&&S(e,"ill-formed argument of the YAML directive");const r=parseInt(i[1],10),o=parseInt(i[2],10);1!==r&&S(e,"unacceptable YAML version of the document"),e.version=n[0],e.checkLineBreaks=o<2,1!==o&&2!==o&&T(e,"unsupported YAML version of the document")},TAG:function(e,t,n){let i;2!==n.length&&S(e,"TAG directive accepts exactly two arguments");const o=n[0];i=n[1],u.test(o)||S(e,"ill-formed tag handle (first argument) of the TAG directive"),r.call(e.tagMap,o)&&S(e,'there is a previously declared suffix for "'+o+'" tag handle'),p.test(i)||S(e,"ill-formed tag prefix (second argument) of the TAG directive");try{i=decodeURIComponent(i)}catch(t){S(e,"tag prefix is malformed: "+i)}e.tagMap[o]=i}};function L(e,t,n,i){if(t<n){const r=e.input.slice(t,n);if(i)for(let t=0,n=r.length;t<n;t+=1){const n=r.charCodeAt(t);9===n||n>=32&&n<=1114111||S(e,"expected valid JSON character")}else o.test(r)&&S(e,"the stream contains non-printable characters");e.result+=r}}function F(e){e.totalMergeKeys++,-1!==e.maxTotalMergeKeys&&e.totalMergeKeys>e.maxTotalMergeKeys&&S(e,"merge keys exceeded maxTotalMergeKeys ("+e.maxTotalMergeKeys+")")}function D(t,n,i,o){e.isObject(i)||S(t,"cannot merge mappings; the provided source object is unacceptable"),F(t);const c=Object.keys(i);for(let e=0,a=c.length;e<a;e+=1){const a=c[e];F(t),r.call(n,a)||(x(n,a,i[a]),o[a]=!0)}}function Y(e,t,n,i,o,c,a,l,s){if(Array.isArray(o))for(let t=0,n=(o=Array.prototype.slice.call(o)).length;t<n;t+=1)Array.isArray(o[t])&&S(e,"nested arrays are not supported inside keys"),"object"==typeof o&&"[object Object]"===f(o[t])&&(o[t]="[object Object]");if("object"==typeof o&&"[object Object]"===f(o)&&(o="[object Object]"),o=String(o),null===t&&(t={}),"tag:yaml.org,2002:merge"===i)if(Array.isArray(c)){c.length>100&&S(e,"abnormal merge sequence size");for(let i=0,r=c.length;i<r;i+=1)D(e,t,c[i],n)}else D(e,t,c,n);else e.json||r.call(n,o)||!r.call(t,o)||(e.line=a||e.line,e.lineStart=l||e.lineStart,e.position=s||e.position,S(e,"duplicated mapping key")),x(t,o,c),delete n[o];return t}function _(e){const t=e.input.charCodeAt(e.position);10===t?e.position++:13===t?(e.position++,10===e.input.charCodeAt(e.position)&&e.position++):S(e,"a line break is expected"),e.line+=1,e.lineStart=e.position,e.firstTabInLine=-1}function U(e,t,n){let i=0,r=e.input.charCodeAt(e.position);for(;0!==r;){for(;h(r);)9===r&&-1===e.firstTabInLine&&(e.firstTabInLine=e.position),r=e.input.charCodeAt(++e.position);if(t&&35===r)do{r=e.input.charCodeAt(++e.position)}while(10!==r&&13!==r&&0!==r);if(!d(r))break;for(_(e),r=e.input.charCodeAt(e.position),i++,e.lineIndent=0;32===r;)e.lineIndent++,r=e.input.charCodeAt(++e.position)}return-1!==n&&0!==i&&e.lineIndent<n&&T(e,"deficient indentation"),i}function q(e){let t=e.position,n=e.input.charCodeAt(t);return!(45!==n&&46!==n||n!==e.input.charCodeAt(t+1)||n!==e.input.charCodeAt(t+2)||(t+=3,n=e.input.charCodeAt(t),0!==n&&!g(n)))}function R(t,n){1===n?t.result+=" ":n>1&&(t.result+=e.repeat("\n",n-1))}function B(e,t){const n=e.tag,i=e.anchor,r=[];let o=!1;if(-1!==e.firstTabInLine)return!1;null!==e.anchor&&j(e,e.anchor,r);let c=e.input.charCodeAt(e.position);for(;0!==c&&(-1!==e.firstTabInLine&&(e.position=e.firstTabInLine,S(e,"tab characters must not be used in indentation")),45===c)&&g(e.input.charCodeAt(e.position+1));){if(o=!0,e.position++,U(e,!0,-1)&&e.lineIndent<=t){r.push(null),c=e.input.charCodeAt(e.position);continue}const n=e.line;if(H(e,t,3,!1,!0),r.push(e.result),U(e,!0,-1),c=e.input.charCodeAt(e.position),(e.line===n||e.lineIndent>t)&&0!==c)S(e,"bad indentation of a sequence entry");else if(e.lineIndent<t)break}return!!o&&(e.tag=n,e.anchor=i,e.kind="sequence",e.result=r,!0)}function K(e,t,n){let i,r,o,c;const a=e.tag,l=e.anchor,s={},u=Object.create(null);let p=null,f=null,d=null,m=!1,y=!1;if(-1!==e.firstTabInLine)return!1;null!==e.anchor&&j(e,e.anchor,s);let b=e.input.charCodeAt(e.position);for(;0!==b;){m||-1===e.firstTabInLine||(e.position=e.firstTabInLine,S(e,"tab characters must not be used in indentation"));const A=e.input.charCodeAt(e.position+1),k=e.line;if(63!==b&&58!==b||!g(A)){if(r=e.line,o=e.lineStart,c=e.position,!H(e,n,2,!1,!0))break;if(e.line===k){for(b=e.input.charCodeAt(e.position);h(b);)b=e.input.charCodeAt(++e.position);if(58===b)b=e.input.charCodeAt(++e.position),g(b)||S(e,"a whitespace character is expected after the key-value separator within a block mapping"),m&&(Y(e,s,u,p,f,null,r,o,c),p=f=d=null),y=!0,m=!1,i=!1,p=e.tag,f=e.result;else{if(!y)return e.tag=a,e.anchor=l,!0;S(e,"can not read an implicit mapping pair; a colon is missed")}}else{if(!y)return e.tag=a,e.anchor=l,!0;S(e,"can not read a block mapping entry; a multiline key may not be an implicit key")}}else 63===b?(m&&(Y(e,s,u,p,f,null,r,o,c),p=f=d=null),y=!0,m=!0,i=!0):m?(m=!1,i=!0):S(e,"incomplete explicit mapping pair; a key node is missed; or followed by a non-tabulated empty line"),e.position+=1,b=A;if((e.line===k||e.lineIndent>t)&&(m&&(r=e.line,o=e.lineStart,c=e.position),H(e,t,4,!0,i)&&(m?f=e.result:d=e.result),m||(Y(e,s,u,p,f,d,r,o,c),p=f=d=null),U(e,!0,-1),b=e.input.charCodeAt(e.position)),(e.line===k||e.lineIndent>t)&&0!==b)S(e,"bad indentation of a mapping entry");else if(e.lineIndent<t)break}return m&&Y(e,s,u,p,f,null,r,o,c),y&&(e.tag=a,e.anchor=l,e.kind="mapping",e.result=s),y}function $(e){let t,n,i=!1,o=!1,c=e.input.charCodeAt(e.position);if(33!==c)return!1;null!==e.tag&&S(e,"duplication of a tag property"),c=e.input.charCodeAt(++e.position),60===c?(i=!0,c=e.input.charCodeAt(++e.position)):33===c?(o=!0,t="!!",c=e.input.charCodeAt(++e.position)):t="!";let a=e.position;if(i){do{c=e.input.charCodeAt(++e.position)}while(0!==c&&62!==c);e.position<e.length?(n=e.input.slice(a,e.position),c=e.input.charCodeAt(++e.position)):S(e,"unexpected end of the stream within a verbatim tag")}else{for(;0!==c&&!g(c);)33===c&&(o?S(e,"tag suffix cannot contain exclamation marks"):(t=e.input.slice(a-1,e.position+1),u.test(t)||S(e,"named tag handle cannot contain such characters"),o=!0,a=e.position+1)),c=e.input.charCodeAt(++e.position);n=e.input.slice(a,e.position),s.test(n)&&S(e,"tag suffix cannot contain flow indicator characters")}n&&!p.test(n)&&S(e,"tag name cannot contain such characters: "+n);try{n=decodeURIComponent(n)}catch(t){S(e,"tag name is malformed: "+n)}return i?e.tag=n:r.call(e.tagMap,t)?e.tag=e.tagMap[t]+n:"!"===t?e.tag="!"+n:"!!"===t?e.tag="tag:yaml.org,2002:"+n:S(e,'undeclared tag handle "'+t+'"'),!0}function P(e){let t=e.input.charCodeAt(e.position);if(38!==t)return!1;null!==e.anchor&&S(e,"duplication of an anchor property"),t=e.input.charCodeAt(++e.position);const n=e.position;for(;0!==t&&!g(t)&&!m(t);)t=e.input.charCodeAt(++e.position);return e.position===n&&S(e,"name of an anchor node must contain at least one character"),e.anchor=e.input.slice(n,e.position),!0}function H(t,n,i,o,c){let a,l,s,u,p,f=1,k=!1,x=!1,v=null;t.depth>=t.maxDepth&&S(t,"nesting exceeded maxDepth ("+t.maxDepth+")"),t.depth+=1,null!==t.listener&&t.listener("open",t),t.tag=null,t.anchor=null,t.kind=null,t.result=null;const O=a=l=4===i||3===i;if(o&&U(t,!0,-1)&&(k=!0,t.lineIndent>n?f=1:t.lineIndent===n?f=0:t.lineIndent<n&&(f=-1)),1===f)for(;;){const e=t.input.charCodeAt(t.position),i=N(t);if(k&&(33===e&&null!==t.tag||38===e&&null!==t.anchor))break;if(!$(t)&&!P(t))break;null===v&&(v=i),U(t,!0,-1)?(k=!0,l=O,t.lineIndent>n?f=1:t.lineIndent===n?f=0:t.lineIndent<n&&(f=-1)):l=!1}if(l&&(l=k||c),1===f||4===i)if(u=1===i||2===i?n:n+1,p=t.position-t.lineStart,1===f)if(l&&(B(t,p)||K(t,p,u))||function(e,t){let n,i,r,o=!0;const c=e.tag;let a;const l=e.anchor;let s,u,p,f;const d=Object.create(null);let h,m,y,b=e.input.charCodeAt(e.position);if(91===b)s=93,f=!1,a=[];else{if(123!==b)return!1;s=125,f=!0,a={}}for(null!==e.anchor&&j(e,e.anchor,a),b=e.input.charCodeAt(++e.position);0!==b;){if(U(e,!0,t),b=e.input.charCodeAt(e.position),b===s)return e.position++,e.tag=c,e.anchor=l,e.kind=f?"mapping":"sequence",e.result=a,!0;o?44===b&&S(e,"expected the node content, but found ','"):S(e,"missed comma between flow collection entries"),m=h=y=null,u=p=!1,63===b&&g(e.input.charCodeAt(e.position+1))&&(u=p=!0,e.position++,U(e,!0,t)),n=e.line,i=e.lineStart,r=e.position,H(e,t,1,!1,!0),m=e.tag,h=e.result,U(e,!0,t),b=e.input.charCodeAt(e.position),!p&&e.line!==n||58!==b||(u=!0,b=e.input.charCodeAt(++e.position),U(e,!0,t),H(e,t,1,!1,!0),y=e.result),f?Y(e,a,d,m,h,y,n,i,r):u?a.push(Y(e,null,d,m,h,y,n,i,r)):a.push(h),U(e,!0,t),b=e.input.charCodeAt(e.position),44===b?(o=!0,b=e.input.charCodeAt(++e.position)):o=!1}S(e,"unexpected end of the stream within a flow collection")}(t,u))x=!0;else{const n=t.input.charCodeAt(t.position);null!==v&&O&&!l&&124!==n&&62!==n&&function(e,t,n,i){const o=N(e);return function(e){e.anchorMapTransactions.push(Object.create(null))}(e),M(e,t),e.tag=null,e.anchor=null,e.kind=null,e.result=null,K(e,n,i)&&"mapping"===e.kind?(function(e){const t=e.anchorMapTransactions.pop(),n=e.anchorMapTransactions;if(0===n.length)return;const i=n[n.length-1],o=Object.keys(t);for(let e=0,n=o.length;e<n;e+=1){const n=o[e];r.call(i,n)||(i[n]=t[n])}}(e),!0):(function(e){const t=e.anchorMapTransactions.pop(),n=Object.keys(t);for(let i=n.length-1;i>=0;i-=1){const r=t[n[i]];r.existed?e.anchorMap[n[i]]=r.value:delete e.anchorMap[n[i]]}}(e),M(e,o),!1)}(t,v,v.position-v.lineStart,u)||a&&function(t,n){let i,r,o=1,c=!1,a=!1,l=n,s=0,u=!1,p=t.input.charCodeAt(t.position);if(124===p)i=!1;else{if(62!==p)return!1;i=!0}for(t.kind="scalar",t.result="";0!==p;)if(p=t.input.charCodeAt(++t.position),43===p||45===p)1===o?o=43===p?3:2:S(t,"repeat of a chomping mode identifier");else{if(!((r=A(p))>=0))break;0===r?S(t,"bad explicit indentation width of a block scalar; it cannot be less than one"):a?S(t,"repeat of an indentation width identifier"):(l=n+r-1,a=!0)}if(h(p)){do{p=t.input.charCodeAt(++t.position)}while(h(p));if(35===p)do{p=t.input.charCodeAt(++t.position)}while(!d(p)&&0!==p)}for(;0!==p;){for(_(t),t.lineIndent=0,p=t.input.charCodeAt(t.position);(!a||t.lineIndent<l)&&32===p;)t.lineIndent++,p=t.input.charCodeAt(++t.position);if(!a&&t.lineIndent>l&&(l=t.lineIndent),d(p)){s++;continue}if(a||0!==l||S(t,"missing indentation for block scalar"),t.lineIndent<l){3===o?t.result+=e.repeat("\n",c?1+s:s):1===o&&c&&(t.result+="\n");break}i?h(p)?(u=!0,t.result+=e.repeat("\n",c?1+s:s)):u?(u=!1,t.result+=e.repeat("\n",s+1)):0===s?c&&(t.result+=" "):t.result+=e.repeat("\n",s):t.result+=e.repeat("\n",c?1+s:s),c=!0,a=!0,s=0;const n=t.position;for(;!d(p)&&0!==p;)p=t.input.charCodeAt(++t.position);L(t,n,t.position,!1)}return!0}(t,u)||function(e,t){let n,i,r=e.input.charCodeAt(e.position);if(39!==r)return!1;for(e.kind="scalar",e.result="",e.position++,n=i=e.position;0!==(r=e.input.charCodeAt(e.position));)if(39===r){if(L(e,n,e.position,!0),r=e.input.charCodeAt(++e.position),39!==r)return!0;n=e.position,e.position++,i=e.position}else d(r)?(L(e,n,i,!0),R(e,U(e,!1,t)),n=i=e.position):e.position===e.lineStart&&q(e)?S(e,"unexpected end of the document within a single quoted scalar"):(e.position++,h(r)||(i=e.position));S(e,"unexpected end of the stream within a single quoted scalar")}(t,u)||function(e,t){let n,i,r,o=e.input.charCodeAt(e.position);if(34!==o)return!1;for(e.kind="scalar",e.result="",e.position++,n=i=e.position;0!==(o=e.input.charCodeAt(e.position));){if(34===o)return L(e,n,e.position,!0),e.position++,!0;if(92===o){if(L(e,n,e.position,!0),o=e.input.charCodeAt(++e.position),d(o))U(e,!1,t);else if(o<256&&C[o])e.result+=I[o],e.position++;else if((r=b(o))>0){let t=r,n=0;for(;t>0;t--)o=e.input.charCodeAt(++e.position),(r=y(o))>=0?n=(n<<4)+r:S(e,"expected hexadecimal character");e.result+=w(n),e.position++}else S(e,"unknown escape sequence");n=i=e.position}else d(o)?(L(e,n,i,!0),R(e,U(e,!1,t)),n=i=e.position):e.position===e.lineStart&&q(e)?S(e,"unexpected end of the document within a double quoted scalar"):(e.position++,h(o)||(i=e.position))}S(e,"unexpected end of the stream within a double quoted scalar")}(t,u)?x=!0:function(e){let t=e.input.charCodeAt(e.position);if(42!==t)return!1;t=e.input.charCodeAt(++e.position);const n=e.position;for(;0!==t&&!g(t)&&!m(t);)t=e.input.charCodeAt(++e.position);e.position===n&&S(e,"name of an alias node must contain at least one character");const i=e.input.slice(n,e.position);return r.call(e.anchorMap,i)||S(e,'unidentified alias "'+i+'"'),e.result=e.anchorMap[i],U(e,!0,-1),!0}(t)?(x=!0,null===t.tag&&null===t.anchor||S(t,"alias node should not have any properties")):function(e,t,n){let i,r,o,c,a,l;const s=e.kind,u=e.result;let p=e.input.charCodeAt(e.position);if(g(p)||m(p)||35===p||38===p||42===p||33===p||124===p||62===p||39===p||34===p||37===p||64===p||96===p)return!1;if(63===p||45===p){const t=e.input.charCodeAt(e.position+1);if(g(t)||n&&m(t))return!1}for(e.kind="scalar",e.result="",i=r=e.position,o=!1;0!==p;){if(58===p){const t=e.input.charCodeAt(e.position+1);if(g(t)||n&&m(t))break}else if(35===p){if(g(e.input.charCodeAt(e.position-1)))break}else{if(e.position===e.lineStart&&q(e)||n&&m(p))break;if(d(p)){if(c=e.line,a=e.lineStart,l=e.lineIndent,U(e,!1,-1),e.lineIndent>=t){o=!0,p=e.input.charCodeAt(e.position);continue}e.position=r,e.line=c,e.lineStart=a,e.lineIndent=l;break}}o&&(L(e,i,r,!1),R(e,e.line-c),i=r=e.position,o=!1),h(p)||(r=e.position+1),p=e.input.charCodeAt(++e.position)}return L(e,i,r,!1),!!e.result||(e.kind=s,e.result=u,!1)}(t,u,1===i)&&(x=!0,null===t.tag&&(t.tag="?")),null!==t.anchor&&j(t,t.anchor,t.result)}else 0===f&&(x=l&&B(t,p));if(null===t.tag)null!==t.anchor&&j(t,t.anchor,t.result);else if("?"===t.tag){null!==t.result&&"scalar"!==t.kind&&S(t,'unacceptable node kind for !<?> tag; it should be "scalar", not "'+t.kind+'"');for(let e=0,n=t.implicitTypes.length;e<n;e+=1)if(s=t.implicitTypes[e],s.resolve(t.result)){t.result=s.construct(t.result),t.tag=s.tag,null!==t.anchor&&j(t,t.anchor,t.result);break}}else if("!"!==t.tag){if(r.call(t.typeMap[t.kind||"fallback"],t.tag))s=t.typeMap[t.kind||"fallback"][t.tag];else{s=null;const e=t.typeMap.multi[t.kind||"fallback"];for(let n=0,i=e.length;n<i;n+=1)if(t.tag.slice(0,e[n].tag.length)===e[n].tag){s=e[n];break}}s||S(t,"unknown tag !<"+t.tag+">"),null!==t.result&&s.kind!==t.kind&&S(t,"unacceptable node kind for !<"+t.tag+'> tag; it should be "'+s.kind+'", not "'+t.kind+'"'),s.resolve(t.result,t.tag)?(t.result=s.construct(t.result,t.tag),null!==t.anchor&&j(t,t.anchor,t.result)):S(t,"cannot resolve a node with !<"+t.tag+"> explicit tag")}return null!==t.listener&&t.listener("close",t),t.depth-=1,null!==t.tag||null!==t.anchor||x}function W(e){const t=e.position;let n,i=!1;for(e.version=null,e.checkLineBreaks=e.legacy,e.tagMap=Object.create(null),e.anchorMap=Object.create(null);0!==(n=e.input.charCodeAt(e.position))&&(U(e,!0,-1),n=e.input.charCodeAt(e.position),!(e.lineIndent>0||37!==n));){i=!0,n=e.input.charCodeAt(++e.position);let t=e.position;for(;0!==n&&!g(n);)n=e.input.charCodeAt(++e.position);const o=e.input.slice(t,e.position),c=[];for(o.length<1&&S(e,"directive name must not be less than one character in length");0!==n;){for(;h(n);)n=e.input.charCodeAt(++e.position);if(35===n){do{n=e.input.charCodeAt(++e.position)}while(0!==n&&!d(n));break}if(d(n))break;for(t=e.position;0!==n&&!g(n);)n=e.input.charCodeAt(++e.position);c.push(e.input.slice(t,e.position))}0!==n&&_(e),r.call(E,o)?E[o](e,o,c):T(e,'unknown document directive "'+o+'"')}U(e,!0,-1),0===e.lineIndent&&45===e.input.charCodeAt(e.position)&&45===e.input.charCodeAt(e.position+1)&&45===e.input.charCodeAt(e.position+2)?(e.position+=3,U(e,!0,-1)):i&&S(e,"directives end mark is expected"),H(e,e.lineIndent-1,4,!1,!0),U(e,!0,-1),e.checkLineBreaks&&c.test(e.input.slice(t,e.position))&&T(e,"non-ASCII line breaks are interpreted as content"),e.documents.push(e.result),e.position===e.lineStart&&q(e)?46===e.input.charCodeAt(e.position)&&(e.position+=3,U(e,!0,-1)):e.position<e.length-1&&S(e,"end of the stream or a document separator is expected")}function G(e,t){t=t||{},0!==(e=String(e)).length&&(10!==e.charCodeAt(e.length-1)&&13!==e.charCodeAt(e.length-1)&&(e+="\n"),65279===e.charCodeAt(0)&&(e=e.slice(1)));const n=new v(e,t),i=e.indexOf("\0");for(-1!==i&&(n.position=i,S(n,"null byte is not allowed in input")),n.input+="\0";32===n.input.charCodeAt(n.position);)n.lineIndent+=1,n.position+=1;for(;n.position<n.length-1;)W(n);return n.documents}return Z.loadAll=function(e,t,n){null!==t&&"object"==typeof t&&void 0===n&&(n=t,t=null);const i=G(e,n);if("function"!=typeof t)return i;for(let e=0,n=i.length;e<n;e+=1)t(i[e])},Z.load=function(e,n){const i=G(e,n);if(0!==i.length){if(1===i.length)return i[0];throw new t("expected a single document in the stream, but found more")}},Z}var Ae,ke,we={};function xe(){if(Ae)return we;Ae=1;const e=z(),t=Q(),n=ye(),i=Object.prototype.toString,r=Object.prototype.hasOwnProperty,o=65279,c={0:"\\0",7:"\\a",8:"\\b",9:"\\t",10:"\\n",11:"\\v",12:"\\f",13:"\\r",27:"\\e",34:'\\"',92:"\\\\",133:"\\N",160:"\\_",8232:"\\L",8233:"\\P"},a=["y","Y","yes","Yes","YES","on","On","ON","n","N","no","No","NO","off","Off","OFF"],l=/^[-+]?[0-9_]+(?::[0-9_]+)+(?:\.[0-9_]*)?$/;function s(n){let i,r;const o=n.toString(16).toUpperCase();if(n<=255)i="x",r=2;else if(n<=65535)i="u",r=4;else{if(!(n<=4294967295))throw new t("code point within a string may not be greater than 0xFFFFFFFF");i="U",r=8}return"\\"+i+e.repeat("0",r-o.length)+o}function u(t){this.schema=t.schema||n,this.indent=Math.max(1,t.indent||2),this.noArrayIndent=t.noArrayIndent||!1,this.skipInvalid=t.skipInvalid||!1,this.flowLevel=e.isNothing(t.flowLevel)?-1:t.flowLevel,this.styleMap=function(e,t){if(null===t)return{};const n={},i=Object.keys(t);for(let o=0,c=i.length;o<c;o+=1){let c=i[o],a=String(t[c]);"!!"===c.slice(0,2)&&(c="tag:yaml.org,2002:"+c.slice(2));const l=e.compiledTypeMap.fallback[c];l&&r.call(l.styleAliases,a)&&(a=l.styleAliases[a]),n[c]=a}return n}(this.schema,t.styles||null),this.sortKeys=t.sortKeys||!1,this.lineWidth=t.lineWidth||80,this.noRefs=t.noRefs||!1,this.noCompatMode=t.noCompatMode||!1,this.condenseFlow=t.condenseFlow||!1,this.quotingType='"'===t.quotingType?2:1,this.forceQuotes=t.forceQuotes||!1,this.replacer="function"==typeof t.replacer?t.replacer:null,this.implicitTypes=this.schema.compiledImplicit,this.explicitTypes=this.schema.compiledExplicit,this.tag=null,this.result="",this.duplicates=[],this.usedDuplicates=null}function p(t,n){const i=e.repeat(" ",n);let r=0,o="";const c=t.length;for(;r<c;){let e;const n=t.indexOf("\n",r);-1===n?(e=t.slice(r),r=c):(e=t.slice(r,n+1),r=n+1),e.length&&"\n"!==e&&(o+=i),o+=e}return o}function f(t,n){return"\n"+e.repeat(" ",t.indent*n)}function d(e){return 32===e||9===e}function h(e){return e>=32&&e<=126||e>=161&&e<=55295&&8232!==e&&8233!==e||e>=57344&&e<=65533&&e!==o||e>=65536&&e<=1114111}function g(e){return h(e)&&e!==o&&13!==e&&10!==e}function m(e,t,n){const i=g(e),r=i&&!d(e);return(n?i:i&&44!==e&&91!==e&&93!==e&&123!==e&&125!==e)&&35!==e&&!(58===t&&!r)||g(t)&&!d(t)&&35===e||58===t&&r}function y(e,t){const n=e.charCodeAt(t);let i;return n>=55296&&n<=56319&&t+1<e.length&&(i=e.charCodeAt(t+1),i>=56320&&i<=57343)?1024*(n-55296)+i-56320+65536:n}function b(e){return/^\n* /.test(e)}function A(e,n,i,r,u){e.dump=function(){if(0===n.length)return 2===e.quotingType?'""':"''";if(!e.noCompatMode&&(-1!==a.indexOf(n)||l.test(n)))return 2===e.quotingType?'"'+n+'"':"'"+n+"'";const f=e.indent*Math.max(1,i),g=-1===e.lineWidth?-1:Math.max(Math.min(e.lineWidth,40),e.lineWidth-f),A=r||e.flowLevel>-1&&i>=e.flowLevel;switch(function(e,t,n,i,r,c,a,l){let s,u=0,p=null,f=!1,g=!1;const A=-1!==i;let k=-1,w=h(x=y(e,0))&&x!==o&&!d(x)&&45!==x&&63!==x&&58!==x&&44!==x&&91!==x&&93!==x&&123!==x&&125!==x&&35!==x&&38!==x&&42!==x&&33!==x&&124!==x&&61!==x&&62!==x&&39!==x&&34!==x&&37!==x&&64!==x&&96!==x&&function(e){return!d(e)&&58!==e}(y(e,e.length-1));var x;if(t||a)for(s=0;s<e.length;u>=65536?s+=2:s++){if(u=y(e,s),!h(u))return 5;w=w&&m(u,p,l),p=u}else{for(s=0;s<e.length;u>=65536?s+=2:s++){if(u=y(e,s),10===u)f=!0,A&&(g=g||s-k-1>i&&" "!==e[k+1],k=s);else if(!h(u))return 5;w=w&&m(u,p,l),p=u}g=g||A&&s-k-1>i&&" "!==e[k+1]}return f||g?n>9&&b(e)?5:a?2===c?5:2:g?4:3:!w||a||r(e)?2===c?5:2:1}(n,A,e.indent,g,function(t){return function(e,t){for(let n=0,i=e.implicitTypes.length;n<i;n+=1)if(e.implicitTypes[n].resolve(t))return!0;return!1}(e,t)},e.quotingType,e.forceQuotes&&!r,u)){case 1:return n;case 2:return"'"+n.replace(/'/g,"''")+"'";case 3:return"|"+k(n,e.indent)+w(p(n,f));case 4:return">"+k(n,e.indent)+w(p(function(e,t){const n=/(\n+)([^\n]*)/g;let i,r,o=function(){let i=e.indexOf("\n");return i=-1!==i?i:e.length,n.lastIndex=i,x(e.slice(0,i),t)}(),c="\n"===e[0]||" "===e[0];for(;r=n.exec(e);){const e=r[1],n=r[2];i=" "===n[0],o+=e+(c||i||""===n?"":"\n")+x(n,t),c=i}return o}(n,g),f));case 5:return'"'+function(e){let t="",n=0;for(let i=0;i<e.length;n>=65536?i+=2:i++){n=y(e,i);const r=c[n];!r&&h(n)?(t+=e[i],n>=65536&&(t+=e[i+1])):t+=r||s(n)}return t}(n)+'"';default:throw new t("impossible error: invalid scalar style")}}()}function k(e,t){const n=b(e)?String(t):"",i="\n"===e[e.length-1];return n+(!i||"\n"!==e[e.length-2]&&"\n"!==e?i?"":"-":"+")+"\n"}function w(e){return"\n"===e[e.length-1]?e.slice(0,-1):e}function x(e,t){if(""===e||" "===e[0])return e;const n=/ [^ ]/g;let i,r,o=0,c=0,a=0,l="";for(;i=n.exec(e);)a=i.index,a-o>t&&(r=c>o?c:a,l+="\n"+e.slice(o,r),o=r+1),c=a;return l+="\n",e.length-o>t&&c>o?l+=e.slice(o,c)+"\n"+e.slice(c+1):l+=e.slice(o),l.slice(1)}function C(e,t,n,i){let r="";const o=e.tag;for(let o=0,c=n.length;o<c;o+=1){let c=n[o];e.replacer&&(c=e.replacer.call(n,String(o),c)),(v(e,t+1,c,!0,!0,!1,!0)||void 0===c&&v(e,t+1,null,!0,!0,!1,!0))&&(i&&""===r||(r+=f(e,t)),e.dump&&10===e.dump.charCodeAt(0)?r+="-":r+="- ",r+=e.dump)}e.tag=o,e.dump=r||"[]"}function I(e,n,o){const c=o?e.explicitTypes:e.implicitTypes;for(let a=0,l=c.length;a<l;a+=1){const l=c[a];if((l.instanceOf||l.predicate)&&(!l.instanceOf||"object"==typeof n&&n instanceof l.instanceOf)&&(!l.predicate||l.predicate(n))){if(o?l.multi&&l.representName?e.tag=l.representName(n):e.tag=l.tag:e.tag="?",l.represent){const o=e.styleMap[l.tag]||l.defaultStyle;let c;if("[object Function]"===i.call(l.represent))c=l.represent(n,o);else{if(!r.call(l.represent,o))throw new t("!<"+l.tag+'> tag resolver accepts not "'+o+'" style');c=l.represent[o](n,o)}e.dump=c}return!0}}return!1}function v(e,n,r,o,c,a,l){e.tag=null,e.dump=r,I(e,r,!1)||I(e,r,!0);const s=i.call(e.dump),u=o;o&&(o=e.flowLevel<0||e.flowLevel>n);const p="[object Object]"===s||"[object Array]"===s;let d,h;if(p&&(d=e.duplicates.indexOf(r),h=-1!==d),(null!==e.tag&&"?"!==e.tag||h||2!==e.indent&&n>0)&&(c=!1),h&&e.usedDuplicates[d])e.dump="*ref_"+d;else{if(p&&h&&!e.usedDuplicates[d]&&(e.usedDuplicates[d]=!0),"[object Object]"===s)o&&0!==Object.keys(e.dump).length?(function(e,n,i,r){let o="";const c=e.tag,a=Object.keys(i);if(!0===e.sortKeys)a.sort();else if("function"==typeof e.sortKeys)a.sort(e.sortKeys);else if(e.sortKeys)throw new t("sortKeys must be a boolean or a function");for(let t=0,c=a.length;t<c;t+=1){let c="";r&&""===o||(c+=f(e,n));const l=a[t];let s=i[l];if(e.replacer&&(s=e.replacer.call(i,l,s)),!v(e,n+1,l,!0,!0,!0))continue;const u=null!==e.tag&&"?"!==e.tag||e.dump&&e.dump.length>1024;u&&(e.dump&&10===e.dump.charCodeAt(0)?c+="?":c+="? "),c+=e.dump,u&&(c+=f(e,n)),v(e,n+1,s,!0,u)&&(e.dump&&10===e.dump.charCodeAt(0)?c+=":":c+=": ",c+=e.dump,o+=c)}e.tag=c,e.dump=o||"{}"}(e,n,e.dump,c),h&&(e.dump="&ref_"+d+e.dump)):(function(e,t,n){let i="";const r=e.tag,o=Object.keys(n);for(let r=0,c=o.length;r<c;r+=1){let c="";""!==i&&(c+=", "),e.condenseFlow&&(c+='"');const a=o[r];let l=n[a];e.replacer&&(l=e.replacer.call(n,a,l)),v(e,t,a,!1,!1)&&(e.dump.length>1024&&(c+="? "),c+=e.dump+(e.condenseFlow?'"':"")+":"+(e.condenseFlow?"":" "),v(e,t,l,!1,!1)&&(c+=e.dump,i+=c))}e.tag=r,e.dump="{"+i+"}"}(e,n,e.dump),h&&(e.dump="&ref_"+d+" "+e.dump));else if("[object Array]"===s)o&&0!==e.dump.length?(e.noArrayIndent&&!l&&n>0?C(e,n-1,e.dump,c):C(e,n,e.dump,c),h&&(e.dump="&ref_"+d+e.dump)):(function(e,t,n){let i="";const r=e.tag;for(let r=0,o=n.length;r<o;r+=1){let o=n[r];e.replacer&&(o=e.replacer.call(n,String(r),o)),(v(e,t,o,!1,!1)||void 0===o&&v(e,t,null,!1,!1))&&(""!==i&&(i+=","+(e.condenseFlow?"":" ")),i+=e.dump)}e.tag=r,e.dump="["+i+"]"}(e,n,e.dump),h&&(e.dump="&ref_"+d+" "+e.dump));else{if("[object String]"!==s){if("[object Undefined]"===s)return!1;if(e.skipInvalid)return!1;throw new t("unacceptable kind of an object to dump "+s)}"?"!==e.tag&&A(e,e.dump,n,a,u)}if(null!==e.tag&&"?"!==e.tag){let t=encodeURI("!"===e.tag[0]?e.tag.slice(1):e.tag).replace(/!/g,"%21");t="!"===e.tag[0]?"!"+t:"tag:yaml.org,2002:"===t.slice(0,18)?"!!"+t.slice(18):"!<"+t+">",e.dump=t+" "+e.dump}}return!0}function O(e,t){const n=[],i=[];S(e,n,i);const r=i.length;for(let e=0;e<r;e+=1)t.duplicates.push(n[i[e]]);t.usedDuplicates=new Array(r)}function S(e,t,n){if(null!==e&&"object"==typeof e){const i=t.indexOf(e);if(-1!==i)-1===n.indexOf(i)&&n.push(i);else if(t.push(e),Array.isArray(e))for(let i=0,r=e.length;i<r;i+=1)S(e[i],t,n);else{const i=Object.keys(e);for(let r=0,o=i.length;r<o;r+=1)S(e[i[r]],t,n)}}}return we.dump=function(e,t){const n=new u(t=t||{});n.noRefs||O(e,n);let i=e;return n.replacer&&(i=n.replacer.call({"":i},"",i)),v(n,0,i,!0,!0)?n.dump+"\n":""},we}const Ce=i(function(){if(ke)return G;ke=1;const e=be(),t=xe();function n(e,t){return function(){throw new Error("Function yaml."+e+" is removed in js-yaml 4. Use yaml."+t+" instead, which is now safe by default.")}}return G.Type=X(),G.Schema=ee(),G.FAILSAFE_SCHEMA=re(),G.JSON_SCHEMA=se(),G.CORE_SCHEMA=ue(),G.DEFAULT_SCHEMA=ye(),G.load=e.load,G.loadAll=e.loadAll,G.dump=t.dump,G.YAMLException=Q(),G.types={binary:de(),float:le(),map:ie(),null:oe(),pairs:ge(),set:me(),timestamp:pe(),bool:ce(),int:ae(),merge:fe(),omap:he(),seq:ne(),str:te()},G.safeLoad=n("safeLoad","load"),G.safeLoadAll=n("safeLoadAll","loadAll"),G.safeDump=n("safeDump","dump"),G}()),{Type:Ie,Schema:ve,FAILSAFE_SCHEMA:Oe,JSON_SCHEMA:Se,CORE_SCHEMA:Te,DEFAULT_SCHEMA:je,load:Ne,loadAll:Me,dump:Ee,YAMLException:Le,types:Fe,safeLoad:De,safeLoadAll:Ye,safeDump:_e}=Ce;n.d(t,["Hh",0,Ne])}};const t={};function n(i){const r=t[i];if(void 0!==r)return r.exports;const o=t[i]={exports:{}};return e[i](o,o.exports,n),o.exports}n.d=(e,t)=>{if(Array.isArray(t))for(var i=0;i<t.length;){var r=t[i++],o=t[i++];n.o(e,r)?0===o&&i++:0===o?Object.defineProperty(e,r,{enumerable:!0,value:t[i++]}):Object.defineProperty(e,r,{enumerable:!0,get:o})}else for(var r in t)n.o(t,r)&&!n.o(e,r)&&Object.defineProperty(e,r,{enumerable:!0,get:t[r]})},n.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t);var i=n(382),r=n(3977);let o;function c(e){Office.context.ui.messageParent(JSON.stringify(e))}function a(e,t){const n=document.getElementById("add-dictionary-status");n.textContent=e,n.className="add-dictionary-status"+(t?` ${t}`:"")}function l(e){return Object.values(e).reduce((e,t)=>e+t.length,0)}function s(e){var t;return e.children?e.children.reduce((e,t)=>e.concat(s(t)),[]):[null!==(t=e.enabled)&&void 0!==t&&t]}function u(e){return e.children?e.children.reduce((e,t)=>e.concat(u(t)),[]):[e.id]}function p(e,t){var n;const i=document.createElement("label");i.className="group-row",t>0&&i.classList.add(`group-row-indent-${t}`);const r=document.createElement("input");if(r.type="checkbox",e.children){i.classList.add("group-row-parent");const t=s(e),n=t.every(Boolean),o=t.every(e=>!e);r.checked=n,r.indeterminate=!n&&!o,r.onchange=()=>{c({type:"toggle-groups",groupIds:u(e),enabled:r.checked})}}else r.checked=null!==(n=e.enabled)&&void 0!==n&&n,r.onchange=()=>{c({type:"toggle-groups",groupIds:[e.id],enabled:r.checked})};return i.appendChild(r),i.appendChild(document.createTextNode(e.label)),i}function f(e){const t=JSON.parse(e.message);"state"===t.type&&(void 0!==o&&(window.clearInterval(o),o=void 0),function(e){const t=document.getElementById("group-checkboxes");t.innerHTML="";const n=(e,i)=>{var r;t.appendChild(p(e,i)),null===(r=e.children)||void 0===r||r.forEach(e=>n(e,i+1))};for(const t of e)n(t,0)}(t.groups),function(e){const t=document.getElementById("custom-dictionaries-list");if(t.innerHTML="",0===e.length){const e=document.createElement("li");return e.className="custom-dictionaries-empty",e.textContent="No custom dictionaries added yet.",void t.appendChild(e)}for(const n of e){const e=document.createElement("li"),i=document.createElement("input");i.type="checkbox",i.checked=n.enabled,i.onchange=()=>{c({type:"toggle-dictionary",id:n.id,enabled:i.checked})};const r=document.createElement("span");r.className="dictionary-name",r.textContent=`${n.name} (${n.kind})`,r.title=n.name;const o=document.createElement("button");o.className="remove-button",o.textContent="Remove",o.onclick=()=>{c({type:"remove-dictionary",id:n.id})},e.appendChild(i),e.appendChild(r),e.appendChild(o),t.appendChild(e)}}(t.dictionaries))}Office.onReady(()=>{Office.context.ui.addHandlerAsync(Office.EventType.DialogParentMessageReceived,f);const e=()=>c({type:"ready"});e(),o=window.setInterval(e,200);const t=document.getElementById("add-file-button"),n=document.getElementById("add-file-input");t.onclick=()=>n.click(),n.onchange=()=>{var e;const t=null===(e=n.files)||void 0===e?void 0:e[0];if(n.value="",!t)return;const o=new FileReader;o.onload=()=>{const e=o.result;if((0,r.aY)(e))return void a("Only YAML dictionaries are accepted, not JSON.","error");let n;try{n=(0,i.Hh)(e)}catch(e){return void a(`Couldn't parse that file as YAML: ${e.message}`,"error")}(0,r.OY)(n)?(a(`Added "${t.name}" (${l(n)} units).`,"success"),c({type:"add-file-dictionary",name:t.name,contents:n})):a("That file doesn't look like a unit dictionary (expected {category: [{canonicalName, aliases}, ...]}).","error")},o.onerror=()=>{a("Couldn't read that file.","error")},o.readAsText(t)};const s=document.getElementById("add-url-input");document.getElementById("add-url-button").onclick=async()=>{const e=s.value.trim();if(e){a("Checking URL...","");try{const t=await fetch(e);if(!t.ok)throw new Error(`HTTP ${t.status}`);const n=await t.text();if((0,r.aY)(n))return void a("Only YAML dictionaries are accepted, not JSON.","error");const o=(0,i.Hh)(n);if(!(0,r.OY)(o))return void a("That URL doesn't return a valid unit dictionary (expected {category: [{canonicalName, aliases}, ...]}).","error");a(`Added (${l(o)} units).`,"success"),s.value="",c({type:"add-url-dictionary",name:e,url:e})}catch(e){a(`Couldn't load that URL: ${e.message}. This can also happen if the server doesn't allow cross-origin requests.`,"error")}}},document.getElementById("dialog-close").onclick=()=>{c({type:"closed"})}})})();
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ 3977
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   OY: () => (/* binding */ isUnitSeedFile),
+/* harmony export */   aY: () => (/* binding */ isJsonText)
+/* harmony export */ });
+/* unused harmony exports FIXED_UNIT_GROUPS, flattenUnitGroups, addSeedFileToRegistry, UnitRegistryStore */
+/* unused harmony import specifier */ var loadYaml;
+/* unused harmony import specifier */ var unitsSeedRaw;
+/* unused harmony import specifier */ var UnitGroupPreferenceStore;
+/* harmony import */ var js_yaml__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(382);
+// Registry of known units of measure and currencies, organized into
+// categories (e.g. metric, imperial, currency). Seeded at build time from
+// units.seed.yaml, extensible at runtime by the user.
+
+
+
+const unitsSeed = (/* unused pure expression or super */ null && (unitsSeedRaw));
+const FIXED_UNIT_GROUPS = (/* unused pure expression or super */ null && ([
+    {
+        id: "excel-native",
+        label: "Excel native",
+        // Alphabetical by label, per Paul's request -- keep sorted if a
+        // category is ever added or renamed.
+        children: [
+            {
+                id: "excel-area",
+                label: "Area",
+                matches: (def) => def.category === "area",
+            },
+            {
+                id: "excel-distance",
+                label: "Distance",
+                matches: (def) => def.category === "distance",
+            },
+            {
+                id: "excel-energy",
+                label: "Energy",
+                matches: (def) => def.category === "energy",
+            },
+            {
+                id: "excel-force",
+                label: "Force",
+                matches: (def) => def.category === "force",
+            },
+            {
+                id: "excel-information",
+                label: "Information",
+                matches: (def) => def.category === "information",
+            },
+            {
+                id: "excel-magnetism",
+                label: "Magnetism",
+                matches: (def) => def.category === "magnetism",
+            },
+            {
+                id: "excel-power",
+                label: "Power",
+                matches: (def) => def.category === "power",
+            },
+            {
+                id: "excel-pressure",
+                label: "Pressure",
+                matches: (def) => def.category === "pressure",
+            },
+            {
+                id: "excel-speed",
+                label: "Speed",
+                matches: (def) => def.category === "speed",
+            },
+            {
+                id: "excel-temperature",
+                label: "Temperature",
+                matches: (def) => def.category === "temperature",
+            },
+            {
+                id: "excel-time",
+                label: "Time",
+                matches: (def) => def.category === "time",
+            },
+            {
+                id: "excel-volume",
+                label: "Volume and liquid measure",
+                matches: (def) => def.category === "volume_and_liquid_measure",
+            },
+            {
+                id: "excel-weight-mass",
+                label: "Weight and mass",
+                matches: (def) => def.category === "weight_and_mass",
+            },
+        ],
+    },
+    {
+        id: "currencies",
+        label: "Currencies",
+        children: [
+            {
+                id: "currency-large",
+                // The parenthesized list is hardcoded to match units.seed.yaml's
+                // own currency entries currently tagged group: "large" -- keep the
+                // two in sync if that set ever changes.
+                label: "Large currencies (USD, EUR, GBP, JPY, CNY, CAD, AUD)",
+                matches: (def) => def.category === "currency" && def.group === "large",
+            },
+            {
+                id: "currency-other",
+                label: "Other currencies",
+                matches: (def) => def.category === "currency" && def.group !== "large",
+            },
+        ],
+    },
+]));
+// Every leaf (gate-able) group in the tree above, depth-first -- the only
+// ones UnitRegistryStore.load() and UnitGroupPreferenceStore ever need to
+// know about; parent nodes exist purely for the dialog's own hierarchical
+// rendering.
+function flattenUnitGroups(groups) {
+    const result = [];
+    for (const group of groups) {
+        if (group.children) {
+            result.push(...flattenUnitGroups(group.children));
+        }
+        else {
+            result.push(group);
+        }
+    }
+    return result;
+}
+// True when text parses as plain JSON -- used to reject a custom
+// dictionary that's really JSON, not genuine YAML, before ever handing it
+// to js-yaml's own load() (which can't tell the two apart on its own,
+// since valid JSON is also valid YAML). Paul's own call (2026-09-30:
+// "I'd prefer we accept only YAML in the code"), shared by both this
+// module's own loadUrlDictionaries and the Unit Dictionaries dialog's
+// add-from-file/add-from-URL checks (unit-dictionaries-dialog.ts).
+function isJsonText(text) {
+    try {
+        JSON.parse(text);
+        return true;
+    }
+    catch (_a) {
+        return false;
+    }
+}
+// Loose runtime shape check for a UnitSeedFile coming from an untrusted
+// source (a user-supplied local file or network URL, unlike the built-in
+// units.seed.yaml, which is trusted build-time data) -- just enough to
+// reject obvious garbage before attempting to register anything from it.
+function isUnitSeedFile(data) {
+    if (typeof data !== "object" || data === null || Array.isArray(data)) {
+        return false;
+    }
+    return Object.values(data).every((defs) => Array.isArray(defs) &&
+        defs.every((def) => typeof def === "object" &&
+            def !== null &&
+            typeof def.canonicalName ===
+                "string" &&
+            Array.isArray(def.aliases) &&
+            def.aliases.every((a) => typeof a === "string")));
+}
+// Registers every unit in seedFile, skipping (with a console warning)
+// any entry whose name collides with one already registered, rather than
+// letting one bad/colliding entry -- most plausible from a user-supplied
+// custom dictionary, but just as easily a typo in units.seed.yaml itself
+// -- take down registration of everything else with it.
+function addSeedFileToRegistry(registry, seedFile) {
+    for (const [category, defs] of Object.entries(seedFile)) {
+        for (const def of defs) {
+            try {
+                registry.add(category, Object.assign(Object.assign({}, def), { category }));
+            }
+            catch (error) {
+                console.warn(`Skipping unit "${def.canonicalName}": ${error.message}`);
+            }
+        }
+    }
+}
+// Metric prefix abbreviations CONVERT recognizes (Excel's own documented
+// table), paired with the base-unit codes they're actually documented to
+// combine with. Per Microsoft's own docs, the underlying rule is simply
+// "the unit is metric" (in the broad sense -- including the older CGS
+// units like dyne/erg/gauss, and scientific-tradition units like calorie/
+// electron-volt, not just modern SI) -- not an arbitrary hand-picked
+// list, so this is every genuinely metric/CGS-tradition unit this
+// registry seeds. Temperature is the one documented exception: Celsius/
+// Fahrenheit/Kelvin never take a prefix in CONVERT despite being metric.
+// A handful of other seeded units are metric in name but aren't real
+// prefixable bases either -- hectare (literally "hecto-are," already a
+// fixed historical combination) and pferdestarke/"metric horsepower"
+// (a named substitute for horsepower, not a base unit) -- so those are
+// deliberately left out too. If a prefix+base combination this allows
+// still isn't one Excel actually accepts, the cell shows Excel's own
+// #N/A directly and visibly -- Daubee's own border only ever claims the
+// units are dimensionally consistent, never that the formula is error-
+// free, so getting one wrong here is a minor cosmetic surprise, not a
+// dangerous silent wrong answer. Note Excel's own deka abbreviation is
+// "e", not the standard SI "da" -- a well-documented quirk of CONVERT
+// specifically, not a typo here (and distinct from "e" as erg's own
+// alias below -- an exact match is always tried before decomposition,
+// so a bare "e" still means erg, never "deka-nothing").
+const CONVERT_METRIC_PREFIXES = (/* unused pure expression or super */ null && ([
+    "Y",
+    "Z",
+    "E",
+    "P",
+    "T",
+    "G",
+    "M",
+    "k",
+    "h",
+    "e",
+    "d",
+    "c",
+    "m",
+    "u",
+    "n",
+    "p",
+    "f",
+    "a",
+    "z",
+    "y",
+]));
+const CONVERT_METRIC_PREFIX_BASES = (/* unused pure expression or super */ null && ([
+    "g",
+    "m",
+    "s",
+    "sec",
+    "Pa",
+    "N",
+    "dyn",
+    "J",
+    "e",
+    "c",
+    "cal",
+    "eV",
+    "ev",
+    "Wh",
+    "wh",
+    "W",
+    "T",
+    "ga",
+    "l",
+    "L",
+    "lt",
+    "ang",
+    "u",
+    "bit",
+    "byte",
+]));
+// Binary prefix abbreviations (the IEC standard forms Excel documents --
+// "Ki"/"Mi"/..., not "ki"/"mi") -- CONVERT only accepts these combined
+// with its two information units.
+const CONVERT_BINARY_PREFIXES = (/* unused pure expression or super */ null && ([
+    "Ki",
+    "Mi",
+    "Gi",
+    "Ti",
+    "Pi",
+    "Ei",
+    "Zi",
+    "Yi",
+]));
+const CONVERT_BINARY_PREFIX_BASES = (/* unused pure expression or super */ null && (["bit", "byte"]));
+// If text is exactly one of prefixes followed by one of bases, with
+// nothing else, returns that base string -- e.g. ("km", ["k", ...],
+// ["m", ...]) returns "m" via prefix "k" + base "m". Tries every prefix
+// rather than just the longest/shortest possible split, since
+// CONVERT_METRIC_PREFIXES and CONVERT_BINARY_PREFIXES never overlap in
+// length (1 vs. 2 characters) or alphabet (case-sensitive, matching
+// CONVERT's own case-sensitive codes), so there's no real ambiguity to
+// resolve either way.
+function splitConvertPrefixBase(text, prefixes, bases) {
+    for (const prefix of prefixes) {
+        if (text.startsWith(prefix)) {
+            const base = text.slice(prefix.length);
+            if (bases.includes(base)) {
+                return base;
+            }
+        }
+    }
+    return undefined;
+}
+// Resolves a CONVERT-style prefixed unit code -- e.g. "km" as "k" (kilo) +
+// "m" (meter), "Kibyte" as "Ki" (kibi) + "byte" -- into a synthetic
+// UnitDefinition, or undefined if name doesn't decompose into one of
+// CONVERT's own documented prefix+base combinations (see the tables
+// above). The synthesized definition's own canonicalName is literally the
+// input text itself (e.g. "km") and it has no aliases -- deliberately
+// never added to byName/definitions, so it never appears in the Available
+// Units browse dialog and isn't enumerable via categories()/unitsIn() --
+// Paul's own choice (2026-10-01): a prefixed code like this means
+// something only as a unit name to resolve, not a general "browsable"
+// unit. It still needs to resolve through the registry's own ordinary
+// resolve() (not just CONVERT's own argument parsing) because Infer
+// Units can offer, and the user can accept, this exact text as a cell's
+// own annotation (e.g. CONVERT(K19,"Pm","Tm") infers "Pm" for K19) --
+// that annotation then has to parse again every time anything reads it
+// back (parseUnitFormula's own registry.resolve() call, used for every
+// annotation, not something CONVERT-specific), or Check Units would
+// wrongly call the cell unverifiable despite the annotation it just
+// offered. A prefixed unit inherits its base unit's own category (found
+// via a plain byName lookup, never itself re-entering this prefix logic,
+// since CONVERT has no notion of stacking two prefixes).
+function resolvePrefixedUnit(name, byName) {
+    const metricBase = splitConvertPrefixBase(name, CONVERT_METRIC_PREFIXES, CONVERT_METRIC_PREFIX_BASES);
+    const binaryBase = splitConvertPrefixBase(name, CONVERT_BINARY_PREFIXES, CONVERT_BINARY_PREFIX_BASES);
+    const base = metricBase !== null && metricBase !== void 0 ? metricBase : binaryBase;
+    if (base === undefined) {
+        return undefined;
+    }
+    const baseDef = byName.get(base);
+    if (!baseDef) {
+        return undefined;
+    }
+    return {
+        canonicalName: name,
+        aliases: [],
+        category: baseDef.category,
+    };
+}
+class InMemoryUnitRegistry {
+    constructor() {
+        this.definitions = [];
+        this.byName = new Map();
+    }
+    add(category, def) {
+        const names = [def.canonicalName, ...def.aliases];
+        for (const name of names) {
+            const existing = this.byName.get(name);
+            if (existing) {
+                throw new Error(`Unit name "${name}" is already registered (used by "${existing.canonicalName}").`);
+            }
+        }
+        const stored = {
+            canonicalName: def.canonicalName,
+            aliases: [...def.aliases],
+            category,
+            expansion: def.expansion,
+            isoCode: def.isoCode,
+            group: def.group,
+        };
+        this.definitions.push(stored);
+        for (const name of names) {
+            this.byName.set(name, stored);
+        }
+    }
+    resolve(name) {
+        var _a;
+        return (_a = this.byName.get(name)) !== null && _a !== void 0 ? _a : resolvePrefixedUnit(name, this.byName);
+    }
+    categories() {
+        return [...new Set(this.definitions.map((d) => d.category))].sort((a, b) => a < b ? -1 : a > b ? 1 : 0);
+    }
+    unitsIn(category) {
+        return this.definitions.filter((d) => d.category === category);
+    }
+}
+const SETTINGS_KEY = "daubee.units.custom";
+// Wraps Office.context.document.settings. Merges the gated built-in seed
+// data and whatever custom dictionaries UnitGroupPreferenceStore says are
+// currently enabled (see its own comment for why that's a separate store
+// from this one) into one registry. Also still reads (but can no longer
+// write) daubee.units.custom, the per-unit records the now-removed "Add a
+// unit" task-pane form used to persist one at a time -- kept purely for
+// backward compatibility, so a workbook that already has some doesn't
+// silently lose them; adding one this way is redundant with loading a
+// dictionary now, so there's no longer any UI or API to add more.
+class UnitRegistryStore {
+    constructor(registry, groupPreferences) {
+        this.registry = registry;
+        this.groupPreferences = groupPreferences;
+    }
+    // Builds a fresh registry from the document's current settings: the
+    // built-in seed (filtered by which FIXED_UNIT_GROUPS are enabled),
+    // legacy custom units, and enabled file-based custom dictionaries
+    // (their contents were captured at add-time, so no fetch is needed
+    // here -- see loadUrlDictionaries for the URL-based kind). Shared by
+    // load() (a brand-new store) and refresh() (rebuilding an existing one
+    // in place) so the two can never drift apart.
+    static async buildRegistry() {
+        const groupPreferences = await UnitGroupPreferenceStore.load();
+        const registry = new InMemoryUnitRegistry();
+        const leafGroups = flattenUnitGroups(FIXED_UNIT_GROUPS);
+        for (const [category, defs] of Object.entries(unitsSeed)) {
+            for (const def of defs) {
+                const fullDef = Object.assign(Object.assign({}, def), { category });
+                const group = leafGroups.find((g) => { var _a; return (_a = g.matches) === null || _a === void 0 ? void 0 : _a.call(g, fullDef); });
+                if (group && !groupPreferences.isGroupEnabled(group.id)) {
+                    continue;
+                }
+                try {
+                    registry.add(category, fullDef);
+                }
+                catch (error) {
+                    console.warn(`Skipping unit "${def.canonicalName}": ${error.message}`);
+                }
+            }
+        }
+        const raw = Office.context.document.settings.get(SETTINGS_KEY);
+        const legacyCustomUnits = raw ? JSON.parse(raw) : [];
+        for (const record of legacyCustomUnits) {
+            try {
+                registry.add(record.category, record.definition);
+            }
+            catch (error) {
+                console.warn(`Skipping custom unit "${record.definition.canonicalName}": ${error.message}`);
+            }
+        }
+        for (const dictionary of groupPreferences.getCustomDictionaries()) {
+            if (!dictionary.enabled ||
+                dictionary.kind !== "file" ||
+                !dictionary.contents) {
+                continue;
+            }
+            addSeedFileToRegistry(registry, dictionary.contents);
+        }
+        return { registry, groupPreferences };
+    }
+    static async load() {
+        const { registry, groupPreferences } = await UnitRegistryStore.buildRegistry();
+        return new UnitRegistryStore(registry, groupPreferences);
+    }
+    getRegistry() {
+        return this.registry;
+    }
+    // Rebuilds this store's own registry from the document's current
+    // settings, in place -- so taskpane.ts's one long-lived
+    // `unitRegistryStore` reference sees the update without needing to be
+    // reassigned anywhere. This exists because, unlike PreferenceStore/
+    // UnitGroupPreferenceStore (whose own load()/set() already re-read
+    // fresh settings via refreshSettingsAsync on every call -- see
+    // officeSettingsSync.ts), the registry itself was built once at
+    // startup and cached indefinitely: a dictionary added, removed, or
+    // toggled from the Unit Dictionaries dialog (commands.ts, a different
+    // frame from the task pane) was invisible to an already-open task pane
+    // until it was closed and reopened -- confirmed live by Paul, who added
+    // a file-based dictionary, saw it listed as enabled in that dialog, and
+    // still couldn't browse or annotate with its own units. Also re-runs
+    // loadUrlDictionaries, so a previously-loaded URL-based dictionary
+    // isn't silently dropped by buildRegistry above (which, like load(),
+    // only ever covers the built-in seed, legacy units, and file-based
+    // dictionaries). Called at the start of every registry-dependent user
+    // action (Infer/Check/Consolidate Units, annotating, Browse Units)
+    // rather than on every selection change, since a URL dictionary fetch
+    // is real network I/O, not something worth redoing on every click.
+    async refresh() {
+        const { registry, groupPreferences } = await UnitRegistryStore.buildRegistry();
+        this.registry = registry;
+        this.groupPreferences = groupPreferences;
+        await this.loadUrlDictionaries();
+    }
+    // Fetches every enabled URL-based custom dictionary and merges its units
+    // into the already-built registry in place -- deliberately not part of
+    // load() itself (which stays synchronous) so a slow or unreachable URL
+    // can't delay the task pane's initial render; callers kick this off
+    // separately and re-render whatever depends on the registry once it
+    // resolves. A dictionary that fails to fetch or doesn't parse as a valid
+    // unit dictionary is skipped with a console warning, same tolerance as
+    // any other untrusted-source entry here.
+    async loadUrlDictionaries() {
+        const urlDictionaries = this.groupPreferences
+            .getCustomDictionaries()
+            .filter((d) => d.enabled && d.kind === "url" && d.url);
+        for (const dictionary of urlDictionaries) {
+            try {
+                const response = await fetch(dictionary.url);
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                const text = await response.text();
+                // YAML only -- see isJsonText's own doc comment above. Checked
+                // here too (not just the dialog's own add-from-file/add-from-URL
+                // paths) so a URL dictionary already added before this
+                // restriction existed doesn't keep silently reloading as JSON on
+                // every future startup.
+                if (isJsonText(text)) {
+                    throw new Error("response is JSON, not YAML");
+                }
+                const data = loadYaml(text);
+                if (!isUnitSeedFile(data)) {
+                    throw new Error("response is not a valid unit dictionary");
+                }
+                addSeedFileToRegistry(this.registry, data);
+            }
+            catch (error) {
+                console.warn(`Failed to load unit dictionary from ${dictionary.url}: ${error.message}`);
+            }
+        }
+    }
+}
+
+
+/***/ },
+
+/***/ 382
+(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+/* unused harmony exports CORE_SCHEMA, DEFAULT_SCHEMA, FAILSAFE_SCHEMA, JSON_SCHEMA, Schema, Type, YAMLException, default, dump, loadAll, safeDump, safeLoad, safeLoadAll, types */
+function getDefaultExportFromCjs(x) {
+  return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, "default") ? x["default"] : x;
+}
+var jsYaml = {};
+var loader = {};
+var common = {};
+var hasRequiredCommon;
+function requireCommon() {
+  if (hasRequiredCommon) return common;
+  hasRequiredCommon = 1;
+  function isNothing(subject) {
+    return typeof subject === "undefined" || subject === null;
+  }
+  function isObject(subject) {
+    return typeof subject === "object" && subject !== null;
+  }
+  function toArray(sequence) {
+    if (Array.isArray(sequence)) return sequence;
+    else if (isNothing(sequence)) return [];
+    return [sequence];
+  }
+  function extend(target, source) {
+    if (source) {
+      const sourceKeys = Object.keys(source);
+      for (let index = 0, length = sourceKeys.length; index < length; index += 1) {
+        const key = sourceKeys[index];
+        target[key] = source[key];
+      }
+    }
+    return target;
+  }
+  function repeat(string, count) {
+    let result = "";
+    for (let cycle = 0; cycle < count; cycle += 1) {
+      result += string;
+    }
+    return result;
+  }
+  function isNegativeZero(number) {
+    return number === 0 && Number.NEGATIVE_INFINITY === 1 / number;
+  }
+  common.isNothing = isNothing;
+  common.isObject = isObject;
+  common.toArray = toArray;
+  common.repeat = repeat;
+  common.isNegativeZero = isNegativeZero;
+  common.extend = extend;
+  return common;
+}
+var exception;
+var hasRequiredException;
+function requireException() {
+  if (hasRequiredException) return exception;
+  hasRequiredException = 1;
+  function formatError(exception2, compact) {
+    let where = "";
+    const message = exception2.reason || "(unknown reason)";
+    if (!exception2.mark) return message;
+    if (exception2.mark.name) {
+      where += 'in "' + exception2.mark.name + '" ';
+    }
+    where += "(" + (exception2.mark.line + 1) + ":" + (exception2.mark.column + 1) + ")";
+    if (!compact && exception2.mark.snippet) {
+      where += "\n\n" + exception2.mark.snippet;
+    }
+    return message + " " + where;
+  }
+  function YAMLException2(reason, mark) {
+    Error.call(this);
+    this.name = "YAMLException";
+    this.reason = reason;
+    this.mark = mark;
+    this.message = formatError(this, false);
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, this.constructor);
+    } else {
+      this.stack = new Error().stack || "";
+    }
+  }
+  YAMLException2.prototype = Object.create(Error.prototype);
+  YAMLException2.prototype.constructor = YAMLException2;
+  YAMLException2.prototype.toString = function toString(compact) {
+    return this.name + ": " + formatError(this, compact);
+  };
+  exception = YAMLException2;
+  return exception;
+}
+var snippet;
+var hasRequiredSnippet;
+function requireSnippet() {
+  if (hasRequiredSnippet) return snippet;
+  hasRequiredSnippet = 1;
+  const common2 = requireCommon();
+  function getLine(buffer, lineStart, lineEnd, position, maxLineLength) {
+    let head = "";
+    let tail = "";
+    const maxHalfLength = Math.floor(maxLineLength / 2) - 1;
+    if (position - lineStart > maxHalfLength) {
+      head = " ... ";
+      lineStart = position - maxHalfLength + head.length;
+    }
+    if (lineEnd - position > maxHalfLength) {
+      tail = " ...";
+      lineEnd = position + maxHalfLength - tail.length;
+    }
+    return {
+      str: head + buffer.slice(lineStart, lineEnd).replace(/\t/g, "→") + tail,
+      pos: position - lineStart + head.length
+      // relative position
+    };
+  }
+  function padStart(string, max) {
+    return common2.repeat(" ", max - string.length) + string;
+  }
+  function makeSnippet(mark, options) {
+    options = Object.create(options || null);
+    if (!mark.buffer) return null;
+    if (!options.maxLength) options.maxLength = 79;
+    if (typeof options.indent !== "number") options.indent = 1;
+    if (typeof options.linesBefore !== "number") options.linesBefore = 3;
+    if (typeof options.linesAfter !== "number") options.linesAfter = 2;
+    const re = /\r?\n|\r|\0/g;
+    const lineStarts = [0];
+    const lineEnds = [];
+    let match;
+    let foundLineNo = -1;
+    while (match = re.exec(mark.buffer)) {
+      lineEnds.push(match.index);
+      lineStarts.push(match.index + match[0].length);
+      if (mark.position <= match.index && foundLineNo < 0) {
+        foundLineNo = lineStarts.length - 2;
+      }
+    }
+    if (foundLineNo < 0) foundLineNo = lineStarts.length - 1;
+    let result = "";
+    const lineNoLength = Math.min(mark.line + options.linesAfter, lineEnds.length).toString().length;
+    const maxLineLength = options.maxLength - (options.indent + lineNoLength + 3);
+    for (let i = 1; i <= options.linesBefore; i++) {
+      if (foundLineNo - i < 0) break;
+      const line2 = getLine(
+        mark.buffer,
+        lineStarts[foundLineNo - i],
+        lineEnds[foundLineNo - i],
+        mark.position - (lineStarts[foundLineNo] - lineStarts[foundLineNo - i]),
+        maxLineLength
+      );
+      result = common2.repeat(" ", options.indent) + padStart((mark.line - i + 1).toString(), lineNoLength) + " | " + line2.str + "\n" + result;
+    }
+    const line = getLine(mark.buffer, lineStarts[foundLineNo], lineEnds[foundLineNo], mark.position, maxLineLength);
+    result += common2.repeat(" ", options.indent) + padStart((mark.line + 1).toString(), lineNoLength) + " | " + line.str + "\n";
+    result += common2.repeat("-", options.indent + lineNoLength + 3 + line.pos) + "^\n";
+    for (let i = 1; i <= options.linesAfter; i++) {
+      if (foundLineNo + i >= lineEnds.length) break;
+      const line2 = getLine(
+        mark.buffer,
+        lineStarts[foundLineNo + i],
+        lineEnds[foundLineNo + i],
+        mark.position - (lineStarts[foundLineNo] - lineStarts[foundLineNo + i]),
+        maxLineLength
+      );
+      result += common2.repeat(" ", options.indent) + padStart((mark.line + i + 1).toString(), lineNoLength) + " | " + line2.str + "\n";
+    }
+    return result.replace(/\n$/, "");
+  }
+  snippet = makeSnippet;
+  return snippet;
+}
+var type;
+var hasRequiredType;
+function requireType() {
+  if (hasRequiredType) return type;
+  hasRequiredType = 1;
+  const YAMLException2 = requireException();
+  const TYPE_CONSTRUCTOR_OPTIONS = [
+    "kind",
+    "multi",
+    "resolve",
+    "construct",
+    "instanceOf",
+    "predicate",
+    "represent",
+    "representName",
+    "defaultStyle",
+    "styleAliases"
+  ];
+  const YAML_NODE_KINDS = [
+    "scalar",
+    "sequence",
+    "mapping"
+  ];
+  function compileStyleAliases(map2) {
+    const result = {};
+    if (map2 !== null) {
+      Object.keys(map2).forEach(function(style) {
+        map2[style].forEach(function(alias) {
+          result[String(alias)] = style;
+        });
+      });
+    }
+    return result;
+  }
+  function Type2(tag, options) {
+    options = options || {};
+    Object.keys(options).forEach(function(name) {
+      if (TYPE_CONSTRUCTOR_OPTIONS.indexOf(name) === -1) {
+        throw new YAMLException2('Unknown option "' + name + '" is met in definition of "' + tag + '" YAML type.');
+      }
+    });
+    this.options = options;
+    this.tag = tag;
+    this.kind = options["kind"] || null;
+    this.resolve = options["resolve"] || function() {
+      return true;
+    };
+    this.construct = options["construct"] || function(data) {
+      return data;
+    };
+    this.instanceOf = options["instanceOf"] || null;
+    this.predicate = options["predicate"] || null;
+    this.represent = options["represent"] || null;
+    this.representName = options["representName"] || null;
+    this.defaultStyle = options["defaultStyle"] || null;
+    this.multi = options["multi"] || false;
+    this.styleAliases = compileStyleAliases(options["styleAliases"] || null);
+    if (YAML_NODE_KINDS.indexOf(this.kind) === -1) {
+      throw new YAMLException2('Unknown kind "' + this.kind + '" is specified for "' + tag + '" YAML type.');
+    }
+  }
+  type = Type2;
+  return type;
+}
+var schema;
+var hasRequiredSchema;
+function requireSchema() {
+  if (hasRequiredSchema) return schema;
+  hasRequiredSchema = 1;
+  const YAMLException2 = requireException();
+  const Type2 = requireType();
+  function compileList(schema2, name) {
+    const result = [];
+    schema2[name].forEach(function(currentType) {
+      let newIndex = result.length;
+      result.forEach(function(previousType, previousIndex) {
+        if (previousType.tag === currentType.tag && previousType.kind === currentType.kind && previousType.multi === currentType.multi) {
+          newIndex = previousIndex;
+        }
+      });
+      result[newIndex] = currentType;
+    });
+    return result;
+  }
+  function compileMap() {
+    const result = {
+      scalar: {},
+      sequence: {},
+      mapping: {},
+      fallback: {},
+      multi: {
+        scalar: [],
+        sequence: [],
+        mapping: [],
+        fallback: []
+      }
+    };
+    function collectType(type2) {
+      if (type2.multi) {
+        result.multi[type2.kind].push(type2);
+        result.multi["fallback"].push(type2);
+      } else {
+        result[type2.kind][type2.tag] = result["fallback"][type2.tag] = type2;
+      }
+    }
+    for (let index = 0, length = arguments.length; index < length; index += 1) {
+      arguments[index].forEach(collectType);
+    }
+    return result;
+  }
+  function Schema2(definition) {
+    return this.extend(definition);
+  }
+  Schema2.prototype.extend = function extend(definition) {
+    let implicit = [];
+    let explicit = [];
+    if (definition instanceof Type2) {
+      explicit.push(definition);
+    } else if (Array.isArray(definition)) {
+      explicit = explicit.concat(definition);
+    } else if (definition && (Array.isArray(definition.implicit) || Array.isArray(definition.explicit))) {
+      if (definition.implicit) implicit = implicit.concat(definition.implicit);
+      if (definition.explicit) explicit = explicit.concat(definition.explicit);
+    } else {
+      throw new YAMLException2("Schema.extend argument should be a Type, [ Type ], or a schema definition ({ implicit: [...], explicit: [...] })");
+    }
+    implicit.forEach(function(type2) {
+      if (!(type2 instanceof Type2)) {
+        throw new YAMLException2("Specified list of YAML types (or a single Type object) contains a non-Type object.");
+      }
+      if (type2.loadKind && type2.loadKind !== "scalar") {
+        throw new YAMLException2("There is a non-scalar type in the implicit list of a schema. Implicit resolving of such types is not supported.");
+      }
+      if (type2.multi) {
+        throw new YAMLException2("There is a multi type in the implicit list of a schema. Multi tags can only be listed as explicit.");
+      }
+    });
+    explicit.forEach(function(type2) {
+      if (!(type2 instanceof Type2)) {
+        throw new YAMLException2("Specified list of YAML types (or a single Type object) contains a non-Type object.");
+      }
+    });
+    const result = Object.create(Schema2.prototype);
+    result.implicit = (this.implicit || []).concat(implicit);
+    result.explicit = (this.explicit || []).concat(explicit);
+    result.compiledImplicit = compileList(result, "implicit");
+    result.compiledExplicit = compileList(result, "explicit");
+    result.compiledTypeMap = compileMap(result.compiledImplicit, result.compiledExplicit);
+    return result;
+  };
+  schema = Schema2;
+  return schema;
+}
+var str;
+var hasRequiredStr;
+function requireStr() {
+  if (hasRequiredStr) return str;
+  hasRequiredStr = 1;
+  const Type2 = requireType();
+  str = new Type2("tag:yaml.org,2002:str", {
+    kind: "scalar",
+    construct: function(data) {
+      return data !== null ? data : "";
+    }
+  });
+  return str;
+}
+var seq;
+var hasRequiredSeq;
+function requireSeq() {
+  if (hasRequiredSeq) return seq;
+  hasRequiredSeq = 1;
+  const Type2 = requireType();
+  seq = new Type2("tag:yaml.org,2002:seq", {
+    kind: "sequence",
+    construct: function(data) {
+      return data !== null ? data : [];
+    }
+  });
+  return seq;
+}
+var map;
+var hasRequiredMap;
+function requireMap() {
+  if (hasRequiredMap) return map;
+  hasRequiredMap = 1;
+  const Type2 = requireType();
+  map = new Type2("tag:yaml.org,2002:map", {
+    kind: "mapping",
+    construct: function(data) {
+      return data !== null ? data : {};
+    }
+  });
+  return map;
+}
+var failsafe;
+var hasRequiredFailsafe;
+function requireFailsafe() {
+  if (hasRequiredFailsafe) return failsafe;
+  hasRequiredFailsafe = 1;
+  const Schema2 = requireSchema();
+  failsafe = new Schema2({
+    explicit: [
+      requireStr(),
+      requireSeq(),
+      requireMap()
+    ]
+  });
+  return failsafe;
+}
+var _null;
+var hasRequired_null;
+function require_null() {
+  if (hasRequired_null) return _null;
+  hasRequired_null = 1;
+  const Type2 = requireType();
+  function resolveYamlNull(data) {
+    if (data === null) return true;
+    const max = data.length;
+    return max === 1 && data === "~" || max === 4 && (data === "null" || data === "Null" || data === "NULL");
+  }
+  function constructYamlNull() {
+    return null;
+  }
+  function isNull(object) {
+    return object === null;
+  }
+  _null = new Type2("tag:yaml.org,2002:null", {
+    kind: "scalar",
+    resolve: resolveYamlNull,
+    construct: constructYamlNull,
+    predicate: isNull,
+    represent: {
+      canonical: function() {
+        return "~";
+      },
+      lowercase: function() {
+        return "null";
+      },
+      uppercase: function() {
+        return "NULL";
+      },
+      camelcase: function() {
+        return "Null";
+      },
+      empty: function() {
+        return "";
+      }
+    },
+    defaultStyle: "lowercase"
+  });
+  return _null;
+}
+var bool;
+var hasRequiredBool;
+function requireBool() {
+  if (hasRequiredBool) return bool;
+  hasRequiredBool = 1;
+  const Type2 = requireType();
+  function resolveYamlBoolean(data) {
+    if (data === null) return false;
+    const max = data.length;
+    return max === 4 && (data === "true" || data === "True" || data === "TRUE") || max === 5 && (data === "false" || data === "False" || data === "FALSE");
+  }
+  function constructYamlBoolean(data) {
+    return data === "true" || data === "True" || data === "TRUE";
+  }
+  function isBoolean(object) {
+    return Object.prototype.toString.call(object) === "[object Boolean]";
+  }
+  bool = new Type2("tag:yaml.org,2002:bool", {
+    kind: "scalar",
+    resolve: resolveYamlBoolean,
+    construct: constructYamlBoolean,
+    predicate: isBoolean,
+    represent: {
+      lowercase: function(object) {
+        return object ? "true" : "false";
+      },
+      uppercase: function(object) {
+        return object ? "TRUE" : "FALSE";
+      },
+      camelcase: function(object) {
+        return object ? "True" : "False";
+      }
+    },
+    defaultStyle: "lowercase"
+  });
+  return bool;
+}
+var int;
+var hasRequiredInt;
+function requireInt() {
+  if (hasRequiredInt) return int;
+  hasRequiredInt = 1;
+  const common2 = requireCommon();
+  const Type2 = requireType();
+  function isHexCode(c) {
+    return c >= 48 && c <= 57 || c >= 65 && c <= 70 || c >= 97 && c <= 102;
+  }
+  function isOctCode(c) {
+    return c >= 48 && c <= 55;
+  }
+  function isDecCode(c) {
+    return c >= 48 && c <= 57;
+  }
+  function resolveYamlInteger(data) {
+    if (data === null) return false;
+    const max = data.length;
+    let index = 0;
+    let hasDigits = false;
+    if (!max) return false;
+    let ch = data[index];
+    if (ch === "-" || ch === "+") {
+      ch = data[++index];
+    }
+    if (ch === "0") {
+      if (index + 1 === max) return true;
+      ch = data[++index];
+      if (ch === "b") {
+        index++;
+        for (; index < max; index++) {
+          ch = data[index];
+          if (ch !== "0" && ch !== "1") return false;
+          hasDigits = true;
+        }
+        return hasDigits && isFinite(parseYamlInteger(data));
+      }
+      if (ch === "x") {
+        index++;
+        for (; index < max; index++) {
+          if (!isHexCode(data.charCodeAt(index))) return false;
+          hasDigits = true;
+        }
+        return hasDigits && isFinite(parseYamlInteger(data));
+      }
+      if (ch === "o") {
+        index++;
+        for (; index < max; index++) {
+          if (!isOctCode(data.charCodeAt(index))) return false;
+          hasDigits = true;
+        }
+        return hasDigits && isFinite(parseYamlInteger(data));
+      }
+    }
+    for (; index < max; index++) {
+      if (!isDecCode(data.charCodeAt(index))) {
+        return false;
+      }
+      hasDigits = true;
+    }
+    if (!hasDigits) return false;
+    return isFinite(parseYamlInteger(data));
+  }
+  function parseYamlInteger(data) {
+    let value = data;
+    let sign = 1;
+    let ch = value[0];
+    if (ch === "-" || ch === "+") {
+      if (ch === "-") sign = -1;
+      value = value.slice(1);
+      ch = value[0];
+    }
+    if (value === "0") return 0;
+    if (ch === "0") {
+      if (value[1] === "b") return sign * parseInt(value.slice(2), 2);
+      if (value[1] === "x") return sign * parseInt(value.slice(2), 16);
+      if (value[1] === "o") return sign * parseInt(value.slice(2), 8);
+    }
+    return sign * parseInt(value, 10);
+  }
+  function constructYamlInteger(data) {
+    return parseYamlInteger(data);
+  }
+  function isInteger(object) {
+    return Object.prototype.toString.call(object) === "[object Number]" && (object % 1 === 0 && !common2.isNegativeZero(object));
+  }
+  int = new Type2("tag:yaml.org,2002:int", {
+    kind: "scalar",
+    resolve: resolveYamlInteger,
+    construct: constructYamlInteger,
+    predicate: isInteger,
+    represent: {
+      binary: function(obj) {
+        return obj >= 0 ? "0b" + obj.toString(2) : "-0b" + obj.toString(2).slice(1);
+      },
+      octal: function(obj) {
+        return obj >= 0 ? "0o" + obj.toString(8) : "-0o" + obj.toString(8).slice(1);
+      },
+      decimal: function(obj) {
+        return obj.toString(10);
+      },
+      hexadecimal: function(obj) {
+        return obj >= 0 ? "0x" + obj.toString(16).toUpperCase() : "-0x" + obj.toString(16).toUpperCase().slice(1);
+      }
+    },
+    defaultStyle: "decimal",
+    styleAliases: {
+      binary: [2, "bin"],
+      octal: [8, "oct"],
+      decimal: [10, "dec"],
+      hexadecimal: [16, "hex"]
+    }
+  });
+  return int;
+}
+var float;
+var hasRequiredFloat;
+function requireFloat() {
+  if (hasRequiredFloat) return float;
+  hasRequiredFloat = 1;
+  const common2 = requireCommon();
+  const Type2 = requireType();
+  const YAML_FLOAT_PATTERN = new RegExp(
+    // 2.5e4, 2.5 and integers
+    "^(?:[-+]?(?:[0-9]+)(?:\\.[0-9]*)?(?:[eE][-+]?[0-9]+)?|\\.[0-9]+(?:[eE][-+]?[0-9]+)?|[-+]?\\.(?:inf|Inf|INF)|\\.(?:nan|NaN|NAN))$"
+  );
+  const YAML_FLOAT_SPECIAL_PATTERN = new RegExp(
+    "^(?:[-+]?\\.(?:inf|Inf|INF)|\\.(?:nan|NaN|NAN))$"
+  );
+  function resolveYamlFloat(data) {
+    if (data === null) return false;
+    if (!YAML_FLOAT_PATTERN.test(data)) {
+      return false;
+    }
+    if (isFinite(parseFloat(data, 10))) {
+      return true;
+    }
+    return YAML_FLOAT_SPECIAL_PATTERN.test(data);
+  }
+  function constructYamlFloat(data) {
+    let value = data.toLowerCase();
+    const sign = value[0] === "-" ? -1 : 1;
+    if ("+-".indexOf(value[0]) >= 0) {
+      value = value.slice(1);
+    }
+    if (value === ".inf") {
+      return sign === 1 ? Number.POSITIVE_INFINITY : Number.NEGATIVE_INFINITY;
+    } else if (value === ".nan") {
+      return NaN;
+    }
+    return sign * parseFloat(value, 10);
+  }
+  const SCIENTIFIC_WITHOUT_DOT = /^[-+]?[0-9]+e/;
+  function representYamlFloat(object, style) {
+    if (isNaN(object)) {
+      switch (style) {
+        case "lowercase":
+          return ".nan";
+        case "uppercase":
+          return ".NAN";
+        case "camelcase":
+          return ".NaN";
+      }
+    } else if (Number.POSITIVE_INFINITY === object) {
+      switch (style) {
+        case "lowercase":
+          return ".inf";
+        case "uppercase":
+          return ".INF";
+        case "camelcase":
+          return ".Inf";
+      }
+    } else if (Number.NEGATIVE_INFINITY === object) {
+      switch (style) {
+        case "lowercase":
+          return "-.inf";
+        case "uppercase":
+          return "-.INF";
+        case "camelcase":
+          return "-.Inf";
+      }
+    } else if (common2.isNegativeZero(object)) {
+      return "-0.0";
+    }
+    const res = object.toString(10);
+    return SCIENTIFIC_WITHOUT_DOT.test(res) ? res.replace("e", ".e") : res;
+  }
+  function isFloat(object) {
+    return Object.prototype.toString.call(object) === "[object Number]" && (object % 1 !== 0 || common2.isNegativeZero(object));
+  }
+  float = new Type2("tag:yaml.org,2002:float", {
+    kind: "scalar",
+    resolve: resolveYamlFloat,
+    construct: constructYamlFloat,
+    predicate: isFloat,
+    represent: representYamlFloat,
+    defaultStyle: "lowercase"
+  });
+  return float;
+}
+var json;
+var hasRequiredJson;
+function requireJson() {
+  if (hasRequiredJson) return json;
+  hasRequiredJson = 1;
+  json = requireFailsafe().extend({
+    implicit: [
+      require_null(),
+      requireBool(),
+      requireInt(),
+      requireFloat()
+    ]
+  });
+  return json;
+}
+var core;
+var hasRequiredCore;
+function requireCore() {
+  if (hasRequiredCore) return core;
+  hasRequiredCore = 1;
+  core = requireJson();
+  return core;
+}
+var timestamp;
+var hasRequiredTimestamp;
+function requireTimestamp() {
+  if (hasRequiredTimestamp) return timestamp;
+  hasRequiredTimestamp = 1;
+  const Type2 = requireType();
+  const YAML_DATE_REGEXP = new RegExp(
+    "^([0-9][0-9][0-9][0-9])-([0-9][0-9])-([0-9][0-9])$"
+  );
+  const YAML_TIMESTAMP_REGEXP = new RegExp(
+    "^([0-9][0-9][0-9][0-9])-([0-9][0-9]?)-([0-9][0-9]?)(?:[Tt]|[ \\t]+)([0-9][0-9]?):([0-9][0-9]):([0-9][0-9])(?:\\.([0-9]*))?(?:[ \\t]*(Z|([-+])([0-9][0-9]?)(?::([0-9][0-9]))?))?$"
+  );
+  function resolveYamlTimestamp(data) {
+    if (data === null) return false;
+    if (YAML_DATE_REGEXP.exec(data) !== null) return true;
+    if (YAML_TIMESTAMP_REGEXP.exec(data) !== null) return true;
+    return false;
+  }
+  function constructYamlTimestamp(data) {
+    let fraction = 0;
+    let delta = null;
+    let match = YAML_DATE_REGEXP.exec(data);
+    if (match === null) match = YAML_TIMESTAMP_REGEXP.exec(data);
+    if (match === null) throw new Error("Date resolve error");
+    const year = +match[1];
+    const month = +match[2] - 1;
+    const day = +match[3];
+    if (!match[4]) {
+      return new Date(Date.UTC(year, month, day));
+    }
+    const hour = +match[4];
+    const minute = +match[5];
+    const second = +match[6];
+    if (match[7]) {
+      fraction = match[7].slice(0, 3);
+      while (fraction.length < 3) {
+        fraction += "0";
+      }
+      fraction = +fraction;
+    }
+    if (match[9]) {
+      const tzHour = +match[10];
+      const tzMinute = +(match[11] || 0);
+      delta = (tzHour * 60 + tzMinute) * 6e4;
+      if (match[9] === "-") delta = -delta;
+    }
+    const date = new Date(Date.UTC(year, month, day, hour, minute, second, fraction));
+    if (delta) date.setTime(date.getTime() - delta);
+    return date;
+  }
+  function representYamlTimestamp(object) {
+    return object.toISOString();
+  }
+  timestamp = new Type2("tag:yaml.org,2002:timestamp", {
+    kind: "scalar",
+    resolve: resolveYamlTimestamp,
+    construct: constructYamlTimestamp,
+    instanceOf: Date,
+    represent: representYamlTimestamp
+  });
+  return timestamp;
+}
+var merge;
+var hasRequiredMerge;
+function requireMerge() {
+  if (hasRequiredMerge) return merge;
+  hasRequiredMerge = 1;
+  const Type2 = requireType();
+  function resolveYamlMerge(data) {
+    return data === "<<" || data === null;
+  }
+  merge = new Type2("tag:yaml.org,2002:merge", {
+    kind: "scalar",
+    resolve: resolveYamlMerge
+  });
+  return merge;
+}
+var binary;
+var hasRequiredBinary;
+function requireBinary() {
+  if (hasRequiredBinary) return binary;
+  hasRequiredBinary = 1;
+  const Type2 = requireType();
+  const BASE64_MAP = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=\n\r";
+  function resolveYamlBinary(data) {
+    if (data === null) return false;
+    let bitlen = 0;
+    const max = data.length;
+    const map2 = BASE64_MAP;
+    for (let idx = 0; idx < max; idx++) {
+      const code = map2.indexOf(data.charAt(idx));
+      if (code > 64) continue;
+      if (code < 0) return false;
+      bitlen += 6;
+    }
+    return bitlen % 8 === 0;
+  }
+  function constructYamlBinary(data) {
+    const input = data.replace(/[\r\n=]/g, "");
+    const max = input.length;
+    const map2 = BASE64_MAP;
+    let bits = 0;
+    const result = [];
+    for (let idx = 0; idx < max; idx++) {
+      if (idx % 4 === 0 && idx) {
+        result.push(bits >> 16 & 255);
+        result.push(bits >> 8 & 255);
+        result.push(bits & 255);
+      }
+      bits = bits << 6 | map2.indexOf(input.charAt(idx));
+    }
+    const tailbits = max % 4 * 6;
+    if (tailbits === 0) {
+      result.push(bits >> 16 & 255);
+      result.push(bits >> 8 & 255);
+      result.push(bits & 255);
+    } else if (tailbits === 18) {
+      result.push(bits >> 10 & 255);
+      result.push(bits >> 2 & 255);
+    } else if (tailbits === 12) {
+      result.push(bits >> 4 & 255);
+    }
+    return new Uint8Array(result);
+  }
+  function representYamlBinary(object) {
+    let result = "";
+    let bits = 0;
+    const max = object.length;
+    const map2 = BASE64_MAP;
+    for (let idx = 0; idx < max; idx++) {
+      if (idx % 3 === 0 && idx) {
+        result += map2[bits >> 18 & 63];
+        result += map2[bits >> 12 & 63];
+        result += map2[bits >> 6 & 63];
+        result += map2[bits & 63];
+      }
+      bits = (bits << 8) + object[idx];
+    }
+    const tail = max % 3;
+    if (tail === 0) {
+      result += map2[bits >> 18 & 63];
+      result += map2[bits >> 12 & 63];
+      result += map2[bits >> 6 & 63];
+      result += map2[bits & 63];
+    } else if (tail === 2) {
+      result += map2[bits >> 10 & 63];
+      result += map2[bits >> 4 & 63];
+      result += map2[bits << 2 & 63];
+      result += map2[64];
+    } else if (tail === 1) {
+      result += map2[bits >> 2 & 63];
+      result += map2[bits << 4 & 63];
+      result += map2[64];
+      result += map2[64];
+    }
+    return result;
+  }
+  function isBinary(obj) {
+    return Object.prototype.toString.call(obj) === "[object Uint8Array]";
+  }
+  binary = new Type2("tag:yaml.org,2002:binary", {
+    kind: "scalar",
+    resolve: resolveYamlBinary,
+    construct: constructYamlBinary,
+    predicate: isBinary,
+    represent: representYamlBinary
+  });
+  return binary;
+}
+var omap;
+var hasRequiredOmap;
+function requireOmap() {
+  if (hasRequiredOmap) return omap;
+  hasRequiredOmap = 1;
+  const Type2 = requireType();
+  const _hasOwnProperty = Object.prototype.hasOwnProperty;
+  const _toString = Object.prototype.toString;
+  function resolveYamlOmap(data) {
+    if (data === null) return true;
+    const objectKeys = {};
+    const object = data;
+    for (let index = 0, length = object.length; index < length; index += 1) {
+      const pair = object[index];
+      let pairHasKey = false;
+      if (_toString.call(pair) !== "[object Object]") return false;
+      let pairKey;
+      for (pairKey in pair) {
+        if (_hasOwnProperty.call(pair, pairKey)) {
+          if (!pairHasKey) pairHasKey = true;
+          else return false;
+        }
+      }
+      if (!pairHasKey) return false;
+      if (_hasOwnProperty.call(objectKeys, pairKey)) return false;
+      Object.defineProperty(objectKeys, pairKey, { value: true });
+    }
+    return true;
+  }
+  function constructYamlOmap(data) {
+    return data !== null ? data : [];
+  }
+  omap = new Type2("tag:yaml.org,2002:omap", {
+    kind: "sequence",
+    resolve: resolveYamlOmap,
+    construct: constructYamlOmap
+  });
+  return omap;
+}
+var pairs;
+var hasRequiredPairs;
+function requirePairs() {
+  if (hasRequiredPairs) return pairs;
+  hasRequiredPairs = 1;
+  const Type2 = requireType();
+  const _toString = Object.prototype.toString;
+  function resolveYamlPairs(data) {
+    if (data === null) return true;
+    const object = data;
+    const result = new Array(object.length);
+    for (let index = 0, length = object.length; index < length; index += 1) {
+      const pair = object[index];
+      if (_toString.call(pair) !== "[object Object]") return false;
+      const keys = Object.keys(pair);
+      if (keys.length !== 1) return false;
+      result[index] = [keys[0], pair[keys[0]]];
+    }
+    return true;
+  }
+  function constructYamlPairs(data) {
+    if (data === null) return [];
+    const object = data;
+    const result = new Array(object.length);
+    for (let index = 0, length = object.length; index < length; index += 1) {
+      const pair = object[index];
+      const keys = Object.keys(pair);
+      result[index] = [keys[0], pair[keys[0]]];
+    }
+    return result;
+  }
+  pairs = new Type2("tag:yaml.org,2002:pairs", {
+    kind: "sequence",
+    resolve: resolveYamlPairs,
+    construct: constructYamlPairs
+  });
+  return pairs;
+}
+var set;
+var hasRequiredSet;
+function requireSet() {
+  if (hasRequiredSet) return set;
+  hasRequiredSet = 1;
+  const Type2 = requireType();
+  const _hasOwnProperty = Object.prototype.hasOwnProperty;
+  function resolveYamlSet(data) {
+    if (data === null) return true;
+    const object = data;
+    for (const key in object) {
+      if (_hasOwnProperty.call(object, key)) {
+        if (object[key] !== null) return false;
+      }
+    }
+    return true;
+  }
+  function constructYamlSet(data) {
+    return data !== null ? data : {};
+  }
+  set = new Type2("tag:yaml.org,2002:set", {
+    kind: "mapping",
+    resolve: resolveYamlSet,
+    construct: constructYamlSet
+  });
+  return set;
+}
+var _default;
+var hasRequired_default;
+function require_default() {
+  if (hasRequired_default) return _default;
+  hasRequired_default = 1;
+  _default = requireCore().extend({
+    implicit: [
+      requireTimestamp(),
+      requireMerge()
+    ],
+    explicit: [
+      requireBinary(),
+      requireOmap(),
+      requirePairs(),
+      requireSet()
+    ]
+  });
+  return _default;
+}
+var hasRequiredLoader;
+function requireLoader() {
+  if (hasRequiredLoader) return loader;
+  hasRequiredLoader = 1;
+  const common2 = requireCommon();
+  const YAMLException2 = requireException();
+  const makeSnippet = requireSnippet();
+  const DEFAULT_SCHEMA2 = require_default();
+  const _hasOwnProperty = Object.prototype.hasOwnProperty;
+  const CONTEXT_FLOW_IN = 1;
+  const CONTEXT_FLOW_OUT = 2;
+  const CONTEXT_BLOCK_IN = 3;
+  const CONTEXT_BLOCK_OUT = 4;
+  const CHOMPING_CLIP = 1;
+  const CHOMPING_STRIP = 2;
+  const CHOMPING_KEEP = 3;
+  const PATTERN_NON_PRINTABLE = /[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x84\x86-\x9F\uFFFE\uFFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF]/;
+  const PATTERN_NON_ASCII_LINE_BREAKS = /[\x85\u2028\u2029]/;
+  const PATTERN_FLOW_INDICATORS = /[,\[\]{}]/;
+  const PATTERN_TAG_HANDLE = /^(?:!|!!|![0-9A-Za-z-]+!)$/;
+  const PATTERN_TAG_URI = /^(?:!|[^,\[\]{}])(?:%[0-9a-f]{2}|[0-9a-z\-#;/?:@&=+$,_.!~*'()\[\]])*$/i;
+  function _class(obj) {
+    return Object.prototype.toString.call(obj);
+  }
+  function isEol(c) {
+    return c === 10 || c === 13;
+  }
+  function isWhiteSpace(c) {
+    return c === 9 || c === 32;
+  }
+  function isWsOrEol(c) {
+    return c === 9 || c === 32 || c === 10 || c === 13;
+  }
+  function isFlowIndicator(c) {
+    return c === 44 || c === 91 || c === 93 || c === 123 || c === 125;
+  }
+  function fromHexCode(c) {
+    if (c >= 48 && c <= 57) {
+      return c - 48;
+    }
+    const lc = c | 32;
+    if (lc >= 97 && lc <= 102) {
+      return lc - 97 + 10;
+    }
+    return -1;
+  }
+  function escapedHexLen(c) {
+    if (c === 120) {
+      return 2;
+    }
+    if (c === 117) {
+      return 4;
+    }
+    if (c === 85) {
+      return 8;
+    }
+    return 0;
+  }
+  function fromDecimalCode(c) {
+    if (c >= 48 && c <= 57) {
+      return c - 48;
+    }
+    return -1;
+  }
+  function simpleEscapeSequence(c) {
+    switch (c) {
+      case 48:
+        return "\0";
+      case 97:
+        return "\x07";
+      case 98:
+        return "\b";
+      case 116:
+        return "	";
+      case 9:
+        return "	";
+      case 110:
+        return "\n";
+      case 118:
+        return "\v";
+      case 102:
+        return "\f";
+      case 114:
+        return "\r";
+      case 101:
+        return "\x1B";
+      case 32:
+        return " ";
+      case 34:
+        return '"';
+      case 47:
+        return "/";
+      case 92:
+        return "\\";
+      case 78:
+        return "";
+      case 95:
+        return " ";
+      case 76:
+        return "\u2028";
+      case 80:
+        return "\u2029";
+      default:
+        return "";
+    }
+  }
+  function charFromCodepoint(c) {
+    if (c <= 65535) {
+      return String.fromCharCode(c);
+    }
+    return String.fromCharCode(
+      (c - 65536 >> 10) + 55296,
+      (c - 65536 & 1023) + 56320
+    );
+  }
+  function setProperty(object, key, value) {
+    if (key === "__proto__") {
+      Object.defineProperty(object, key, {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        value
+      });
+    } else {
+      object[key] = value;
+    }
+  }
+  const simpleEscapeCheck = new Array(256);
+  const simpleEscapeMap = new Array(256);
+  for (let i = 0; i < 256; i++) {
+    simpleEscapeCheck[i] = simpleEscapeSequence(i) ? 1 : 0;
+    simpleEscapeMap[i] = simpleEscapeSequence(i);
+  }
+  function State(input, options) {
+    this.input = input;
+    this.filename = options["filename"] || null;
+    this.schema = options["schema"] || DEFAULT_SCHEMA2;
+    this.onWarning = options["onWarning"] || null;
+    this.legacy = options["legacy"] || false;
+    this.json = options["json"] || false;
+    this.listener = options["listener"] || null;
+    this.maxDepth = typeof options["maxDepth"] === "number" ? options["maxDepth"] : 100;
+    this.maxTotalMergeKeys = typeof options["maxTotalMergeKeys"] === "number" ? options["maxTotalMergeKeys"] : 1e4;
+    this.implicitTypes = this.schema.compiledImplicit;
+    this.typeMap = this.schema.compiledTypeMap;
+    this.length = input.length;
+    this.position = 0;
+    this.line = 0;
+    this.lineStart = 0;
+    this.lineIndent = 0;
+    this.depth = 0;
+    this.totalMergeKeys = 0;
+    this.firstTabInLine = -1;
+    this.documents = [];
+    this.anchorMapTransactions = [];
+  }
+  function generateError(state, message) {
+    const mark = {
+      name: state.filename,
+      buffer: state.input.slice(0, -1),
+      // omit trailing \0
+      position: state.position,
+      line: state.line,
+      column: state.position - state.lineStart
+    };
+    mark.snippet = makeSnippet(mark);
+    return new YAMLException2(message, mark);
+  }
+  function throwError(state, message) {
+    throw generateError(state, message);
+  }
+  function throwWarning(state, message) {
+    if (state.onWarning) {
+      state.onWarning.call(null, generateError(state, message));
+    }
+  }
+  function storeAnchor(state, name, value) {
+    const transactions = state.anchorMapTransactions;
+    if (transactions.length !== 0) {
+      const transaction = transactions[transactions.length - 1];
+      if (!_hasOwnProperty.call(transaction, name)) {
+        transaction[name] = {
+          existed: _hasOwnProperty.call(state.anchorMap, name),
+          value: state.anchorMap[name]
+        };
+      }
+    }
+    state.anchorMap[name] = value;
+  }
+  function beginAnchorTransaction(state) {
+    state.anchorMapTransactions.push(/* @__PURE__ */ Object.create(null));
+  }
+  function commitAnchorTransaction(state) {
+    const transaction = state.anchorMapTransactions.pop();
+    const transactions = state.anchorMapTransactions;
+    if (transactions.length === 0) return;
+    const parent = transactions[transactions.length - 1];
+    const names = Object.keys(transaction);
+    for (let index = 0, length = names.length; index < length; index += 1) {
+      const name = names[index];
+      if (!_hasOwnProperty.call(parent, name)) {
+        parent[name] = transaction[name];
+      }
+    }
+  }
+  function rollbackAnchorTransaction(state) {
+    const transaction = state.anchorMapTransactions.pop();
+    const names = Object.keys(transaction);
+    for (let index = names.length - 1; index >= 0; index -= 1) {
+      const entry = transaction[names[index]];
+      if (entry.existed) {
+        state.anchorMap[names[index]] = entry.value;
+      } else {
+        delete state.anchorMap[names[index]];
+      }
+    }
+  }
+  function snapshotState(state) {
+    return {
+      position: state.position,
+      line: state.line,
+      lineStart: state.lineStart,
+      lineIndent: state.lineIndent,
+      firstTabInLine: state.firstTabInLine,
+      tag: state.tag,
+      anchor: state.anchor,
+      kind: state.kind,
+      result: state.result
+    };
+  }
+  function restoreState(state, snapshot) {
+    state.position = snapshot.position;
+    state.line = snapshot.line;
+    state.lineStart = snapshot.lineStart;
+    state.lineIndent = snapshot.lineIndent;
+    state.firstTabInLine = snapshot.firstTabInLine;
+    state.tag = snapshot.tag;
+    state.anchor = snapshot.anchor;
+    state.kind = snapshot.kind;
+    state.result = snapshot.result;
+  }
+  const directiveHandlers = {
+    YAML: function handleYamlDirective(state, name, args) {
+      if (state.version !== null) {
+        throwError(state, "duplication of %YAML directive");
+      }
+      if (args.length !== 1) {
+        throwError(state, "YAML directive accepts exactly one argument");
+      }
+      const match = /^([0-9]+)\.([0-9]+)$/.exec(args[0]);
+      if (match === null) {
+        throwError(state, "ill-formed argument of the YAML directive");
+      }
+      const major = parseInt(match[1], 10);
+      const minor = parseInt(match[2], 10);
+      if (major !== 1) {
+        throwError(state, "unacceptable YAML version of the document");
+      }
+      state.version = args[0];
+      state.checkLineBreaks = minor < 2;
+      if (minor !== 1 && minor !== 2) {
+        throwWarning(state, "unsupported YAML version of the document");
+      }
+    },
+    TAG: function handleTagDirective(state, name, args) {
+      let prefix;
+      if (args.length !== 2) {
+        throwError(state, "TAG directive accepts exactly two arguments");
+      }
+      const handle = args[0];
+      prefix = args[1];
+      if (!PATTERN_TAG_HANDLE.test(handle)) {
+        throwError(state, "ill-formed tag handle (first argument) of the TAG directive");
+      }
+      if (_hasOwnProperty.call(state.tagMap, handle)) {
+        throwError(state, 'there is a previously declared suffix for "' + handle + '" tag handle');
+      }
+      if (!PATTERN_TAG_URI.test(prefix)) {
+        throwError(state, "ill-formed tag prefix (second argument) of the TAG directive");
+      }
+      try {
+        prefix = decodeURIComponent(prefix);
+      } catch (err) {
+        throwError(state, "tag prefix is malformed: " + prefix);
+      }
+      state.tagMap[handle] = prefix;
+    }
+  };
+  function captureSegment(state, start, end, checkJson) {
+    if (start < end) {
+      const _result = state.input.slice(start, end);
+      if (checkJson) {
+        for (let _position = 0, _length = _result.length; _position < _length; _position += 1) {
+          const _character = _result.charCodeAt(_position);
+          if (!(_character === 9 || _character >= 32 && _character <= 1114111)) {
+            throwError(state, "expected valid JSON character");
+          }
+        }
+      } else if (PATTERN_NON_PRINTABLE.test(_result)) {
+        throwError(state, "the stream contains non-printable characters");
+      }
+      state.result += _result;
+    }
+  }
+  function chargeMergeWork(state) {
+    state.totalMergeKeys++;
+    if (state.maxTotalMergeKeys !== -1 && state.totalMergeKeys > state.maxTotalMergeKeys) {
+      throwError(state, "merge keys exceeded maxTotalMergeKeys (" + state.maxTotalMergeKeys + ")");
+    }
+  }
+  function mergeMappings(state, destination, source, overridableKeys) {
+    if (!common2.isObject(source)) {
+      throwError(state, "cannot merge mappings; the provided source object is unacceptable");
+    }
+    chargeMergeWork(state);
+    const sourceKeys = Object.keys(source);
+    for (let index = 0, quantity = sourceKeys.length; index < quantity; index += 1) {
+      const key = sourceKeys[index];
+      chargeMergeWork(state);
+      if (!_hasOwnProperty.call(destination, key)) {
+        setProperty(destination, key, source[key]);
+        overridableKeys[key] = true;
+      }
+    }
+  }
+  function storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, valueNode, startLine, startLineStart, startPos) {
+    if (Array.isArray(keyNode)) {
+      keyNode = Array.prototype.slice.call(keyNode);
+      for (let index = 0, quantity = keyNode.length; index < quantity; index += 1) {
+        if (Array.isArray(keyNode[index])) {
+          throwError(state, "nested arrays are not supported inside keys");
+        }
+        if (typeof keyNode === "object" && _class(keyNode[index]) === "[object Object]") {
+          keyNode[index] = "[object Object]";
+        }
+      }
+    }
+    if (typeof keyNode === "object" && _class(keyNode) === "[object Object]") {
+      keyNode = "[object Object]";
+    }
+    keyNode = String(keyNode);
+    if (_result === null) {
+      _result = {};
+    }
+    if (keyTag === "tag:yaml.org,2002:merge") {
+      if (Array.isArray(valueNode)) {
+        if (valueNode.length > 100) {
+          throwError(state, "abnormal merge sequence size");
+        }
+        for (let index = 0, quantity = valueNode.length; index < quantity; index += 1) {
+          mergeMappings(state, _result, valueNode[index], overridableKeys);
+        }
+      } else {
+        mergeMappings(state, _result, valueNode, overridableKeys);
+      }
+    } else {
+      if (!state.json && !_hasOwnProperty.call(overridableKeys, keyNode) && _hasOwnProperty.call(_result, keyNode)) {
+        state.line = startLine || state.line;
+        state.lineStart = startLineStart || state.lineStart;
+        state.position = startPos || state.position;
+        throwError(state, "duplicated mapping key");
+      }
+      setProperty(_result, keyNode, valueNode);
+      delete overridableKeys[keyNode];
+    }
+    return _result;
+  }
+  function readLineBreak(state) {
+    const ch = state.input.charCodeAt(state.position);
+    if (ch === 10) {
+      state.position++;
+    } else if (ch === 13) {
+      state.position++;
+      if (state.input.charCodeAt(state.position) === 10) {
+        state.position++;
+      }
+    } else {
+      throwError(state, "a line break is expected");
+    }
+    state.line += 1;
+    state.lineStart = state.position;
+    state.firstTabInLine = -1;
+  }
+  function skipSeparationSpace(state, allowComments, checkIndent) {
+    let lineBreaks = 0;
+    let ch = state.input.charCodeAt(state.position);
+    while (ch !== 0) {
+      while (isWhiteSpace(ch)) {
+        if (ch === 9 && state.firstTabInLine === -1) {
+          state.firstTabInLine = state.position;
+        }
+        ch = state.input.charCodeAt(++state.position);
+      }
+      if (allowComments && ch === 35) {
+        do {
+          ch = state.input.charCodeAt(++state.position);
+        } while (ch !== 10 && ch !== 13 && ch !== 0);
+      }
+      if (isEol(ch)) {
+        readLineBreak(state);
+        ch = state.input.charCodeAt(state.position);
+        lineBreaks++;
+        state.lineIndent = 0;
+        while (ch === 32) {
+          state.lineIndent++;
+          ch = state.input.charCodeAt(++state.position);
+        }
+      } else {
+        break;
+      }
+    }
+    if (checkIndent !== -1 && lineBreaks !== 0 && state.lineIndent < checkIndent) {
+      throwWarning(state, "deficient indentation");
+    }
+    return lineBreaks;
+  }
+  function testDocumentSeparator(state) {
+    let _position = state.position;
+    let ch = state.input.charCodeAt(_position);
+    if ((ch === 45 || ch === 46) && ch === state.input.charCodeAt(_position + 1) && ch === state.input.charCodeAt(_position + 2)) {
+      _position += 3;
+      ch = state.input.charCodeAt(_position);
+      if (ch === 0 || isWsOrEol(ch)) {
+        return true;
+      }
+    }
+    return false;
+  }
+  function writeFoldedLines(state, count) {
+    if (count === 1) {
+      state.result += " ";
+    } else if (count > 1) {
+      state.result += common2.repeat("\n", count - 1);
+    }
+  }
+  function readPlainScalar(state, nodeIndent, withinFlowCollection) {
+    let captureStart;
+    let captureEnd;
+    let hasPendingContent;
+    let _line;
+    let _lineStart;
+    let _lineIndent;
+    const _kind = state.kind;
+    const _result = state.result;
+    let ch = state.input.charCodeAt(state.position);
+    if (isWsOrEol(ch) || isFlowIndicator(ch) || ch === 35 || ch === 38 || ch === 42 || ch === 33 || ch === 124 || ch === 62 || ch === 39 || ch === 34 || ch === 37 || ch === 64 || ch === 96) {
+      return false;
+    }
+    if (ch === 63 || ch === 45) {
+      const following = state.input.charCodeAt(state.position + 1);
+      if (isWsOrEol(following) || withinFlowCollection && isFlowIndicator(following)) {
+        return false;
+      }
+    }
+    state.kind = "scalar";
+    state.result = "";
+    captureStart = captureEnd = state.position;
+    hasPendingContent = false;
+    while (ch !== 0) {
+      if (ch === 58) {
+        const following = state.input.charCodeAt(state.position + 1);
+        if (isWsOrEol(following) || withinFlowCollection && isFlowIndicator(following)) {
+          break;
+        }
+      } else if (ch === 35) {
+        const preceding = state.input.charCodeAt(state.position - 1);
+        if (isWsOrEol(preceding)) {
+          break;
+        }
+      } else if (state.position === state.lineStart && testDocumentSeparator(state) || withinFlowCollection && isFlowIndicator(ch)) {
+        break;
+      } else if (isEol(ch)) {
+        _line = state.line;
+        _lineStart = state.lineStart;
+        _lineIndent = state.lineIndent;
+        skipSeparationSpace(state, false, -1);
+        if (state.lineIndent >= nodeIndent) {
+          hasPendingContent = true;
+          ch = state.input.charCodeAt(state.position);
+          continue;
+        } else {
+          state.position = captureEnd;
+          state.line = _line;
+          state.lineStart = _lineStart;
+          state.lineIndent = _lineIndent;
+          break;
+        }
+      }
+      if (hasPendingContent) {
+        captureSegment(state, captureStart, captureEnd, false);
+        writeFoldedLines(state, state.line - _line);
+        captureStart = captureEnd = state.position;
+        hasPendingContent = false;
+      }
+      if (!isWhiteSpace(ch)) {
+        captureEnd = state.position + 1;
+      }
+      ch = state.input.charCodeAt(++state.position);
+    }
+    captureSegment(state, captureStart, captureEnd, false);
+    if (state.result) {
+      return true;
+    }
+    state.kind = _kind;
+    state.result = _result;
+    return false;
+  }
+  function readSingleQuotedScalar(state, nodeIndent) {
+    let captureStart;
+    let captureEnd;
+    let ch = state.input.charCodeAt(state.position);
+    if (ch !== 39) {
+      return false;
+    }
+    state.kind = "scalar";
+    state.result = "";
+    state.position++;
+    captureStart = captureEnd = state.position;
+    while ((ch = state.input.charCodeAt(state.position)) !== 0) {
+      if (ch === 39) {
+        captureSegment(state, captureStart, state.position, true);
+        ch = state.input.charCodeAt(++state.position);
+        if (ch === 39) {
+          captureStart = state.position;
+          state.position++;
+          captureEnd = state.position;
+        } else {
+          return true;
+        }
+      } else if (isEol(ch)) {
+        captureSegment(state, captureStart, captureEnd, true);
+        writeFoldedLines(state, skipSeparationSpace(state, false, nodeIndent));
+        captureStart = captureEnd = state.position;
+      } else if (state.position === state.lineStart && testDocumentSeparator(state)) {
+        throwError(state, "unexpected end of the document within a single quoted scalar");
+      } else {
+        state.position++;
+        if (!isWhiteSpace(ch)) {
+          captureEnd = state.position;
+        }
+      }
+    }
+    throwError(state, "unexpected end of the stream within a single quoted scalar");
+  }
+  function readDoubleQuotedScalar(state, nodeIndent) {
+    let captureStart;
+    let captureEnd;
+    let tmp;
+    let ch = state.input.charCodeAt(state.position);
+    if (ch !== 34) {
+      return false;
+    }
+    state.kind = "scalar";
+    state.result = "";
+    state.position++;
+    captureStart = captureEnd = state.position;
+    while ((ch = state.input.charCodeAt(state.position)) !== 0) {
+      if (ch === 34) {
+        captureSegment(state, captureStart, state.position, true);
+        state.position++;
+        return true;
+      } else if (ch === 92) {
+        captureSegment(state, captureStart, state.position, true);
+        ch = state.input.charCodeAt(++state.position);
+        if (isEol(ch)) {
+          skipSeparationSpace(state, false, nodeIndent);
+        } else if (ch < 256 && simpleEscapeCheck[ch]) {
+          state.result += simpleEscapeMap[ch];
+          state.position++;
+        } else if ((tmp = escapedHexLen(ch)) > 0) {
+          let hexLength = tmp;
+          let hexResult = 0;
+          for (; hexLength > 0; hexLength--) {
+            ch = state.input.charCodeAt(++state.position);
+            if ((tmp = fromHexCode(ch)) >= 0) {
+              hexResult = (hexResult << 4) + tmp;
+            } else {
+              throwError(state, "expected hexadecimal character");
+            }
+          }
+          state.result += charFromCodepoint(hexResult);
+          state.position++;
+        } else {
+          throwError(state, "unknown escape sequence");
+        }
+        captureStart = captureEnd = state.position;
+      } else if (isEol(ch)) {
+        captureSegment(state, captureStart, captureEnd, true);
+        writeFoldedLines(state, skipSeparationSpace(state, false, nodeIndent));
+        captureStart = captureEnd = state.position;
+      } else if (state.position === state.lineStart && testDocumentSeparator(state)) {
+        throwError(state, "unexpected end of the document within a double quoted scalar");
+      } else {
+        state.position++;
+        if (!isWhiteSpace(ch)) {
+          captureEnd = state.position;
+        }
+      }
+    }
+    throwError(state, "unexpected end of the stream within a double quoted scalar");
+  }
+  function readFlowCollection(state, nodeIndent) {
+    let readNext = true;
+    let _line;
+    let _lineStart;
+    let _pos;
+    const _tag = state.tag;
+    let _result;
+    const _anchor = state.anchor;
+    let terminator;
+    let isPair;
+    let isExplicitPair;
+    let isMapping;
+    const overridableKeys = /* @__PURE__ */ Object.create(null);
+    let keyNode;
+    let keyTag;
+    let valueNode;
+    let ch = state.input.charCodeAt(state.position);
+    if (ch === 91) {
+      terminator = 93;
+      isMapping = false;
+      _result = [];
+    } else if (ch === 123) {
+      terminator = 125;
+      isMapping = true;
+      _result = {};
+    } else {
+      return false;
+    }
+    if (state.anchor !== null) {
+      storeAnchor(state, state.anchor, _result);
+    }
+    ch = state.input.charCodeAt(++state.position);
+    while (ch !== 0) {
+      skipSeparationSpace(state, true, nodeIndent);
+      ch = state.input.charCodeAt(state.position);
+      if (ch === terminator) {
+        state.position++;
+        state.tag = _tag;
+        state.anchor = _anchor;
+        state.kind = isMapping ? "mapping" : "sequence";
+        state.result = _result;
+        return true;
+      } else if (!readNext) {
+        throwError(state, "missed comma between flow collection entries");
+      } else if (ch === 44) {
+        throwError(state, "expected the node content, but found ','");
+      }
+      keyTag = keyNode = valueNode = null;
+      isPair = isExplicitPair = false;
+      if (ch === 63) {
+        const following = state.input.charCodeAt(state.position + 1);
+        if (isWsOrEol(following)) {
+          isPair = isExplicitPair = true;
+          state.position++;
+          skipSeparationSpace(state, true, nodeIndent);
+        }
+      }
+      _line = state.line;
+      _lineStart = state.lineStart;
+      _pos = state.position;
+      composeNode(state, nodeIndent, CONTEXT_FLOW_IN, false, true);
+      keyTag = state.tag;
+      keyNode = state.result;
+      skipSeparationSpace(state, true, nodeIndent);
+      ch = state.input.charCodeAt(state.position);
+      if ((isExplicitPair || state.line === _line) && ch === 58) {
+        isPair = true;
+        ch = state.input.charCodeAt(++state.position);
+        skipSeparationSpace(state, true, nodeIndent);
+        composeNode(state, nodeIndent, CONTEXT_FLOW_IN, false, true);
+        valueNode = state.result;
+      }
+      if (isMapping) {
+        storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, valueNode, _line, _lineStart, _pos);
+      } else if (isPair) {
+        _result.push(storeMappingPair(state, null, overridableKeys, keyTag, keyNode, valueNode, _line, _lineStart, _pos));
+      } else {
+        _result.push(keyNode);
+      }
+      skipSeparationSpace(state, true, nodeIndent);
+      ch = state.input.charCodeAt(state.position);
+      if (ch === 44) {
+        readNext = true;
+        ch = state.input.charCodeAt(++state.position);
+      } else {
+        readNext = false;
+      }
+    }
+    throwError(state, "unexpected end of the stream within a flow collection");
+  }
+  function readBlockScalar(state, nodeIndent) {
+    let folding;
+    let chomping = CHOMPING_CLIP;
+    let didReadContent = false;
+    let detectedIndent = false;
+    let textIndent = nodeIndent;
+    let emptyLines = 0;
+    let atMoreIndented = false;
+    let tmp;
+    let ch = state.input.charCodeAt(state.position);
+    if (ch === 124) {
+      folding = false;
+    } else if (ch === 62) {
+      folding = true;
+    } else {
+      return false;
+    }
+    state.kind = "scalar";
+    state.result = "";
+    while (ch !== 0) {
+      ch = state.input.charCodeAt(++state.position);
+      if (ch === 43 || ch === 45) {
+        if (CHOMPING_CLIP === chomping) {
+          chomping = ch === 43 ? CHOMPING_KEEP : CHOMPING_STRIP;
+        } else {
+          throwError(state, "repeat of a chomping mode identifier");
+        }
+      } else if ((tmp = fromDecimalCode(ch)) >= 0) {
+        if (tmp === 0) {
+          throwError(state, "bad explicit indentation width of a block scalar; it cannot be less than one");
+        } else if (!detectedIndent) {
+          textIndent = nodeIndent + tmp - 1;
+          detectedIndent = true;
+        } else {
+          throwError(state, "repeat of an indentation width identifier");
+        }
+      } else {
+        break;
+      }
+    }
+    if (isWhiteSpace(ch)) {
+      do {
+        ch = state.input.charCodeAt(++state.position);
+      } while (isWhiteSpace(ch));
+      if (ch === 35) {
+        do {
+          ch = state.input.charCodeAt(++state.position);
+        } while (!isEol(ch) && ch !== 0);
+      }
+    }
+    while (ch !== 0) {
+      readLineBreak(state);
+      state.lineIndent = 0;
+      ch = state.input.charCodeAt(state.position);
+      while ((!detectedIndent || state.lineIndent < textIndent) && ch === 32) {
+        state.lineIndent++;
+        ch = state.input.charCodeAt(++state.position);
+      }
+      if (!detectedIndent && state.lineIndent > textIndent) {
+        textIndent = state.lineIndent;
+      }
+      if (isEol(ch)) {
+        emptyLines++;
+        continue;
+      }
+      if (!detectedIndent && textIndent === 0) {
+        throwError(state, "missing indentation for block scalar");
+      }
+      if (state.lineIndent < textIndent) {
+        if (chomping === CHOMPING_KEEP) {
+          state.result += common2.repeat("\n", didReadContent ? 1 + emptyLines : emptyLines);
+        } else if (chomping === CHOMPING_CLIP) {
+          if (didReadContent) {
+            state.result += "\n";
+          }
+        }
+        break;
+      }
+      if (folding) {
+        if (isWhiteSpace(ch)) {
+          atMoreIndented = true;
+          state.result += common2.repeat("\n", didReadContent ? 1 + emptyLines : emptyLines);
+        } else if (atMoreIndented) {
+          atMoreIndented = false;
+          state.result += common2.repeat("\n", emptyLines + 1);
+        } else if (emptyLines === 0) {
+          if (didReadContent) {
+            state.result += " ";
+          }
+        } else {
+          state.result += common2.repeat("\n", emptyLines);
+        }
+      } else {
+        state.result += common2.repeat("\n", didReadContent ? 1 + emptyLines : emptyLines);
+      }
+      didReadContent = true;
+      detectedIndent = true;
+      emptyLines = 0;
+      const captureStart = state.position;
+      while (!isEol(ch) && ch !== 0) {
+        ch = state.input.charCodeAt(++state.position);
+      }
+      captureSegment(state, captureStart, state.position, false);
+    }
+    return true;
+  }
+  function readBlockSequence(state, nodeIndent) {
+    const _tag = state.tag;
+    const _anchor = state.anchor;
+    const _result = [];
+    let detected = false;
+    if (state.firstTabInLine !== -1) return false;
+    if (state.anchor !== null) {
+      storeAnchor(state, state.anchor, _result);
+    }
+    let ch = state.input.charCodeAt(state.position);
+    while (ch !== 0) {
+      if (state.firstTabInLine !== -1) {
+        state.position = state.firstTabInLine;
+        throwError(state, "tab characters must not be used in indentation");
+      }
+      if (ch !== 45) {
+        break;
+      }
+      const following = state.input.charCodeAt(state.position + 1);
+      if (!isWsOrEol(following)) {
+        break;
+      }
+      detected = true;
+      state.position++;
+      if (skipSeparationSpace(state, true, -1)) {
+        if (state.lineIndent <= nodeIndent) {
+          _result.push(null);
+          ch = state.input.charCodeAt(state.position);
+          continue;
+        }
+      }
+      const _line = state.line;
+      composeNode(state, nodeIndent, CONTEXT_BLOCK_IN, false, true);
+      _result.push(state.result);
+      skipSeparationSpace(state, true, -1);
+      ch = state.input.charCodeAt(state.position);
+      if ((state.line === _line || state.lineIndent > nodeIndent) && ch !== 0) {
+        throwError(state, "bad indentation of a sequence entry");
+      } else if (state.lineIndent < nodeIndent) {
+        break;
+      }
+    }
+    if (detected) {
+      state.tag = _tag;
+      state.anchor = _anchor;
+      state.kind = "sequence";
+      state.result = _result;
+      return true;
+    }
+    return false;
+  }
+  function readBlockMapping(state, nodeIndent, flowIndent) {
+    let allowCompact;
+    let _keyLine;
+    let _keyLineStart;
+    let _keyPos;
+    const _tag = state.tag;
+    const _anchor = state.anchor;
+    const _result = {};
+    const overridableKeys = /* @__PURE__ */ Object.create(null);
+    let keyTag = null;
+    let keyNode = null;
+    let valueNode = null;
+    let atExplicitKey = false;
+    let detected = false;
+    if (state.firstTabInLine !== -1) return false;
+    if (state.anchor !== null) {
+      storeAnchor(state, state.anchor, _result);
+    }
+    let ch = state.input.charCodeAt(state.position);
+    while (ch !== 0) {
+      if (!atExplicitKey && state.firstTabInLine !== -1) {
+        state.position = state.firstTabInLine;
+        throwError(state, "tab characters must not be used in indentation");
+      }
+      const following = state.input.charCodeAt(state.position + 1);
+      const _line = state.line;
+      if ((ch === 63 || ch === 58) && isWsOrEol(following)) {
+        if (ch === 63) {
+          if (atExplicitKey) {
+            storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, null, _keyLine, _keyLineStart, _keyPos);
+            keyTag = keyNode = valueNode = null;
+          }
+          detected = true;
+          atExplicitKey = true;
+          allowCompact = true;
+        } else if (atExplicitKey) {
+          atExplicitKey = false;
+          allowCompact = true;
+        } else {
+          throwError(state, "incomplete explicit mapping pair; a key node is missed; or followed by a non-tabulated empty line");
+        }
+        state.position += 1;
+        ch = following;
+      } else {
+        _keyLine = state.line;
+        _keyLineStart = state.lineStart;
+        _keyPos = state.position;
+        if (!composeNode(state, flowIndent, CONTEXT_FLOW_OUT, false, true)) {
+          break;
+        }
+        if (state.line === _line) {
+          ch = state.input.charCodeAt(state.position);
+          while (isWhiteSpace(ch)) {
+            ch = state.input.charCodeAt(++state.position);
+          }
+          if (ch === 58) {
+            ch = state.input.charCodeAt(++state.position);
+            if (!isWsOrEol(ch)) {
+              throwError(state, "a whitespace character is expected after the key-value separator within a block mapping");
+            }
+            if (atExplicitKey) {
+              storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, null, _keyLine, _keyLineStart, _keyPos);
+              keyTag = keyNode = valueNode = null;
+            }
+            detected = true;
+            atExplicitKey = false;
+            allowCompact = false;
+            keyTag = state.tag;
+            keyNode = state.result;
+          } else if (detected) {
+            throwError(state, "can not read an implicit mapping pair; a colon is missed");
+          } else {
+            state.tag = _tag;
+            state.anchor = _anchor;
+            return true;
+          }
+        } else if (detected) {
+          throwError(state, "can not read a block mapping entry; a multiline key may not be an implicit key");
+        } else {
+          state.tag = _tag;
+          state.anchor = _anchor;
+          return true;
+        }
+      }
+      if (state.line === _line || state.lineIndent > nodeIndent) {
+        if (atExplicitKey) {
+          _keyLine = state.line;
+          _keyLineStart = state.lineStart;
+          _keyPos = state.position;
+        }
+        if (composeNode(state, nodeIndent, CONTEXT_BLOCK_OUT, true, allowCompact)) {
+          if (atExplicitKey) {
+            keyNode = state.result;
+          } else {
+            valueNode = state.result;
+          }
+        }
+        if (!atExplicitKey) {
+          storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, valueNode, _keyLine, _keyLineStart, _keyPos);
+          keyTag = keyNode = valueNode = null;
+        }
+        skipSeparationSpace(state, true, -1);
+        ch = state.input.charCodeAt(state.position);
+      }
+      if ((state.line === _line || state.lineIndent > nodeIndent) && ch !== 0) {
+        throwError(state, "bad indentation of a mapping entry");
+      } else if (state.lineIndent < nodeIndent) {
+        break;
+      }
+    }
+    if (atExplicitKey) {
+      storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, null, _keyLine, _keyLineStart, _keyPos);
+    }
+    if (detected) {
+      state.tag = _tag;
+      state.anchor = _anchor;
+      state.kind = "mapping";
+      state.result = _result;
+    }
+    return detected;
+  }
+  function readTagProperty(state) {
+    let isVerbatim = false;
+    let isNamed = false;
+    let tagHandle;
+    let tagName;
+    let ch = state.input.charCodeAt(state.position);
+    if (ch !== 33) return false;
+    if (state.tag !== null) {
+      throwError(state, "duplication of a tag property");
+    }
+    ch = state.input.charCodeAt(++state.position);
+    if (ch === 60) {
+      isVerbatim = true;
+      ch = state.input.charCodeAt(++state.position);
+    } else if (ch === 33) {
+      isNamed = true;
+      tagHandle = "!!";
+      ch = state.input.charCodeAt(++state.position);
+    } else {
+      tagHandle = "!";
+    }
+    let _position = state.position;
+    if (isVerbatim) {
+      do {
+        ch = state.input.charCodeAt(++state.position);
+      } while (ch !== 0 && ch !== 62);
+      if (state.position < state.length) {
+        tagName = state.input.slice(_position, state.position);
+        ch = state.input.charCodeAt(++state.position);
+      } else {
+        throwError(state, "unexpected end of the stream within a verbatim tag");
+      }
+    } else {
+      while (ch !== 0 && !isWsOrEol(ch)) {
+        if (ch === 33) {
+          if (!isNamed) {
+            tagHandle = state.input.slice(_position - 1, state.position + 1);
+            if (!PATTERN_TAG_HANDLE.test(tagHandle)) {
+              throwError(state, "named tag handle cannot contain such characters");
+            }
+            isNamed = true;
+            _position = state.position + 1;
+          } else {
+            throwError(state, "tag suffix cannot contain exclamation marks");
+          }
+        }
+        ch = state.input.charCodeAt(++state.position);
+      }
+      tagName = state.input.slice(_position, state.position);
+      if (PATTERN_FLOW_INDICATORS.test(tagName)) {
+        throwError(state, "tag suffix cannot contain flow indicator characters");
+      }
+    }
+    if (tagName && !PATTERN_TAG_URI.test(tagName)) {
+      throwError(state, "tag name cannot contain such characters: " + tagName);
+    }
+    try {
+      tagName = decodeURIComponent(tagName);
+    } catch (err) {
+      throwError(state, "tag name is malformed: " + tagName);
+    }
+    if (isVerbatim) {
+      state.tag = tagName;
+    } else if (_hasOwnProperty.call(state.tagMap, tagHandle)) {
+      state.tag = state.tagMap[tagHandle] + tagName;
+    } else if (tagHandle === "!") {
+      state.tag = "!" + tagName;
+    } else if (tagHandle === "!!") {
+      state.tag = "tag:yaml.org,2002:" + tagName;
+    } else {
+      throwError(state, 'undeclared tag handle "' + tagHandle + '"');
+    }
+    return true;
+  }
+  function readAnchorProperty(state) {
+    let ch = state.input.charCodeAt(state.position);
+    if (ch !== 38) return false;
+    if (state.anchor !== null) {
+      throwError(state, "duplication of an anchor property");
+    }
+    ch = state.input.charCodeAt(++state.position);
+    const _position = state.position;
+    while (ch !== 0 && !isWsOrEol(ch) && !isFlowIndicator(ch)) {
+      ch = state.input.charCodeAt(++state.position);
+    }
+    if (state.position === _position) {
+      throwError(state, "name of an anchor node must contain at least one character");
+    }
+    state.anchor = state.input.slice(_position, state.position);
+    return true;
+  }
+  function readAlias(state) {
+    let ch = state.input.charCodeAt(state.position);
+    if (ch !== 42) return false;
+    ch = state.input.charCodeAt(++state.position);
+    const _position = state.position;
+    while (ch !== 0 && !isWsOrEol(ch) && !isFlowIndicator(ch)) {
+      ch = state.input.charCodeAt(++state.position);
+    }
+    if (state.position === _position) {
+      throwError(state, "name of an alias node must contain at least one character");
+    }
+    const alias = state.input.slice(_position, state.position);
+    if (!_hasOwnProperty.call(state.anchorMap, alias)) {
+      throwError(state, 'unidentified alias "' + alias + '"');
+    }
+    state.result = state.anchorMap[alias];
+    skipSeparationSpace(state, true, -1);
+    return true;
+  }
+  function tryReadBlockMappingFromProperty(state, propertyStart, nodeIndent, flowIndent) {
+    const fallbackState = snapshotState(state);
+    beginAnchorTransaction(state);
+    restoreState(state, propertyStart);
+    state.tag = null;
+    state.anchor = null;
+    state.kind = null;
+    state.result = null;
+    if (readBlockMapping(state, nodeIndent, flowIndent) && state.kind === "mapping") {
+      commitAnchorTransaction(state);
+      return true;
+    }
+    rollbackAnchorTransaction(state);
+    restoreState(state, fallbackState);
+    return false;
+  }
+  function composeNode(state, parentIndent, nodeContext, allowToSeek, allowCompact) {
+    let allowBlockScalars;
+    let allowBlockCollections;
+    let indentStatus = 1;
+    let atNewLine = false;
+    let hasContent = false;
+    let propertyStart = null;
+    let type2;
+    let flowIndent;
+    let blockIndent;
+    if (state.depth >= state.maxDepth) {
+      throwError(state, "nesting exceeded maxDepth (" + state.maxDepth + ")");
+    }
+    state.depth += 1;
+    if (state.listener !== null) {
+      state.listener("open", state);
+    }
+    state.tag = null;
+    state.anchor = null;
+    state.kind = null;
+    state.result = null;
+    const allowBlockStyles = allowBlockScalars = allowBlockCollections = CONTEXT_BLOCK_OUT === nodeContext || CONTEXT_BLOCK_IN === nodeContext;
+    if (allowToSeek) {
+      if (skipSeparationSpace(state, true, -1)) {
+        atNewLine = true;
+        if (state.lineIndent > parentIndent) {
+          indentStatus = 1;
+        } else if (state.lineIndent === parentIndent) {
+          indentStatus = 0;
+        } else if (state.lineIndent < parentIndent) {
+          indentStatus = -1;
+        }
+      }
+    }
+    if (indentStatus === 1) {
+      while (true) {
+        const ch = state.input.charCodeAt(state.position);
+        const propertyState = snapshotState(state);
+        if (atNewLine && (ch === 33 && state.tag !== null || ch === 38 && state.anchor !== null)) {
+          break;
+        }
+        if (!readTagProperty(state) && !readAnchorProperty(state)) {
+          break;
+        }
+        if (propertyStart === null) {
+          propertyStart = propertyState;
+        }
+        if (skipSeparationSpace(state, true, -1)) {
+          atNewLine = true;
+          allowBlockCollections = allowBlockStyles;
+          if (state.lineIndent > parentIndent) {
+            indentStatus = 1;
+          } else if (state.lineIndent === parentIndent) {
+            indentStatus = 0;
+          } else if (state.lineIndent < parentIndent) {
+            indentStatus = -1;
+          }
+        } else {
+          allowBlockCollections = false;
+        }
+      }
+    }
+    if (allowBlockCollections) {
+      allowBlockCollections = atNewLine || allowCompact;
+    }
+    if (indentStatus === 1 || CONTEXT_BLOCK_OUT === nodeContext) {
+      if (CONTEXT_FLOW_IN === nodeContext || CONTEXT_FLOW_OUT === nodeContext) {
+        flowIndent = parentIndent;
+      } else {
+        flowIndent = parentIndent + 1;
+      }
+      blockIndent = state.position - state.lineStart;
+      if (indentStatus === 1) {
+        if (allowBlockCollections && (readBlockSequence(state, blockIndent) || readBlockMapping(state, blockIndent, flowIndent)) || readFlowCollection(state, flowIndent)) {
+          hasContent = true;
+        } else {
+          const ch = state.input.charCodeAt(state.position);
+          if (propertyStart !== null && allowBlockStyles && !allowBlockCollections && ch !== 124 && ch !== 62 && tryReadBlockMappingFromProperty(
+            state,
+            propertyStart,
+            propertyStart.position - propertyStart.lineStart,
+            flowIndent
+          )) {
+            hasContent = true;
+          } else if (allowBlockScalars && readBlockScalar(state, flowIndent) || readSingleQuotedScalar(state, flowIndent) || readDoubleQuotedScalar(state, flowIndent)) {
+            hasContent = true;
+          } else if (readAlias(state)) {
+            hasContent = true;
+            if (state.tag !== null || state.anchor !== null) {
+              throwError(state, "alias node should not have any properties");
+            }
+          } else if (readPlainScalar(state, flowIndent, CONTEXT_FLOW_IN === nodeContext)) {
+            hasContent = true;
+            if (state.tag === null) {
+              state.tag = "?";
+            }
+          }
+          if (state.anchor !== null) {
+            storeAnchor(state, state.anchor, state.result);
+          }
+        }
+      } else if (indentStatus === 0) {
+        hasContent = allowBlockCollections && readBlockSequence(state, blockIndent);
+      }
+    }
+    if (state.tag === null) {
+      if (state.anchor !== null) {
+        storeAnchor(state, state.anchor, state.result);
+      }
+    } else if (state.tag === "?") {
+      if (state.result !== null && state.kind !== "scalar") {
+        throwError(state, 'unacceptable node kind for !<?> tag; it should be "scalar", not "' + state.kind + '"');
+      }
+      for (let typeIndex = 0, typeQuantity = state.implicitTypes.length; typeIndex < typeQuantity; typeIndex += 1) {
+        type2 = state.implicitTypes[typeIndex];
+        if (type2.resolve(state.result)) {
+          state.result = type2.construct(state.result);
+          state.tag = type2.tag;
+          if (state.anchor !== null) {
+            storeAnchor(state, state.anchor, state.result);
+          }
+          break;
+        }
+      }
+    } else if (state.tag !== "!") {
+      if (_hasOwnProperty.call(state.typeMap[state.kind || "fallback"], state.tag)) {
+        type2 = state.typeMap[state.kind || "fallback"][state.tag];
+      } else {
+        type2 = null;
+        const typeList = state.typeMap.multi[state.kind || "fallback"];
+        for (let typeIndex = 0, typeQuantity = typeList.length; typeIndex < typeQuantity; typeIndex += 1) {
+          if (state.tag.slice(0, typeList[typeIndex].tag.length) === typeList[typeIndex].tag) {
+            type2 = typeList[typeIndex];
+            break;
+          }
+        }
+      }
+      if (!type2) {
+        throwError(state, "unknown tag !<" + state.tag + ">");
+      }
+      if (state.result !== null && type2.kind !== state.kind) {
+        throwError(state, "unacceptable node kind for !<" + state.tag + '> tag; it should be "' + type2.kind + '", not "' + state.kind + '"');
+      }
+      if (!type2.resolve(state.result, state.tag)) {
+        throwError(state, "cannot resolve a node with !<" + state.tag + "> explicit tag");
+      } else {
+        state.result = type2.construct(state.result, state.tag);
+        if (state.anchor !== null) {
+          storeAnchor(state, state.anchor, state.result);
+        }
+      }
+    }
+    if (state.listener !== null) {
+      state.listener("close", state);
+    }
+    state.depth -= 1;
+    return state.tag !== null || state.anchor !== null || hasContent;
+  }
+  function readDocument(state) {
+    const documentStart = state.position;
+    let hasDirectives = false;
+    let ch;
+    state.version = null;
+    state.checkLineBreaks = state.legacy;
+    state.tagMap = /* @__PURE__ */ Object.create(null);
+    state.anchorMap = /* @__PURE__ */ Object.create(null);
+    while ((ch = state.input.charCodeAt(state.position)) !== 0) {
+      skipSeparationSpace(state, true, -1);
+      ch = state.input.charCodeAt(state.position);
+      if (state.lineIndent > 0 || ch !== 37) {
+        break;
+      }
+      hasDirectives = true;
+      ch = state.input.charCodeAt(++state.position);
+      let _position = state.position;
+      while (ch !== 0 && !isWsOrEol(ch)) {
+        ch = state.input.charCodeAt(++state.position);
+      }
+      const directiveName = state.input.slice(_position, state.position);
+      const directiveArgs = [];
+      if (directiveName.length < 1) {
+        throwError(state, "directive name must not be less than one character in length");
+      }
+      while (ch !== 0) {
+        while (isWhiteSpace(ch)) {
+          ch = state.input.charCodeAt(++state.position);
+        }
+        if (ch === 35) {
+          do {
+            ch = state.input.charCodeAt(++state.position);
+          } while (ch !== 0 && !isEol(ch));
+          break;
+        }
+        if (isEol(ch)) break;
+        _position = state.position;
+        while (ch !== 0 && !isWsOrEol(ch)) {
+          ch = state.input.charCodeAt(++state.position);
+        }
+        directiveArgs.push(state.input.slice(_position, state.position));
+      }
+      if (ch !== 0) readLineBreak(state);
+      if (_hasOwnProperty.call(directiveHandlers, directiveName)) {
+        directiveHandlers[directiveName](state, directiveName, directiveArgs);
+      } else {
+        throwWarning(state, 'unknown document directive "' + directiveName + '"');
+      }
+    }
+    skipSeparationSpace(state, true, -1);
+    if (state.lineIndent === 0 && state.input.charCodeAt(state.position) === 45 && state.input.charCodeAt(state.position + 1) === 45 && state.input.charCodeAt(state.position + 2) === 45) {
+      state.position += 3;
+      skipSeparationSpace(state, true, -1);
+    } else if (hasDirectives) {
+      throwError(state, "directives end mark is expected");
+    }
+    composeNode(state, state.lineIndent - 1, CONTEXT_BLOCK_OUT, false, true);
+    skipSeparationSpace(state, true, -1);
+    if (state.checkLineBreaks && PATTERN_NON_ASCII_LINE_BREAKS.test(state.input.slice(documentStart, state.position))) {
+      throwWarning(state, "non-ASCII line breaks are interpreted as content");
+    }
+    state.documents.push(state.result);
+    if (state.position === state.lineStart && testDocumentSeparator(state)) {
+      if (state.input.charCodeAt(state.position) === 46) {
+        state.position += 3;
+        skipSeparationSpace(state, true, -1);
+      }
+      return;
+    }
+    if (state.position < state.length - 1) {
+      throwError(state, "end of the stream or a document separator is expected");
+    }
+  }
+  function loadDocuments(input, options) {
+    input = String(input);
+    options = options || {};
+    if (input.length !== 0) {
+      if (input.charCodeAt(input.length - 1) !== 10 && input.charCodeAt(input.length - 1) !== 13) {
+        input += "\n";
+      }
+      if (input.charCodeAt(0) === 65279) {
+        input = input.slice(1);
+      }
+    }
+    const state = new State(input, options);
+    const nullpos = input.indexOf("\0");
+    if (nullpos !== -1) {
+      state.position = nullpos;
+      throwError(state, "null byte is not allowed in input");
+    }
+    state.input += "\0";
+    while (state.input.charCodeAt(state.position) === 32) {
+      state.lineIndent += 1;
+      state.position += 1;
+    }
+    while (state.position < state.length - 1) {
+      readDocument(state);
+    }
+    return state.documents;
+  }
+  function loadAll2(input, iterator, options) {
+    if (iterator !== null && typeof iterator === "object" && typeof options === "undefined") {
+      options = iterator;
+      iterator = null;
+    }
+    const documents = loadDocuments(input, options);
+    if (typeof iterator !== "function") {
+      return documents;
+    }
+    for (let index = 0, length = documents.length; index < length; index += 1) {
+      iterator(documents[index]);
+    }
+  }
+  function load2(input, options) {
+    const documents = loadDocuments(input, options);
+    if (documents.length === 0) {
+      return void 0;
+    } else if (documents.length === 1) {
+      return documents[0];
+    }
+    throw new YAMLException2("expected a single document in the stream, but found more");
+  }
+  loader.loadAll = loadAll2;
+  loader.load = load2;
+  return loader;
+}
+var dumper = {};
+var hasRequiredDumper;
+function requireDumper() {
+  if (hasRequiredDumper) return dumper;
+  hasRequiredDumper = 1;
+  const common2 = requireCommon();
+  const YAMLException2 = requireException();
+  const DEFAULT_SCHEMA2 = require_default();
+  const _toString = Object.prototype.toString;
+  const _hasOwnProperty = Object.prototype.hasOwnProperty;
+  const CHAR_BOM = 65279;
+  const CHAR_TAB = 9;
+  const CHAR_LINE_FEED = 10;
+  const CHAR_CARRIAGE_RETURN = 13;
+  const CHAR_SPACE = 32;
+  const CHAR_EXCLAMATION = 33;
+  const CHAR_DOUBLE_QUOTE = 34;
+  const CHAR_SHARP = 35;
+  const CHAR_PERCENT = 37;
+  const CHAR_AMPERSAND = 38;
+  const CHAR_SINGLE_QUOTE = 39;
+  const CHAR_ASTERISK = 42;
+  const CHAR_COMMA = 44;
+  const CHAR_MINUS = 45;
+  const CHAR_COLON = 58;
+  const CHAR_EQUALS = 61;
+  const CHAR_GREATER_THAN = 62;
+  const CHAR_QUESTION = 63;
+  const CHAR_COMMERCIAL_AT = 64;
+  const CHAR_LEFT_SQUARE_BRACKET = 91;
+  const CHAR_RIGHT_SQUARE_BRACKET = 93;
+  const CHAR_GRAVE_ACCENT = 96;
+  const CHAR_LEFT_CURLY_BRACKET = 123;
+  const CHAR_VERTICAL_LINE = 124;
+  const CHAR_RIGHT_CURLY_BRACKET = 125;
+  const ESCAPE_SEQUENCES = {};
+  ESCAPE_SEQUENCES[0] = "\\0";
+  ESCAPE_SEQUENCES[7] = "\\a";
+  ESCAPE_SEQUENCES[8] = "\\b";
+  ESCAPE_SEQUENCES[9] = "\\t";
+  ESCAPE_SEQUENCES[10] = "\\n";
+  ESCAPE_SEQUENCES[11] = "\\v";
+  ESCAPE_SEQUENCES[12] = "\\f";
+  ESCAPE_SEQUENCES[13] = "\\r";
+  ESCAPE_SEQUENCES[27] = "\\e";
+  ESCAPE_SEQUENCES[34] = '\\"';
+  ESCAPE_SEQUENCES[92] = "\\\\";
+  ESCAPE_SEQUENCES[133] = "\\N";
+  ESCAPE_SEQUENCES[160] = "\\_";
+  ESCAPE_SEQUENCES[8232] = "\\L";
+  ESCAPE_SEQUENCES[8233] = "\\P";
+  const DEPRECATED_BOOLEANS_SYNTAX = [
+    "y",
+    "Y",
+    "yes",
+    "Yes",
+    "YES",
+    "on",
+    "On",
+    "ON",
+    "n",
+    "N",
+    "no",
+    "No",
+    "NO",
+    "off",
+    "Off",
+    "OFF"
+  ];
+  const DEPRECATED_BASE60_SYNTAX = /^[-+]?[0-9_]+(?::[0-9_]+)+(?:\.[0-9_]*)?$/;
+  function compileStyleMap(schema2, map2) {
+    if (map2 === null) return {};
+    const result = {};
+    const keys = Object.keys(map2);
+    for (let index = 0, length = keys.length; index < length; index += 1) {
+      let tag = keys[index];
+      let style = String(map2[tag]);
+      if (tag.slice(0, 2) === "!!") {
+        tag = "tag:yaml.org,2002:" + tag.slice(2);
+      }
+      const type2 = schema2.compiledTypeMap["fallback"][tag];
+      if (type2 && _hasOwnProperty.call(type2.styleAliases, style)) {
+        style = type2.styleAliases[style];
+      }
+      result[tag] = style;
+    }
+    return result;
+  }
+  function encodeHex(character) {
+    let handle;
+    let length;
+    const string = character.toString(16).toUpperCase();
+    if (character <= 255) {
+      handle = "x";
+      length = 2;
+    } else if (character <= 65535) {
+      handle = "u";
+      length = 4;
+    } else if (character <= 4294967295) {
+      handle = "U";
+      length = 8;
+    } else {
+      throw new YAMLException2("code point within a string may not be greater than 0xFFFFFFFF");
+    }
+    return "\\" + handle + common2.repeat("0", length - string.length) + string;
+  }
+  const QUOTING_TYPE_SINGLE = 1;
+  const QUOTING_TYPE_DOUBLE = 2;
+  function State(options) {
+    this.schema = options["schema"] || DEFAULT_SCHEMA2;
+    this.indent = Math.max(1, options["indent"] || 2);
+    this.noArrayIndent = options["noArrayIndent"] || false;
+    this.skipInvalid = options["skipInvalid"] || false;
+    this.flowLevel = common2.isNothing(options["flowLevel"]) ? -1 : options["flowLevel"];
+    this.styleMap = compileStyleMap(this.schema, options["styles"] || null);
+    this.sortKeys = options["sortKeys"] || false;
+    this.lineWidth = options["lineWidth"] || 80;
+    this.noRefs = options["noRefs"] || false;
+    this.noCompatMode = options["noCompatMode"] || false;
+    this.condenseFlow = options["condenseFlow"] || false;
+    this.quotingType = options["quotingType"] === '"' ? QUOTING_TYPE_DOUBLE : QUOTING_TYPE_SINGLE;
+    this.forceQuotes = options["forceQuotes"] || false;
+    this.replacer = typeof options["replacer"] === "function" ? options["replacer"] : null;
+    this.implicitTypes = this.schema.compiledImplicit;
+    this.explicitTypes = this.schema.compiledExplicit;
+    this.tag = null;
+    this.result = "";
+    this.duplicates = [];
+    this.usedDuplicates = null;
+  }
+  function indentString(string, spaces) {
+    const ind = common2.repeat(" ", spaces);
+    let position = 0;
+    let result = "";
+    const length = string.length;
+    while (position < length) {
+      let line;
+      const next = string.indexOf("\n", position);
+      if (next === -1) {
+        line = string.slice(position);
+        position = length;
+      } else {
+        line = string.slice(position, next + 1);
+        position = next + 1;
+      }
+      if (line.length && line !== "\n") result += ind;
+      result += line;
+    }
+    return result;
+  }
+  function generateNextLine(state, level) {
+    return "\n" + common2.repeat(" ", state.indent * level);
+  }
+  function testImplicitResolving(state, str2) {
+    for (let index = 0, length = state.implicitTypes.length; index < length; index += 1) {
+      const type2 = state.implicitTypes[index];
+      if (type2.resolve(str2)) {
+        return true;
+      }
+    }
+    return false;
+  }
+  function isWhitespace(c) {
+    return c === CHAR_SPACE || c === CHAR_TAB;
+  }
+  function isPrintable(c) {
+    return c >= 32 && c <= 126 || c >= 161 && c <= 55295 && c !== 8232 && c !== 8233 || c >= 57344 && c <= 65533 && c !== CHAR_BOM || c >= 65536 && c <= 1114111;
+  }
+  function isNsCharOrWhitespace(c) {
+    return isPrintable(c) && c !== CHAR_BOM && // - b-char
+    c !== CHAR_CARRIAGE_RETURN && c !== CHAR_LINE_FEED;
+  }
+  function isPlainSafe(c, prev, inblock) {
+    const cIsNsCharOrWhitespace = isNsCharOrWhitespace(c);
+    const cIsNsChar = cIsNsCharOrWhitespace && !isWhitespace(c);
+    return (
+      // ns-plain-safe
+      (inblock ? cIsNsCharOrWhitespace : cIsNsCharOrWhitespace && // - c-flow-indicator
+      c !== CHAR_COMMA && c !== CHAR_LEFT_SQUARE_BRACKET && c !== CHAR_RIGHT_SQUARE_BRACKET && c !== CHAR_LEFT_CURLY_BRACKET && c !== CHAR_RIGHT_CURLY_BRACKET) && // ns-plain-char
+      c !== CHAR_SHARP && // false on '#'
+      !(prev === CHAR_COLON && !cIsNsChar) || // false on ': '
+      isNsCharOrWhitespace(prev) && !isWhitespace(prev) && c === CHAR_SHARP || // change to true on '[^ ]#'
+      prev === CHAR_COLON && cIsNsChar
+    );
+  }
+  function isPlainSafeFirst(c) {
+    return isPrintable(c) && c !== CHAR_BOM && !isWhitespace(c) && // - s-white
+    // - (c-indicator ::=
+    // “-” | “?” | “:” | “,” | “[” | “]” | “{” | “}”
+    c !== CHAR_MINUS && c !== CHAR_QUESTION && c !== CHAR_COLON && c !== CHAR_COMMA && c !== CHAR_LEFT_SQUARE_BRACKET && c !== CHAR_RIGHT_SQUARE_BRACKET && c !== CHAR_LEFT_CURLY_BRACKET && c !== CHAR_RIGHT_CURLY_BRACKET && // | “#” | “&” | “*” | “!” | “|” | “=” | “>” | “'” | “"”
+    c !== CHAR_SHARP && c !== CHAR_AMPERSAND && c !== CHAR_ASTERISK && c !== CHAR_EXCLAMATION && c !== CHAR_VERTICAL_LINE && c !== CHAR_EQUALS && c !== CHAR_GREATER_THAN && c !== CHAR_SINGLE_QUOTE && c !== CHAR_DOUBLE_QUOTE && // | “%” | “@” | “`”)
+    c !== CHAR_PERCENT && c !== CHAR_COMMERCIAL_AT && c !== CHAR_GRAVE_ACCENT;
+  }
+  function isPlainSafeLast(c) {
+    return !isWhitespace(c) && c !== CHAR_COLON;
+  }
+  function codePointAt(string, pos) {
+    const first = string.charCodeAt(pos);
+    let second;
+    if (first >= 55296 && first <= 56319 && pos + 1 < string.length) {
+      second = string.charCodeAt(pos + 1);
+      if (second >= 56320 && second <= 57343) {
+        return (first - 55296) * 1024 + second - 56320 + 65536;
+      }
+    }
+    return first;
+  }
+  function needIndentIndicator(string) {
+    const leadingSpaceRe = /^\n* /;
+    return leadingSpaceRe.test(string);
+  }
+  const STYLE_PLAIN = 1;
+  const STYLE_SINGLE = 2;
+  const STYLE_LITERAL = 3;
+  const STYLE_FOLDED = 4;
+  const STYLE_DOUBLE = 5;
+  function chooseScalarStyle(string, singleLineOnly, indentPerLevel, lineWidth, testAmbiguousType, quotingType, forceQuotes, inblock) {
+    let i;
+    let char = 0;
+    let prevChar = null;
+    let hasLineBreak = false;
+    let hasFoldableLine = false;
+    const shouldTrackWidth = lineWidth !== -1;
+    let previousLineBreak = -1;
+    let plain = isPlainSafeFirst(codePointAt(string, 0)) && isPlainSafeLast(codePointAt(string, string.length - 1));
+    if (singleLineOnly || forceQuotes) {
+      for (i = 0; i < string.length; char >= 65536 ? i += 2 : i++) {
+        char = codePointAt(string, i);
+        if (!isPrintable(char)) {
+          return STYLE_DOUBLE;
+        }
+        plain = plain && isPlainSafe(char, prevChar, inblock);
+        prevChar = char;
+      }
+    } else {
+      for (i = 0; i < string.length; char >= 65536 ? i += 2 : i++) {
+        char = codePointAt(string, i);
+        if (char === CHAR_LINE_FEED) {
+          hasLineBreak = true;
+          if (shouldTrackWidth) {
+            hasFoldableLine = hasFoldableLine || // Foldable line = too long, and not more-indented.
+            i - previousLineBreak - 1 > lineWidth && string[previousLineBreak + 1] !== " ";
+            previousLineBreak = i;
+          }
+        } else if (!isPrintable(char)) {
+          return STYLE_DOUBLE;
+        }
+        plain = plain && isPlainSafe(char, prevChar, inblock);
+        prevChar = char;
+      }
+      hasFoldableLine = hasFoldableLine || shouldTrackWidth && (i - previousLineBreak - 1 > lineWidth && string[previousLineBreak + 1] !== " ");
+    }
+    if (!hasLineBreak && !hasFoldableLine) {
+      if (plain && !forceQuotes && !testAmbiguousType(string)) {
+        return STYLE_PLAIN;
+      }
+      return quotingType === QUOTING_TYPE_DOUBLE ? STYLE_DOUBLE : STYLE_SINGLE;
+    }
+    if (indentPerLevel > 9 && needIndentIndicator(string)) {
+      return STYLE_DOUBLE;
+    }
+    if (!forceQuotes) {
+      return hasFoldableLine ? STYLE_FOLDED : STYLE_LITERAL;
+    }
+    return quotingType === QUOTING_TYPE_DOUBLE ? STYLE_DOUBLE : STYLE_SINGLE;
+  }
+  function writeScalar(state, string, level, iskey, inblock) {
+    state.dump = (function() {
+      if (string.length === 0) {
+        return state.quotingType === QUOTING_TYPE_DOUBLE ? '""' : "''";
+      }
+      if (!state.noCompatMode) {
+        if (DEPRECATED_BOOLEANS_SYNTAX.indexOf(string) !== -1 || DEPRECATED_BASE60_SYNTAX.test(string)) {
+          return state.quotingType === QUOTING_TYPE_DOUBLE ? '"' + string + '"' : "'" + string + "'";
+        }
+      }
+      const indent = state.indent * Math.max(1, level);
+      const lineWidth = state.lineWidth === -1 ? -1 : Math.max(Math.min(state.lineWidth, 40), state.lineWidth - indent);
+      const singleLineOnly = iskey || // No block styles in flow mode.
+      state.flowLevel > -1 && level >= state.flowLevel;
+      function testAmbiguity(string2) {
+        return testImplicitResolving(state, string2);
+      }
+      switch (chooseScalarStyle(
+        string,
+        singleLineOnly,
+        state.indent,
+        lineWidth,
+        testAmbiguity,
+        state.quotingType,
+        state.forceQuotes && !iskey,
+        inblock
+      )) {
+        case STYLE_PLAIN:
+          return string;
+        case STYLE_SINGLE:
+          return "'" + string.replace(/'/g, "''") + "'";
+        case STYLE_LITERAL:
+          return "|" + blockHeader(string, state.indent) + dropEndingNewline(indentString(string, indent));
+        case STYLE_FOLDED:
+          return ">" + blockHeader(string, state.indent) + dropEndingNewline(indentString(foldString(string, lineWidth), indent));
+        case STYLE_DOUBLE:
+          return '"' + escapeString(string) + '"';
+        default:
+          throw new YAMLException2("impossible error: invalid scalar style");
+      }
+    })();
+  }
+  function blockHeader(string, indentPerLevel) {
+    const indentIndicator = needIndentIndicator(string) ? String(indentPerLevel) : "";
+    const clip = string[string.length - 1] === "\n";
+    const keep = clip && (string[string.length - 2] === "\n" || string === "\n");
+    const chomp = keep ? "+" : clip ? "" : "-";
+    return indentIndicator + chomp + "\n";
+  }
+  function dropEndingNewline(string) {
+    return string[string.length - 1] === "\n" ? string.slice(0, -1) : string;
+  }
+  function foldString(string, width) {
+    const lineRe = /(\n+)([^\n]*)/g;
+    let result = (function() {
+      let nextLF = string.indexOf("\n");
+      nextLF = nextLF !== -1 ? nextLF : string.length;
+      lineRe.lastIndex = nextLF;
+      return foldLine(string.slice(0, nextLF), width);
+    })();
+    let prevMoreIndented = string[0] === "\n" || string[0] === " ";
+    let moreIndented;
+    let match;
+    while (match = lineRe.exec(string)) {
+      const prefix = match[1];
+      const line = match[2];
+      moreIndented = line[0] === " ";
+      result += prefix + (!prevMoreIndented && !moreIndented && line !== "" ? "\n" : "") + foldLine(line, width);
+      prevMoreIndented = moreIndented;
+    }
+    return result;
+  }
+  function foldLine(line, width) {
+    if (line === "" || line[0] === " ") return line;
+    const breakRe = / [^ ]/g;
+    let match;
+    let start = 0;
+    let end;
+    let curr = 0;
+    let next = 0;
+    let result = "";
+    while (match = breakRe.exec(line)) {
+      next = match.index;
+      if (next - start > width) {
+        end = curr > start ? curr : next;
+        result += "\n" + line.slice(start, end);
+        start = end + 1;
+      }
+      curr = next;
+    }
+    result += "\n";
+    if (line.length - start > width && curr > start) {
+      result += line.slice(start, curr) + "\n" + line.slice(curr + 1);
+    } else {
+      result += line.slice(start);
+    }
+    return result.slice(1);
+  }
+  function escapeString(string) {
+    let result = "";
+    let char = 0;
+    for (let i = 0; i < string.length; char >= 65536 ? i += 2 : i++) {
+      char = codePointAt(string, i);
+      const escapeSeq = ESCAPE_SEQUENCES[char];
+      if (!escapeSeq && isPrintable(char)) {
+        result += string[i];
+        if (char >= 65536) result += string[i + 1];
+      } else {
+        result += escapeSeq || encodeHex(char);
+      }
+    }
+    return result;
+  }
+  function writeFlowSequence(state, level, object) {
+    let _result = "";
+    const _tag = state.tag;
+    for (let index = 0, length = object.length; index < length; index += 1) {
+      let value = object[index];
+      if (state.replacer) {
+        value = state.replacer.call(object, String(index), value);
+      }
+      if (writeNode(state, level, value, false, false) || typeof value === "undefined" && writeNode(state, level, null, false, false)) {
+        if (_result !== "") _result += "," + (!state.condenseFlow ? " " : "");
+        _result += state.dump;
+      }
+    }
+    state.tag = _tag;
+    state.dump = "[" + _result + "]";
+  }
+  function writeBlockSequence(state, level, object, compact) {
+    let _result = "";
+    const _tag = state.tag;
+    for (let index = 0, length = object.length; index < length; index += 1) {
+      let value = object[index];
+      if (state.replacer) {
+        value = state.replacer.call(object, String(index), value);
+      }
+      if (writeNode(state, level + 1, value, true, true, false, true) || typeof value === "undefined" && writeNode(state, level + 1, null, true, true, false, true)) {
+        if (!compact || _result !== "") {
+          _result += generateNextLine(state, level);
+        }
+        if (state.dump && CHAR_LINE_FEED === state.dump.charCodeAt(0)) {
+          _result += "-";
+        } else {
+          _result += "- ";
+        }
+        _result += state.dump;
+      }
+    }
+    state.tag = _tag;
+    state.dump = _result || "[]";
+  }
+  function writeFlowMapping(state, level, object) {
+    let _result = "";
+    const _tag = state.tag;
+    const objectKeyList = Object.keys(object);
+    for (let index = 0, length = objectKeyList.length; index < length; index += 1) {
+      let pairBuffer = "";
+      if (_result !== "") pairBuffer += ", ";
+      if (state.condenseFlow) pairBuffer += '"';
+      const objectKey = objectKeyList[index];
+      let objectValue = object[objectKey];
+      if (state.replacer) {
+        objectValue = state.replacer.call(object, objectKey, objectValue);
+      }
+      if (!writeNode(state, level, objectKey, false, false)) {
+        continue;
+      }
+      if (state.dump.length > 1024) pairBuffer += "? ";
+      pairBuffer += state.dump + (state.condenseFlow ? '"' : "") + ":" + (state.condenseFlow ? "" : " ");
+      if (!writeNode(state, level, objectValue, false, false)) {
+        continue;
+      }
+      pairBuffer += state.dump;
+      _result += pairBuffer;
+    }
+    state.tag = _tag;
+    state.dump = "{" + _result + "}";
+  }
+  function writeBlockMapping(state, level, object, compact) {
+    let _result = "";
+    const _tag = state.tag;
+    const objectKeyList = Object.keys(object);
+    if (state.sortKeys === true) {
+      objectKeyList.sort();
+    } else if (typeof state.sortKeys === "function") {
+      objectKeyList.sort(state.sortKeys);
+    } else if (state.sortKeys) {
+      throw new YAMLException2("sortKeys must be a boolean or a function");
+    }
+    for (let index = 0, length = objectKeyList.length; index < length; index += 1) {
+      let pairBuffer = "";
+      if (!compact || _result !== "") {
+        pairBuffer += generateNextLine(state, level);
+      }
+      const objectKey = objectKeyList[index];
+      let objectValue = object[objectKey];
+      if (state.replacer) {
+        objectValue = state.replacer.call(object, objectKey, objectValue);
+      }
+      if (!writeNode(state, level + 1, objectKey, true, true, true)) {
+        continue;
+      }
+      const explicitPair = state.tag !== null && state.tag !== "?" || state.dump && state.dump.length > 1024;
+      if (explicitPair) {
+        if (state.dump && CHAR_LINE_FEED === state.dump.charCodeAt(0)) {
+          pairBuffer += "?";
+        } else {
+          pairBuffer += "? ";
+        }
+      }
+      pairBuffer += state.dump;
+      if (explicitPair) {
+        pairBuffer += generateNextLine(state, level);
+      }
+      if (!writeNode(state, level + 1, objectValue, true, explicitPair)) {
+        continue;
+      }
+      if (state.dump && CHAR_LINE_FEED === state.dump.charCodeAt(0)) {
+        pairBuffer += ":";
+      } else {
+        pairBuffer += ": ";
+      }
+      pairBuffer += state.dump;
+      _result += pairBuffer;
+    }
+    state.tag = _tag;
+    state.dump = _result || "{}";
+  }
+  function detectType(state, object, explicit) {
+    const typeList = explicit ? state.explicitTypes : state.implicitTypes;
+    for (let index = 0, length = typeList.length; index < length; index += 1) {
+      const type2 = typeList[index];
+      if ((type2.instanceOf || type2.predicate) && (!type2.instanceOf || typeof object === "object" && object instanceof type2.instanceOf) && (!type2.predicate || type2.predicate(object))) {
+        if (explicit) {
+          if (type2.multi && type2.representName) {
+            state.tag = type2.representName(object);
+          } else {
+            state.tag = type2.tag;
+          }
+        } else {
+          state.tag = "?";
+        }
+        if (type2.represent) {
+          const style = state.styleMap[type2.tag] || type2.defaultStyle;
+          let _result;
+          if (_toString.call(type2.represent) === "[object Function]") {
+            _result = type2.represent(object, style);
+          } else if (_hasOwnProperty.call(type2.represent, style)) {
+            _result = type2.represent[style](object, style);
+          } else {
+            throw new YAMLException2("!<" + type2.tag + '> tag resolver accepts not "' + style + '" style');
+          }
+          state.dump = _result;
+        }
+        return true;
+      }
+    }
+    return false;
+  }
+  function writeNode(state, level, object, block, compact, iskey, isblockseq) {
+    state.tag = null;
+    state.dump = object;
+    if (!detectType(state, object, false)) {
+      detectType(state, object, true);
+    }
+    const type2 = _toString.call(state.dump);
+    const inblock = block;
+    if (block) {
+      block = state.flowLevel < 0 || state.flowLevel > level;
+    }
+    const objectOrArray = type2 === "[object Object]" || type2 === "[object Array]";
+    let duplicateIndex;
+    let duplicate;
+    if (objectOrArray) {
+      duplicateIndex = state.duplicates.indexOf(object);
+      duplicate = duplicateIndex !== -1;
+    }
+    if (state.tag !== null && state.tag !== "?" || duplicate || state.indent !== 2 && level > 0) {
+      compact = false;
+    }
+    if (duplicate && state.usedDuplicates[duplicateIndex]) {
+      state.dump = "*ref_" + duplicateIndex;
+    } else {
+      if (objectOrArray && duplicate && !state.usedDuplicates[duplicateIndex]) {
+        state.usedDuplicates[duplicateIndex] = true;
+      }
+      if (type2 === "[object Object]") {
+        if (block && Object.keys(state.dump).length !== 0) {
+          writeBlockMapping(state, level, state.dump, compact);
+          if (duplicate) {
+            state.dump = "&ref_" + duplicateIndex + state.dump;
+          }
+        } else {
+          writeFlowMapping(state, level, state.dump);
+          if (duplicate) {
+            state.dump = "&ref_" + duplicateIndex + " " + state.dump;
+          }
+        }
+      } else if (type2 === "[object Array]") {
+        if (block && state.dump.length !== 0) {
+          if (state.noArrayIndent && !isblockseq && level > 0) {
+            writeBlockSequence(state, level - 1, state.dump, compact);
+          } else {
+            writeBlockSequence(state, level, state.dump, compact);
+          }
+          if (duplicate) {
+            state.dump = "&ref_" + duplicateIndex + state.dump;
+          }
+        } else {
+          writeFlowSequence(state, level, state.dump);
+          if (duplicate) {
+            state.dump = "&ref_" + duplicateIndex + " " + state.dump;
+          }
+        }
+      } else if (type2 === "[object String]") {
+        if (state.tag !== "?") {
+          writeScalar(state, state.dump, level, iskey, inblock);
+        }
+      } else if (type2 === "[object Undefined]") {
+        return false;
+      } else {
+        if (state.skipInvalid) return false;
+        throw new YAMLException2("unacceptable kind of an object to dump " + type2);
+      }
+      if (state.tag !== null && state.tag !== "?") {
+        let tagStr = encodeURI(
+          state.tag[0] === "!" ? state.tag.slice(1) : state.tag
+        ).replace(/!/g, "%21");
+        if (state.tag[0] === "!") {
+          tagStr = "!" + tagStr;
+        } else if (tagStr.slice(0, 18) === "tag:yaml.org,2002:") {
+          tagStr = "!!" + tagStr.slice(18);
+        } else {
+          tagStr = "!<" + tagStr + ">";
+        }
+        state.dump = tagStr + " " + state.dump;
+      }
+    }
+    return true;
+  }
+  function getDuplicateReferences(object, state) {
+    const objects = [];
+    const duplicatesIndexes = [];
+    inspectNode(object, objects, duplicatesIndexes);
+    const length = duplicatesIndexes.length;
+    for (let index = 0; index < length; index += 1) {
+      state.duplicates.push(objects[duplicatesIndexes[index]]);
+    }
+    state.usedDuplicates = new Array(length);
+  }
+  function inspectNode(object, objects, duplicatesIndexes) {
+    if (object !== null && typeof object === "object") {
+      const index = objects.indexOf(object);
+      if (index !== -1) {
+        if (duplicatesIndexes.indexOf(index) === -1) {
+          duplicatesIndexes.push(index);
+        }
+      } else {
+        objects.push(object);
+        if (Array.isArray(object)) {
+          for (let i = 0, length = object.length; i < length; i += 1) {
+            inspectNode(object[i], objects, duplicatesIndexes);
+          }
+        } else {
+          const objectKeyList = Object.keys(object);
+          for (let i = 0, length = objectKeyList.length; i < length; i += 1) {
+            inspectNode(object[objectKeyList[i]], objects, duplicatesIndexes);
+          }
+        }
+      }
+    }
+  }
+  function dump2(input, options) {
+    options = options || {};
+    const state = new State(options);
+    if (!state.noRefs) getDuplicateReferences(input, state);
+    let value = input;
+    if (state.replacer) {
+      value = state.replacer.call({ "": value }, "", value);
+    }
+    if (writeNode(state, 0, value, true, true)) return state.dump + "\n";
+    return "";
+  }
+  dumper.dump = dump2;
+  return dumper;
+}
+var hasRequiredJsYaml;
+function requireJsYaml() {
+  if (hasRequiredJsYaml) return jsYaml;
+  hasRequiredJsYaml = 1;
+  const loader2 = requireLoader();
+  const dumper2 = requireDumper();
+  function renamed(from, to) {
+    return function() {
+      throw new Error("Function yaml." + from + " is removed in js-yaml 4. Use yaml." + to + " instead, which is now safe by default.");
+    };
+  }
+  jsYaml.Type = requireType();
+  jsYaml.Schema = requireSchema();
+  jsYaml.FAILSAFE_SCHEMA = requireFailsafe();
+  jsYaml.JSON_SCHEMA = requireJson();
+  jsYaml.CORE_SCHEMA = requireCore();
+  jsYaml.DEFAULT_SCHEMA = require_default();
+  jsYaml.load = loader2.load;
+  jsYaml.loadAll = loader2.loadAll;
+  jsYaml.dump = dumper2.dump;
+  jsYaml.YAMLException = requireException();
+  jsYaml.types = {
+    binary: requireBinary(),
+    float: requireFloat(),
+    map: requireMap(),
+    null: require_null(),
+    pairs: requirePairs(),
+    set: requireSet(),
+    timestamp: requireTimestamp(),
+    bool: requireBool(),
+    int: requireInt(),
+    merge: requireMerge(),
+    omap: requireOmap(),
+    seq: requireSeq(),
+    str: requireStr()
+  };
+  jsYaml.safeLoad = renamed("safeLoad", "load");
+  jsYaml.safeLoadAll = renamed("safeLoadAll", "loadAll");
+  jsYaml.safeDump = renamed("safeDump", "dump");
+  return jsYaml;
+}
+var jsYamlExports = requireJsYaml();
+const yaml = /* @__PURE__ */ getDefaultExportFromCjs(jsYamlExports);
+const {
+  Type,
+  Schema,
+  FAILSAFE_SCHEMA,
+  JSON_SCHEMA,
+  CORE_SCHEMA,
+  DEFAULT_SCHEMA,
+  load,
+  loadAll,
+  dump,
+  YAMLException,
+  types,
+  safeLoad,
+  safeLoadAll,
+  safeDump
+} = yaml;
+
+//# sourceMappingURL=js-yaml.mjs.map
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, [
+/* harmony export */   "Hh", 0, /* binding */ load
+/* harmony export */ ]);
+
+
+/***/ }
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	const __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		const cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		const module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter/value functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			if(Array.isArray(definition)) {
+/******/ 				var i = 0;
+/******/ 				while(i < definition.length) {
+/******/ 					var key = definition[i++];
+/******/ 					var binding = definition[i++];
+/******/ 					if(!__webpack_require__.o(exports, key)) {
+/******/ 						if(binding === 0) {
+/******/ 							Object.defineProperty(exports, key, { enumerable: true, value: definition[i++] });
+/******/ 						} else {
+/******/ 							Object.defineProperty(exports, key, { enumerable: true, get: binding });
+/******/ 						}
+/******/ 					} else if(binding === 0) { i++; }
+/******/ 				}
+/******/ 			} else {
+/******/ 				for(var key in definition) {
+/******/ 					if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 						Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 					}
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+let __webpack_exports__ = {};
+/* harmony import */ var js_yaml__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(382);
+/* harmony import */ var _taskpane_unitRegistry__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3977);
+// Standalone page opened via Office.context.ui.displayDialogAsync from
+// commands.ts's own "openUnitDictionaries" ExecuteFunction handler (the
+// ribbon's "Units" button). Dialog windows have no Office.context.document
+// access at all (see settings-dialog.ts's own comment for how that was
+// discovered), so this page never touches UnitGroupPreferenceStore
+// directly -- it messages commands.ts, which does have document access, to
+// read/write on its behalf, using the same ready-ping/messageParent
+// protocol every other dialog in this add-in uses with its own parent.
+//
+// FileReader/fetch, unlike Office.context.document, are ordinary browser
+// APIs available in a dialog's own restricted context -- so reading a
+// local file and fetching a URL both happen directly here, with only the
+// final "persist this dictionary" step relayed to commands.ts. Dictionary
+// text is parsed with js-yaml's load(), matching the same format
+// units.seed.yaml itself already uses.
+//
+// YAML only, deliberately -- Paul's own call (2026-09-30: "I'd prefer we
+// accept only YAML in the code"), even though js-yaml's load() would
+// otherwise also accept plain JSON (a syntactic subset of YAML) without
+// complaint. isJsonText (unitRegistry.ts, shared with that module's own
+// loadUrlDictionaries) checks the raw text itself rather than a file's
+// extension or a URL's suffix, so a renamed .json-as-.yaml file or an
+// extensionless URL is still caught the same way an obvious one would be.
+
+
+// Cleared once the actual state arrives -- see the "ready" ping below.
+let readyIntervalId;
+function send(message) {
+    Office.context.ui.messageParent(JSON.stringify(message));
+}
+function setAddStatus(message, kind) {
+    const status = document.getElementById("add-dictionary-status");
+    status.textContent = message;
+    status.className = `add-dictionary-status${kind ? ` ${kind}` : ""}`;
+}
+function unitCount(seedFile) {
+    return Object.values(seedFile).reduce((sum, defs) => sum + defs.length, 0);
+}
+// Every leaf group's own enabled flag underneath node, depth-first --
+// used to derive a parent checkbox's checked/indeterminate state (all
+// enabled -> checked; all disabled -> unchecked; a mix -> indeterminate).
+function collectLeafEnabled(node) {
+    var _a;
+    if (node.children) {
+        return node.children.reduce((acc, child) => acc.concat(collectLeafEnabled(child)), []);
+    }
+    return [(_a = node.enabled) !== null && _a !== void 0 ? _a : false];
+}
+function collectLeafIds(node) {
+    if (node.children) {
+        return node.children.reduce((acc, child) => acc.concat(collectLeafIds(child)), []);
+    }
+    return [node.id];
+}
+function renderGroupRow(node, depth) {
+    var _a;
+    const label = document.createElement("label");
+    label.className = "group-row";
+    if (depth > 0) {
+        label.classList.add(`group-row-indent-${depth}`);
+    }
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    if (node.children) {
+        label.classList.add("group-row-parent");
+        const leafEnabled = collectLeafEnabled(node);
+        const allEnabled = leafEnabled.every(Boolean);
+        const noneEnabled = leafEnabled.every((enabled) => !enabled);
+        checkbox.checked = allEnabled;
+        checkbox.indeterminate = !allEnabled && !noneEnabled;
+        checkbox.onchange = () => {
+            send({
+                type: "toggle-groups",
+                groupIds: collectLeafIds(node),
+                enabled: checkbox.checked,
+            });
+        };
+    }
+    else {
+        checkbox.checked = (_a = node.enabled) !== null && _a !== void 0 ? _a : false;
+        checkbox.onchange = () => {
+            send({
+                type: "toggle-groups",
+                groupIds: [node.id],
+                enabled: checkbox.checked,
+            });
+        };
+    }
+    label.appendChild(checkbox);
+    label.appendChild(document.createTextNode(node.label));
+    return label;
+}
+function renderGroups(groups) {
+    const container = document.getElementById("group-checkboxes");
+    container.innerHTML = "";
+    const appendNode = (node, depth) => {
+        var _a;
+        container.appendChild(renderGroupRow(node, depth));
+        (_a = node.children) === null || _a === void 0 ? void 0 : _a.forEach((child) => appendNode(child, depth + 1));
+    };
+    for (const group of groups) {
+        appendNode(group, 0);
+    }
+}
+function renderDictionaries(dictionaries) {
+    const list = document.getElementById("custom-dictionaries-list");
+    list.innerHTML = "";
+    if (dictionaries.length === 0) {
+        const empty = document.createElement("li");
+        empty.className = "custom-dictionaries-empty";
+        empty.textContent = "No custom dictionaries added yet.";
+        list.appendChild(empty);
+        return;
+    }
+    for (const dictionary of dictionaries) {
+        const item = document.createElement("li");
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.checked = dictionary.enabled;
+        checkbox.onchange = () => {
+            send({
+                type: "toggle-dictionary",
+                id: dictionary.id,
+                enabled: checkbox.checked,
+            });
+        };
+        const name = document.createElement("span");
+        name.className = "dictionary-name";
+        name.textContent = `${dictionary.name} (${dictionary.kind})`;
+        name.title = dictionary.name;
+        const remove = document.createElement("button");
+        remove.className = "remove-button";
+        remove.textContent = "Remove";
+        remove.onclick = () => {
+            send({ type: "remove-dictionary", id: dictionary.id });
+        };
+        item.appendChild(checkbox);
+        item.appendChild(name);
+        item.appendChild(remove);
+        list.appendChild(item);
+    }
+}
+function onParentMessage(arg) {
+    const data = JSON.parse(arg.message);
+    if (data.type === "state") {
+        if (readyIntervalId !== undefined) {
+            window.clearInterval(readyIntervalId);
+            readyIntervalId = undefined;
+        }
+        renderGroups(data.groups);
+        renderDictionaries(data.dictionaries);
+    }
+}
+Office.onReady(() => {
+    Office.context.ui.addHandlerAsync(Office.EventType.DialogParentMessageReceived, onParentMessage);
+    // commands.ts's own handler only starts listening once displayDialogAsync's
+    // callback fires, which can happen after this page has already loaded and
+    // pinged once -- so keep pinging until the actual state arrives, rather
+    // than assuming a single ping landed.
+    const sendReady = () => send({ type: "ready" });
+    sendReady();
+    readyIntervalId = window.setInterval(sendReady, 200);
+    const fileButton = document.getElementById("add-file-button");
+    const fileInput = document.getElementById("add-file-input");
+    fileButton.onclick = () => fileInput.click();
+    fileInput.onchange = () => {
+        var _a;
+        const file = (_a = fileInput.files) === null || _a === void 0 ? void 0 : _a[0];
+        fileInput.value = "";
+        if (!file) {
+            return;
+        }
+        const reader = new FileReader();
+        reader.onload = () => {
+            const text = reader.result;
+            if ((0,_taskpane_unitRegistry__WEBPACK_IMPORTED_MODULE_1__/* .isJsonText */ .aY)(text)) {
+                setAddStatus("Only YAML dictionaries are accepted, not JSON.", "error");
+                return;
+            }
+            let parsed;
+            try {
+                parsed = (0,js_yaml__WEBPACK_IMPORTED_MODULE_0__/* .load */ .Hh)(text);
+            }
+            catch (error) {
+                setAddStatus(`Couldn't parse that file as YAML: ${error.message}`, "error");
+                return;
+            }
+            if (!(0,_taskpane_unitRegistry__WEBPACK_IMPORTED_MODULE_1__/* .isUnitSeedFile */ .OY)(parsed)) {
+                setAddStatus("That file doesn't look like a unit dictionary (expected {category: [{canonicalName, aliases}, ...]}).", "error");
+                return;
+            }
+            setAddStatus(`Added "${file.name}" (${unitCount(parsed)} units).`, "success");
+            send({ type: "add-file-dictionary", name: file.name, contents: parsed });
+        };
+        reader.onerror = () => {
+            setAddStatus("Couldn't read that file.", "error");
+        };
+        reader.readAsText(file);
+    };
+    const urlInput = document.getElementById("add-url-input");
+    const urlButton = document.getElementById("add-url-button");
+    urlButton.onclick = async () => {
+        const url = urlInput.value.trim();
+        if (!url) {
+            return;
+        }
+        setAddStatus("Checking URL...", "");
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}`);
+            }
+            const text = await response.text();
+            if ((0,_taskpane_unitRegistry__WEBPACK_IMPORTED_MODULE_1__/* .isJsonText */ .aY)(text)) {
+                setAddStatus("Only YAML dictionaries are accepted, not JSON.", "error");
+                return;
+            }
+            const data = (0,js_yaml__WEBPACK_IMPORTED_MODULE_0__/* .load */ .Hh)(text);
+            if (!(0,_taskpane_unitRegistry__WEBPACK_IMPORTED_MODULE_1__/* .isUnitSeedFile */ .OY)(data)) {
+                setAddStatus("That URL doesn't return a valid unit dictionary (expected {category: [{canonicalName, aliases}, ...]}).", "error");
+                return;
+            }
+            setAddStatus(`Added (${unitCount(data)} units).`, "success");
+            urlInput.value = "";
+            send({ type: "add-url-dictionary", name: url, url });
+        }
+        catch (error) {
+            setAddStatus(`Couldn't load that URL: ${error.message}. This can also happen if the server doesn't allow cross-origin requests.`, "error");
+        }
+    };
+    document.getElementById("dialog-close").onclick =
+        () => {
+            send({ type: "closed" });
+        };
+});
+
+/******/ })()
+;

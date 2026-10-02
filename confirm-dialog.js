@@ -1,1 +1,77 @@
-(()=>{"use strict";let e;function t(e){const t=document.getElementById("confirm-checkbox");Office.context.ui.messageParent(JSON.stringify({type:"resolved",choice:e,checked:t.checked}))}function n(e,t){const n=document.getElementById(e);t?(n.textContent=t,n.hidden=!1):n.hidden=!0}function c(t){var c,o;const i=JSON.parse(t.message);if("prompt"===i.type){void 0!==e&&(window.clearInterval(e),e=void 0),document.getElementById("confirm-title").textContent=null!==(c=i.title)&&void 0!==c?c:"Confirm",document.getElementById("confirm-message").textContent=i.text,document.getElementById("confirm-cancel").textContent=i.cancelLabel,document.getElementById("confirm-ok").textContent=i.confirmLabel,n("confirm-extra",i.extraLabel),n("confirm-extra-cancel",i.extraCancelLabel);const t=document.getElementById("confirm-checkbox-row"),d=document.getElementById("confirm-checkbox");i.checkboxLabel?(document.getElementById("confirm-checkbox-label").textContent=i.checkboxLabel,d.checked=null!==(o=i.checkboxDefault)&&void 0!==o&&o,t.hidden=!1):(d.checked=!1,t.hidden=!0)}}Office.onReady(()=>{const n=document.getElementById("confirm-cancel"),o=document.getElementById("confirm-ok"),i=document.getElementById("confirm-extra"),d=document.getElementById("confirm-extra-cancel");n.onclick=()=>t("cancel"),o.onclick=()=>t("confirm"),i.onclick=()=>t("extra"),d.onclick=()=>t("extraCancel"),Office.context.ui.addHandlerAsync(Office.EventType.DialogParentMessageReceived,c);const m=()=>Office.context.ui.messageParent(JSON.stringify({type:"ready"}));m(),e=window.setInterval(m,200)})})();
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+// Standalone page opened via Office.context.ui.displayDialogAsync from the
+// task pane for a generic confirmation with a message and two to four
+// buttons. It has no Excel/document access of its own; it just renders
+// whatever message/labels the task pane sends it and messages back the
+// user's choice.
+// Cleared once the prompt text actually arrives -- see the "ready" ping
+// below.
+let readyIntervalId;
+Office.onReady(() => {
+    const cancelButton = document.getElementById("confirm-cancel");
+    const confirmButton = document.getElementById("confirm-ok");
+    const extraButton = document.getElementById("confirm-extra");
+    const extraCancelButton = document.getElementById("confirm-extra-cancel");
+    cancelButton.onclick = () => sendResolution("cancel");
+    confirmButton.onclick = () => sendResolution("confirm");
+    extraButton.onclick = () => sendResolution("extra");
+    extraCancelButton.onclick = () => sendResolution("extraCancel");
+    Office.context.ui.addHandlerAsync(Office.EventType.DialogParentMessageReceived, onParentMessage);
+    // Tells the task pane this dialog is ready to receive the prompt text; it
+    // can't be passed via the dialog URL since the message has no fixed size
+    // or safe encoding for a query string. The task pane only starts
+    // listening for this once its displayDialogAsync callback fires, which
+    // can happen after this page has already loaded and pinged once -- so
+    // keep pinging until the prompt actually arrives, rather than assuming a
+    // single ping landed.
+    const sendReady = () => Office.context.ui.messageParent(JSON.stringify({ type: "ready" }));
+    sendReady();
+    readyIntervalId = window.setInterval(sendReady, 200);
+});
+function sendResolution(choice) {
+    const checkbox = document.getElementById("confirm-checkbox");
+    Office.context.ui.messageParent(JSON.stringify({ type: "resolved", choice, checked: checkbox.checked }));
+}
+function setExtraButton(id, label) {
+    const button = document.getElementById(id);
+    if (label) {
+        button.textContent = label;
+        button.hidden = false;
+    }
+    else {
+        button.hidden = true;
+    }
+}
+function onParentMessage(arg) {
+    var _a, _b;
+    const data = JSON.parse(arg.message);
+    if (data.type === "prompt") {
+        if (readyIntervalId !== undefined) {
+            window.clearInterval(readyIntervalId);
+            readyIntervalId = undefined;
+        }
+        document.getElementById("confirm-title").textContent = (_a = data.title) !== null && _a !== void 0 ? _a : "Confirm";
+        document.getElementById("confirm-message").textContent = data.text;
+        document.getElementById("confirm-cancel").textContent = data.cancelLabel;
+        document.getElementById("confirm-ok").textContent =
+            data.confirmLabel;
+        setExtraButton("confirm-extra", data.extraLabel);
+        setExtraButton("confirm-extra-cancel", data.extraCancelLabel);
+        const checkboxRow = document.getElementById("confirm-checkbox-row");
+        const checkbox = document.getElementById("confirm-checkbox");
+        if (data.checkboxLabel) {
+            document.getElementById("confirm-checkbox-label").textContent = data.checkboxLabel;
+            checkbox.checked = (_b = data.checkboxDefault) !== null && _b !== void 0 ? _b : false;
+            checkboxRow.hidden = false;
+        }
+        else {
+            checkbox.checked = false;
+            checkboxRow.hidden = true;
+        }
+    }
+}
+
+
+/******/ })()
+;
