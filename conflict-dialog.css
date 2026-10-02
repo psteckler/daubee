@@ -1,0 +1,81 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family:
+    "Segoe UI",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  color: #242424;
+}
+
+#conflict-box {
+  box-sizing: border-box;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+#conflict-box h1 {
+  margin: 0 0 8px;
+  font-size: 16px;
+}
+
+#conflict-box p {
+  margin: 0 0 12px;
+  font-size: 13px;
+  color: #616161;
+  line-height: 1.4;
+}
+
+#conflict-list {
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 0;
+  font-size: 13px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+#conflict-list li {
+  padding: 8px 10px;
+  margin-bottom: 6px;
+  background: #f5f5f5;
+  border-radius: 3px;
+  word-break: break-word;
+}
+
+.conflict-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+button {
+  padding: 8px 16px;
+  font-size: 13px;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.conflict-override {
+  background: #217346;
+  color: white;
+}
+
+.conflict-override:hover {
+  background: #1a5c38;
+}
+
+.conflict-cancel {
+  background: #e0e0e0;
+  color: #242424;
+}
+
+.conflict-cancel:hover {
+  background: #cccccc;
+}

@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OfficeApp
+  xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+  xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
+  xsi:type="TaskPaneApp">
+
+  <Id>0f55b8dd-3c4a-4282-b177-f2a35808fd17</Id>
+  <Version>1.0.0.0</Version>
+  <ProviderName>Contoso</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
+  <DisplayName DefaultValue="Daubee" />
+  <Description DefaultValue="An add-in for unit consistency checking" />
+  <IconUrl DefaultValue="https://psteckler.github.io/daubee/assets/icon-32.png" />
+  <HighResolutionIconUrl DefaultValue="https://psteckler.github.io/daubee/assets/icon-80.png" />
+  <SupportUrl DefaultValue="https://www.contoso.com/help" />
+
+  <AppDomains>
+    <AppDomain>https://psteckler.github.io/daubee</AppDomain>
+  </AppDomains>
+
+  <Hosts>
+    <Host Name="Workbook" />
+  </Hosts>
+
+  <DefaultSettings>
+    <SourceLocation DefaultValue="https://psteckler.github.io/daubee/taskpane.html" />
+  </DefaultSettings>
+
+  <Permissions>ReadWriteDocument</Permissions>
+
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
+    <Hosts>
+      <Host xsi:type="Workbook">
+        <DesktopFormFactor>
+          <FunctionFile resid="Commands.Url" />
+
+          <ExtensionPoint xsi:type="PrimaryCommandSurface">
+            <OfficeTab id="TabHome">
+              <Group id="CommandsGroup">
+                <Label resid="CommandsGroup.Label" />
+                <Icon>
+                  <bt:Image size="16" resid="Icon.16x16" />
+                  <bt:Image size="32" resid="Icon.32x32" />
+                  <bt:Image size="80" resid="Icon.80x80" />
+                </Icon>
+
+                <Control xsi:type="Button" id="TaskpaneButton">
+                  <Label resid="TaskpaneButton.Label" />
+                  <Supertip>
+                    <Title resid="TaskpaneButton.Label" />
+                    <Description resid="TaskpaneButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>ButtonId1</TaskpaneId>
+                    <SourceLocation resid="Taskpane.Url" />
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+
+          <ExtensionPoint xsi:type="PrimaryCommandSurface">
+            <CustomTab id="TabUnits">
+              <Label resid="TabUnits.Label" />
+              <Group id="UnitsGroup">
+                <Label resid="UnitsGroup.Label" />
+                <Icon>
+                  <bt:Image size="16" resid="Icon.Sidebar.16x16" />
+                  <bt:Image size="32" resid="Icon.Sidebar.32x32" />
+                  <bt:Image size="80" resid="Icon.Sidebar.80x80" />
+                </Icon>
+
+                <Control xsi:type="Button" id="ShowPaneButton">
+                  <Label resid="ShowPaneButton.Label" />
+                  <Supertip>
+                    <Title resid="ShowPaneButton.Label" />
+                    <Description resid="ShowPaneButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.Sidebar.16x16" />
+                    <bt:Image size="32" resid="Icon.Sidebar.32x32" />
+                    <bt:Image size="80" resid="Icon.Sidebar.80x80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>ButtonId3</TaskpaneId>
+                    <SourceLocation resid="Taskpane.Url" />
+                  </Action>
+                </Control>
+              </Group>
+
+              <Group id="UnitDictionariesGroup">
+                <Label resid="UnitDictionariesGroup.Label" />
+                <Icon>
+                  <bt:Image size="16" resid="Icon.Ruler.16x16" />
+                  <bt:Image size="32" resid="Icon.Ruler.32x32" />
+                  <bt:Image size="80" resid="Icon.Ruler.80x80" />
+                </Icon>
+
+                <Control xsi:type="Button" id="UnitDictionariesButton">
+                  <Label resid="UnitDictionariesButton.Label" />
+                  <Supertip>
+                    <Title resid="UnitDictionariesButton.Label" />
+                    <Description resid="UnitDictionariesButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.Ruler.16x16" />
+                    <bt:Image size="32" resid="Icon.Ruler.32x32" />
+                    <bt:Image size="80" resid="Icon.Ruler.80x80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>openUnitDictionaries</FunctionName>
+                  </Action>
+                </Control>
+              </Group>
+
+              <Group id="SettingsGroup">
+                <Label resid="SettingsGroup.Label" />
+                <Icon>
+                  <bt:Image size="16" resid="Icon.Gears.16x16" />
+                  <bt:Image size="32" resid="Icon.Gears.32x32" />
+                  <bt:Image size="80" resid="Icon.Gears.80x80" />
+                </Icon>
+
+                <Control xsi:type="Button" id="SettingsButton">
+                  <Label resid="SettingsButton.Label" />
+                  <Supertip>
+                    <Title resid="SettingsButton.Label" />
+                    <Description resid="SettingsButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.Gears.16x16" />
+                    <bt:Image size="32" resid="Icon.Gears.32x32" />
+                    <bt:Image size="80" resid="Icon.Gears.80x80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>openSettings</FunctionName>
+                  </Action>
+                </Control>
+              </Group>
+
+              <Group id="AuditGroup">
+                <Label resid="AuditGroup.Label" />
+                <Icon>
+                  <bt:Image size="16" resid="Icon.Report.16x16" />
+                  <bt:Image size="32" resid="Icon.Report.32x32" />
+                  <bt:Image size="80" resid="Icon.Report.80x80" />
+                </Icon>
+
+                <Control xsi:type="Button" id="GenerateReportButton">
+                  <Label resid="GenerateReportButton.Label" />
+                  <Supertip>
+                    <Title resid="GenerateReportButton.Label" />
+                    <Description resid="GenerateReportButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.Report.16x16" />
+                    <bt:Image size="32" resid="Icon.Report.32x32" />
+                    <bt:Image size="80" resid="Icon.Report.80x80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>generateAuditReport</FunctionName>
+                  </Action>
+                </Control>
+              </Group>
+
+              <Group id="InfoGroup">
+                <Label resid="InfoGroup.Label" />
+                <Icon>
+                  <bt:Image size="16" resid="Icon.Help.16x16" />
+                  <bt:Image size="32" resid="Icon.Help.32x32" />
+                  <bt:Image size="80" resid="Icon.Help.80x80" />
+                </Icon>
+
+                <Control xsi:type="Button" id="UserGuideButton">
+                  <Label resid="UserGuideButton.Label" />
+                  <Supertip>
+                    <Title resid="UserGuideButton.Label" />
+                    <Description resid="UserGuideButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.About.16x16" />
+                    <bt:Image size="32" resid="Icon.About.32x32" />
+                    <bt:Image size="80" resid="Icon.About.80x80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>openUserGuide</FunctionName>
+                  </Action>
+                </Control>
+
+                <Control xsi:type="Button" id="AboutButton">
+                  <Label resid="AboutButton.Label" />
+                  <Supertip>
+                    <Title resid="AboutButton.Label" />
+                    <Description resid="AboutButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.Help.16x16" />
+                    <bt:Image size="32" resid="Icon.Help.32x32" />
+                    <bt:Image size="80" resid="Icon.Help.80x80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>openAbout</FunctionName>
+                  </Action>
+                </Control>
+              </Group>
+            </CustomTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+
+    <Resources>
+      <bt:Images>
+        <bt:Image id="Icon.16x16" DefaultValue="https://psteckler.github.io/daubee/assets/icon-16.png" />
+        <bt:Image id="Icon.32x32" DefaultValue="https://psteckler.github.io/daubee/assets/icon-32.png" />
+        <bt:Image id="Icon.80x80" DefaultValue="https://psteckler.github.io/daubee/assets/icon-80.png" />
+        <bt:Image id="Icon.Gears.16x16" DefaultValue="https://psteckler.github.io/daubee/assets/icon-gears-16.png" />
+        <bt:Image id="Icon.Gears.32x32" DefaultValue="https://psteckler.github.io/daubee/assets/icon-gears-32.png" />
+        <bt:Image id="Icon.Gears.80x80" DefaultValue="https://psteckler.github.io/daubee/assets/icon-gears-80.png" />
+        <bt:Image id="Icon.Ruler.16x16" DefaultValue="https://psteckler.github.io/daubee/assets/icon-ruler-16.png" />
+        <bt:Image id="Icon.Ruler.32x32" DefaultValue="https://psteckler.github.io/daubee/assets/icon-ruler-32.png" />
+        <bt:Image id="Icon.Ruler.80x80" DefaultValue="https://psteckler.github.io/daubee/assets/icon-ruler-80.png" />
+        <bt:Image id="Icon.Sidebar.16x16" DefaultValue="https://psteckler.github.io/daubee/assets/icon-sidebar-16.png" />
+        <bt:Image id="Icon.Sidebar.32x32" DefaultValue="https://psteckler.github.io/daubee/assets/icon-sidebar-32.png" />
+        <bt:Image id="Icon.Sidebar.80x80" DefaultValue="https://psteckler.github.io/daubee/assets/icon-sidebar-80.png" />
+        <bt:Image id="Icon.Report.16x16" DefaultValue="https://psteckler.github.io/daubee/assets/icon-report-16.png" />
+        <bt:Image id="Icon.Report.32x32" DefaultValue="https://psteckler.github.io/daubee/assets/icon-report-32.png" />
+        <bt:Image id="Icon.Report.80x80" DefaultValue="https://psteckler.github.io/daubee/assets/icon-report-80.png" />
+        <bt:Image id="Icon.Help.16x16" DefaultValue="https://psteckler.github.io/daubee/assets/icon-help-16.png" />
+        <bt:Image id="Icon.Help.32x32" DefaultValue="https://psteckler.github.io/daubee/assets/icon-help-32.png" />
+        <bt:Image id="Icon.Help.80x80" DefaultValue="https://psteckler.github.io/daubee/assets/icon-help-80.png" />
+        <bt:Image id="Icon.About.16x16" DefaultValue="https://psteckler.github.io/daubee/assets/icon-about-16.png" />
+        <bt:Image id="Icon.About.32x32" DefaultValue="https://psteckler.github.io/daubee/assets/icon-about-32.png" />
+        <bt:Image id="Icon.About.80x80" DefaultValue="https://psteckler.github.io/daubee/assets/icon-about-80.png" />
+      </bt:Images>
+      <bt:Urls>
+        <bt:Url id="Commands.Url" DefaultValue="https://psteckler.github.io/daubee/commands.html" />
+        <bt:Url id="Taskpane.Url" DefaultValue="https://psteckler.github.io/daubee/taskpane.html" />
+      </bt:Urls>
+      <bt:ShortStrings>
+        <bt:String id="CommandsGroup.Label" DefaultValue="Daubee" />
+        <bt:String id="TaskpaneButton.Label" DefaultValue="Show Taskpane" />
+        <bt:String id="TabUnits.Label" DefaultValue="Daubee" />
+        <bt:String id="UnitsGroup.Label" DefaultValue="Daubee" />
+        <bt:String id="ShowPaneButton.Label" DefaultValue="Show pane" />
+        <bt:String id="SettingsGroup.Label" DefaultValue="Settings" />
+        <bt:String id="SettingsButton.Label" DefaultValue="Edit" />
+        <bt:String id="UnitDictionariesGroup.Label" DefaultValue="Units" />
+        <bt:String id="UnitDictionariesButton.Label" DefaultValue="Select dictionaries" />
+        <bt:String id="AuditGroup.Label" DefaultValue="Audit" />
+        <bt:String id="GenerateReportButton.Label" DefaultValue="Generate report" />
+        <bt:String id="InfoGroup.Label" DefaultValue="Info" />
+        <bt:String id="UserGuideButton.Label" DefaultValue="User guide" />
+        <bt:String id="AboutButton.Label" DefaultValue="About" />
+      </bt:ShortStrings>
+      <bt:LongStrings>
+        <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Click to open the task pane" />
+        <bt:String id="ShowPaneButton.Tooltip" DefaultValue="Show the Daubee task pane" />
+        <bt:String id="SettingsButton.Tooltip" DefaultValue="Open Daubee settings" />
+        <bt:String id="UnitDictionariesButton.Tooltip" DefaultValue="Choose which unit dictionaries are available" />
+        <bt:String id="GenerateReportButton.Tooltip" DefaultValue="Generate a PDF audit report summarizing Daubee's activity in this workbook" />
+        <bt:String id="UserGuideButton.Tooltip" DefaultValue="Open the Daubee user guide in your browser" />
+        <bt:String id="AboutButton.Tooltip" DefaultValue="About Daubee" />
+      </bt:LongStrings>
+    </Resources>
+  </VersionOverrides>
+</OfficeApp>

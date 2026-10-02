@@ -1,0 +1,95 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family:
+    "Segoe UI",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  color: #242424;
+}
+
+#confirm-box {
+  box-sizing: border-box;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+#confirm-box h1 {
+  margin: 0 0 8px;
+  font-size: 16px;
+}
+
+#confirm-box p {
+  margin: 0 0 16px;
+  font-size: 13px;
+  color: #616161;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.confirm-checkbox-row {
+  margin: 0 0 16px;
+  font-size: 13px;
+}
+
+.confirm-checkbox-row label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.confirm-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+button {
+  padding: 8px 16px;
+  font-size: 13px;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.confirm-ok {
+  background: #217346;
+  color: white;
+}
+
+.confirm-ok:hover {
+  background: #1a5c38;
+}
+
+.confirm-cancel {
+  background: #e0e0e0;
+  color: #242424;
+}
+
+.confirm-cancel:hover {
+  background: #cccccc;
+}
+
+.confirm-extra {
+  background: #deecf9;
+  color: #204a72;
+}
+
+.confirm-extra:hover {
+  background: #c7e0f4;
+}
+
+.confirm-extra-cancel {
+  background: #e0e0e0;
+  color: #242424;
+}
+
+.confirm-extra-cancel:hover {
+  background: #cccccc;
+}

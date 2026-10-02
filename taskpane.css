@@ -1,0 +1,302 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #ffffff;
+  font-family:
+    "Segoe UI",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  color: #242424;
+}
+
+#app-body {
+  box-sizing: border-box;
+  height: 100%;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* The scrollable upper part of the pane -- everything except the fixed
+   status area below it. min-height: 0 overrides flexbox's own default
+   min-height: auto on a flex item, which would otherwise refuse to
+   shrink below its content size and break scrolling entirely. */
+#scroll-area {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+#app-body p {
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+button {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px 12px;
+  font-size: 13px;
+  background: #217346;
+  color: white;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #1a5c38;
+}
+
+button:disabled,
+button:disabled:hover {
+  background: #cccccc;
+  color: #8a8a8a;
+  cursor: not-allowed;
+}
+
+.button-group-label {
+  margin: 0 0 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #616161;
+}
+
+/* Shared by the "Unit actions"/"Unit annotations" section headings --
+   kept as one class so the two stay visually identical by construction
+   rather than by two separately-maintained font-size/margin values. */
+.pane-heading {
+  font-size: 14px;
+  margin: 0 0 8px;
+}
+
+.button-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.button-row button {
+  flex: 1;
+  width: auto;
+  margin-bottom: 0;
+}
+
+/* Fixed-size footer, sibling to #scroll-area rather than part of it, so
+   it's always visible regardless of how far the pane above is scrolled --
+   plain text now that it has its own dedicated area, no box chrome. */
+#status {
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid #616161;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #242424;
+}
+
+#status.status-has-message.status-error {
+  color: #a4262c;
+}
+
+#status.status-has-message:not(.status-error) {
+  color: #0a5cb8;
+}
+
+#status:empty::before {
+  content: "Status messages will appear here";
+  color: #8a8a8a;
+  font-style: italic;
+}
+
+#loading {
+  padding: 16px;
+  font-size: 13px;
+}
+
+#annotations-section {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #e0e0e0;
+}
+
+#annotations-section h3 {
+  font-size: 13px;
+  margin: 16px 0 8px;
+}
+
+#annotations-section p {
+  font-size: 12px;
+  color: #616161;
+  line-height: 1.4;
+}
+
+.annotation-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.annotation-label-row label {
+  font-size: 13px;
+}
+
+.annotation-label-buttons {
+  display: flex;
+  gap: 6px;
+}
+
+.small-button {
+  width: auto;
+  margin-bottom: 0;
+  padding: 3px 10px;
+  font-size: 11px;
+}
+
+#annotation-text {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 8px;
+  padding: 6px 8px;
+  font-family: inherit;
+  font-size: 13px;
+  resize: vertical;
+}
+
+#annotation-text::placeholder {
+  color: #8a8a8a;
+  font-style: italic;
+}
+
+#annotation-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.annotation-item {
+  margin-bottom: 8px;
+  background: #f5f5f5;
+  border-radius: 3px;
+  font-size: 12px;
+  overflow: hidden;
+}
+
+.annotation-row {
+  padding: 8px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.annotation-row:last-child {
+  border-bottom: none;
+}
+
+.annotation-delete-row {
+  text-align: right;
+}
+
+.annotation-scope {
+  font-weight: 600;
+  color: #217346;
+}
+
+.annotation-formula {
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+.annotation-drift-row {
+  background: #fff3e0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.annotation-drift {
+  color: #8a4b00;
+}
+
+.annotation-drift-update {
+  flex-shrink: 0;
+}
+
+.annotation-delete {
+  width: auto;
+  margin-bottom: 0;
+  padding: 3px 10px;
+  font-size: 11px;
+  background: #b3261e;
+}
+
+.annotation-delete:hover {
+  background: #8c1d17;
+}
+
+#delete-all-in-selection {
+  background: #b3261e;
+}
+
+#delete-all-in-selection:hover {
+  background: #8c1d17;
+}
+
+.annotation-empty {
+  font-size: 12px;
+  color: #616161;
+}
+
+#error-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.error-item {
+  margin-bottom: 8px;
+  background: #f5f5f5;
+  border-radius: 3px;
+  border-left: 4px solid transparent;
+  font-size: 12px;
+  overflow: hidden;
+}
+
+.error-item.error-equality {
+  border-left-color: #d32f2f;
+}
+
+.error-item.error-propagate {
+  border-left-color: #ffeb3b;
+}
+
+.error-item.error-arg {
+  border-left-color: #ef6c00;
+}
+
+.error-item.error-currencyNotFound {
+  border-left-color: #9c27b0;
+}
+
+.error-row {
+  padding: 8px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.error-row:last-child {
+  border-bottom: none;
+}
+
+.error-address {
+  font-weight: 600;
+  color: #b3261e;
+}
+
+.error-detail {
+  word-break: break-word;
+  white-space: pre-wrap;
+}

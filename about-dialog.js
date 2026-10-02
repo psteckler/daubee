@@ -1,0 +1,1 @@
+(()=>{"use strict";Office.onReady(()=>{document.getElementById("about-close").onclick=()=>Office.context.ui.messageParent(JSON.stringify({type:"closed"}))})})();

@@ -1,0 +1,56 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family:
+    "Segoe UI",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  color: #242424;
+}
+
+#notice-box {
+  box-sizing: border-box;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+#notice-box h1 {
+  margin: 0 0 8px;
+  font-size: 16px;
+}
+
+#notice-box p {
+  margin: 0 0 16px;
+  font-size: 13px;
+  color: #616161;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.notice-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+button {
+  padding: 8px 16px;
+  font-size: 13px;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.notice-ok {
+  background: #217346;
+  color: white;
+}
+
+.notice-ok:hover {
+  background: #1a5c38;
+}

@@ -1,0 +1,143 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family:
+    "Segoe UI",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  color: #242424;
+}
+
+#dialog-box {
+  box-sizing: border-box;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+#dialog-box h1 {
+  margin: 0 0 8px;
+  font-size: 16px;
+}
+
+.dialog-note {
+  margin: 0 0 12px;
+  font-size: 12px;
+  color: #616161;
+  line-height: 1.4;
+}
+
+#unit-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.unit-category {
+  margin-bottom: 4px;
+}
+
+.unit-category summary {
+  font-size: 13px;
+  font-weight: 600;
+  color: #217346;
+  padding: 4px 0;
+  cursor: pointer;
+  list-style: revert;
+}
+
+.unit-category summary::marker {
+  color: #616161;
+}
+
+.unit-category ul {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 4px 18px;
+}
+
+.unit-category li {
+  font-size: 13px;
+  padding: 3px 0;
+}
+
+.unit-list-empty {
+  font-size: 12px;
+  color: #616161;
+}
+
+.unit-token {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  font-size: 13px;
+  color: #217346;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.unit-token:hover {
+  color: #1a5c38;
+}
+
+.syntax-section {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px 0;
+  border-top: 1px solid #e0e0e0;
+}
+
+.syntax-label {
+  flex: 0 0 52px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #616161;
+}
+
+.syntax-token {
+  min-width: 28px;
+  padding: 4px 10px;
+  font: inherit;
+  font-size: 14px;
+  border: 1px solid #c7c7c7;
+  border-radius: 3px;
+  background: #f5f5f5;
+  color: #217346;
+  cursor: pointer;
+}
+
+.syntax-token:hover {
+  background: #e0e0e0;
+}
+
+.dialog-actions {
+  flex-shrink: 0;
+  padding-top: 12px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+button {
+  padding: 8px 16px;
+  font-size: 13px;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.dialog-close {
+  background: #e0e0e0;
+  color: #242424;
+}
+
+.dialog-close:hover {
+  background: #cccccc;
+}

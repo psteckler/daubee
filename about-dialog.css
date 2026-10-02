@@ -1,0 +1,81 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family:
+    "Segoe UI",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  color: #242424;
+}
+
+#about-box {
+  box-sizing: border-box;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+#about-box h1 {
+  margin: 0 0 12px;
+  font-size: 24px;
+  /* Paul asked for a darker blue than the annotation-border blue
+     (#00B0F0) the links below still use -- #0078D4, Microsoft's own
+     standard "Office blue," reads as a deliberate darker shade rather
+     than an arbitrary pick. */
+  color: #0078d4;
+}
+
+#about-box p {
+  margin: 0;
+  font-size: 13px;
+  color: #242424;
+  line-height: 1.4;
+}
+
+#about-box #about-version {
+  /* Space below the version, before the copyright line -- same
+     doubled-up #about-box prefix trick as #about-name below, needed to
+     beat #about-box p's own margin: 0 on specificity. */
+  margin-bottom: 12px;
+}
+
+#about-box #about-name {
+  /* Space below the name, before the web/email lines -- Paul's own ask.
+     Needs the doubled-up #about-box prefix to actually beat #about-box p
+     above on specificity (one ID + one element beats one bare ID) --
+     without it this margin was silently defeated by that rule's own
+     margin: 0 shorthand, which is why it never visibly took effect. */
+  margin-bottom: 20px;
+}
+
+#about-contact a {
+  color: #00b0f0;
+}
+
+.about-actions {
+  margin-top: auto;
+  padding-top: 20px;
+}
+
+button {
+  padding: 8px 16px;
+  font-size: 13px;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.about-close {
+  background: #217346;
+  color: white;
+}
+
+.about-close:hover {
+  background: #1a5c38;
+}
