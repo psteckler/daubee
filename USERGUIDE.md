@@ -2,11 +2,10 @@
 
 Daubee checks that the *units of measure* in your Excel formulas are
 used consistently — the way spell-check catches typos, Daubee catches errors
-like adding pounds to dollars, or a formula that stops meaning
-what you think it means partway down a column. You tell it the unit a
-cell represents (`kg`, `USD`, `meters/second`, ...), and Daubee tracks
-that unit through every formula that touches it, flagging the formulas
-where there's unit inconsistency.
+like adding euros to dollars, or adding meters to seconds. You tell
+it the unit a cell represents (`kg`, `USD`, `meters/second`, ...), and
+Daubee tracks that unit through every formula that touches it, flagging the
+formulas where there's unit inconsistency.
 
 ## Contents
 
@@ -252,8 +251,8 @@ settings:
   the "no format yet" currency offer above happens automatically instead
   of asking every time.
 - **Use three-letter currency codes for applied currency formats** —
-  when checked, an automatically-applied currency format shows `USD
-  42.99` instead of `$42.99`.
+  when checked, an automatically-applied currency format shows, for
+  example, `USD 42.99` instead of `$42.99`.
 - **Save unit aliases** — when you annotate using an alias (`kg` instead
   of `kilogram`), this controls whether the alias itself or the
   canonical name is what actually gets saved.
@@ -337,15 +336,13 @@ a sheet-by-sheet breakdown table.
 - **A cell with no border isn't a problem** — it just means there's
   nothing for Daubee to check there (a plain value, or a genuinely
   dimensionless result).
-- **Circular references aren't automatically hopeless.** If a pair of
-  formulas refer to each other (`A1=B1+1`, `B1=A1+1`) but something else
-  in the loop pins down a real unit, Check Units can still work it out —
-  it only falls back to "unverifiable" when nothing in the loop actually
-  determines an answer.
+- **Circular references can be analyzed.** If a set of formulas refer to
+  one another, but something in the loop pins down a real unit,
+  Check Units can work it out — it only falls back to "unverifiable" when
+  nothing in the loop actually determines an answer.
 - **Named LAMBDA formulas from the Name Manager are understood too** —
   calling a named LAMBDA directly (`AddTax(A1)`), or passing one by
   reference into `REDUCE`, `SCAN`, `MAKEARRAY`, `MAP`, `BYCOL`, or
   `BYROW`, works the same as writing the LAMBDA inline.
-- **When in doubt, run Check Units.** It's safe to run as often as you
-  like, and it's the fastest way to see whether your latest edit
-  introduced a real problem.
+- **When in doubt, run Check Units.** It's the fastest way to see whether
+  your latest edit introduced a problem.
