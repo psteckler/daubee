@@ -242,6 +242,13 @@ Two related Settings (see below) control whether currency formatting is
 applied automatically, and whether it uses a currency's symbol (`$`) or
 its three-letter ISO code (`USD`).
 
+**A formula's currency symbol doesn't prove its units are right.** When you
+type a formula into a cell in the "General" format, Excel itself gives the
+result the number format of the first cell the formula refers to. So
+`=A1+A2`, with `A1` in US dollars and `A2` in euros, displays its sum with a
+`$` — even though it adds two different currencies. Daubee doesn't do this
+and doesn't hide it: run Check Units, which flags the cell.
+
 ## Settings
 
 Click **Edit** (in the Daubee tab's Settings group) to open Daubee's
