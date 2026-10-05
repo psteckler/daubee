@@ -263,6 +263,13 @@ settings:
 - **Save unit aliases** — when you annotate using an alias (`kg` instead
   of `kilogram`), this controls whether the alias itself or the
   canonical name is what actually gets saved.
+- **Save inferred and checked units using the shortest alias** — when
+  checked, a unit that Infer Units or Check Units offers to save (and the
+  offer's own text) uses the unit's shortest alias (`kg`) instead of its
+  canonical name (`kilogram`). If several names are equally short, one
+  starting with a capital letter wins. Only names that can be typed into
+  an annotation are used, so a symbol such as `Ω` falls back to the next
+  shortest name.
 - **Simplify using unit definitions** — when checked, saving an
   annotation that matches a named unit's own definition (e.g.
   `kilogram-meter/second^2`) automatically rewrites it to that unit's
@@ -271,7 +278,8 @@ settings:
   still-"General"-formatted, non-currency cell also applies a matching
   Custom number format showing the unit alongside the value (e.g. `0.00
   "kg"`). Choose whether the shown unit uses its canonical name or its
-  shortest alias, and how many decimal digits to show.
+  shortest alias (a capitalized one, if several tie), and how many decimal
+  digits to show.
 - **Use a specific currency for securities-pricing functions** — controls
   what currency functions like `PRICE`, `PV`, and `YIELD` (click
   "securities-pricing functions" to see the full list) expect when
@@ -309,7 +317,10 @@ shipping:
 ```
 
 Each unit needs a `canonicalName` and an `aliases` list (use `[]` if it
-has no aliases). The optional `expansion` field
+has no aliases). Unit names are matched exactly: Daubee doesn't treat
+`pallet` and `pallets`, or `plt` and `PLT`, as the same unit. List every
+variant you expect to use — singular and plural, lowercase and uppercase —
+as its own alias, as `pallets` is above. The optional `expansion` field
 gives a unit its own definition in terms of others already registered —
 built-in units work too, like `hr` above (Daubee's own built-in `newton`
 is defined the same way, as `kg-m/s^2`). Once loaded, `pallet`/`plt`,
