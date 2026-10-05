@@ -48,6 +48,14 @@ every cell in that column is treated as carrying that unit (this is the
 normal way to annotate a long column of data at once, rather than
 annotating cell by cell).
 
+The selection doesn't have to be contiguous: Ctrl-click (Cmd-click on a
+Mac) several cells, ranges, rows, or columns and annotate them all at
+once. Each selected area gets its own annotation, and the pane's list,
+**Delete all units within selection**, Consolidate, Assert, and **Errors
+for selection** all work across every selected area. An existing
+annotation counts as "within" the selection only if a single selected
+area covers all of it.
+
 Once a selection has an annotation, the pane's **Units for selection**
 list shows it, along with a **Delete** button to remove it. If your
 selection contains several different annotations, they all show up in
