@@ -20,6 +20,7 @@ formulas where there's unit inconsistency.
 - [Errors for selection](#errors-for-selection)
 - [Consolidate](#consolidate)
 - [Assert](#assert)
+- [WITHUNIT](#withunit)
 - [Currencies](#currencies)
 - [Settings](#settings)
 - [Unit dictionaries](#unit-dictionaries)
@@ -214,6 +215,33 @@ plain dimensionless. The next time you run Check Units, an asserted
 cell's yellow border clears instead of reappearing, unless something
 about the formula actually changes.
 
+## WITHUNIT
+
+A formula that produces a plain number — `RANDBETWEEN(10,100)`, for
+example — is dimensionless as far as Daubee can tell, so annotating it
+with a unit is flagged as a mismatch. **WITHUNIT** gives such a value a
+unit explicitly:
+
+```
+=WITHUNIT(RANDBETWEEN(10,100), "units")
+```
+
+The second argument is the unit, written as text — a single unit
+(`"kg"`) or a unit formula (`"USD/units"`) — or a cell containing that
+text. The first argument must be dimensionless; if it already has a unit,
+Daubee flags an error rather than silently overriding it. The result then
+carries the stated unit everywhere it's used, and Check Units offers to
+add a matching annotation.
+
+WITHUNIT isn't built into Excel. It's a named LAMBDA you define once per
+workbook, which just returns its first argument, so your numbers don't
+change. The easiest way is **Define the WITHUNIT function in this
+workbook** in [Settings](#settings) (off by default); unticking it removes
+the name again. To define it yourself, open Formulas > Name Manager > New,
+name it `WITHUNIT`, and set "Refers to" to
+`=LAMBDA(value, unit, value)`. It needs a version of Excel with LAMBDA
+(Microsoft 365 or Excel 2021 and later).
+
 ## Currencies
 
 Daubee understands currency units (`USD`, `EUR`, `Canadian_dollar`, ...)
@@ -270,6 +298,10 @@ settings:
   starting with a capital letter wins. Only names that can be typed into
   an annotation are used, so a symbol such as `Ω` falls back to the next
   shortest name.
+- **Define the WITHUNIT function in this workbook** — adds (or, when
+  unticked, removes) the `WITHUNIT` named LAMBDA described in
+  [WITHUNIT](#withunit). Off by default. If the workbook already has a
+  differently-defined name called `WITHUNIT`, Daubee leaves it alone.
 - **Simplify using unit definitions** — when checked, saving an
   annotation that matches a named unit's own definition (e.g.
   `kilogram-meter/second^2`) automatically rewrites it to that unit's
@@ -358,6 +390,15 @@ a sheet-by-sheet breakdown table.
   one another, but something in the loop pins down a real unit,
   Check Units can work it out — it only falls back to "unverifiable" when
   nothing in the loop actually determines an answer.
+- **Powers: `^` and `POWER`** — `=A1^2` and `=POWER(A1, 2)` mean the
+  same thing, and raise the cell's unit to that power (`kg` becomes
+  `kg^2`; `SUM(A1:A7)^2` works too). The exponent can be a number, a
+  cell, or arithmetic on those (`A1^(B1/2)`), but not a function call;
+  Daubee reads the cell's current value, so the result can change if that
+  value does. The result has to have whole-number unit exponents:
+  `(m^2)^0.5` is `m`, but `m^0.5` is flagged, since a unit formula can't
+  express it. The exponent itself must be dimensionless, and a
+  dimensionless value stays dimensionless whatever the power.
 - **Named LAMBDA formulas from the Name Manager are understood too** —
   calling a named LAMBDA directly (`AddTax(A1)`), or passing one by
   reference into `REDUCE`, `SCAN`, `MAKEARRAY`, `MAP`, `BYCOL`, or
