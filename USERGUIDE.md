@@ -362,5 +362,15 @@ a sheet-by-sheet breakdown table.
   calling a named LAMBDA directly (`AddTax(A1)`), or passing one by
   reference into `REDUCE`, `SCAN`, `MAKEARRAY`, `MAP`, `BYCOL`, or
   `BYROW`, works the same as writing the LAMBDA inline.
+- **Copying a sheet copies its annotations — with two conditions.**
+  Excel doesn't tell Daubee which sheet a new one was copied from, so
+  Daubee infers it from Excel's default copy name: a new sheet called
+  `Sales (2)` is treated as a copy of `Sales`, and gets its own copy of
+  that sheet's annotations, errors, and assertions. This only works if the
+  Daubee pane is open when you make the copy, and if the copy still has
+  its default name when it's created (renaming it afterward is fine). A
+  copy made with the pane closed, or given a different name in the Move or
+  Copy dialog, keeps the borders but not the annotations — re-annotate it,
+  or copy the sheet again with the pane open.
 - **When in doubt, run Check Units.** It's the fastest way to see whether
   your latest edit introduced a problem.
