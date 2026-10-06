@@ -60,8 +60,8 @@ Once a selection has an annotation, the pane's **Units for selection**
 list shows it, along with a **Delete** button to remove it. If your
 selection contains several different annotations, they all show up in
 the list; a **Delete all units within selection** button appears
-whenever your selection covers more than one annotation, so you can
-clear them out in one step.
+above it whenever your selection covers more than one annotation, so you
+can clear them out in one step.
 
 ## Writing a unit formula
 
