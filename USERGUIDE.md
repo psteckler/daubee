@@ -188,6 +188,13 @@ A cell with no border at all simply has nothing to check — it's a plain
 number, or a formula whose result is genuinely dimensionless (a count, a
 ratio, a boolean, ...).
 
+If the blue borders are distracting, tick **Hide annotation borders**
+(just below the **Annotate selection** button). The blue borders on
+annotated cells disappear; untick it and they come back. Hiding them
+doesn't touch the annotations themselves, and the error borders — red,
+amber, yellow, and purple — always stay visible, since they point at
+something you may need to fix. The setting is saved with the workbook.
+
 ## Errors for selection
 
 Below the annotation list, the **Errors for selection** section explains,
