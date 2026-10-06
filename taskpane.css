@@ -173,6 +173,21 @@ button:disabled:hover {
   font-style: italic;
 }
 
+/* Sits just under the Annotate selection button (which has a 10px bottom
+   margin), flush with its left edge, in the same 13px as the "Unit
+   formula" label. */
+.hide-borders-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: -4px 0 0;
+  font-size: 13px;
+}
+
+.hide-borders-row input {
+  margin: 0;
+}
+
 #annotation-list {
   list-style: none;
   margin: 0;
