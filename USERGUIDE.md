@@ -376,6 +376,16 @@ annotations and show up in the
 [Available units](#browsing-available-units) dialog like any built-in
 unit.
 
+An `expansion` also makes the unit interchangeable with its definition
+when Infer Units and Check Units compare units: `containers_per_hour`
+and `container/hr` count as the same unit, and so do the built-in `watt`
+and `joule/second`, or `kWh` (defined as `kW-hour`) and `kW-hour`. This is
+about dimensions only — Daubee doesn't track scale factors, so a bare
+number like the `100` in a cents-to-dollars conversion is invisible to it.
+To state a conversion factor, put it in a cell and annotate that cell with
+the unit ratio (a `100` annotated `cents/US_dollar`), or use
+[WITHUNIT](#withunit) to give a number its unit inside a formula.
+
 This is also where you'd add a currency Daubee doesn't already know
 about, if you ever hit a purple "currency not found" border.
 
