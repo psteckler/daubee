@@ -9,6 +9,15 @@ seconds.
   Check Units, currencies, Settings, and everything else.
 - **[Issues](../../issues)** — found a bug, or have a feature request?
   File it here.
+- **[Screenshots](screenshots/)** — what Daubee looks like in Excel.
+
+## Screenshots
+
+- [Blue borders mark annotated cells; a red border marks a unit mismatch](screenshots/USD-CAD-mismatch.png)
+- [The pane explains the mismatch under "Errors for selection"](screenshots/USD-CAD-error.png)
+- [Browsing the available units](screenshots/browse-units.png)
+- [Choosing unit dictionaries](screenshots/unit-dictionaries.png)
+- [An audit report](screenshots/audit-report.png)
 
 ## Installation
 
