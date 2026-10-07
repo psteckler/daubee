@@ -63,6 +63,12 @@ the **Raw** button and choose Save As).
   Open Excel online, go to Home > Add-ins > More Add-ins, select
   MY ADD-INS, click Upload My Add-in, and select the manifest file.
 
+## Research background
+
+Daubee relies on techniques developed for XeLda, a research prototype
+for checking units of measure in spreadsheets, as described in this paper:
+[Antoniu, Steckler, Krishnamurthi, Neuwirth, Felleisen. "Validating the Unit Correctness of Spreadsheet Programs." ICSE 2004.](https://cs.brown.edu/people/sk/Publications/Papers/Published/asknf-valid-unit-sprdsht/paper.pdf)
+
 ## About this repo
 
 This repo holds the built Daubee add-in and its documentation.
