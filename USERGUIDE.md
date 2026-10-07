@@ -173,8 +173,8 @@ formula with `cm`.
 
 ## Reading the borders
 
-Daubee never changes a cell's value — it only draws a double-line border
-around a cell to show what it found. The border color tells you why:
+Daubee never changes a cell's value — it only draws a border around a
+cell to show what it found. The border color tells you why:
 
 | Color | Meaning |
 | --- | --- |
@@ -187,6 +187,12 @@ around a cell to show what it found. The border color tells you why:
 A cell with no border at all simply has nothing to check — it's a plain
 number, or a formula whose result is genuinely dimensionless (a count, a
 ratio, a boolean, ...).
+
+Annotation borders are dashed and error/warning borders are double-line by
+default; **Annotation borders** and **Error/warning borders** in
+[Settings](#settings) let you pick *Dashed*, *Line* (a thick solid line),
+or *Double-line* for each, and every border in the workbook is redrawn
+right away.
 
 If the blue borders are distracting, tick **Hide annotation borders**
 (just below the **Annotate selection** button). The blue borders on
@@ -317,6 +323,11 @@ settings:
   unticked, removes) the `WITHUNIT` named LAMBDA described in
   [WITHUNIT](#withunit). Off by default. If the workbook already has a
   differently-defined name called `WITHUNIT`, Daubee leaves it alone.
+- **Annotation borders** and **Error/warning borders** — the line style
+  for the blue annotation borders and for the red, amber, yellow, and
+  purple error/warning borders: *Dashed*, *Line*, or *Double-line*.
+  Annotation borders default to dashed and error/warning borders to
+  double-line.
 - **Simplify using unit definitions** — when checked, saving an
   annotation that matches a named unit's own definition (e.g.
   `kilogram-meter/second^2`) automatically rewrites it to that unit's
