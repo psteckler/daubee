@@ -45,6 +45,35 @@ body {
   cursor: pointer;
 }
 
+/* The two border-style rows share one label width so their dropdowns line
+   up with each other. */
+.settings-row-border-style {
+  cursor: default;
+  /* A checkbox's own default 4px left margin: lines these labels up with
+     the checkboxes' left edge in the rows above. */
+  padding-left: 4px;
+}
+
+/* The WITHUNIT status line takes no room (not even its default paragraph
+   margins) until it actually has a message. */
+#with-unit-status {
+  margin: 0 0 12px;
+}
+
+#with-unit-status:empty {
+  display: none;
+}
+
+.settings-border-label {
+  display: inline-block;
+  min-width: 150px;
+}
+
+.settings-row-border-style select {
+  font-size: 13px;
+  padding: 2px 4px;
+}
+
 .settings-inline-label {
   color: #616161;
 }
