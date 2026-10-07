@@ -323,11 +323,6 @@ settings:
   unticked, removes) the `WITHUNIT` named LAMBDA described in
   [WITHUNIT](#withunit). Off by default. If the workbook already has a
   differently-defined name called `WITHUNIT`, Daubee leaves it alone.
-- **Annotation borders** and **Error/warning borders** — the line style
-  for the blue annotation borders and for the red, amber, yellow, and
-  purple error/warning borders: *Dashed*, *Line*, or *Double-line*.
-  Annotation borders default to dashed and error/warning borders to
-  double-line.
 - **Simplify using unit definitions** — when checked, saving an
   annotation that matches a named unit's own definition (e.g.
   `kilogram-meter/second^2`) automatically rewrites it to that unit's
@@ -346,6 +341,11 @@ settings:
   agrees with itself); check it and pick a currency from the dropdown to
   pin them all to one specific currency, or leave it on "Locale default"
   to follow your computer's own regional settings.
+- **Annotation borders** and **Error/warning borders** — the line style
+  for the blue annotation borders and for the red, amber, yellow, and
+  purple error/warning borders: *Dashed*, *Line*, or *Double-line*.
+  Annotation borders default to dashed and error/warning borders to
+  double-line.
 
 ## Unit dictionaries
 
