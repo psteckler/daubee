@@ -94,8 +94,16 @@ body {
   align-items: center;
 }
 
+.add-dictionary-row button {
+  flex: none;
+  width: 130px;
+  white-space: nowrap;
+}
+
 .add-dictionary-row input[type="text"] {
   flex: 1;
+  min-width: 0;
+  width: 100%;
   box-sizing: border-box;
   padding: 6px 8px;
   font-family: inherit;
