@@ -100,7 +100,7 @@ body {
   white-space: nowrap;
 }
 
-.add-dictionary-row input[type="text"] {
+.add-dictionary-row #add-url-input {
   flex: 1;
   min-width: 0;
   width: 100%;
