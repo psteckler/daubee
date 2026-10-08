@@ -114,6 +114,10 @@ body {
   cursor: pointer;
 }
 
+.syntax-action {
+  margin-left: auto;
+}
+
 .syntax-token:hover {
   background: #e0e0e0;
 }
