@@ -103,7 +103,8 @@ you've loaded — see [Unit dictionaries](#unit-dictionaries)). Click any
 unit's canonical name or alias to insert it at your cursor position in
 the formula box; click one of the syntax tokens (`-`, `/`, `^`, `(`,
 `)`) or a digit to insert that instead. This makes building a formula
-like `kg-m/s^2` a matter of clicking rather than typing.
+like `kg-m/s^2` a matter of clicking rather than typing. The **⌫** button removes the last character of the
+formula box, and **Clear** empties it.
 
 ## Infer Units
 
