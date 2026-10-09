@@ -275,6 +275,9 @@ your annotation:
   with a currency unit offers to apply a matching Currency number format
   for you (e.g. formatting the cell as `$42.99`). Declining just skips
   the formatting — your annotation is saved either way.
+  Deleting the annotation later does **not** undo a currency format
+  Daubee applied; the cell keeps it until you change it yourself (Daubee
+  can't tell its own formatting from yours).
 - **Annotating a cell whose format already shows a *different* currency**
   offers to rewrite the format to match your annotation instead of
   blocking the save outright. Declining this one *does* cancel the save,
