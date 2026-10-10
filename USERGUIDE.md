@@ -62,6 +62,8 @@ selection contains several different annotations, they all show up in
 the list; a **Delete all units within selection** button appears
 above it whenever your selection covers more than one annotation, so you
 can clear them out in one step.
+Each unit in the list has a copy icon next to it, which copies the unit
+formula to the clipboard.
 
 ## Writing a unit formula
 
