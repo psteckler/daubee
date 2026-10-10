@@ -225,6 +225,34 @@ button:disabled:hover {
   white-space: pre-wrap;
 }
 
+.annotation-formula-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.annotation-formula-row .annotation-formula {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.annotation-copy {
+  flex: 0 0 auto;
+  width: auto;
+  margin: 0;
+  padding: 2px 4px;
+  line-height: 0;
+  background: none;
+  color: #616161;
+  border: none;
+  cursor: pointer;
+}
+
+.annotation-copy:hover {
+  background: #e0e0e0;
+  color: #217346;
+}
+
 .annotation-drift-row {
   background: #fff3e0;
   display: flex;

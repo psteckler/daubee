@@ -32,6 +32,19 @@ body {
   flex: 1;
 }
 
+.confirm-radio-group {
+  margin: 0 0 12px;
+  font-size: 13px;
+}
+
+.confirm-radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+  cursor: pointer;
+}
+
 .confirm-checkbox-row {
   margin: 0 0 16px;
   font-size: 13px;
