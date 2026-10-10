@@ -273,8 +273,10 @@ your annotation:
 
 - **Annotating a cell that's still in Excel's default "General" format**
   with a currency unit offers to apply a matching Currency number format
-  for you (e.g. formatting the cell as `$42.99`). Declining just skips
-  the formatting — your annotation is saved either way.
+  for you (e.g. formatting the cell as `$42.99`). The offer lets you
+  choose between the **Default currency format** (`$42.99`) and the
+  **Three-letter currency code format** (`USD 42.99`). Declining just
+  skips the formatting — your annotation is saved either way.
   Deleting the annotation later does **not** undo a currency format
   Daubee applied; the cell keeps it until you change it yourself (Daubee
   can't tell its own formatting from yours).
@@ -310,9 +312,11 @@ settings:
 - **Apply currency format when adding a currency unit** — when checked,
   the "no format yet" currency offer above happens automatically instead
   of asking every time.
-- **Use three-letter currency codes for applied currency formats** —
-  when checked, an automatically-applied currency format shows, for
-  example, `USD 42.99` instead of `$42.99`.
+- **Use three-letter currency code formats by default** — when checked,
+  a currency format shows, for example, `USD 42.99` instead of `$42.99`.
+  This is the format used when currency formats are applied
+  automatically, and the choice preselected in the offer dialog (where you
+  can pick either format each time).
 - **Save unit aliases** — when you annotate using an alias (`kg` instead
   of `kilogram`), this controls whether the alias itself or the
   canonical name is what actually gets saved.
