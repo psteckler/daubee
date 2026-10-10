@@ -294,6 +294,12 @@ your annotation:
   currency**, selecting that cell shows a small "Cell's format now shows
   ⟨currency⟩ — Update annotation" row with a button, so your annotation
   can be kept in sync without a surprise pop-up.
+- **The same applies to an annotated range.** If every cell in the range
+  is reformatted to a different currency, the pane offers **Update
+  annotation**. If only some cells are, it says how many (for example, "2 of
+  6 cells' formats show EUR, not USD") and offers **Reformat to match**,
+  which sets just those cells back to the annotation's currency. The check
+  covers the whole annotated range, not only the cells you selected.
 
 Two related Settings (see below) control whether currency formatting is
 applied automatically, and whether it uses a currency's symbol (`$`) or
