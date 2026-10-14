@@ -118,9 +118,9 @@ formula elsewhere computes `=A1+B1`, Daubee knows `B1` must also be
 own, Infer offers to add one.
 
 Each offer shows up as a dialog: *"Infer 'USD' as the unit annotation
-for cell B1?"* with **Add** and **Skip** buttons. If more than one cell
-qualifies for the same inferred unit, the dialog also offers **Add all**
-/ **Skip all**, so you don't have to click through every one individually.
+for cell B1?"* with **Add** and **Skip** buttons. The dialog also offers
+**Add all** / **Skip all**, which answer every remaining offer in that
+Infer run the same way, so you don't have to click through each one.
 
 Infer only ever proposes annotations for cells that don't have a formula
 of their own (a plain value cell) — it never guesses at what a *formula*
