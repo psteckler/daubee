@@ -58,6 +58,7 @@ body {
    margins) until it actually has a message. */
 #with-unit-status {
   margin: 0 0 12px;
+  color: #d32f2f;
 }
 
 #with-unit-status:empty {

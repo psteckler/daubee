@@ -259,12 +259,30 @@ add a matching annotation.
 
 WITHUNIT isn't built into Excel. It's a named LAMBDA you define once per
 workbook, which just returns its first argument, so your numbers don't
-change. The easiest way is **Define the WITHUNIT function in this
+change. The easiest way is **Define the WITHUNIT, CONVERTUNIT functions in this
 workbook** in [Settings](#settings) (off by default); unticking it removes
-the name again. To define it yourself, open Formulas > Name Manager > New,
+the names again. To define it yourself, open Formulas > Name Manager > New,
 name it `WITHUNIT`, and set "Refers to" to
 `=LAMBDA(value, unit, value)`. It needs a version of Excel with LAMBDA
 (Microsoft 365 or Excel 2021 and later).
+
+### CONVERTUNIT
+
+**CONVERTUNIT(value, unit1, unit2)** converts a dimensionless number from
+`unit1` to `unit2`, with Daubee checking the units:
+
+```
+=CONVERTUNIT(A1, "kg", "lbm")
+```
+
+It is shorthand for `CONVERT(WITHUNIT(A1, "kg"), "kg", "lbm")`: the result
+carries `unit2`, and Daubee flags an error if the two units can't be
+converted into one another, or if `value` already has a unit. (For a cell
+that is already annotated, use `CONVERT` directly.) Like WITHUNIT it's a
+named LAMBDA, and it's defined by the same Settings option. To define it
+yourself, add a name `CONVERTUNIT` that refers to
+`=LAMBDA(value, unit1, unit2, CONVERT(WITHUNIT(value, unit1), unit1, unit2))`,
+after defining `WITHUNIT`.
 
 ## Currencies
 
@@ -335,10 +353,11 @@ settings:
   starting with a capital letter wins. Only names that can be typed into
   an annotation are used, so a symbol such as `Ω` falls back to the next
   shortest name.
-- **Define the WITHUNIT function in this workbook** — adds (or, when
-  unticked, removes) the `WITHUNIT` named LAMBDA described in
-  [WITHUNIT](#withunit). Off by default. If the workbook already has a
-  differently-defined name called `WITHUNIT`, Daubee leaves it alone.
+- **Define the WITHUNIT, CONVERTUNIT functions in this workbook** —
+  adds (or, when unticked, removes) the `WITHUNIT` and `CONVERTUNIT` named
+  LAMBDAs described in [WITHUNIT](#withunit). Off by default. If the
+  workbook already has a differently-defined name called `WITHUNIT` or
+  `CONVERTUNIT`, Daubee leaves it alone.
 - **Simplify using unit definitions** — when checked, saving an
   annotation that matches a named unit's own definition (e.g.
   `kilogram-meter/second^2`) automatically rewrites it to that unit's
