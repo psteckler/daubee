@@ -266,6 +266,15 @@ name it `WITHUNIT`, and set "Refers to" to
 `=LAMBDA(value, unit, value)`. It needs a version of Excel with LAMBDA
 (Microsoft 365 or Excel 2021 and later).
 
+If you use WITHUNIT with a particular Excel function frequently, it may
+be worth defining your own LAMBDA in the Name Manager that wraps it. For
+example, define `SINRADIAN` as `=LAMBDA(t, SIN(WITHUNIT(t, "radian")))`.
+Then `=SINRADIAN(A1)` does the same as `=SIN(WITHUNIT(A1, "radian"))`,
+without writing WITHUNIT each time or putting the angle in an annotated
+cell. As with WITHUNIT itself, the argument must be a plain, dimensionless
+number. [CONVERTUNIT](#convertunit), below, is another example of this
+pattern.
+
 ### CONVERTUNIT
 
 **CONVERTUNIT(value, unit1, unit2)** converts a dimensionless number from
