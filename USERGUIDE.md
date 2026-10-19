@@ -177,18 +177,48 @@ C2:C50 (49 cells). Add this annotation?* — with the usual **Add all** /
   its header is left out and mentioned in the offer, rather than being
   reformatted.
 
-### Wrap dimensionless values
+### Wrap dimensionless arguments
+
+Some functions need an argument in one particular unit: `SIN` and the other
+trig functions want radians, `DEGREES` wants radians, `RADIANS` wants
+degrees, and the securities-pricing functions want the currency chosen in
+Settings. Giving one a plain number is flagged by Check Units.
+**Wrap dimensionless arguments** fixes that by rewriting just the
+offending argument with [WITHUNIT](#withunit):
+
+```
+=SIN(A1*B1)   →   =SIN(WITHUNIT(A1*B1,"radian"))
+```
+
+Tick *Wrap dimensionless arguments with WITHUNIT* in [Settings](#settings)
+(Automation section; off by default). The button then becomes available
+once Check Units has flagged at least one such argument on the sheet. For
+each one it shows the formula before and after and offers **Add** /
+**Skip** (or **Add all** / **Skip all**). WITHUNIT must be defined in the
+workbook, and Excel's Undo can't reverse the change, just as for
+[Wrap dimensionless results](#wrap-dimensionless-results). Where a function
+accepts "any currency", or a value of some unspecified unit, there is no
+single unit to suggest, so nothing is offered.
+
+- A formula with several problems is fixed one at a time: run Check Units
+  again after wrapping to see whether another remains.
+- If you edit a formula after Check, the offer for it is skipped (the
+  status message says so); run Check again.
+- If the number really is in degrees, say, rather than radians, wrap it
+  yourself with the right unit, or use `RADIANS`.
+
+### Wrap dimensionless results
 
 Some formulas give a plain number — `=RAND()`, say — in a cell you have
 annotated with a unit such as `kg`. Check Units flags that as a mismatch,
-because the value is dimensionless. **Wrap dimensionless values** fixes it
+because the value is dimensionless. **Wrap dimensionless results** fixes it
 by rewriting the formula with [WITHUNIT](#withunit):
 
 ```
 =RAND()   →   =WITHUNIT(RAND(),"kg")
 ```
 
-Tick *Wrap dimensionless values with WITHUNIT* in [Settings](#settings)
+Tick *Wrap dimensionless results with WITHUNIT* in [Settings](#settings)
 (Automation section; off by default). The button then becomes available
 once Check Units has flagged at least one such cell on the sheet. For each
 one it shows the formula before and after and offers **Add** / **Skip**
@@ -480,12 +510,14 @@ settings:
   for units** — enable the pane's **Scan headers** button, which offers
   annotations taken from headers that name a unit in parentheses or square
   brackets; see [Scan headers](#scan-headers). Both are off by default.
-- **Automation: Wrap dimensionless values with WITHUNIT** — makes the
-  pane's **Wrap dimensionless values** button available; see [Wrap
-  dimensionless values](#wrap-dimensionless-values). Off by default.
-  Ticking it also ticks *Define the WITHUNIT, CONVERTUNIT functions in this
-  workbook* (it needs `WITHUNIT`), and unticking that option unticks this
-  one.
+- **Automation: Wrap dimensionless arguments with WITHUNIT** and **Wrap
+  dimensionless results with WITHUNIT** — make the pane's **Wrap
+  dimensionless arguments** and **Wrap dimensionless results** buttons
+  available; see [Wrap dimensionless
+  arguments](#wrap-dimensionless-arguments) and [Wrap dimensionless
+  results](#wrap-dimensionless-results). Both are off by default. Ticking
+  either also ticks *Define the WITHUNIT, CONVERTUNIT functions in this
+  workbook* (they need `WITHUNIT`), and unticking that option unticks both.
 
 ## Unit dictionaries
 
@@ -498,6 +530,14 @@ several groups), and to add your own dictionaries:
   definitions from your computer.
 - **Add from URL** loads one from a web address instead — useful for
   sharing a shop- or team-wide dictionary without emailing files around.
+
+The built-in **Trigonometric** group holds the angle units `degree`
+(`deg`, `degrees`) and `radian` (`rad`, `radians`). Excel's trig functions
+work in radians, so leave it on if you use `SIN`, `COS` and friends with
+units (including [Wrap dimensionless
+arguments](#wrap-dimensionless-arguments)); switching it off just
+declutters the Browse list, and any annotation using those units is then
+rejected as unknown.
 
 A dictionary file is just a set of category names, each listing the
 units that belong to it. Here's a small one, defining a new "shipping"
