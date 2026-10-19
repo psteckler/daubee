@@ -106,3 +106,8 @@ button {
 .confirm-extra-cancel:hover {
   background: #cccccc;
 }
+
+/* Lets a prompt break onto several lines (e.g. a before/after pair). */
+#confirm-message {
+  white-space: pre-line;
+}

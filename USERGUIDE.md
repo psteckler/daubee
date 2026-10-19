@@ -177,6 +177,35 @@ C2:C50 (49 cells). Add this annotation?* — with the usual **Add all** /
   its header is left out and mentioned in the offer, rather than being
   reformatted.
 
+### Wrap dimensionless values
+
+Some formulas give a plain number — `=RAND()`, say — in a cell you have
+annotated with a unit such as `kg`. Check Units flags that as a mismatch,
+because the value is dimensionless. **Wrap dimensionless values** fixes it
+by rewriting the formula with [WITHUNIT](#withunit):
+
+```
+=RAND()   →   =WITHUNIT(RAND(),"kg")
+```
+
+Tick *Wrap dimensionless values with WITHUNIT* in [Settings](#settings)
+(Automation section; off by default). The button then becomes available
+once Check Units has flagged at least one such cell on the sheet. For each
+one it shows the formula before and after and offers **Add** / **Skip**
+(or **Add all** / **Skip all**). The unit used is the cell's own annotation.
+
+- WITHUNIT must be defined in the workbook. Ticking the Settings option
+  above defines it for you (it ticks *Define the WITHUNIT, CONVERTUNIT
+  functions in this workbook* too); if the workbook has a differently
+  defined `WITHUNIT`, Daubee leaves it alone, keeps the option off, and says
+  so.
+- This rewrites the formulas in your cells, and Excel's Undo can't reverse
+  it.
+- A formula that already starts with WITHUNIT is left alone, as is a
+  formula that spills over several cells.
+- If the number is dimensionless only because the cells it uses have no
+  annotations, annotating *those* cells is usually the better fix.
+
 ## Check Units
 
 **Check** walks every formula on the current sheet and verifies that
@@ -451,6 +480,12 @@ settings:
   for units** — enable the pane's **Scan headers** button, which offers
   annotations taken from headers that name a unit in parentheses or square
   brackets; see [Scan headers](#scan-headers). Both are off by default.
+- **Automation: Wrap dimensionless values with WITHUNIT** — makes the
+  pane's **Wrap dimensionless values** button available; see [Wrap
+  dimensionless values](#wrap-dimensionless-values). Off by default.
+  Ticking it also ticks *Define the WITHUNIT, CONVERTUNIT functions in this
+  workbook* (it needs `WITHUNIT`), and unticking that option unticks this
+  one.
 
 ## Unit dictionaries
 
