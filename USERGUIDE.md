@@ -76,8 +76,8 @@ A unit formula is built from unit names combined with a few operators:
 | `^` | exponent | `m^2` (square meters) |
 | `(` `)` | grouping | `kg-m/(s^2)` |
 
-A unit name is a letter followed by any mix of letters, digits, and
-underscores — either a unit's own canonical name (`kilogram`) or one of
+A unit name is a letter followed by any mix of letters, digits,
+underscores, and `$` — either a unit's own canonical name (`kilogram`) or one of
 its aliases (`kg`). An exponent is a plain non-negative number (`m^2`),
 or a negative number in parentheses (`m^(-1)`, meaning "per meter").
 Spaces are fine anywhere you'd naturally put one — `kg - m / s^2` and
@@ -327,6 +327,11 @@ your annotation:
   6 cells' formats show EUR, not USD") and offers **Reformat to match**,
   which sets just those cells back to the annotation's currency. The check
   covers the whole annotated range, not only the cells you selected.
+
+The dollar currencies also have symbol aliases, so `US$`, `C$`, `A$`, and
+`NZ$` can be used for US, Canadian, Australian, and New Zealand dollars.
+When "shortest alias" is in effect (see [Settings](#settings)), these are
+the names Daubee prefers for those currencies.
 
 Two related Settings (see below) control whether currency formatting is
 applied automatically, and whether it uses a currency's symbol (`$`) or
