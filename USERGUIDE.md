@@ -14,6 +14,7 @@ formulas where there's unit inconsistency.
 - [Writing a unit formula](#writing-a-unit-formula)
 - [Browsing available units](#browsing-available-units)
 - [Infer Units](#infer-units)
+- [Automation](#automation)
 - [Check Units](#check-units)
 - [Synthesizing units for CONVERT](#synthesizing-units-for-convert)
 - [Reading the borders](#reading-the-borders)
@@ -125,6 +126,56 @@ Infer run the same way, so you don't have to click through each one.
 Infer only ever proposes annotations for cells that don't have a formula
 of their own (a plain value cell) — it never guesses at what a *formula*
 cell's own result should be. That's Check Units' job.
+
+## Automation
+
+The **Unit automation** section of the pane, above **Units for selection**,
+holds actions that work out annotations for you. Each is switched on in
+[Settings](#settings) (Automation section), and its button stays disabled
+until it is.
+
+### Scan headers
+
+With *Scan column headers for units* and/or *Scan row headers for units*
+ticked (both off by default), **Scan headers** looks for headers that name
+a unit **inside parentheses or square brackets**, such as `Weight (kg)`,
+`Price [USD]` or `Speed ( mi / hr )` (spaces inside the brackets are
+ignored). For each one it offers to annotate the plain numbers below a
+column header, or to the right of a row header, with that unit. The offer
+names the header that prompted it and the range it would annotate, for
+example: *Column header "Weight (kg)" (C1) suggests the unit "kg" for
+C2:C50 (49 cells). Add this annotation?* — with the usual **Add all** /
+**Skip all** buttons.
+
+- **Any header counts, not just the first row or column.** A sheet with
+  several sections, each with its own header row, gets an offer for each.
+  The numbers under a header run until a text cell, or a gap of more than
+  three blank cells in a row. Blank cells before the first number, or
+  between numbers, don't end the run, and the blank cells between numbers
+  are included in the annotated range.
+- **Merged headers** (a header centered over several columns, or a row
+  header spanning several rows) cover everything they span. One or two
+  sub-header cells (such as "Min" and "Max") between the header and the
+  numbers are skipped. A header that is only visually centered, with the
+  neighbouring cells left empty rather than merged, covers just its own
+  column.
+- **Only plain numbers** are annotated: formulas are left to Check Units
+  and Infer, and dates are skipped.
+- **Nothing is overwritten.** Cells that already have an annotation are
+  left alone, and the offer says how many. A cell that a column header and a
+  row header assign *different* units is left out altogether, and the status
+  message says how many such cells there were.
+- Text such as `Item(s)` (a plural marker attached to a word) is not
+  taken for a unit.
+- **Number formats follow the usual rules.** For a currency header such as
+  `(USD)`, Daubee offers a matching currency format for the cells still in
+  the "General" format, exactly as when you annotate by hand (including the
+  choice between the default and three-letter-code format, or applying it
+  automatically if that Setting is on). For any other unit, the *Autoformat
+  with* Setting applies its unit format, but only when every cell is still
+  in "General". A cell already formatted for a *different* currency than
+  its header is left out and mentioned in the offer, rather than being
+  reformatted.
 
 ## Check Units
 
@@ -396,6 +447,10 @@ settings:
   purple error/warning borders: *Dashed*, *Line*, or *Double-line*.
   Annotation borders default to dashed and error/warning borders to
   double-line.
+- **Automation: Scan column headers for units** and **Scan row headers
+  for units** — enable the pane's **Scan headers** button, which offers
+  annotations taken from headers that name a unit in parentheses or square
+  brackets; see [Scan headers](#scan-headers). Both are off by default.
 
 ## Unit dictionaries
 

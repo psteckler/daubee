@@ -24,6 +24,11 @@ body {
   font-size: 16px;
 }
 
+.settings-section {
+  margin: 4px 0 10px;
+  font-size: 14px;
+}
+
 .settings-row {
   display: flex;
   align-items: center;
