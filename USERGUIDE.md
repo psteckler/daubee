@@ -328,8 +328,9 @@ your annotation:
   which sets just those cells back to the annotation's currency. The check
   covers the whole annotated range, not only the cells you selected.
 
-The dollar currencies also have symbol aliases, so `US$`, `C$`, `A$`, and
-`NZ$` can be used for US, Canadian, Australian, and New Zealand dollars.
+The dollar currencies also have symbol aliases, so `US$`, `C$`, `A$`,
+`NZ$`, `S$`, `HK$`, and `NT$` can be used for US, Canadian, Australian,
+New Zealand, Singapore, Hong Kong, and New Taiwan dollars.
 When "shortest alias" is in effect (see [Settings](#settings)), these are
 the names Daubee prefers for those currencies.
 
