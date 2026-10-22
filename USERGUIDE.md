@@ -567,6 +567,11 @@ annotations and show up in the
 [Available units](#browsing-available-units) dialog like any built-in
 unit.
 
+If a category in your file has the same name as one that already exists —
+ignoring capitalization, spaces, hyphens, and underscores, so `Distance`,
+`distance`, and `Weight and mass` / `weight_and_mass` each match — its units
+are added to that category rather than starting a second one.
+
 An `expansion` also makes the unit interchangeable with its definition
 when Infer Units and Check Units compare units: `containers_per_hour`
 and `container/hr` count as the same unit, and so do the built-in `watt`
