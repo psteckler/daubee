@@ -200,6 +200,14 @@ workbook, and Excel's Undo can't reverse the change, just as for
 accepts "any currency", or a value of some unspecified unit, there is no
 single unit to suggest, so nothing is offered.
 
+- The same button also wraps a **plain number written in a formula next to
+  a quantity**: in `=IF(A1>42, …)` with `A1` in miles, the `42` becomes
+  `WITHUNIT(42,"mile")`. This applies to a comparison (including the
+  conditions of `IFS`), to a number added to or subtracted from a quantity
+  (`=A1+5`), to the values of `IF`, `IFS`, `IFNA`/`IFERROR` and `SWITCH`,
+  and to the case values of `SWITCH`. The unit comes from the other side.
+  Only numbers typed into the formula are wrapped; a cell with no
+  annotation is better fixed by annotating it.
 - A formula with several problems is fixed one at a time: run Check Units
   again after wrapping to see whether another remains.
 - If you edit a formula after Check, the offer for it is skipped (the
