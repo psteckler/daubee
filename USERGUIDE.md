@@ -575,6 +575,15 @@ annotations and show up in the
 [Available units](#browsing-available-units) dialog like any built-in
 unit.
 
+**Names must be unique.** A unit name or alias can belong to only one unit.
+If any name in your file is already used by a built-in unit, by a dictionary
+you added earlier, or by another unit in the same file, Daubee doesn't load
+the dictionary at all and says which names clash (for example: *"m" (an alias
+of "furlong") is already used for "meter"*). Fix the file and add it again.
+It never loads part of a dictionary. A dictionary already added that later
+turns out to clash (say, after a built-in group is switched on) is left
+out the same way, and the pane shows the message when you open Browse.
+
 If a category in your file has the same name as one that already exists —
 ignoring capitalization, spaces, hyphens, and underscores, so `Distance`,
 `distance`, and `Weight and mass` / `weight_and_mass` each match — its units
