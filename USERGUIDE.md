@@ -109,6 +109,10 @@ the formula box; click one of the syntax tokens (`-`, `/`, `^`, `(`,
 like `kg-m/s^2` a matter of clicking rather than typing. The **⌫** button removes the last character of the
 formula box, and **Clear** empties it.
 
+A green dot before a unit marks one that takes a [magnitude
+prefix](#magnitude-prefixes) such as `k` or `Mi`; a unit without a dot
+doesn't.
+
 ## Infer Units
 
 **Infer** looks at every formula on the current sheet and tries to fill
@@ -281,7 +285,10 @@ separate units in Daubee.
 
 A prefix only applies to a *metric* unit — matching Excel's own
 documentation — so `mile`, `foot`, `year`, and other non-metric units
-never take one, even though they're perfectly usable unprefixed. If you
+never take one, even though they're perfectly usable unprefixed. (Units
+that take a prefix show a green dot in the [Available
+units](#browsing-available-units) dialog, and a unit from your own
+dictionary can opt in; see [Magnitude prefixes](#magnitude-prefixes).) If you
 type a prefix+unit combination Excel doesn't actually recognize, Excel
 itself will reject it (the cell shows `#N/A`) the same as it would
 without Daubee involved.
@@ -601,6 +608,45 @@ the unit ratio (a `100` annotated `cents/US_dollar`), or use
 
 This is also where you'd add a currency Daubee doesn't already know
 about, if you ever hit a purple "currency not found" border.
+
+### Magnitude prefixes
+
+Some units take a magnitude prefix: `k` + `m` is `km`, `M` + `B` is `MB`.
+Daubee uses Excel's own prefix letters, the ones `CONVERT` accepts:
+
+- **Metric:** `Y` yotta, `Z` zetta, `E` exa, `P` peta, `T` tera, `G` giga,
+  `M` mega, `k` kilo, `h` hecto, `e` deka, `d` deci, `c` centi, `m` milli,
+  `u` micro, `n` nano, `p` pico, `f` femto, `a` atto, `z` zepto, `y` yocto.
+- **Binary:** `Ki` kibi, `Mi` mebi, `Gi` gibi, `Ti` tebi, `Pi` pebi,
+  `Ei` exbi, `Zi` zebi, `Yi` yobi.
+
+These are Excel's spellings, not always the standard SI ones: deka is `e`
+(not `da`) and micro is `u` (not `µ`). They are case-sensitive: `M` is mega
+and `m` is milli.
+
+The built-in metric units take the metric prefixes, and `bit` and `byte`
+also take the binary ones. In your own dictionary, add `prefixable` to a unit
+and list which of its names take which kind of prefix:
+
+```yaml
+data:
+  - canonicalName: baud
+    aliases: [Bd, bauds]
+    prefixable: { metric: [Bd] }
+  - canonicalName: word
+    aliases: [wd, words]
+    prefixable: { binary: [wd] }
+```
+
+With this, `kBd`, `MBd`, `Kiwd` and the like are recognized. Only the names
+you list take a prefix (so `kbauds` is not a unit), each must be one of the
+unit's own names, and a metric-only name doesn't take a binary prefix. A
+name that already exists always wins over a prefixed reading: `cal` stays
+calorie and is never "centi-`al`". As with the built-in prefixed units, a
+prefixed unit is its own unit and is never considered equal to the base
+unit — `km` and `m` don't match, and Daubee doesn't track the factor of
+1000 between them.
+
 
 ## Audit report
 

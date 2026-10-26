@@ -64,6 +64,24 @@ body {
   padding: 3px 0;
 }
 
+.prefix-dot,
+.prefix-dot-slot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 6px;
+  vertical-align: baseline;
+}
+
+.prefix-dot {
+  border-radius: 50%;
+  background: #2e9e5b;
+}
+
+.prefix-legend {
+  margin-top: -6px;
+}
+
 .unit-list-empty {
   font-size: 12px;
   color: #616161;
