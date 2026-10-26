@@ -69,13 +69,25 @@ body {
   display: inline-block;
   width: 8px;
   height: 8px;
-  margin-right: 6px;
+  margin-right: 4px;
   vertical-align: baseline;
 }
 
 .prefix-dot {
   border-radius: 50%;
+}
+
+.metric-dot {
   background: #2e9e5b;
+}
+
+.binary-dot {
+  background: #242424;
+}
+
+.prefix-legend-gap {
+  display: inline-block;
+  width: 16px;
 }
 
 .prefix-legend {
@@ -164,7 +176,8 @@ button {
   background: #cccccc;
 }
 
-#prefix-select {
+#metric-select,
+#binary-select {
   font: inherit;
   font-size: 13px;
   padding: 3px 6px;

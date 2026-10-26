@@ -109,12 +109,14 @@ the formula box; click one of the syntax tokens (`-`, `/`, `^`, `(`,
 like `kg-m/s^2` a matter of clicking rather than typing. The **⌫** button removes the last character of the
 formula box, and **Clear** empties it.
 
-A green dot before a unit marks one that takes a [magnitude
-prefix](#magnitude-prefixes) such as `k` or `Mi`; a unit without a dot
-doesn't. To insert a prefixed name by clicking, choose a prefix in the
-**Prefix** menu above the syntax buttons. The names that can't take it
-(`joule`, say, when only `J` does) are greyed out, so click `J` to insert
-`kJ`. The prefix applies to one click and then clears.
+A green dot before a unit marks one that takes a metric [magnitude
+prefix](#magnitude-prefixes) such as `k` or `M`, and a black dot one that
+takes a binary prefix such as `Ki` or `Mi` (`bit` and `byte` have both).
+A unit without a dot takes neither. To insert a prefixed name by clicking,
+choose a prefix in the **Metric** or **Binary** menu under **Prefixes**,
+above the syntax buttons. The names that can't take it (`joule`, say, when
+only `J` does) are greyed out, so click `J` to insert `kJ`. The prefix
+applies to one click and then clears.
 
 ## Infer Units
 
