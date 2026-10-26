@@ -111,7 +111,10 @@ formula box, and **Clear** empties it.
 
 A green dot before a unit marks one that takes a [magnitude
 prefix](#magnitude-prefixes) such as `k` or `Mi`; a unit without a dot
-doesn't.
+doesn't. To insert a prefixed name by clicking, choose a prefix in the
+**Prefix** menu above the syntax buttons. The names that can't take it
+(`joule`, say, when only `J` does) are greyed out, so click `J` to insert
+`kJ`. The prefix applies to one click and then clears.
 
 ## Infer Units
 
