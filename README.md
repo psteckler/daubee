@@ -18,6 +18,7 @@ seconds.
 - [Browsing the available units](screenshots/browse-units.png)
 - [Choosing unit dictionaries](screenshots/unit-dictionaries.png)
 - [An audit report](screenshots/audit-report.png)
+- [Editing settings](screenshots/settings.png)
 
 ## Installation
 
