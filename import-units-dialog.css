@@ -1,0 +1,120 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family:
+    "Segoe UI",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  color: #242424;
+}
+
+#dialog-box {
+  box-sizing: border-box;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+#dialog-box h1 {
+  margin: 0 0 8px;
+  font-size: 16px;
+}
+
+.dialog-note {
+  margin: 0 0 14px;
+  font-size: 12px;
+  color: #616161;
+  line-height: 1.4;
+}
+
+.file-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.file-name {
+  font-size: 13px;
+  color: #616161;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.option-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.import-error {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  margin-top: 6px;
+  padding: 8px 10px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #8a1f11;
+  background: #fdecea;
+  border: 1px solid #f5c2bd;
+  border-radius: 3px;
+}
+
+.import-error ul {
+  margin: 4px 0 0;
+  padding-left: 18px;
+}
+
+.import-error[hidden] {
+  display: none;
+}
+
+.dialog-actions {
+  margin-top: auto;
+  padding-top: 12px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+button {
+  padding: 8px 16px;
+  font-size: 13px;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.primary {
+  background: #217346;
+  color: #fff;
+}
+
+.primary:hover:not(:disabled) {
+  background: #1a5c38;
+}
+
+.secondary,
+#choose-file {
+  background: #e0e0e0;
+  color: #242424;
+}
+
+.secondary:hover,
+#choose-file:hover {
+  background: #cccccc;
+}

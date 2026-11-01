@@ -253,6 +253,85 @@ one it shows the formula before and after and offers **Add** / **Skip**
 - If the number is dimensionless only because the cells it uses have no
   annotations, annotating *those* cells is usually the better fix.
 
+### Import and export units
+
+**Export units** saves every unit annotation in the workbook to a YAML file
+(named after the workbook, like `Budget 2026-units.yaml`, in your Downloads
+folder), and **Import units** reads one back. That lets you copy annotations to another workbook, edit them in
+a text editor, or have a script or an AI assistant draft them for you.
+
+Tick *Enable unit import and export* in [Settings](#settings) (Automation
+section; off by default) to make both buttons available.
+
+A units file lists annotations grouped by sheet. Each sheet is named once,
+and each of its annotations gives the cells, the unit, and optionally a
+reason:
+
+```yaml
+sheets:
+  "Sales":
+    - cells: "B2:B100"
+      unit: "US_dollar"
+      reason: "header Revenue"
+    - cells: "D:D"
+      unit: "kg"
+  "Costs":
+    - cells: "5:5"
+      unit: "hr"
+```
+
+- `cells` is a cell (`B2`), a range (`B2:B100`), a column (`D:D`; `B:D` is
+  three columns) or a row (`5:5`).
+- `unit` is what you would type in the Unit formula box, so prefixed units
+  (`kJ`) and currencies work.
+- The sheet name is the heading above its annotations, and it must match a
+  sheet in the workbook (capitalization doesn't matter).
+- `reason` is optional. It is saved with the annotation. An exported
+  annotation that was typed in by hand says `Added by user`.
+
+An annotation added by an import is recorded as `Added by importing <the
+file's name>` (an entry's own reason is kept, with the file's name added),
+and an export writes that back out.
+
+**Import units** opens a dialog where you choose the file and two options:
+
+- **Allow overwrite of existing unit annotations.** Off by default: cells
+  that already have an annotation are left as they are, and only the rest of
+  an entry's cells are annotated. On, the imported unit replaces what was
+  there (the rest of a larger annotation is kept).
+- **Choose dictionaries if needed.** A unit in the file may not be registered
+  because the [dictionary](#unit-dictionaries) that defines it is switched
+  off. With this ticked, Daubee switches on a built-in group or a custom
+  dictionary that defines it. Without it, such a unit stops the import, and
+  the message names the dictionary that has it.
+
+An import is **all or nothing.** If anything is wrong — an unknown sheet, a
+cell reference Daubee can't read, a unit that can't be parsed, or a unit that
+is not registered and that no dictionary defines — nothing is added, no
+dictionary is switched on, and the dialog lists every problem it found so you
+can fix the file and try again. Otherwise the annotations are saved like any
+other, and the status line says how many were added, how many entries were
+skipped because all their cells were already annotated, and which
+dictionaries were switched on.
+
+Importing does not change cell number formats, so a currency annotation
+doesn't switch a cell to a currency format. The [audit
+report](#audit-report) counts annotations added by import on their own line.
+
+**Annotating with an AI assistant.** The file format is plain enough that an
+AI assistant can write it. Give the assistant your workbook (or a description
+of it) and the example above, ask it to produce a units file for the cells
+that hold quantities, and import the result. Two things make this safe to
+try. Import is all or nothing and tells you exactly what it couldn't accept,
+so an invented unit name never gets half-applied. And once the cells are
+annotated, [Check Units](#check-units) works out the units of the formula
+cells and flags any annotation that contradicts a formula, which catches an
+assistant's wrong guess. It is enough to annotate the cells you typed
+numbers into; Daubee works out the formulas. Turn on *Choose dictionaries if
+needed* so a unit that lives in a switched-off dictionary doesn't stop the
+import, and leave *Allow overwrite* off unless you want the assistant's
+answers to replace annotations you made yourself.
+
 ## Check Units
 
 **Check** walks every formula on the current sheet and verifies that
@@ -538,6 +617,9 @@ settings:
   results](#wrap-dimensionless-results). Both are off by default. Ticking
   either also ticks *Define the WITHUNIT, CONVERTUNIT functions in this
   workbook* (they need `WITHUNIT`), and unticking that option unticks both.
+- **Automation: Enable unit import and export** — make the pane's **Import
+  units** and **Export units** buttons available; see [Import and export
+  units](#import-and-export-units). Off by default.
 
 ## Unit dictionaries
 
@@ -658,7 +740,7 @@ unit — `km` and `m` don't match, and Daubee doesn't track the factor of
 Click **Generate report** (Daubee tab, Audit group) to produce a PDF
 summarizing how much Daubee has actually been used in this workbook:
 how many unit annotations exist (broken down by whether they were typed
-by hand, inferred, or added via Check Units), how many errors have been
+by hand, inferred, added via Check Units, or imported from a file), how many errors have been
 detected, and how many cells have needed an Assert. These are
 **cumulative, lifetime counts** — a running tally of everything Daubee
 has ever found or created in this workbook, not a snapshot of what
