@@ -1,3 +1,0 @@
-Item;Weight;Cost
-x;1;10
-y;2;20
