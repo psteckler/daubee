@@ -6,11 +6,11 @@
   xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
   xsi:type="TaskPaneApp">
 
-  <Id>0f55b8dd-3c4a-4282-b177-f2a35808fd17</Id>
+  <Id>e9761546-489d-4d36-89df-21f9706318fb</Id>
   <Version>1.0.0.0</Version>
   <ProviderName>Paul A. Steckler</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
-  <DisplayName DefaultValue="Daubee" />
+  <DisplayName DefaultValue="Daubee (shared)" />
   <Description DefaultValue="An add-in for unit consistency checking" />
   <IconUrl DefaultValue="https://psteckler.github.io/daubee/assets/icon-32.png" />
   <HighResolutionIconUrl DefaultValue="https://psteckler.github.io/daubee/assets/icon-80.png" />
