@@ -168,12 +168,12 @@ button {
 }
 
 .dialog-close {
-  background: #e0e0e0;
-  color: #242424;
+  background: #217346;
+  color: white;
 }
 
 .dialog-close:hover {
-  background: #cccccc;
+  background: #1a5c38;
 }
 
 #metric-select,
