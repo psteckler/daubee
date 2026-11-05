@@ -6,7 +6,7 @@
   xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
   xsi:type="TaskPaneApp">
 
-  <Id>0f55b8dd-3c4a-4282-b177-f2a35808fd17</Id>
+  <Id>e9761546-489d-4d36-89df-21f9706318fb</Id>
   <Version>1.0.0.0</Version>
   <ProviderName>Paul A. Steckler</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
@@ -24,6 +24,14 @@
     <Host Name="Workbook" />
   </Hosts>
 
+  <!-- The ribbon commands run inside the task pane's own page (a shared
+       runtime), so the pane and the buttons are one page. -->
+  <Requirements>
+    <Sets DefaultMinVersion="1.1">
+      <Set Name="SharedRuntime" MinVersion="1.1" />
+    </Sets>
+  </Requirements>
+
   <DefaultSettings>
     <SourceLocation DefaultValue="https://psteckler.github.io/daubee/taskpane.html" />
   </DefaultSettings>
@@ -33,8 +41,11 @@
   <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
     <Hosts>
       <Host xsi:type="Workbook">
+        <Runtimes>
+          <Runtime resid="Taskpane.Url" lifetime="long" />
+        </Runtimes>
         <DesktopFormFactor>
-          <FunctionFile resid="Commands.Url" />
+          <FunctionFile resid="Taskpane.Url" />
 
           <ExtensionPoint xsi:type="PrimaryCommandSurface">
             <OfficeTab id="TabHome">
@@ -57,9 +68,8 @@
                     <bt:Image size="32" resid="Icon.32x32" />
                     <bt:Image size="80" resid="Icon.80x80" />
                   </Icon>
-                  <Action xsi:type="ShowTaskpane">
-                    <TaskpaneId>ButtonId1</TaskpaneId>
-                    <SourceLocation resid="Taskpane.Url" />
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>showPane</FunctionName>
                   </Action>
                 </Control>
               </Group>
@@ -88,9 +98,8 @@
                     <bt:Image size="32" resid="Icon.Sidebar.32x32" />
                     <bt:Image size="80" resid="Icon.Sidebar.80x80" />
                   </Icon>
-                  <Action xsi:type="ShowTaskpane">
-                    <TaskpaneId>ButtonId3</TaskpaneId>
-                    <SourceLocation resid="Taskpane.Url" />
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>showPane</FunctionName>
                   </Action>
                 </Control>
               </Group>
@@ -241,7 +250,6 @@
         <bt:Image id="Icon.About.80x80" DefaultValue="https://psteckler.github.io/daubee/assets/icon-about-80.png" />
       </bt:Images>
       <bt:Urls>
-        <bt:Url id="Commands.Url" DefaultValue="https://psteckler.github.io/daubee/commands.html" />
         <bt:Url id="Taskpane.Url" DefaultValue="https://psteckler.github.io/daubee/taskpane.html" />
       </bt:Urls>
       <bt:ShortStrings>
