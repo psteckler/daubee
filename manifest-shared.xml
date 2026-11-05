@@ -24,6 +24,14 @@
     <Host Name="Workbook" />
   </Hosts>
 
+  <!-- Experimental: the ribbon commands run inside the task pane's own page
+       (a shared runtime) instead of the separate commands.html. -->
+  <Requirements>
+    <Sets DefaultMinVersion="1.1">
+      <Set Name="SharedRuntime" MinVersion="1.1" />
+    </Sets>
+  </Requirements>
+
   <DefaultSettings>
     <SourceLocation DefaultValue="https://psteckler.github.io/daubee/taskpane.html" />
   </DefaultSettings>
@@ -31,13 +39,6 @@
   <Permissions>ReadWriteDocument</Permissions>
 
   <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
-    <!-- Experimental: the ribbon commands run inside the task pane's own
-         page (a shared runtime) instead of the separate commands.html. -->
-    <Requirements>
-      <bt:Sets DefaultMinVersion="1.1">
-        <bt:Set Name="SharedRuntime" MinVersion="1.1" />
-      </bt:Sets>
-    </Requirements>
     <Hosts>
       <Host xsi:type="Workbook">
         <Runtimes>
@@ -67,9 +68,8 @@
                     <bt:Image size="32" resid="Icon.32x32" />
                     <bt:Image size="80" resid="Icon.80x80" />
                   </Icon>
-                  <Action xsi:type="ShowTaskpane">
-                    <TaskpaneId>ButtonId1</TaskpaneId>
-                    <SourceLocation resid="Taskpane.Url" />
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>showPane</FunctionName>
                   </Action>
                 </Control>
               </Group>
@@ -98,9 +98,8 @@
                     <bt:Image size="32" resid="Icon.Sidebar.32x32" />
                     <bt:Image size="80" resid="Icon.Sidebar.80x80" />
                   </Icon>
-                  <Action xsi:type="ShowTaskpane">
-                    <TaskpaneId>ButtonId3</TaskpaneId>
-                    <SourceLocation resid="Taskpane.Url" />
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>showPane</FunctionName>
                   </Action>
                 </Control>
               </Group>
