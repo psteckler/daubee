@@ -86,6 +86,21 @@ button:disabled:hover {
   margin-bottom: 0;
 }
 
+/* A button with an inline SVG icon beside its text; the icon takes the text
+   color, so it also greys out when the button is disabled. */
+.icon-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.button-icon {
+  flex: 0 0 auto;
+  width: 14px;
+  height: 14px;
+}
+
 /* Fixed-size footer, sibling to #scroll-area rather than part of it, so
    it's always visible regardless of how far the pane above is scrolled --
    plain text now that it has its own dedicated area, no box chrome. */
