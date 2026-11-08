@@ -90,6 +90,12 @@ body {
   width: 16px;
 }
 
+/* Extra room before the conversion item: its dot sits at the end of the unit
+   lines, not at the start like the prefix dots. */
+.prefix-legend-gap-wide {
+  width: 36px;
+}
+
 .prefix-legend {
   margin-top: -6px;
 }
@@ -197,4 +203,29 @@ button {
   color: #a8a8a8;
   text-decoration: none;
   cursor: not-allowed;
+}
+
+/* The blue dot at the end of a unit's line; clicking it shows the unit's
+   conversion. Same size as the prefix dots. */
+.conversion-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  min-width: 0;
+  margin: 0 0 0 2px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: #1f6fd1;
+  cursor: pointer;
+  vertical-align: baseline;
+}
+
+.conversion-text {
+  margin-left: 6px;
+  color: #1f6fd1;
+}
+
+.conversion-legend-dot {
+  background: #1f6fd1;
 }
