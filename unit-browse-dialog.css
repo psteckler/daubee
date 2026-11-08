@@ -229,3 +229,8 @@ button {
 .conversion-legend-dot {
   background: #1f6fd1;
 }
+
+.conversion-problem {
+  margin-left: 6px;
+  color: #a4262c;
+}
