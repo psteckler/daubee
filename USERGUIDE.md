@@ -22,6 +22,7 @@ formulas where there's unit inconsistency.
 - [Consolidate](#consolidate)
 - [Assert](#assert)
 - [WITHUNIT](#withunit)
+- [Unit conversions](#unit-conversions)
 - [Currencies](#currencies)
 - [Settings](#settings)
 - [Unit dictionaries](#unit-dictionaries)
@@ -112,7 +113,10 @@ formula box, and **Clear** empties it.
 A green dot before a unit marks one that takes a metric [magnitude
 prefix](#magnitude-prefixes) such as `k` or `M`, and a black dot one that
 takes a binary prefix such as `Ki` or `Mi` (`bit` and `byte` have both).
-A unit without a dot takes neither. To insert a prefixed name by clicking,
+A unit without a dot takes neither. A blue dot at the end of a unit's line
+means the unit has a [conversion](#unit-conversions); click it to show the
+conversion (`1 mile = 5280 foot`), and click it again to hide it. To insert
+a prefixed name by clicking,
 choose a prefix in the **Metric** or **Binary** menu next to **Prefix**,
 above the syntax buttons. The names that can't take it (`joule`, say, when
 only `J` does) are greyed out, so click `J` to insert `kJ`. The prefix
@@ -502,6 +506,99 @@ yourself, add a name `CONVERTUNIT` that refers to
 `=LAMBDA(value, unit1, unit2, CONVERT(WITHUNIT(value, unit1), unit1, unit2))`,
 after defining `WITHUNIT`.
 
+## Unit conversions
+
+A conversion factor is just a number with a unit ratio: `5280` annotated
+`ft/mile` means "5280 feet per mile". Put it in a cell, multiply a
+distance in miles by that cell, and the result is in feet — with the
+factor visible in the sheet and Check Units happy, instead of a magic
+number buried in a formula. **Add conversion** writes such a cell for you.
+
+### Add conversion
+
+1. Select a single empty cell.
+2. Type a unit formula such as `ft/mile` in the **Unit formula** box.
+3. Click **Add conversion** (to the right of **Annotate**).
+
+Daubee puts `5280` in the cell and annotates it `ft/mile`. The value is
+always the number for which *value × (the unit formula) = 1*: `ft/mile` is
+5280 (5280 feet make a mile), `inch/mile` is 63360, and `meter/km` is 1000
+(while `km/meter` is 0.001). With the factor in `F1` and a distance in
+miles in `A2`, `=A2*$F$1` is in feet and checks cleanly.
+
+The button is available only when exactly one cell is selected and the unit
+formula has a conversion. If you click it and the cell isn't empty, or is
+formatted as a currency, text or a date, the status line says
+**Conversion not added** and why, and the cell is left alone.
+
+### Which formulas have a conversion
+
+Units convert only into units of the same kind (feet into miles, but not
+into seconds). Daubee groups units by the conversions they have, and a
+formula has a conversion when every group *cancels*: the exponents of that
+group's units add up to zero. So:
+
+| Formula | Result |
+| --- | --- |
+| `ft/mile` | 5280 |
+| `inch/mile` | 63360 (inches to feet to miles) |
+| `km/meter` | 0.001 (a prefixed unit counts as the unit times the prefix) |
+| `ft-hour/(mile-second)` | 1.4667 (lengths cancel and times cancel) |
+| `km^2/mile` | none: length doesn't cancel (total exponent 1) |
+| `km/second` | none: length doesn't cancel |
+| `ft/ft` | none: nothing to convert |
+
+The order of units in the formula doesn't matter, and the status line names
+the kind that doesn't cancel when a formula has no conversion. A unit
+without a conversion (a made-up unit like `widget`, or `month`, whose
+length varies) can't be converted into anything. Units that aren't a plain
+factor apart — temperatures, and currencies, whose rates change — have no
+conversions.
+
+### Conversions in the built-in units
+
+Most [Excel-native](#unit-dictionaries) units have a conversion, defined in
+terms of one other unit; `foot` is `12 inch`, `mile` is `5280 foot`, `inch`
+is `0.0254 meter`, and so on. Chains are followed, so `inch/mile` works.
+The values agree with Excel's `CONVERT` function to better than one part
+in a billion, except for the atomic mass unit, the electron volt and the
+millimeter of mercury, where `CONVERT` has fewer digits than the accepted
+value and Daubee uses the accepted value. A `year` is 365.25 days, as in
+`CONVERT`. A radian is `57.29577951308232 degree`.
+
+In [Browse](#browsing-available-units), the blue dot at the end of a unit's
+line shows the unit's conversion. If the conversion names a unit that
+doesn't exist or whose dictionary isn't selected, a note in red says so.
+
+### Conversions in your own dictionaries
+
+A unit in a [dictionary file](#unit-dictionaries) can have one optional
+`conversion` field: a constant and a unit, meaning how many of that unit
+this one is.
+
+```yaml
+old_lengths:
+  - canonicalName: furlong
+    aliases: [furlongs]
+    conversion: "660 foot"
+  - canonicalName: league
+    aliases: [leagues]
+    conversion: "3 mile"
+```
+
+The constant is a decimal (`3.1415926`), scientific notation (`5.77e17`),
+or a ratio of whole numbers (`17/24`), and may be negative but not zero. A
+unit has at most one conversion, so definitions can't contradict each other;
+the other unit can come from any dictionary, and conversions chain through
+as many units as needed. Daubee refuses to load a dictionary whose
+`conversion` isn't a constant and a unit, or whose conversions lead back to
+where they started.
+
+If a conversion names a unit from a dictionary that isn't selected, Daubee
+asks, in the Unit dictionaries dialog, whether to select the dictionaries
+that are needed — one question listing all of them. A conversion naming a
+unit no dictionary has simply can't be used.
+
 ## Currencies
 
 Daubee understands currency units (`USD`, `EUR`, `Canadian_dollar`, ...)
@@ -690,7 +787,8 @@ and `joule/second`, or `kWh` (defined as `kW-hour`) and `kW-hour`. This is
 about dimensions only — Daubee doesn't track scale factors, so a bare
 number like the `100` in a cents-to-dollars conversion is invisible to it.
 To state a conversion factor, put it in a cell and annotate that cell with
-the unit ratio (a `100` annotated `cents/US_dollar`), or use
+the unit ratio (a `100` annotated `cents/US_dollar`) — or let [Add
+conversion](#unit-conversions) do it for you — or use
 [WITHUNIT](#withunit) to give a number its unit inside a formula.
 
 This is also where you'd add a currency Daubee doesn't already know
