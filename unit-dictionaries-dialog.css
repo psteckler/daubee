@@ -166,3 +166,25 @@ button {
 .dialog-close:hover {
   background: #1a5c38;
 }
+
+.needs-panel {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border: 1px solid #217346;
+  border-radius: 3px;
+  font-size: 12px;
+}
+
+.needs-panel p {
+  margin: 0 0 6px;
+}
+
+.needs-panel ul {
+  margin: 0 0 8px;
+  padding-left: 18px;
+}
+
+.needs-actions {
+  display: flex;
+  gap: 8px;
+}
