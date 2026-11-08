@@ -42,7 +42,7 @@ An **annotation** is how you tell Daubee what unit a cell represents.
 Select a cell, a range, an entire row, or an entire column, then:
 
 1. Type a unit formula into the **Unit formula** box (see below).
-2. Click **Annotate selection**.
+2. Click **Annotate**.
 
 Whatever you select is what gets annotated — annotate a whole column and
 every cell in that column is treated as carrying that unit (this is the
@@ -407,7 +407,7 @@ or *Double-line* for each, and every border in the workbook is redrawn
 right away.
 
 If the blue borders are distracting, tick **Hide annotation borders**
-(just below the **Annotate selection** button). The blue borders on
+(just below the **Annotate** button). The blue borders on
 annotated cells disappear; untick it and they come back. Hiding them
 doesn't touch the annotations themselves, and the error borders — red,
 amber, yellow, and purple — always stay visible, since they point at

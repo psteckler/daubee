@@ -188,7 +188,7 @@ button:disabled:hover {
   font-style: italic;
 }
 
-/* Sits just under the Annotate selection button (which has a 10px bottom
+/* Sits just under the Annotate button (which has a 10px bottom
    margin), flush with its left edge, in the same 13px as the "Unit
    formula" label. */
 .hide-borders-row {
