@@ -90,12 +90,6 @@ body {
   width: 16px;
 }
 
-/* Extra room before the conversion item: its dot sits at the end of the unit
-   lines, not at the start like the prefix dots. */
-.prefix-legend-gap-wide {
-  width: 36px;
-}
-
 .prefix-legend {
   margin-top: -6px;
 }

@@ -115,7 +115,7 @@ prefix](#magnitude-prefixes) such as `k` or `M`, and a black dot one that
 takes a binary prefix such as `Ki` or `Mi` (`bit` and `byte` have both).
 A unit without a dot takes neither. A blue dot at the end of a unit's line
 means the unit has a [conversion](#unit-conversions); click it to show the
-conversion (`1 mile = 5280 foot`), and click it again to hide it. To insert
+conversion (`= 5280 foot` beside `mile`), and click it again to hide it. To insert
 a prefixed name by clicking,
 choose a prefix in the **Metric** or **Binary** menu next to **Prefix**,
 above the syntax buttons. The names that can't take it (`joule`, say, when
