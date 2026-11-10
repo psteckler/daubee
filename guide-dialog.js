@@ -1,0 +1,1 @@
+(()=>{"use strict";function e(){Office.context.ui.messageParent(JSON.stringify({type:"closed"}))}Office.onReady(()=>{document.getElementById("guide-close").onclick=e,document.getElementById("guide-link").onclick=()=>{window.setTimeout(e,300)}})})();
