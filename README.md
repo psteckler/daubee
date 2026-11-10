@@ -62,7 +62,8 @@ the **Raw** button and choose Save As).
 - **Excel on the Web**
 
   Open Excel online, go to Home > Add-ins > More Add-ins, select
-  MY ADD-INS, click Upload My Add-in, and select the manifest file.
+  MY ADD-INS, then Manage My Add-ins, click Upload My Add-in, and select the
+  manifest file.
 
 ## Research background
 
