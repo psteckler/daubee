@@ -695,10 +695,13 @@ settings:
   default), deleting an annotation also sets its cells back to the General
   number format, but only where the cell's format is exactly one that
   *Autoformat with* (below) would have written for that annotation's unit,
-  such as `0.00 "kg"`. A format you chose yourself is left alone, and so is
-  any cell another annotation still covers. Currency formats are never
-  removed, since they may be your own. Uncheck it to leave formats untouched
-  when you delete annotations.
+  such as `0.00 "kg"` — or, for a currency, the Currency format Daubee applies
+  (a symbol or code such as `[$$-en-US]` followed by `#,##0.00`). A format
+  you chose yourself that has a different shape is left alone, and so is any
+  cell another annotation still covers. A currency format of the same shape
+  that you applied yourself is reset too, since Daubee can't tell it apart.
+  Uncheck the setting to leave formats untouched when you delete
+  annotations.
 - **Autoformat with** — when checked, saving a unit annotation on a
   still-"General"-formatted, non-currency cell also applies a matching
   Custom number format showing the unit alongside the value (e.g. `0.00
