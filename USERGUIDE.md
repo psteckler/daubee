@@ -63,7 +63,9 @@ list shows it, along with a **Delete** button to remove it. If your
 selection contains several different annotations, they all show up in
 the list; a **Delete all units within selection** button appears
 above it whenever your selection covers more than one annotation, so you
-can clear them out in one step.
+can clear them out in one step. Deleting also removes the number format
+Daubee added for the unit (see *Remove added formats when deleting units*
+in [Settings](#settings)).
 Each unit in the list has a copy icon next to it, which copies the unit
 formula to the clipboard.
 
@@ -689,6 +691,14 @@ settings:
   annotation that matches a named unit's own definition (e.g.
   `kilogram-meter/second^2`) automatically rewrites it to that unit's
   name (`newton`) instead of keeping the expanded form.
+- **Remove added formats when deleting units** — when checked (the
+  default), deleting an annotation also sets its cells back to the General
+  number format, but only where the cell's format is exactly one that
+  *Autoformat with* (below) would have written for that annotation's unit,
+  such as `0.00 "kg"`. A format you chose yourself is left alone, and so is
+  any cell another annotation still covers. Currency formats are never
+  removed, since they may be your own. Uncheck it to leave formats untouched
+  when you delete annotations.
 - **Autoformat with** — when checked, saving a unit annotation on a
   still-"General"-formatted, non-currency cell also applies a matching
   Custom number format showing the unit alongside the value (e.g. `0.00
