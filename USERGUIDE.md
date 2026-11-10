@@ -86,6 +86,12 @@ Spaces are fine anywhere you'd naturally put one — `kg - m / s^2` and
 `kg-m/s^2` mean exactly the same thing; Daubee strips them out before
 reading the formula.
 
+Daubee reads `-` and `/` from left to right, so `a/b-c` means `(a/b)-c`,
+not `a/(b-c)`. To divide by several units, put them in parentheses:
+`km-second/(mile-second)`, not `km-second/mile-second` (which means
+`(km-second/mile)-second`). Daubee writes formulas the same way, adding
+the parentheses itself where a denominator needs them.
+
 A few real examples:
 
 - `USD` — US dollars
