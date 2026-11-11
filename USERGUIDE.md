@@ -144,6 +144,9 @@ for cell B1?"* with **Add** and **Skip** buttons. The dialog also offers
 **Add all** / **Skip all**, which answer every remaining offer in that
 Infer run the same way, so you don't have to click through each one.
 
+Accepting an offer applies the same number formats as annotating by hand
+(see [Check Units](#check-units)).
+
 Infer only ever proposes annotations for cells that don't have a formula
 of their own (a plain value cell) — it never guesses at what a *formula*
 cell's own result should be. That's Check Units' job.
@@ -361,7 +364,11 @@ For any formula cell whose unit Check Units can work out for certain but
 that doesn't yet carry that annotation, it offers to add it: *"Add
 'USD' as the unit annotation for cell B4?"* with **Add** / **Skip**.
 Accepting these offers is how a spreadsheet gradually ends up with its
-formula cells annotated too, not just its raw inputs.
+formula cells annotated too, not just its raw inputs. A cell that is still
+in the "General" format also gets the number format that annotating by hand
+would give it: a currency unit offers its [Currency
+format](#currencies) (or applies it, if that Setting is on), and any other
+unit gets the Autoformat unit format when that Setting is on.
 
 Cells that don't check out get a colored border instead of an offer —
 see the next section.
@@ -627,9 +634,12 @@ your annotation:
   choose between the **Default currency format** (`$42.99`) and the
   **Three-letter currency code format** (`USD 42.99`). Declining just
   skips the formatting — your annotation is saved either way.
-  Deleting the annotation later does **not** undo a currency format
-  Daubee applied; the cell keeps it until you change it yourself (Daubee
-  can't tell its own formatting from yours).
+  Deleting the annotation later sets the cell back to "General" again if
+  its format is one Daubee would have written for that currency, as long as
+  *Remove added formats when deleting units* is ticked in
+  [Settings](#settings) (it is by default). A currency format of the same
+  shape that you applied yourself is reset too, since Daubee can't tell it
+  apart; untick the Setting to keep formats when you delete.
 - **Annotating a cell whose format already shows a *different* currency**
   offers to rewrite the format to match your annotation instead of
   blocking the save outright. Declining this one *does* cancel the save,
@@ -648,6 +658,37 @@ your annotation:
   6 cells' formats show EUR, not USD") and offers **Reformat to match**,
   which sets just those cells back to the annotation's currency. The check
   covers the whole annotated range, not only the cells you selected.
+
+### Exchange rates
+
+An exchange rate is a ratio of two currencies: `USD/GBP` means "US dollars
+per pound". A cell with a currency format can carry such a unit when the
+format's currency is the *numerator*, so a cell formatted in dollars can be
+annotated `USD/GBP`. A currency format for any other currency is still
+refused or offered a rewrite, as above.
+
+### The Currencies data type
+
+Excel's Currencies data type (in Microsoft 365) turns a pair such as
+`GBP/USD` into a cell with fields, and `=A1.Price` (or `=A1.[52 week high]`,
+or `=FIELDVALUE(A1,"Price")`) reads one of them. Daubee reads the pair's
+**Currency** and **From currency** from the cell, and gives these fields the
+unit *Currency* per *From currency*, so for `GBP/USD` they are `USD/GBP`:
+`Price`, `Change`, `Previous close`, `Open`, `High`, `Low`, `52 week high`
+and `52 week low`.
+
+- **Check Units** uses that unit for the formula, so a cell annotated
+  `USD/CAD` for `=A1.Price` on a GBP/USD cell is flagged as a mismatch, and
+  `=A2*B1`, with `B1` in pounds, comes out in dollars.
+- **Annotating** a cell whose formula is just such a field read (`=A1.Price`)
+  with a different unit is refused, with a message naming the right unit.
+  The annotation is accepted when it matches. For a formula that merely
+  contains a field read, such as `=A1.Price*B1`, Check Units reports a wrong
+  annotation afterwards instead.
+- **Other fields** (`Name`, `Change (%)`, ...) are unverifiable, and so is a
+  cell that isn't a currency pair. Reading the cell's fields needs Excel's
+  API 1.16, available in Excel on the web, Microsoft 365 and Excel 2024; if it
+  isn't there the formula is simply unverifiable.
 
 The dollar currencies also have symbol aliases, so `US$`, `C$`, `A$`,
 `NZ$`, `S$`, `HK$`, and `NT$` can be used for US, Canadian, Australian,
