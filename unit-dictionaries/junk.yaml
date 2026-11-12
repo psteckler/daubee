@@ -1,0 +1,27 @@
+# SI derived units with special names, and the SI base units they are defined
+# from, for the Daubee Excel add-in.
+#
+# Add it from the Unit dictionaries dialog ("Add from URL"):
+#   https://psteckler.github.io/daubee/unit-dictionaries/SI-derived-units.yaml
+#
+# Sources: "The International System of Units (SI)", 9th edition, BIPM, 2019,
+# tables 2 and 4; NIST Special Publication 330 (2019).
+#
+# The units from gram to degree at the start of the file are the built-in
+# ones, repeated exactly so that this dictionary works on its own, even if
+# the Excel-native groups are switched off. A dictionary may repeat a unit
+# that is already known when the definition is the same.
+#
+# Each derived unit's "expansion" spells it out in base units, so that Check
+# and Infer treat, say, volt-ampere and watt as the same unit.
+#
+# Left out: kelvin and the degree Celsius (temperatures are offsets, not
+# factors; Excel-native already has them), and the one-letter symbols C
+# (coulomb) and F (farad), which Excel's own CONVERT uses for degrees
+# Celsius and Fahrenheit. Write coulomb and farad out; prefixed forms work
+# too (mcoulomb, uF is not available, but mfarad is).
+
+distance:
+  - canonicalName: meter
+    aliases: [m, meters, ziffels]
+    prefixable: { metric: [m] }

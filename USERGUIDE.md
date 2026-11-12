@@ -796,6 +796,13 @@ several groups), and to add your own dictionaries:
 - **Add from URL** loads one from a web address instead — useful for
   sharing a shop- or team-wide dictionary without emailing files around.
 
+A dictionary can be in the list only once. Adding a URL that is already
+there, or a file with the same contents as one already there (whatever it is
+called), is refused with a message saying so. A file with the *name* of one
+already added but different contents is taken as a newer version: it
+replaces the old one, which keeps its place in the list and whether it is
+switched on.
+
 The built-in **Trigonometric** group holds the angle units `degree`
 (`deg`, `degrees`) and `radian` (`rad`, `radians`). Excel's trig functions
 work in radians, so leave it on if you use `SIN`, `COS` and friends with
