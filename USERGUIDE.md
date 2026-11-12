@@ -370,9 +370,13 @@ other, and the status line says how many were added, how many entries were
 skipped because all their cells were already annotated, and which
 dictionaries were switched on.
 
-Importing does not change cell number formats, so a currency annotation
-doesn't switch a cell to a currency format. The [audit
-report](#audit-report) counts annotations added by import on their own line.
+After the import, number formats follow the same rules as annotating by
+hand, for cells still in the "General" format: a currency annotation offers
+the Currency format (one question for each currency, or applied without
+asking if that Setting is on), and any other unit gets the Autoformat unit
+format when that Setting is on, as long as every cell it covers is still in
+"General". The [audit report](#audit-report) counts annotations added by
+import on their own line.
 
 **Annotating with an AI assistant.** The file format is plain enough that an
 AI assistant can write it. Give the assistant your workbook (or a description
