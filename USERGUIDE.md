@@ -76,6 +76,22 @@ fixed ranges. Import and export write a
 following annotation as `Table1[Weight]` (see [Import and export
 units](#import-and-export-units)).
 
+**Spill ranges.** A formula that fills several cells (a dynamic array such as
+`=SORT(...)` or `=IMPORTCSV(...)`) spills to a range that grows and shrinks
+with the data. If you annotate exactly the cells such a formula spills to
+(select the spill and click **Annotate**), the annotation *follows the
+spill*: the pane shows it as `Sheet!E1#` (the cell holding the formula) and it
+covers whatever the formula spills to now, kept up to date the way a
+table-column annotation is. If the formula comes to give a single value, the
+annotation shrinks to its cell; if the formula is deleted, the pane says so
+under the annotation, which keeps its last range. This is most useful for
+spills Daubee can't work out itself (imported data, say), since a range
+annotated by hand would go stale when the spill changes size. A spill of one
+cell isn't a spill to Excel, so annotating it gives an ordinary annotation.
+Untick *Follow spill ranges when annotating them* in
+[Settings](#settings) to always get fixed ranges. Check and Infer also read
+`E1#` in formulas, as in `=SUM(E1#)`, as the whole spill.
+
 **Formulas that use table references.** Check and Infer read the table
 syntax Excel writes in formulas: `[@Weight]` and `Table1[@Weight]` (the
 formula's own row), `[@[Net weight]]` (a column name with a space),
@@ -338,10 +354,12 @@ sheets:
 - `cells` is a cell (`B2`), a range (`B2:B100`), a column (`D:D`; `B:D` is
   three columns), a row (`5:5`) or a table column (`Orders[Net weight]`, the
   table's name and the column's name; see [Table
-  columns](#annotating-a-cell-with-a-unit)). An annotation that follows a
-  table column is exported this way, and importing such an entry makes an
-  annotation that follows the column again, so it keeps growing and
-  shrinking with the table. The table must exist in the workbook and be on
+  columns](#annotating-a-cell-with-a-unit)) or a spill (`E1#`, the cell
+  holding the formula). An annotation that follows a
+  table column or a spill is exported this way, and importing such an entry
+  makes an annotation that follows it again, so it keeps growing and
+  shrinking with the table or the spill. For `E1#` the cell must hold a
+  formula, or the import stops with a message. The table must exist in the workbook and be on
   the entry's sheet (names are matched ignoring capitalization), or the
   import stops with a message. If some cells of the column already have an
   annotation and *Allow overwrite* is off, the rest is annotated as fixed
@@ -792,6 +810,11 @@ settings:
   annotation follow the column as rows are added and removed; see
   [Annotating a cell with a unit](#annotating-a-cell-with-a-unit). Unticked,
   such an annotation is a fixed range.
+- **Follow spill ranges when annotating them** — when checked (the default),
+  annotating exactly the cells a formula spills to makes the annotation
+  follow the spill as it grows and shrinks; see [Annotating a cell with a
+  unit](#annotating-a-cell-with-a-unit). Unticked, such an annotation is a
+  fixed range.
 - **Remove added formats when deleting units** — when checked (the
   default), deleting an annotation also sets its cells back to the General
   number format, but only where the cell's format is exactly one that
