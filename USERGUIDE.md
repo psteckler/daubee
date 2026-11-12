@@ -75,8 +75,9 @@ table columns when annotating them* in [Settings](#settings) to always get
 fixed ranges. Formulas written with table syntax, such as `[@Weight]` or
 `Table1[Weight]`, can't be read yet, so Check reports them as
 unverifiable; a formula that refers to the same cells as ordinary
-references, like `=B2*C2`, is checked as usual. Import and export treat a
-following annotation as the range it covers at the time.
+references, like `=B2*C2`, is checked as usual. Import and export write a
+following annotation as `Table1[Weight]` (see [Import and export
+units](#import-and-export-units)).
 
 Once a selection has an annotation, the pane's **Units for selection**
 list shows it, along with a **Delete** button to remove it. If your
@@ -317,13 +318,26 @@ sheets:
       reason: "header Revenue"
     - cells: "D:D"
       unit: "kg"
+    - cells: "Orders[Net weight]"
+      unit: "kg"
   "Costs":
     - cells: "5:5"
       unit: "hr"
 ```
 
 - `cells` is a cell (`B2`), a range (`B2:B100`), a column (`D:D`; `B:D` is
-  three columns) or a row (`5:5`).
+  three columns), a row (`5:5`) or a table column (`Orders[Net weight]`, the
+  table's name and the column's name; see [Table
+  columns](#annotating-a-cell-with-a-unit)). An annotation that follows a
+  table column is exported this way, and importing such an entry makes an
+  annotation that follows the column again, so it keeps growing and
+  shrinking with the table. The table must exist in the workbook and be on
+  the entry's sheet (names are matched ignoring capitalization), or the
+  import stops with a message. If some cells of the column already have an
+  annotation and *Allow overwrite* is off, the rest is annotated as fixed
+  ranges instead. A table or column name that has square brackets in it, or
+  a table name with spaces, can't be written this way, and its annotation is
+  exported as the range it covers.
 - `unit` is what you would type in the Unit formula box, so prefixed units
   (`kJ`) and currencies work.
 - The sheet name is the heading above its annotations, and it must match a
