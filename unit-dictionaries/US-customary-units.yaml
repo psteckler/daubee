@@ -1,0 +1,194 @@
+# United States customary units (and the US survey units), for the Daubee Excel
+# add-in.
+#
+# Add it from the Unit dictionaries dialog ("Add from URL"):
+#   https://psteckler.github.io/daubee/unit-dictionaries/US-customary-units.yaml
+#
+# Sources: NIST Handbook 44, appendix C (general tables of units of
+# measurement), and NIST Special Publication 811 (guide for the use of the
+# SI). The US survey foot (1200/3937 metre) is deprecated since 2023 but
+# still used in land surveys, so the survey units keep their own names
+# (us_survey_foot, us_survey_mile, us_survey_acre); the plain foot, mile and
+# acre are the international ones.
+#
+# The liquid units (the US pint, quart and gallon) are the ones Excel's
+# CONVERT calls pt, qt and gal. The dry measures (dry_pint, dry_quart, peck,
+# bushel) are separate units with their own names. British units that look
+# similar (the imperial pint, gallon, and so on) are in the imperial
+# dictionary.
+#
+# Many of these units are in Excel's own list and so are built in; they are
+# repeated here exactly, so that this dictionary works on its own, even if the
+# Excel-native groups are switched off. A dictionary may repeat a unit that is
+# already known when the definition is the same, and the few units the imperial
+# dictionary shares (thou, hand, fathom, dram, the troy weights, therm) are
+# defined the same way in both.
+
+distance:
+  - canonicalName: meter
+    aliases: [m, meters]
+    prefixable: { metric: [m] }
+  - canonicalName: inch
+    aliases: [in, inches]
+    conversion: "0.0254 meter"
+  - canonicalName: foot
+    aliases: [ft, feet]
+    conversion: "12 inch"
+  - canonicalName: yard
+    aliases: [yd, yards]
+    conversion: "3 foot"
+  - canonicalName: mile
+    aliases: [mi, miles]
+    conversion: "5280 foot"
+  - canonicalName: nautical_mile
+    aliases: [Nmi]
+    conversion: "1852 meter"
+  - canonicalName: us_survey_mile
+    aliases: [survey_mi]
+    conversion: "6336000/3937 meter"
+  - canonicalName: thou
+    aliases: [mil, mils, thous]
+    conversion: "1/1000 inch"
+  - canonicalName: hand
+    aliases: [hands]
+    conversion: "4 inch"
+  - canonicalName: fathom
+    aliases: [fathoms]
+    conversion: "6 foot"
+  - canonicalName: us_survey_foot
+    aliases: [survey_ft, us_survey_feet]
+    conversion: "1200/3937 meter"
+  - canonicalName: us_survey_chain
+    aliases: [survey_chain, us_survey_chains]
+    conversion: "66 us_survey_foot"
+  - canonicalName: us_survey_furlong
+    aliases: [survey_furlong, us_survey_furlongs]
+    conversion: "660 us_survey_foot"
+
+weight_and_mass:
+  - canonicalName: gram
+    aliases: [g, grams]
+    prefixable: { metric: [g] }
+  - canonicalName: grain
+    aliases: [grains]
+    conversion: "0.06479891 gram"
+  - canonicalName: ounce_mass
+    aliases: [ozm]
+    conversion: "28.349523125 gram"
+  - canonicalName: pound_mass
+    aliases: [pound, lb, lbm, pounds]
+    conversion: "453.59237 gram"
+  - canonicalName: short_hundredweight
+    aliases: [cwt, shweight]
+    conversion: "45359.237 gram"
+  - canonicalName: ton
+    aliases: [tons]
+    conversion: "907184.74 gram"
+  - canonicalName: dram
+    aliases: [drams, drachm, drachms]
+    conversion: "1/16 ounce_mass"
+  - canonicalName: pennyweight
+    aliases: [dwt, pennyweights]
+    conversion: "24 grain"
+  - canonicalName: troy_ounce
+    aliases: [ozt, troy_ounces]
+    conversion: "480 grain"
+  - canonicalName: troy_pound
+    aliases: [lbt, troy_pounds]
+    conversion: "5760 grain"
+
+volume_and_liquid_measure:
+  - canonicalName: liter
+    aliases: [l, L, lt, liters]
+    prefixable: { metric: [l, L, lt] }
+  - canonicalName: fluid_ounce
+    aliases: [oz]
+    conversion: "0.0295735295625 liter"
+  - canonicalName: teaspoon
+    aliases: [tsp, teaspoons]
+    conversion: "1/6 fluid_ounce"
+  - canonicalName: tablespoon
+    aliases: [tbs, tablespoons]
+    conversion: "0.5 fluid_ounce"
+  - canonicalName: cup
+    aliases: [cups]
+    conversion: "8 fluid_ounce"
+  - canonicalName: us_pint
+    aliases: [pt, us_pt]
+    conversion: "16 fluid_ounce"
+  - canonicalName: quart
+    aliases: [qt, quarts]
+    conversion: "32 fluid_ounce"
+  - canonicalName: gallon
+    aliases: [gal, gallons]
+    conversion: "128 fluid_ounce"
+  - canonicalName: bushel
+    aliases: [bushels]
+    conversion: "35.23907016688 liter"
+  - canonicalName: oil_barrel
+    aliases: [barrel, barrels]
+    conversion: "42 gallon"
+  - canonicalName: cubic_foot
+    aliases: [ft3]
+    conversion: "28.316846592 liter"
+  - canonicalName: us_minim
+    aliases: [us_min, us_minims]
+    conversion: "1/480 fluid_ounce"
+  - canonicalName: fluid_dram
+    aliases: [fl_dr, fluid_drams]
+    conversion: "1/8 fluid_ounce"
+  - canonicalName: us_gill
+    aliases: [gill, gills]
+    conversion: "4 fluid_ounce"
+  - canonicalName: jigger
+    aliases: [jiggers]
+    conversion: "1.5 fluid_ounce"
+  - canonicalName: dry_pint
+    aliases: [dry_pt, dry_pints]
+    conversion: "1/64 bushel"
+  - canonicalName: dry_quart
+    aliases: [dry_qt, dry_quarts]
+    conversion: "1/32 bushel"
+  - canonicalName: peck
+    aliases: [pecks]
+    conversion: "1/4 bushel"
+  - canonicalName: us_liquid_barrel
+    aliases: [liquid_barrel, us_liquid_barrels]
+    conversion: "31.5 gallon"
+  - canonicalName: hogshead
+    aliases: [hogsheads]
+    conversion: "63 gallon"
+  - canonicalName: board_foot
+    aliases: [bf, board_feet, fbm]
+    conversion: "1/12 cubic_foot"
+  - canonicalName: cord
+    aliases: [cords]
+    conversion: "128 cubic_foot"
+
+area:
+  - canonicalName: square_meter
+    aliases: [m2]
+  - canonicalName: international_acre
+    aliases: [uk_acre, acre, acres]
+    conversion: "4046.8564224 square_meter"
+  - canonicalName: us_survey_acre
+    aliases: [us_acre]
+    conversion: "62726400000/15499969 square_meter"
+  - canonicalName: section
+    aliases: [sections]
+    conversion: "640 us_survey_acre"
+  - canonicalName: township
+    aliases: [townships]
+    conversion: "36 section"
+
+energy:
+  - canonicalName: joule
+    aliases: [J, joules]
+    prefixable: { metric: [J] }
+    expansion: kg-m^2/s^2
+  - canonicalName: british_thermal_unit
+    aliases: [BTU, btu, BTUs, British_thermal_units]
+    conversion: "1055.05585262 joule"
+  - canonicalName: therm
+    aliases: [therms]
+    conversion: "100000 british_thermal_unit"

@@ -1,0 +1,156 @@
+# British imperial units (the avoirdupois, Imperial and troy systems), for the
+# Daubee Excel add-in.
+#
+# Add it from the Unit dictionaries dialog ("Add from URL"):
+#   https://psteckler.github.io/daubee/unit-dictionaries/imperial-units.yaml
+#
+# Sources: the Weights and Measures Act 1985 (UK), schedule 1 and 5, for the
+# yard, pound, and imperial gallon (4.54609 litres); the international yard
+# and pound agreement of 1959 for the metric values. The rest follow from
+# those by the traditional ratios (a chain is 22 yards, a furlong 10 chains,
+# an imperial pint is 1/8 of an imperial gallon, and so on).
+#
+# Units whose names begin imperial_ or uk_ are the British versions of units
+# the US spells differently (the pint, quart, gallon and the dry measures);
+# the plain names (pint, gallon, ...) are left to the US customary dictionary.
+#
+# Many of these units are in Excel's own list and so are built in; they are
+# repeated here exactly, so that this dictionary works on its own, even if the
+# Excel-native groups are switched off. A dictionary may repeat a unit that is
+# already known when the definition is the same.
+
+distance:
+  - canonicalName: meter
+    aliases: [m, meters]
+    prefixable: { metric: [m] }
+  - canonicalName: inch
+    aliases: [in, inches]
+    conversion: "0.0254 meter"
+  - canonicalName: foot
+    aliases: [ft, feet]
+    conversion: "12 inch"
+  - canonicalName: yard
+    aliases: [yd, yards]
+    conversion: "3 foot"
+  - canonicalName: mile
+    aliases: [mi, miles]
+    conversion: "5280 foot"
+  - canonicalName: thou
+    aliases: [mil, mils, thous]
+    conversion: "1/1000 inch"
+  - canonicalName: barleycorn
+    aliases: [barleycorns]
+    conversion: "1/3 inch"
+  - canonicalName: hand
+    aliases: [hands]
+    conversion: "4 inch"
+  - canonicalName: link
+    aliases: [links]
+    conversion: "33/50 foot"
+  - canonicalName: rod
+    aliases: [rods, pole, poles, perch, perches]
+    conversion: "33/2 foot"
+  - canonicalName: chain
+    aliases: [chains]
+    conversion: "66 foot"
+  - canonicalName: furlong
+    aliases: [furlongs]
+    conversion: "660 foot"
+  - canonicalName: league
+    aliases: [leagues]
+    conversion: "3 mile"
+  - canonicalName: fathom
+    aliases: [fathoms]
+    conversion: "6 foot"
+
+weight_and_mass:
+  - canonicalName: gram
+    aliases: [g, grams]
+    prefixable: { metric: [g] }
+  - canonicalName: grain
+    aliases: [grains]
+    conversion: "0.06479891 gram"
+  - canonicalName: ounce_mass
+    aliases: [ozm]
+    conversion: "28.349523125 gram"
+  - canonicalName: pound_mass
+    aliases: [pound, lb, lbm, pounds]
+    conversion: "453.59237 gram"
+  - canonicalName: stone
+    aliases: [stones]
+    conversion: "6350.29318 gram"
+  - canonicalName: imperial_hundredweight
+    aliases: [uk_cwt, lcwt, hweight]
+    conversion: "50802.34544 gram"
+  - canonicalName: imperial_ton
+    aliases: [uk_ton, LTON, brton]
+    conversion: "1016046.9088 gram"
+  - canonicalName: dram
+    aliases: [drams, drachm, drachms]
+    conversion: "1/16 ounce_mass"
+  - canonicalName: imperial_quarter
+    aliases: [imp_qtr]
+    conversion: "28 pound_mass"
+  - canonicalName: pennyweight
+    aliases: [dwt, pennyweights]
+    conversion: "24 grain"
+  - canonicalName: troy_ounce
+    aliases: [ozt, troy_ounces]
+    conversion: "480 grain"
+  - canonicalName: troy_pound
+    aliases: [lbt, troy_pounds]
+    conversion: "5760 grain"
+
+volume_and_liquid_measure:
+  - canonicalName: liter
+    aliases: [l, L, lt, liters]
+    prefixable: { metric: [l, L, lt] }
+  - canonicalName: imperial_gallon
+    aliases: [uk_gal]
+    conversion: "4.54609 liter"
+  - canonicalName: imperial_quart
+    aliases: [uk_qt]
+    conversion: "0.25 imperial_gallon"
+  - canonicalName: uk_pint
+    aliases: [uk_pt]
+    conversion: "0.125 imperial_gallon"
+  - canonicalName: imperial_fluid_ounce
+    aliases: [imp_fl_oz, imperial_fluid_ounces]
+    conversion: "1/160 imperial_gallon"
+  - canonicalName: imperial_gill
+    aliases: [imp_gill, imperial_gills]
+    conversion: "1/32 imperial_gallon"
+  - canonicalName: imperial_peck
+    aliases: [imp_pk, imperial_pecks]
+    conversion: "2 imperial_gallon"
+  - canonicalName: imperial_bushel
+    aliases: [imp_bu, imperial_bushels]
+    conversion: "8 imperial_gallon"
+  - canonicalName: imperial_fluid_drachm
+    aliases: [imp_fl_dr]
+    conversion: "1/8 imperial_fluid_ounce"
+  - canonicalName: imperial_minim
+    aliases: [imp_min]
+    conversion: "1/60 imperial_fluid_drachm"
+
+area:
+  - canonicalName: square_meter
+    aliases: [m2]
+  - canonicalName: international_acre
+    aliases: [uk_acre, acre, acres]
+    conversion: "4046.8564224 square_meter"
+  - canonicalName: rood
+    aliases: [roods]
+    conversion: "1/4 international_acre"
+
+energy:
+  - canonicalName: joule
+    aliases: [J, joules]
+    prefixable: { metric: [J] }
+    expansion: kg-m^2/s^2
+  - canonicalName: british_thermal_unit
+    aliases: [BTU, btu, BTUs, British_thermal_units]
+    conversion: "1055.05585262 joule"
+  - canonicalName: therm
+    aliases: [therms]
+    conversion: "100000 british_thermal_unit"

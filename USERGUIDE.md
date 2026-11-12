@@ -811,6 +811,20 @@ arguments](#wrap-dimensionless-arguments)); switching it off just
 declutters the Browse list, and any annotation using those units is then
 rejected as unknown.
 
+### Ready-made dictionaries
+
+Ready-made dictionaries are in this repository's `unit-dictionaries` folder.
+Add one with **Add from URL**, using its address:
+
+| Dictionary | Address |
+| --- | --- |
+| SI derived units: hertz, coulomb, volt, farad, ohm, siemens, weber, henry, lumen, lux, becquerel, gray, sievert, katal, steradian, and the base units they use | `https://psteckler.github.io/daubee/unit-dictionaries/SI-derived-units.yaml` |
+| British imperial units: chain, furlong, league, fathom, the imperial gill, peck and bushel, troy weights, therm, and more | `https://psteckler.github.io/daubee/unit-dictionaries/imperial-units.yaml` |
+| US customary units: the survey foot, chain and section, the dry measures, jigger, board foot, cord, and more | `https://psteckler.github.io/daubee/unit-dictionaries/US-customary-units.yaml` |
+
+They repeat the built-in units they depend on, so each works on its own, and
+they can be added together.
+
 A dictionary file is just a set of category names, each listing the
 units that belong to it. Here's a small one, defining a new "shipping"
 category with three units:
