@@ -58,6 +58,26 @@ for selection** all work across every selected area. An existing
 annotation counts as "within" the selection only if a single selected
 area covers all of it.
 
+**Table columns.** If you annotate exactly the data rows of an Excel table
+column (select the column's data and click **Annotate**), the annotation
+*follows the column*: add rows to the table and they carry the unit, remove
+rows and the annotation shrinks with the table. The pane shows it as
+`Sheet!Table1[Weight]` (the sheet, the table and the column), and the status
+line says it follows its table. The table and column are tracked by Excel's
+own ids, so renaming either keeps the annotation; if a table is deleted and
+made again under the same name, the annotation finds it. If its table or
+column is really gone, the pane says so under the annotation, which keeps its
+last range until you delete or replace it. Annotating anything other than a
+whole column of data (part of a column, a header, several columns) gives an
+ordinary fixed-range annotation, and so does annotating part of a following
+annotation's range later (it is split into fixed pieces). Untick *Follow
+table columns when annotating them* in [Settings](#settings) to always get
+fixed ranges. Formulas written with table syntax, such as `[@Weight]` or
+`Table1[Weight]`, can't be read yet, so Check reports them as
+unverifiable; a formula that refers to the same cells as ordinary
+references, like `=B2*C2`, is checked as usual. Import and export treat a
+following annotation as the range it covers at the time.
+
 Once a selection has an annotation, the pane's **Units for selection**
 list shows it, along with a **Delete** button to remove it. If your
 selection contains several different annotations, they all show up in
@@ -739,6 +759,11 @@ settings:
   annotation that matches a named unit's own definition (e.g.
   `kilogram-meter/second^2`) automatically rewrites it to that unit's
   name (`newton`) instead of keeping the expanded form.
+- **Follow table columns when annotating them** — when checked (the
+  default), annotating exactly the data rows of a table column makes the
+  annotation follow the column as rows are added and removed; see
+  [Annotating a cell with a unit](#annotating-a-cell-with-a-unit). Unticked,
+  such an annotation is a fixed range.
 - **Remove added formats when deleting units** — when checked (the
   default), deleting an annotation also sets its cells back to the General
   number format, but only where the cell's format is exactly one that
