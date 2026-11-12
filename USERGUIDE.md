@@ -72,12 +72,22 @@ whole column of data (part of a column, a header, several columns) gives an
 ordinary fixed-range annotation, and so does annotating part of a following
 annotation's range later (it is split into fixed pieces). Untick *Follow
 table columns when annotating them* in [Settings](#settings) to always get
-fixed ranges. Formulas written with table syntax, such as `[@Weight]` or
-`Table1[Weight]`, can't be read yet, so Check reports them as
-unverifiable; a formula that refers to the same cells as ordinary
-references, like `=B2*C2`, is checked as usual. Import and export write a
+fixed ranges. Import and export write a
 following annotation as `Table1[Weight]` (see [Import and export
 units](#import-and-export-units)).
+
+**Formulas that use table references.** Check and Infer read the table
+syntax Excel writes in formulas: `[@Weight]` and `Table1[@Weight]` (the
+formula's own row), `[@[Net weight]]` (a column name with a space),
+`Table1[Weight]` (a whole column), `Table1[[Net weight]:[Price]]` (several
+columns), `Table1[[#This Row],[Weight]]`, `Table1[[#Data],[Weight]]` and
+`Table1[#Data]`. They mean the cells they stand for, so a calculated column
+such as `=[@Weight]*[@Price]` is checked like `=B2*C2`, and `=SUM(Table1[Weight])`
+like a sum over the column's range. Not read: `#Headers`, `#Totals` and
+`#All` (a header is text, and a totals row isn't a data row), a table on
+another sheet, a column or table that doesn't exist, and `[@...]` used
+outside the table; the formula is then left alone, as any formula Daubee
+can't analyze is, and anything that uses its result is unverifiable.
 
 Once a selection has an annotation, the pane's **Units for selection**
 list shows it, along with a **Delete** button to remove it. If your
