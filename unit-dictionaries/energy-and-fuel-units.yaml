@@ -1,0 +1,173 @@
+# Energy and fuel units, for the Daubee Excel add-in: the units of fuel and
+# energy trade (therm, quad, tonne of oil equivalent, MMBtu), natural gas
+# volumes, oil production, refrigeration and boiler power, fuel economy, and
+# the energy of explosives.
+#
+# Add it from the Unit dictionaries dialog ("Add from URL"):
+#   https://psteckler.github.io/daubee/unit-dictionaries/energy-and-fuel-units.yaml
+#
+# Sources: the IEA/OECD energy statistics definitions for the tonne of oil
+# equivalent (exactly 41.868 GJ, ten million kilocalories IT), the kilogram of
+# oil equivalent and the tonne of coal equivalent (29.3076 GJ); the US EIA for
+# the barrel of oil equivalent (5.8 million BTU), the quad (10^15 BTU), the
+# MMBtu and the Mcf conventions; the EPA for the gasoline gallon equivalent
+# (33.7 kWh); the ASHRAE and ASME definitions for the ton of refrigeration
+# (12000 BTU(IT) per hour) and the boiler horsepower (9809.5 W); the
+# thermochemical convention for the ton of TNT (exactly 4.184 GJ).
+#
+# The tonne (metric ton, symbol t) takes prefixes (kt, Mt, Gt). The oil barrel
+# (42 US gallons) gets the alias bbl, without prefixes, since the oil trade's
+# M means a thousand, not a million. The Mcf, MMcf, Bcf and Tcf are the
+# natural gas industry's thousand, million, billion and trillion cubic feet,
+# written as units of their own for the same reason. The energy content of a
+# cubic foot of gas varies, so there is no conversion between a volume of gas
+# and its energy. The miles per gallon (mpg, US) and per imperial gallon
+# (mpg_imp) are distances per volume; fuel use in liters per 100 kilometers
+# is the reciprocal of that and is not a unit that can be added here.
+#
+# The energy units from joule to kilowatt_hour, the watt, and the length, volume
+# and mass units they depend on are Excel's own, repeated exactly, so that this
+# dictionary works on its own; the therm is defined as in the imperial and US
+# customary dictionaries. A dictionary may repeat a unit that is already known
+# when the definition is the same.
+
+weight_and_mass:
+  - canonicalName: gram
+    aliases: [g, grams]
+    prefixable: { metric: [g] }
+  - canonicalName: kilogram
+    aliases: [kg, kilograms]
+    conversion: "1000 gram"
+  - canonicalName: tonne
+    aliases: [t, tonnes, metric_ton, metric_tons]
+    prefixable: { metric: [t] }
+    conversion: "1000000 gram"
+
+distance:
+  - canonicalName: meter
+    aliases: [m, meters]
+    prefixable: { metric: [m] }
+  - canonicalName: inch
+    aliases: [in, inches]
+    conversion: "0.0254 meter"
+  - canonicalName: foot
+    aliases: [ft, feet]
+    conversion: "12 inch"
+  - canonicalName: mile
+    aliases: [mi, miles]
+    conversion: "5280 foot"
+
+time:
+  - canonicalName: second
+    aliases: [s, sec, seconds]
+    prefixable: { metric: [s, sec] }
+
+volume_and_liquid_measure:
+  - canonicalName: liter
+    aliases: [l, L, lt, liters]
+    prefixable: { metric: [l, L, lt] }
+  - canonicalName: fluid_ounce
+    aliases: [oz]
+    conversion: "0.0295735295625 liter"
+  - canonicalName: gallon
+    aliases: [gal, gallons]
+    conversion: "128 fluid_ounce"
+  - canonicalName: imperial_gallon
+    aliases: [uk_gal]
+    conversion: "4.54609 liter"
+  - canonicalName: cubic_foot
+    aliases: [ft3]
+    conversion: "28.316846592 liter"
+  - canonicalName: oil_barrel
+    aliases: [barrel, barrels, bbl, bbls]
+    conversion: "42 gallon"
+  - canonicalName: thousand_cubic_feet
+    aliases: [Mcf, mcf]
+    conversion: "1000 cubic_foot"
+  - canonicalName: million_cubic_feet
+    aliases: [MMcf, mmcf]
+    conversion: "1000000 cubic_foot"
+  - canonicalName: billion_cubic_feet
+    aliases: [Bcf, bcf]
+    conversion: "1000000000 cubic_foot"
+  - canonicalName: trillion_cubic_feet
+    aliases: [Tcf, tcf]
+    conversion: "1000000000000 cubic_foot"
+
+energy:
+  - canonicalName: joule
+    aliases: [J, joules]
+    prefixable: { metric: [J] }
+    expansion: kg-m^2/s^2
+  - canonicalName: british_thermal_unit
+    aliases: [BTU, btu, BTUs, British_thermal_units]
+    conversion: "1055.05585262 joule"
+  - canonicalName: watt_hour
+    aliases: [Wh, wh]
+    prefixable: { metric: [Wh, wh] }
+    conversion: "3600 joule"
+  - canonicalName: kilowatt_hour
+    aliases: [kWh, kwh, KWH, kilowatt_hours]
+    expansion: kW-hour
+    conversion: "1000 watt_hour"
+  - canonicalName: therm
+    aliases: [therms]
+    conversion: "100000 british_thermal_unit"
+  - canonicalName: ec_therm
+    aliases: [therm_ec, ec_therms]
+    conversion: "105506000 joule"
+  - canonicalName: million_btu
+    aliases: [MMBtu, mmbtu, million_btus]
+    conversion: "1000000 british_thermal_unit"
+  - canonicalName: dekatherm
+    aliases: [Dth, dekatherms]
+    conversion: "10 therm"
+  - canonicalName: quad
+    aliases: [quads]
+    conversion: "1000000000000000 british_thermal_unit"
+  - canonicalName: tonne_of_oil_equivalent
+    aliases: [toe, tonnes_of_oil_equivalent]
+    prefixable: { metric: [toe] }
+    conversion: "41868000000 joule"
+  - canonicalName: kilogram_of_oil_equivalent
+    aliases: [kgoe]
+    conversion: "41868000 joule"
+  - canonicalName: barrel_of_oil_equivalent
+    aliases: [boe, barrels_of_oil_equivalent]
+    conversion: "5800000 british_thermal_unit"
+  - canonicalName: tonne_of_coal_equivalent
+    aliases: [tce, tonnes_of_coal_equivalent]
+    prefixable: { metric: [tce] }
+    conversion: "29307600000 joule"
+  - canonicalName: gasoline_gallon_equivalent
+    aliases: [GGE, gasoline_gallons_equivalent]
+    conversion: "33.7 kilowatt_hour"
+  - canonicalName: ton_of_tnt
+    aliases: [tTNT, tons_of_tnt]
+    conversion: "4184000000 joule"
+  - canonicalName: kiloton_of_tnt
+    aliases: [ktTNT, kilotons_of_tnt]
+    conversion: "4184000000000 joule"
+  - canonicalName: megaton_of_tnt
+    aliases: [MtTNT, megatons_of_tnt]
+    conversion: "4184000000000000 joule"
+
+power:
+  - canonicalName: watt
+    aliases: [W, w, watts]
+    prefixable: { metric: [W] }
+    expansion: kg-m^2/s^3
+  - canonicalName: boiler_horsepower
+    aliases: [boiler_hp, boiler_horsepowers]
+    conversion: "9809.5 watt"
+  - canonicalName: ton_of_refrigeration
+    aliases: [TR, refrigeration_ton, tons_of_refrigeration]
+    conversion: "3516.852842066667 watt"
+
+fuel_economy:
+  - canonicalName: miles_per_gallon
+    aliases: [mpg]
+    expansion: mile/gallon
+  - canonicalName: miles_per_imperial_gallon
+    aliases: [mpg_imp, mpg_uk]
+    expansion: mile/imperial_gallon
