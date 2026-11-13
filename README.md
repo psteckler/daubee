@@ -76,7 +76,7 @@ Daubee comes with built-in units from Excel's `CONVERT` list and built-in
 currency units. This repository's [`unit-dictionaries`](unit-dictionaries/)
 folder has more, as ready-made **unit dictionaries** you can add when you need them:
 
-|  |  |  |
+|  | Dictionaries |  |
 | --- | --- | --- |
 | [astronomy-units.yaml](unit-dictionaries/astronomy-units.yaml) | [chemistry-units.yaml](unit-dictionaries/chemistry-units.yaml) | [counting-and-paper-units.yaml](unit-dictionaries/counting-and-paper-units.yaml) |
 | [cryptocurrency-units.yaml](unit-dictionaries/cryptocurrency-units.yaml) | [data-rates-and-communications-units.yaml](unit-dictionaries/data-rates-and-communications-units.yaml) | [electrical-units.yaml](unit-dictionaries/electrical-units.yaml) |
