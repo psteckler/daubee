@@ -1,0 +1,90 @@
+# Counting and paper units, for the Daubee Excel add-in: the dozen, the gross
+# and the other old counting units, and the quire, ream and other units of
+# paper.
+#
+# Add it from the Unit dictionaries dialog ("Add from URL"):
+#   https://psteckler.github.io/daubee/unit-dictionaries/counting-and-paper-units.yaml
+#
+# Sources: NIST Handbook 44, appendix C, for the dozen (12), the gross (144),
+# the great gross (1728), the score (20) and the small gross (120); the ream,
+# quire and printers' ream as the paper trade defines them (a ream of 500
+# sheets is the modern standard, ISO 4046 and the Paper Industry
+# Association; the traditional ream is 480 sheets, the printers' or perfect
+# ream 516, a quire 25 sheets, or 24 traditionally).
+#
+# Counts are units: `each` (aliases ea, pcs, piece, pieces) is the root, and
+# the dozen, the gross and the rest are fixed multiples of it, so Daubee can
+# convert a count of dozens to a count of pieces. Sheets and pages are roots
+# of their own: a ream is a number of sheets, not of pieces, and a leaf is two
+# pages, so `sheet/each` and `page/sheet` have no conversion. The symbol pc is
+# Excel's for the parsec, so the piece is written pcs.
+#
+# The paper weight gsm (grams per square meter) has the expansion g/m^2, as in
+# the typography dictionary; its grams and meters are repeated exactly from
+# Excel's list, so this dictionary works on its own. A dictionary may repeat a
+# unit that is already known when the definition is the same.
+
+weight_and_mass:
+  - canonicalName: gram
+    aliases: [g, grams]
+    prefixable: { metric: [g] }
+
+distance:
+  - canonicalName: meter
+    aliases: [m, meters]
+    prefixable: { metric: [m] }
+
+counting:
+  - canonicalName: each
+    aliases: [ea, pcs, piece, pieces]
+  - canonicalName: pair
+    aliases: [pairs, pr]
+    conversion: "2 each"
+  - canonicalName: half_dozen
+    aliases: [half_dozens]
+    conversion: "6 each"
+  - canonicalName: dozen
+    aliases: [doz, dz, dozens]
+    conversion: "12 each"
+  - canonicalName: bakers_dozen
+    aliases: [bakers_dozens]
+    conversion: "13 each"
+  - canonicalName: score
+    aliases: [scores]
+    conversion: "20 each"
+  - canonicalName: small_gross
+    aliases: [long_hundred, small_grosses]
+    conversion: "120 each"
+  - canonicalName: gross
+    aliases: [grosses]
+    conversion: "144 each"
+  - canonicalName: great_gross
+    aliases: [great_grosses]
+    conversion: "1728 each"
+
+paper:
+  - canonicalName: sheet
+    aliases: [sheets]
+  - canonicalName: page
+    aliases: [pages]
+  - canonicalName: leaf
+    aliases: [leaves]
+    conversion: "2 page"
+  - canonicalName: quire
+    aliases: [quires]
+    conversion: "25 sheet"
+  - canonicalName: traditional_quire
+    aliases: [short_quire, traditional_quires]
+    conversion: "24 sheet"
+  - canonicalName: ream
+    aliases: [reams]
+    conversion: "500 sheet"
+  - canonicalName: traditional_ream
+    aliases: [short_ream, traditional_reams]
+    conversion: "480 sheet"
+  - canonicalName: printers_ream
+    aliases: [perfect_ream, long_ream, printers_reams]
+    conversion: "516 sheet"
+  - canonicalName: grams_per_square_meter
+    aliases: [gsm]
+    expansion: g/m^2

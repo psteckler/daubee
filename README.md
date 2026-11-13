@@ -13,7 +13,8 @@ seconds.
 - **[Unit dictionaries](#unit-dictionaries)** — ready-made sets of units you
   can add to Daubee: SI derived, imperial, US customary, electrical, time and
   calendar, chemistry, particle physics, astronomy, medicine, radiation and
-  photometry, typography, and data rates and communications.
+  photometry, typography, data rates and communications, and counting and
+  paper.
 
 ## Screenshots
 
@@ -79,7 +80,7 @@ folder has more, as ready-made **unit dictionaries** you can add when you need t
 | --- | --- | --- |
 | [SI-derived-units.yaml](unit-dictionaries/SI-derived-units.yaml) | [chemistry-units.yaml](unit-dictionaries/chemistry-units.yaml) | [typography-units.yaml](unit-dictionaries/typography-units.yaml) |
 | [imperial-units.yaml](unit-dictionaries/imperial-units.yaml) | [particle-physics-units.yaml](unit-dictionaries/particle-physics-units.yaml) | [data-rates-and-communications-units.yaml](unit-dictionaries/data-rates-and-communications-units.yaml) |
-| [US-customary-units.yaml](unit-dictionaries/US-customary-units.yaml) | [astronomy-units.yaml](unit-dictionaries/astronomy-units.yaml) |  |
+| [US-customary-units.yaml](unit-dictionaries/US-customary-units.yaml) | [astronomy-units.yaml](unit-dictionaries/astronomy-units.yaml) | [counting-and-paper-units.yaml](unit-dictionaries/counting-and-paper-units.yaml) |
 | [electrical-units.yaml](unit-dictionaries/electrical-units.yaml) | [medicine-units.yaml](unit-dictionaries/medicine-units.yaml) |  |
 | [time-and-calendar-units.yaml](unit-dictionaries/time-and-calendar-units.yaml) | [radiation-and-photometry-units.yaml](unit-dictionaries/radiation-and-photometry-units.yaml) |  |
 

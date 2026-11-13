@@ -906,6 +906,7 @@ Add one with **Add from URL**, using its address:
 | Radiation and photometry units: the curie, rem, roentgen and the old rad (as `radiation_absorbed_dose`), the foot-candle, phot, nit, stilb and talbot, and the SI units they use | `https://psteckler.github.io/daubee/unit-dictionaries/radiation-and-photometry-units.yaml` |
 | Typography units: the point (also `points`, `pts`, `bp`) and pica, the printers' point and pica, the Didot point and cicero, the twip, agate and CSS pixel, `dpi`, `gsm` and `tex` | `https://psteckler.github.io/daubee/unit-dictionaries/typography-units.yaml` |
 | Data rates and communications units: `B` for the byte (`kB`, `MiB`), `bps` and `Bps` with prefixes, `baud`, packets and frames per second, the erlang, `FLOPS` and `IOPS`, and the nibble | `https://psteckler.github.io/daubee/unit-dictionaries/data-rates-and-communications-units.yaml` |
+| Counting and paper units: the dozen, gross, great gross, score and baker's dozen as multiples of `each`, and the sheet, page, leaf, quire, ream, traditional ream and printers' ream, and `gsm` | `https://psteckler.github.io/daubee/unit-dictionaries/counting-and-paper-units.yaml` |
 
 They repeat the built-in units they depend on, so each works on its own, and
 they can be added together.
