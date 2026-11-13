@@ -908,6 +908,7 @@ Add one with **Add from URL**, using its address:
 | Data rates and communications units: `B` for the byte (`kB`, `MiB`), `bps` and `Bps` with prefixes, `baud`, packets and frames per second, the erlang, `FLOPS` and `IOPS`, and the nibble | `https://psteckler.github.io/daubee/unit-dictionaries/data-rates-and-communications-units.yaml` |
 | Counting and paper units: the dozen, gross, great gross, score and baker's dozen as multiples of `each`, and the sheet, page, leaf, quire, ream, traditional ream and printers' ream, and `gsm` | `https://psteckler.github.io/daubee/unit-dictionaries/counting-and-paper-units.yaml` |
 | Energy and fuel units: the therm, quad, MMBtu, tonne of oil equivalent (`toe`, `Mtoe`), barrel of oil equivalent, tonne (`t`, `Mt`), `Mcf`/`Bcf` of gas, `bbl`, tons of TNT, the ton of refrigeration, boiler horsepower, `mpg`, and the gasoline gallon equivalent | `https://psteckler.github.io/daubee/unit-dictionaries/energy-and-fuel-units.yaml` |
+| Cryptocurrency units: the 35 largest coins by market capitalization (on 2026-11-13) as units of their own, such as `BTC`, `ETH`, `SOL`, `USDT`, with their smallest units (`sat`, `wei`, `gwei`, `lamport`, ...). No conversion between coins or to a currency: the rates change; put a rate in a cell and annotate it `Ethereum/Bitcoin` | `https://psteckler.github.io/daubee/unit-dictionaries/cryptocurrency-units.yaml` |
 
 They repeat the built-in units they depend on, so each works on its own, and
 they can be added together.

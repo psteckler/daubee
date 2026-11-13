@@ -1,0 +1,167 @@
+# Cryptocurrency units, for the Daubee Excel add-in: the 35 largest
+# cryptocurrencies by market capitalization on crypto.com/en/price (the page's
+# order, on 2026-11-13), listed alphabetically by name, with their tickers and
+# the usual smallest units (satoshi, wei, ...).
+#
+# Add it from the Unit dictionaries dialog ("Add from URL"):
+#   https://psteckler.github.io/daubee/unit-dictionaries/cryptocurrency-units.yaml
+#
+# These are units for counting coins, not prices. They are deliberately not in
+# Daubee's `currency` category: a coin has no ISO 4217 code and no currency
+# number format, and none of Daubee's currency checks applies to it. There is
+# no conversion between two coins, or between a coin and a currency, because
+# the exchange rates change every moment: a value in BTC and a value in ETH
+# can only be related by an exchange rate that you put in a cell and annotate
+# with a unit ratio such as `Ethereum/Bitcoin`, as for any exchange rate.
+# Wrapped Bitcoin and Tether Gold are units of their own, not Bitcoin and gold.
+#
+# The smallest units are fixed by each coin's protocol, so they do convert: one
+# bitcoin is 100000000 satoshis, one ether 10^18 wei (10^9 gwei), one solana
+# 10^9 lamports, one XRP 10^6 drops, one stellar 10^7 stroops, one hedera
+# 10^8 tinybars, one monero 10^12 piconeros, one zcash 10^8 zatoshis and one
+# dogecoin 10^8 koinu.
+#
+# The names follow the coin's usual name. Each coin has its ticker in upper
+# and lower case and its name, as the currencies do. Lower-case spellings that
+# would clash with other units are left out: sol (the Martian day), link (the
+# surveyor's link), cc (cubic centimeter) and gram (the unit of mass), so Solana
+# is SOL or solana, Chainlink is LINK, Canton Network is CC, and the Gram coin
+# is GRAM (its name is Gram_Token). The market-cap list drifts, so a coin that
+# has left the top 35 stays here; it is not removed.
+
+cryptocurrency:
+  # #24 by market capitalization on 2026-11-13
+  - canonicalName: Avalanche
+    aliases: [AVAX, avax, avalanche]
+  # #1 by market capitalization on 2026-11-13
+  - canonicalName: Bitcoin
+    aliases: [BTC, btc, bitcoin, bitcoins]
+  # #21 by market capitalization on 2026-11-13
+  - canonicalName: Bitcoin_Cash
+    aliases: [BCH, bch, bitcoin_cash]
+  # #34 by market capitalization on 2026-11-13
+  - canonicalName: Bittensor
+    aliases: [TAO, tao, bittensor]
+  # #4 by market capitalization on 2026-11-13
+  - canonicalName: BNB
+    aliases: [bnb]
+  # #26 by market capitalization on 2026-11-13
+  - canonicalName: Canton_Network
+    aliases: [CC, canton_network, canton_coin, canton_coins]
+  # #18 by market capitalization on 2026-11-13
+  - canonicalName: Cardano
+    aliases: [ADA, ada, cardano]
+  # #17 by market capitalization on 2026-11-13
+  - canonicalName: Chainlink
+    aliases: [LINK, chainlink]
+  # #22 by market capitalization on 2026-11-13
+  - canonicalName: Dai
+    aliases: [DAI, dai]
+  # #11 by market capitalization on 2026-11-13
+  - canonicalName: Dogecoin
+    aliases: [DOGE, doge, dogecoin, dogecoins]
+  # #2 by market capitalization on 2026-11-13
+  - canonicalName: Ethereum
+    aliases: [ETH, eth, ethereum, ether, ethers]
+  # #32 by market capitalization on 2026-11-13
+  - canonicalName: Global_Dollar
+    aliases: [USDG, usdg, global_dollar, global_dollars]
+  # #28 by market capitalization on 2026-11-13
+  - canonicalName: Gram_Token
+    aliases: [GRAM, gram_token, gram_tokens]
+  # #31 by market capitalization on 2026-11-13
+  - canonicalName: Hedera
+    aliases: [HBAR, hbar, hedera]
+  # #9 by market capitalization on 2026-11-13
+  - canonicalName: Hyperliquid
+    aliases: [HYPE, hype, hyperliquid]
+  # #23 by market capitalization on 2026-11-13
+  - canonicalName: Litecoin
+    aliases: [LTC, ltc, litecoin, litecoins]
+  # #12 by market capitalization on 2026-11-13
+  - canonicalName: Monero
+    aliases: [XMR, xmr, monero, moneros]
+  # #20 by market capitalization on 2026-11-13
+  - canonicalName: NEAR_Protocol
+    aliases: [NEAR, near, near_protocol]
+  # #33 by market capitalization on 2026-11-13
+  - canonicalName: PayPal_USD
+    aliases: [PYUSD, pyusd, paypal_usd]
+  # #35 by market capitalization on 2026-11-13
+  - canonicalName: Shiba_Inu
+    aliases: [SHIB, shib, shiba_inu]
+  # #7 by market capitalization on 2026-11-13
+  - canonicalName: Solana
+    aliases: [SOL, solana, solanas]
+  # #19 by market capitalization on 2026-11-13
+  - canonicalName: Stellar
+    aliases: [XLM, xlm, stellar]
+  # #27 by market capitalization on 2026-11-13
+  - canonicalName: Sui
+    aliases: [SUI, sui]
+  # #3 by market capitalization on 2026-11-13
+  - canonicalName: Tether
+    aliases: [USDT, usdt, tether, tethers]
+  # #30 by market capitalization on 2026-11-13
+  - canonicalName: Tether_Gold
+    aliases: [XAUT, xaut, tether_gold]
+  # #8 by market capitalization on 2026-11-13
+  - canonicalName: TRON
+    aliases: [TRX, trx, tron, trons]
+  # #25 by market capitalization on 2026-11-13
+  - canonicalName: Uniswap
+    aliases: [UNI, uni, uniswap]
+  # #14 by market capitalization on 2026-11-13
+  - canonicalName: UNUS_SED_LEO
+    aliases: [LEO, leo, unus_sed_leo]
+  # #5 by market capitalization on 2026-11-13
+  - canonicalName: USD_Coin
+    aliases: [USDC, usdc, usd_coin, usd_coins]
+  # #13 by market capitalization on 2026-11-13
+  - canonicalName: USDS
+    aliases: [usds]
+  # #16 by market capitalization on 2026-11-13
+  - canonicalName: WhiteBIT_Token
+    aliases: [WBT, wbt, whitebit_token, whitebit_tokens]
+  # #29 by market capitalization on 2026-11-13
+  - canonicalName: World_Liberty_Financial_USD
+    aliases: [USD1, usd1, wlfi_usd]
+  # #15 by market capitalization on 2026-11-13
+  - canonicalName: Wrapped_Bitcoin
+    aliases: [WBTC, wbtc, wrapped_bitcoin, wrapped_bitcoins]
+  # #6 by market capitalization on 2026-11-13
+  - canonicalName: XRP
+    aliases: [xrp]
+  # #10 by market capitalization on 2026-11-13
+  - canonicalName: Zcash
+    aliases: [ZEC, zec, zcash]
+  - canonicalName: gwei
+    aliases: [Gwei, gweis]
+    conversion: "0.000000001 Ethereum"
+  - canonicalName: koinu
+    aliases: [koinus]
+    conversion: "0.00000001 Dogecoin"
+  - canonicalName: lamport
+    aliases: [lamports]
+    conversion: "0.000000001 Solana"
+  - canonicalName: piconero
+    aliases: [piconeros]
+    conversion: "0.000000000001 Monero"
+  - canonicalName: satoshi
+    aliases: [sat, sats, satoshis]
+    conversion: "0.00000001 Bitcoin"
+  - canonicalName: stroop
+    aliases: [stroops]
+    conversion: "0.0000001 Stellar"
+  - canonicalName: tinybar
+    aliases: [tinybars]
+    conversion: "0.00000001 Hedera"
+  - canonicalName: wei
+    aliases: [weis]
+    conversion: "0.000000000000000001 Ethereum"
+  - canonicalName: xrp_drop
+    aliases: [drop, drops, xrp_drops]
+    conversion: "0.000001 XRP"
+  - canonicalName: zatoshi
+    aliases: [zatoshis]
+    conversion: "0.00000001 Zcash"
