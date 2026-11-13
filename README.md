@@ -10,6 +10,9 @@ seconds.
 - **[Issues](../../issues)** — found a bug, or have a feature request?
   File it here.
 - **[Screenshots](screenshots/)** — what Daubee looks like in Excel.
+- **[Unit dictionaries](#unit-dictionaries)** — ready-made sets of units you
+  can add to Daubee: SI derived, imperial, US customary, electrical, and time
+  and calendar.
 
 ## Screenshots
 
@@ -64,6 +67,30 @@ the **Raw** button and choose Save As).
   Open Excel online, go to Home > Add-ins > More Add-ins, select
   MY ADD-INS, then Manage My Add-ins, click Upload My Add-in, and select the
   manifest file.
+
+## Unit dictionaries
+
+Daubee comes with built-in units from Excel's `CONVERT` list and built-in
+currency units. This repository's [`unit-dictionaries`](unit-dictionaries/)
+folder has more, as ready-made **unit dictionaries** you can add when you need them:
+
+| Dictionary | 
+| ---  |
+| [SI-derived-units.yaml](unit-dictionaries/SI-derived-units.yaml) |
+| [imperial-units.yaml](unit-dictionaries/imperial-units.yaml) |
+| [US-customary-units.yaml](unit-dictionaries/US-customary-units.yaml) |
+| [electrical-units.yaml](unit-dictionaries/electrical-units.yaml) |
+| [time-and-calendar-units.yaml](unit-dictionaries/time-and-calendar-units.yaml) |
+
+**Load a dictionary from its URL.** In Excel, in the Daubee tab, click **Select dictionaries**,
+then **Add from URL**, paste the address of the dictionary, and press the button. The URL is
+`https://psteckler.github.io/daubee/unit-dictionaries/` followed by the file's
+name.
+
+**Or download it and load it as a file.** Open the dictionary's link in the
+table above, then click the download icon (or right-click the **Raw** button
+and choose Save As). In the Unit dictionaries dialog, click
+**Add from file...** and choose the saved file.
 
 ## Research background
 
