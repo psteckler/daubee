@@ -76,13 +76,13 @@ Daubee comes with built-in units from Excel's `CONVERT` list and built-in
 currency units. This repository's [`unit-dictionaries`](unit-dictionaries/)
 folder has more, as ready-made **unit dictionaries** you can add when you need them:
 
-| Dictionaries |  |  |
+|  |  |  |
 | --- | --- | --- |
-| [SI-derived-units.yaml](unit-dictionaries/SI-derived-units.yaml) | [chemistry-units.yaml](unit-dictionaries/chemistry-units.yaml) | [typography-units.yaml](unit-dictionaries/typography-units.yaml) |
-| [imperial-units.yaml](unit-dictionaries/imperial-units.yaml) | [particle-physics-units.yaml](unit-dictionaries/particle-physics-units.yaml) | [data-rates-and-communications-units.yaml](unit-dictionaries/data-rates-and-communications-units.yaml) |
-| [US-customary-units.yaml](unit-dictionaries/US-customary-units.yaml) | [astronomy-units.yaml](unit-dictionaries/astronomy-units.yaml) | [counting-and-paper-units.yaml](unit-dictionaries/counting-and-paper-units.yaml) |
-| [electrical-units.yaml](unit-dictionaries/electrical-units.yaml) | [medicine-units.yaml](unit-dictionaries/medicine-units.yaml) | [energy-and-fuel-units.yaml](unit-dictionaries/energy-and-fuel-units.yaml) |
-| [time-and-calendar-units.yaml](unit-dictionaries/time-and-calendar-units.yaml) | [radiation-and-photometry-units.yaml](unit-dictionaries/radiation-and-photometry-units.yaml) | [cryptocurrency-units.yaml](unit-dictionaries/cryptocurrency-units.yaml) |
+| [astronomy-units.yaml](unit-dictionaries/astronomy-units.yaml) | [chemistry-units.yaml](unit-dictionaries/chemistry-units.yaml) | [counting-and-paper-units.yaml](unit-dictionaries/counting-and-paper-units.yaml) |
+| [cryptocurrency-units.yaml](unit-dictionaries/cryptocurrency-units.yaml) | [data-rates-and-communications-units.yaml](unit-dictionaries/data-rates-and-communications-units.yaml) | [electrical-units.yaml](unit-dictionaries/electrical-units.yaml) |
+| [energy-and-fuel-units.yaml](unit-dictionaries/energy-and-fuel-units.yaml) | [imperial-units.yaml](unit-dictionaries/imperial-units.yaml) | [medicine-units.yaml](unit-dictionaries/medicine-units.yaml) |
+| [particle-physics-units.yaml](unit-dictionaries/particle-physics-units.yaml) | [radiation-and-photometry-units.yaml](unit-dictionaries/radiation-and-photometry-units.yaml) | [SI-derived-units.yaml](unit-dictionaries/SI-derived-units.yaml) |
+| [time-and-calendar-units.yaml](unit-dictionaries/time-and-calendar-units.yaml) | [typography-units.yaml](unit-dictionaries/typography-units.yaml) | [US-customary-units.yaml](unit-dictionaries/US-customary-units.yaml) |
 
 **Load a dictionary from its URL.** In Excel, in the Daubee tab, click **Select dictionaries**,
 then **Add from URL**, paste the address of the dictionary, and press the button. The URL is
