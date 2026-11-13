@@ -897,6 +897,8 @@ Add one with **Add from URL**, using its address:
 | SI derived units: hertz, coulomb, volt, farad, ohm, siemens, weber, henry, lumen, lux, becquerel, gray, sievert, katal, steradian, and the base units they use | `https://psteckler.github.io/daubee/unit-dictionaries/SI-derived-units.yaml` |
 | British imperial units: chain, furlong, league, fathom, the imperial gill, peck and bushel, troy weights, therm, and more | `https://psteckler.github.io/daubee/unit-dictionaries/imperial-units.yaml` |
 | US customary units: the survey foot, chain and section, the dry measures, jigger, board foot, cord, and more | `https://psteckler.github.io/daubee/unit-dictionaries/US-customary-units.yaml` |
+| Electrical units: ampere-hour, volt-ampere, var, electrical horsepower, the explicit microfarad, nanofarad, picofarad and coulomb sub-units (uF, nF, pF, uC, ...), maxwell, mho, and the SI units they use | `https://psteckler.github.io/daubee/unit-dictionaries/electrical-units.yaml` |
+| Time and calendar units: week, fortnight, decade, century, millennium, the common, leap, Gregorian, tropical and sidereal years, the sidereal day, the lunation, shake, and `kyr`/`Myr`/`Gyr` | `https://psteckler.github.io/daubee/unit-dictionaries/time-and-calendar-units.yaml` |
 
 They repeat the built-in units they depend on, so each works on its own, and
 they can be added together.

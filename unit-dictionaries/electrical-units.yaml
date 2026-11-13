@@ -1,0 +1,155 @@
+# Electrical units, for the Daubee Excel add-in: the units of electrical
+# engineering and electronics beyond the SI derived units dictionary, which this
+# one builds on.
+#
+# Add it from the Unit dictionaries dialog ("Add from URL"):
+#   https://psteckler.github.io/daubee/unit-dictionaries/electrical-units.yaml
+#
+# Sources: the same SI brochure (BIPM, 9th edition, 2019) and NIST SP 330 for
+# the SI units; IEEE Std 100 and IEC 80000-6 for the volt-ampere, the reactive
+# volt-ampere (var) and the maxwell; NEMA for the electrical horsepower
+# (exactly 746 watts).
+#
+# The apparent power (volt-ampere, VA) and the reactive power (var) are units
+# of their own, not the watt under another name: they have the dimensions of
+# power, but adding a VA to a W is a mistake that Daubee should catch, and a
+# power factor (W/VA) is a ratio of two different units. So they are separate
+# units with no conversion to the watt.
+#
+# Excel's CONVERT owns the symbols C (degrees Celsius) and F (degrees
+# Fahrenheit), so the coulomb and the farad have no one-letter symbol here.
+# Capacitances and charges are written with the explicit units microfarad (uF),
+# nanofarad (nF), picofarad (pF), millifarad (mF) and millicoulomb (mC),
+# microcoulomb (uC), nanocoulomb (nC) and picocoulomb (pC); the prefixed names
+# (pfarad, ucoulomb, ...) work too. The other prefixed units (kV, mA, kohm,
+# uH, kWh, MVA, ...) work as usual.
+#
+# The SI units and the energy and power units from joule to electron_volt are
+# repeated from the SI derived units dictionary and Excel's own list exactly,
+# so that this dictionary works on its own. A dictionary may repeat a unit
+# that is already known when the definition is the same.
+
+weight_and_mass:
+  - canonicalName: gram
+    aliases: [g, grams]
+    prefixable: { metric: [g] }
+  - canonicalName: kilogram
+    aliases: [kg, kilograms]
+    conversion: "1000 gram"
+
+distance:
+  - canonicalName: meter
+    aliases: [m, meters]
+    prefixable: { metric: [m] }
+
+time:
+  - canonicalName: second
+    aliases: [s, sec, seconds]
+    prefixable: { metric: [s, sec] }
+
+si_base_units:
+  - canonicalName: ampere
+    aliases: [A, amp, amps, amperes]
+    prefixable: { metric: [A] }
+
+si_derived_units:
+  - canonicalName: coulomb
+    aliases: [coulombs]
+    prefixable: { metric: [coulomb] }
+    expansion: A-s
+  - canonicalName: volt
+    aliases: [V, volts]
+    prefixable: { metric: [V] }
+    expansion: kg-m^2/(s^3-A)
+  - canonicalName: farad
+    aliases: [farads]
+    prefixable: { metric: [farad] }
+    expansion: s^4-A^2/(kg-m^2)
+  - canonicalName: ohm
+    aliases: [Ohm, ohms, Ohms]
+    prefixable: { metric: [ohm] }
+    expansion: kg-m^2/(s^3-A^2)
+  - canonicalName: siemens
+    aliases: [S, mho, mhos]
+    prefixable: { metric: [S] }
+    expansion: s^3-A^2/(kg-m^2)
+  - canonicalName: weber
+    aliases: [Wb, webers]
+    prefixable: { metric: [Wb] }
+    expansion: kg-m^2/(s^2-A)
+  - canonicalName: henry
+    aliases: [H, henrys, henries]
+    prefixable: { metric: [H] }
+    expansion: kg-m^2/(s^2-A^2)
+  - canonicalName: tesla
+    aliases: [T, teslas]
+    prefixable: { metric: [T] }
+
+energy:
+  - canonicalName: joule
+    aliases: [J, joules]
+    prefixable: { metric: [J] }
+    expansion: kg-m^2/s^2
+  - canonicalName: watt_hour
+    aliases: [Wh, wh]
+    prefixable: { metric: [Wh, wh] }
+    conversion: "3600 joule"
+  - canonicalName: kilowatt_hour
+    aliases: [kWh, kwh, KWH, kilowatt_hours]
+    expansion: kW-hour
+    conversion: "1000 watt_hour"
+  - canonicalName: electron_volt
+    aliases: [eV, ev]
+    prefixable: { metric: [eV, ev] }
+    conversion: "1.602176634e-19 joule"
+
+power:
+  - canonicalName: watt
+    aliases: [W, w, watts]
+    prefixable: { metric: [W] }
+    expansion: kg-m^2/s^3
+
+electricity:
+  - canonicalName: ampere_hour
+    aliases: [Ah, amp_hour, amp_hours, ampere_hours]
+    prefixable: { metric: [Ah] }
+    conversion: "3600 coulomb"
+  - canonicalName: volt_ampere
+    aliases: [VA, volt_amperes]
+    prefixable: { metric: [VA] }
+  - canonicalName: volt_ampere_reactive
+    aliases: [var, VAR, vars, volt_ampere_reactives]
+    prefixable: { metric: [var, VAR] }
+  - canonicalName: horsepower_electric
+    aliases: [hp_e, electrical_horsepower]
+    conversion: "746 watt"
+  - canonicalName: millifarad
+    aliases: [mF, millifarads]
+    conversion: "1e-3 farad"
+  - canonicalName: microfarad
+    aliases: [uF, microfarads]
+    conversion: "1e-6 farad"
+  - canonicalName: nanofarad
+    aliases: [nF, nanofarads]
+    conversion: "1e-9 farad"
+  - canonicalName: picofarad
+    aliases: [pF, picofarads]
+    conversion: "1e-12 farad"
+  - canonicalName: millicoulomb
+    aliases: [mC, millicoulombs]
+    conversion: "1e-3 coulomb"
+  - canonicalName: microcoulomb
+    aliases: [uC, microcoulombs]
+    conversion: "1e-6 coulomb"
+  - canonicalName: nanocoulomb
+    aliases: [nC, nanocoulombs]
+    conversion: "1e-9 coulomb"
+  - canonicalName: picocoulomb
+    aliases: [pC, picocoulombs]
+    conversion: "1e-12 coulomb"
+
+magnetism:
+  - canonicalName: maxwell
+    aliases: [Mx, maxwells]
+    prefixable: { metric: [Mx] }
+    conversion: "1e-8 weber"

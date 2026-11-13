@@ -1,0 +1,80 @@
+# Time and calendar units, for the Daubee Excel add-in: the calendar's spans
+# (week, decade, century, ...) and the astronomical years, days and months.
+#
+# Add it from the Unit dictionaries dialog ("Add from URL"):
+#   https://psteckler.github.io/daubee/unit-dictionaries/time-and-calendar-units.yaml
+#
+# Sources: IAU resolution B2 (2012) for the Julian year (365.25 days exactly);
+# the Gregorian calendar (365.2425 days on average); IERS Conventions (2010)
+# for the sidereal day (86164.0905 seconds) and the Astronomical Almanac for
+# the mean tropical year (365.24219 days), the sidereal year (365.256363004
+# days) and the mean synodic month (29.530588853 days).
+#
+# The calendar month is deliberately not here, and has no conversion: months
+# last 28 to 31 days, so no single length is right. A year in this dictionary
+# is the Julian year, as in Excel's CONVERT (365.25 days); the common year
+# (365 days), the leap year (366 days), the Gregorian year and the
+# astronomical years are separate units with their own names. The lunation
+# (synodic month) is the mean time between new moons.
+#
+# The built-in units from second to year are repeated exactly, with prefixes
+# added for the year, so kyr, Myr and Gyr work (a thousand, a million and a
+# billion years). A dictionary may repeat a unit that is already known when the
+# definition is the same.
+
+time:
+  - canonicalName: second
+    aliases: [s, sec, seconds]
+    prefixable: { metric: [s, sec] }
+  - canonicalName: minute
+    aliases: [mn, min, minutes]
+    conversion: "60 second"
+  - canonicalName: hour
+    aliases: [hr, hours]
+    conversion: "60 minute"
+  - canonicalName: day
+    aliases: [d, days]
+    conversion: "24 hour"
+  - canonicalName: year
+    aliases: [yr, years, julian_year, julian_years]
+    prefixable: { metric: [yr] }
+    conversion: "365.25 day"
+  - canonicalName: week
+    aliases: [wk, weeks]
+    conversion: "7 day"
+  - canonicalName: fortnight
+    aliases: [fortnights]
+    conversion: "14 day"
+  - canonicalName: decade
+    aliases: [decades]
+    conversion: "10 year"
+  - canonicalName: century
+    aliases: [centuries]
+    conversion: "100 year"
+  - canonicalName: millennium
+    aliases: [millennia, millenniums]
+    conversion: "1000 year"
+  - canonicalName: common_year
+    aliases: [common_years]
+    conversion: "365 day"
+  - canonicalName: leap_year
+    aliases: [leap_years]
+    conversion: "366 day"
+  - canonicalName: gregorian_year
+    aliases: [gregorian_years]
+    conversion: "365.2425 day"
+  - canonicalName: tropical_year
+    aliases: [tropical_years]
+    conversion: "365.24219 day"
+  - canonicalName: sidereal_year
+    aliases: [sidereal_years]
+    conversion: "365.256363004 day"
+  - canonicalName: sidereal_day
+    aliases: [sidereal_days]
+    conversion: "86164.0905 second"
+  - canonicalName: synodic_month
+    aliases: [synodic_months, lunation, lunations]
+    conversion: "29.530588853 day"
+  - canonicalName: shake
+    aliases: [shakes]
+    conversion: "1e-8 second"
