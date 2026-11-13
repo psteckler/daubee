@@ -1,0 +1,97 @@
+# Particle and atomic physics units, for the Daubee Excel add-in: the electron
+# volt and its mass form, the barn, the fermi, the elementary charge, and the
+# atomic units of length and energy.
+#
+# Add it from the Unit dictionaries dialog ("Add from URL"):
+#   https://psteckler.github.io/daubee/unit-dictionaries/particle-physics-units.yaml
+#
+# Sources: the 2019 revision of the SI for the exact values of the elementary
+# charge (1.602176634e-19 coulombs) and the speed of light (299792458 m/s),
+# from which 1 eV/c^2 follows; CODATA 2022 (NIST SP 961) for the unified atomic
+# mass unit, the Bohr radius and the Hartree energy; the barn (exactly 1e-28
+# square meters) and the fermi (exactly 1e-15 meters) as defined in
+# NIST SP 811.
+#
+# The electron volt (eV, with keV, MeV, GeV and TeV) is in Excel's own list.
+# Masses in particle physics are given in eV/c^2; the unit is spelled
+# electronvolt_per_c_squared (alias eV_c2, with MeV_c2, GeV_c2, ...), and
+# converts to the gram and the kilogram. The barn's symbol is b, so pb and fb
+# (picobarn, femtobarn) work, and an integrated luminosity written fb^(-1) is
+# a unit like any other. Energies in eV/c (momenta) are not included: their
+# factor to kilogram-meters per second can't be written as a conversion
+# between two single units.
+#
+# The built-in units and the SI units used here are repeated exactly, so that
+# this dictionary works on its own. A dictionary may repeat a unit that is
+# already known when the definition is the same; `dalton` and `Da` are added to
+# the atomic mass unit, as in the chemistry dictionary.
+
+weight_and_mass:
+  - canonicalName: gram
+    aliases: [g, grams]
+    prefixable: { metric: [g] }
+  - canonicalName: kilogram
+    aliases: [kg, kilograms]
+    conversion: "1000 gram"
+  - canonicalName: atomic_mass_unit
+    aliases: [u, dalton, daltons, Da]
+    prefixable: { metric: [u, Da] }
+    conversion: "1.66053906892e-24 gram"
+
+distance:
+  - canonicalName: meter
+    aliases: [m, meters]
+    prefixable: { metric: [m] }
+  - canonicalName: fermi
+    aliases: [fermis]
+    conversion: "1e-15 meter"
+  - canonicalName: bohr_radius
+    aliases: [bohr, a0, bohr_radii]
+    conversion: "5.29177210544e-11 meter"
+
+time:
+  - canonicalName: second
+    aliases: [s, sec, seconds]
+    prefixable: { metric: [s, sec] }
+
+area:
+  - canonicalName: square_meter
+    aliases: [m2]
+  - canonicalName: barn
+    aliases: [b, barns]
+    prefixable: { metric: [b] }
+    conversion: "1e-28 square_meter"
+
+energy:
+  - canonicalName: joule
+    aliases: [J, joules]
+    prefixable: { metric: [J] }
+    expansion: kg-m^2/s^2
+  - canonicalName: electron_volt
+    aliases: [eV, ev]
+    prefixable: { metric: [eV, ev] }
+    conversion: "1.602176634e-19 joule"
+  - canonicalName: hartree
+    aliases: [Eh, hartrees]
+    prefixable: { metric: [Eh] }
+    conversion: "4.3597447222060e-18 joule"
+
+si_base_units:
+  - canonicalName: ampere
+    aliases: [A, amp, amps, amperes]
+    prefixable: { metric: [A] }
+
+si_derived_units:
+  - canonicalName: coulomb
+    aliases: [coulombs]
+    prefixable: { metric: [coulomb] }
+    expansion: A-s
+
+particle_physics:
+  - canonicalName: electronvolt_per_c_squared
+    aliases: [eV_c2]
+    prefixable: { metric: [eV_c2] }
+    conversion: "1.782661921627898e-33 gram"
+  - canonicalName: elementary_charge
+    aliases: [e_charge, elementary_charges]
+    conversion: "1.602176634e-19 coulomb"

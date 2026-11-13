@@ -1,0 +1,127 @@
+# Chemistry units, for the Daubee Excel add-in: amounts of substance and
+# concentrations, the dalton, the units of pressure and energy chemists use,
+# and the volumes that go with them.
+#
+# Add it from the Unit dictionaries dialog ("Add from URL"):
+#   https://psteckler.github.io/daubee/unit-dictionaries/chemistry-units.yaml
+#
+# Sources: "Quantities, Units and Symbols in Physical Chemistry" (the IUPAC
+# Green Book, 3rd edition, 2007) for the molar, the bar (exactly 100000
+# pascals), the standard atmosphere (exactly 101325 pascals) and the parts-per
+# notation; the thermochemical calorie (exactly 4.184 joules); CODATA 2022
+# (NIST SP 961) for the unified atomic mass unit (the dalton).
+#
+# The molar (M, mol/L) and the molal (mol/kg) are units of their own with an
+# expansion, so Check treats `molar` and `mol/L` as the same unit. The prefixed
+# forms mM, uM, nM and pM work. Parts per million, billion and trillion are
+# fractions: the percent and the permille are expressed in parts per million.
+# `ppt` is left out, since it means parts per thousand to some and parts per
+# trillion to others; parts per trillion is `pptr` here. Temperatures in
+# degrees (Celsius, Fahrenheit) are not factors of each other, so, as in the
+# other dictionaries, they have no conversions.
+#
+# The units from gram to the thermodynamic calorie are the built-in ones and
+# the SI ones, repeated exactly, so that this dictionary works on its own. A
+# dictionary may repeat a unit that is already known when the definition is the
+# same; `dalton` and `Da` are added to the atomic mass unit, with prefixes (kDa,
+# MDa), and `cal_th` and `kcal_th` to the thermochemical calorie.
+
+weight_and_mass:
+  - canonicalName: gram
+    aliases: [g, grams]
+    prefixable: { metric: [g] }
+  - canonicalName: kilogram
+    aliases: [kg, kilograms]
+    conversion: "1000 gram"
+  - canonicalName: atomic_mass_unit
+    aliases: [u, dalton, daltons, Da]
+    prefixable: { metric: [u, Da] }
+    conversion: "1.66053906892e-24 gram"
+
+distance:
+  - canonicalName: meter
+    aliases: [m, meters]
+    prefixable: { metric: [m] }
+  - canonicalName: angstrom
+    aliases: [ang, angstroms]
+    prefixable: { metric: [ang] }
+    conversion: "1e-10 meter"
+
+time:
+  - canonicalName: second
+    aliases: [s, sec, seconds]
+    prefixable: { metric: [s, sec] }
+
+force:
+  - canonicalName: newton
+    aliases: [N, newtons]
+    prefixable: { metric: [N] }
+    expansion: kg-m/s^2
+
+pressure:
+  - canonicalName: pascal
+    aliases: [Pa, p, pascals]
+    prefixable: { metric: [Pa] }
+    expansion: N/m^2
+  - canonicalName: atmosphere
+    aliases: [atm, at, atmospheres]
+    conversion: "101325 pascal"
+  - canonicalName: torr
+    aliases: [Torr]
+    conversion: "20265/152 pascal"
+  - canonicalName: millimeter_of_mercury
+    aliases: [mmHg]
+    conversion: "133.322387415 pascal"
+  - canonicalName: bar
+    aliases: [bars]
+    prefixable: { metric: [bar] }
+    conversion: "100000 pascal"
+
+energy:
+  - canonicalName: joule
+    aliases: [J, joules]
+    prefixable: { metric: [J] }
+    expansion: kg-m^2/s^2
+  - canonicalName: thermodynamic_calorie
+    aliases: [c, cal_th, thermochemical_calories, thermochemical_calorie]
+    prefixable: { metric: [c, cal_th] }
+    conversion: "4.184 joule"
+
+volume_and_liquid_measure:
+  - canonicalName: liter
+    aliases: [l, L, lt, liters]
+    prefixable: { metric: [l, L, lt] }
+  - canonicalName: cubic_decimeter
+    aliases: [dm3, cubic_decimeters]
+    conversion: "1 liter"
+  - canonicalName: cubic_centimeter
+    aliases: [cm3, cc, cubic_centimeters]
+    conversion: "0.001 liter"
+
+si_base_units:
+  - canonicalName: mole
+    aliases: [mol, moles]
+    prefixable: { metric: [mol] }
+
+chemistry:
+  - canonicalName: molar
+    aliases: [M, molars, molarity]
+    prefixable: { metric: [M] }
+    expansion: mol/L
+  - canonicalName: molal
+    aliases: [molals, molality]
+    expansion: mol/kg
+  - canonicalName: parts_per_million
+    aliases: [ppm]
+  - canonicalName: parts_per_billion
+    aliases: [ppb]
+    conversion: "0.001 parts_per_million"
+  - canonicalName: parts_per_trillion
+    aliases: [pptr]
+    conversion: "0.000001 parts_per_million"
+  - canonicalName: percent
+    aliases: [pct, percents]
+    conversion: "10000 parts_per_million"
+  - canonicalName: permille
+    aliases: [permil, permilles]
+    conversion: "1000 parts_per_million"
