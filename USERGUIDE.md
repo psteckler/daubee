@@ -905,6 +905,7 @@ Add one with **Add from URL**, using its address:
 | Medicine units: the microgram (`mcg`), the equivalent (`mEq`), the osmole (`mOsm`), the international unit (`IU`), the enzyme unit (`U`), the centimeter of water, the nutritional Calorie, and percent | `https://psteckler.github.io/daubee/unit-dictionaries/medicine-units.yaml` |
 | Radiation and photometry units: the curie, rem, roentgen and the old rad (as `radiation_absorbed_dose`), the foot-candle, phot, nit, stilb and talbot, and the SI units they use | `https://psteckler.github.io/daubee/unit-dictionaries/radiation-and-photometry-units.yaml` |
 | Typography units: the point (also `points`, `pts`, `bp`) and pica, the printers' point and pica, the Didot point and cicero, the twip, agate and CSS pixel, `dpi`, `gsm` and `tex` | `https://psteckler.github.io/daubee/unit-dictionaries/typography-units.yaml` |
+| Data rates and communications units: `B` for the byte (`kB`, `MiB`), `bps` and `Bps` with prefixes, `baud`, packets and frames per second, the erlang, `FLOPS` and `IOPS`, and the nibble | `https://psteckler.github.io/daubee/unit-dictionaries/data-rates-and-communications-units.yaml` |
 
 They repeat the built-in units they depend on, so each works on its own, and
 they can be added together.

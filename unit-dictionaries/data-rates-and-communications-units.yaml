@@ -1,0 +1,101 @@
+# Data rates and communications units, for the Daubee Excel add-in: bits and bytes
+# with their usual symbols, data rates (bps, Bps), symbol rates (baud), packet
+# and frame rates, telephone traffic, and the rates of computing (FLOPS, IOPS).
+#
+# Add it from the Unit dictionaries dialog ("Add from URL"):
+#   https://psteckler.github.io/daubee/unit-dictionaries/data-rates-and-communications-units.yaml
+#
+# Sources: IEC 80000-13 (information science and technology) for the bit, the
+# byte (8 bits), the octet and the binary prefixes (KiB, MiB, ...); ITU-T
+# Recommendation E.600 for the erlang; ITU-T V.1 / IEEE 100 for the baud (one
+# symbol per second); IEEE 754 and the TOP500 for FLOPS.
+#
+# The bit and the byte are in Excel's list, with metric and binary prefixes; this
+# dictionary adds the symbol B for the byte (so kB, MB, GB, KiB, MiB, GiB work)
+# and the alias octet. The data rate bit_per_second (bps) and byte_per_second
+# (Bps) are units with prefixes (kbps, Mbps, Gbps, MBps, ...), expanding to
+# bit/s and byte/s; a byte per second is exactly 8 bits per second. The baud is
+# a symbol rate, not a bit rate (a symbol can carry several bits), so it is a
+# unit of its own with no conversion to bps. In the same way packets, frames,
+# floating-point operations and I/O operations are units of their own, and
+# pps, fps, FLOPS and IOPS are rates of them (GFLOPS, TFLOPS, kIOPS, ... work).
+#
+# Left out: `cps`, which means cycles per second, characters per second or
+# counts per second to different people (cycles_per_second is an alias of the
+# hertz here), and decibel units (dBm, dBW), which are logarithmic and can't be
+# added as ordinary units.
+#
+# The built-in units and the hertz used here are repeated exactly, so that this
+# dictionary works on its own. A dictionary may repeat a unit that is already
+# known when the definition is the same.
+
+time:
+  - canonicalName: second
+    aliases: [s, sec, seconds]
+    prefixable: { metric: [s, sec] }
+
+si_derived_units:
+  - canonicalName: hertz
+    aliases: [Hz, cycles_per_second]
+    prefixable: { metric: [Hz] }
+    expansion: s^(-1)
+
+information:
+  - canonicalName: bit
+    aliases: [bits]
+    prefixable: { metric: [bit], binary: [bit] }
+  - canonicalName: byte
+    aliases: [bytes, B, octet, octets]
+    prefixable: { metric: [byte, B], binary: [byte, B] }
+    conversion: "8 bit"
+  - canonicalName: nibble
+    aliases: [nibbles]
+    conversion: "4 bit"
+
+data_rates:
+  - canonicalName: bit_per_second
+    aliases: [bps, bits_per_second]
+    prefixable: { metric: [bps] }
+    expansion: bit/s
+  - canonicalName: byte_per_second
+    aliases: [Bps, bytes_per_second]
+    prefixable: { metric: [Bps], binary: [Bps] }
+    expansion: byte/s
+    conversion: "8 bit_per_second"
+
+communications:
+  - canonicalName: symbol
+    aliases: [symbols]
+  - canonicalName: baud
+    aliases: [Bd, bauds]
+    prefixable: { metric: [Bd] }
+    expansion: symbol/s
+  - canonicalName: packet
+    aliases: [packets]
+  - canonicalName: packet_per_second
+    aliases: [pps, packets_per_second]
+    prefixable: { metric: [pps] }
+    expansion: packet/s
+  - canonicalName: frame
+    aliases: [frames]
+  - canonicalName: frame_per_second
+    aliases: [fps, frames_per_second]
+    prefixable: { metric: [fps] }
+    expansion: frame/s
+  - canonicalName: erlang
+    aliases: [Erl, erlangs]
+    prefixable: { metric: [Erl] }
+
+computing:
+  - canonicalName: floating_point_operation
+    aliases: [FLOP, flop, floating_point_operations]
+  - canonicalName: floating_point_operations_per_second
+    aliases: [FLOPS, flops]
+    prefixable: { metric: [FLOPS, flops] }
+    expansion: FLOP/s
+  - canonicalName: io_operation
+    aliases: [IO, io_operations]
+  - canonicalName: io_operations_per_second
+    aliases: [IOPS, iops]
+    prefixable: { metric: [IOPS, iops] }
+    expansion: IO/s
