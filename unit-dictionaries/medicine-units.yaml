@@ -1,0 +1,119 @@
+# Medical and pharmacological units, for the Daubee Excel add-in: doses and
+# concentrations (mg/dL, mmol/L, ng/mL, mEq/L, mOsm/kg), biological activity,
+# enzyme units, and the pressures and energy units clinicians use.
+#
+# Add it from the Unit dictionaries dialog ("Add from URL"):
+#   https://psteckler.github.io/daubee/unit-dictionaries/medicine-units.yaml
+#
+# Sources: the SI brochure (BIPM, 9th edition, 2019) for the mole and the
+# katal; the IUPAC Green Book for the equivalent; the International
+# Federation of Clinical Chemistry (IFCC) for the enzyme unit (1 U = 1
+# micromole per minute = 1/60 microkatal); the conventional centimeter of water
+# (98.0665 Pa exactly, from the standard acceleration of gravity); and the
+# kilocalorie (4186.8 J, International Table) for the nutritional Calorie.
+#
+# The international unit (IU), the equivalent (Eq) and the osmole (Osm) are
+# units of their own with no conversion: an IU is a different amount for every
+# substance, an equivalent depends on the valence, and an osmole counts
+# particles, so none of them is a fixed number of moles. Their prefixed forms
+# mIU, mEq and mOsm work. The microgram has the usual alias mcg, as on
+# prescriptions; the prefixed forms mg, ug, ng, mL, dL, mmol and umol, and
+# compounds such as mg/dL, work without an entry. Percent (as in hematocrit)
+# is the one the chemistry dictionary defines.
+#
+# The built-in units and the SI units used here are repeated exactly, so that
+# this dictionary works on its own. A dictionary may repeat a unit that is
+# already known when the definition is the same.
+
+weight_and_mass:
+  - canonicalName: gram
+    aliases: [g, grams]
+    prefixable: { metric: [g] }
+  - canonicalName: kilogram
+    aliases: [kg, kilograms]
+    conversion: "1000 gram"
+  - canonicalName: microgram
+    aliases: [mcg, micrograms]
+    conversion: "1e-6 gram"
+
+distance:
+  - canonicalName: meter
+    aliases: [m, meters]
+    prefixable: { metric: [m] }
+
+time:
+  - canonicalName: second
+    aliases: [s, sec, seconds]
+    prefixable: { metric: [s, sec] }
+  - canonicalName: minute
+    aliases: [mn, min, minutes]
+    conversion: "60 second"
+
+force:
+  - canonicalName: newton
+    aliases: [N, newtons]
+    prefixable: { metric: [N] }
+    expansion: kg-m/s^2
+
+pressure:
+  - canonicalName: pascal
+    aliases: [Pa, p, pascals]
+    prefixable: { metric: [Pa] }
+    expansion: N/m^2
+  - canonicalName: millimeter_of_mercury
+    aliases: [mmHg]
+    conversion: "133.322387415 pascal"
+  - canonicalName: centimeter_of_water
+    aliases: [cmH2O]
+    conversion: "98.0665 pascal"
+
+energy:
+  - canonicalName: joule
+    aliases: [J, joules]
+    prefixable: { metric: [J] }
+    expansion: kg-m^2/s^2
+  - canonicalName: calorie
+    aliases: [cal, calories]
+    prefixable: { metric: [cal] }
+    conversion: "4.1868 joule"
+  - canonicalName: food_calorie
+    aliases: [Cal, food_calories]
+    conversion: "4186.8 joule"
+
+volume_and_liquid_measure:
+  - canonicalName: liter
+    aliases: [l, L, lt, liters]
+    prefixable: { metric: [l, L, lt] }
+
+si_base_units:
+  - canonicalName: mole
+    aliases: [mol, moles]
+    prefixable: { metric: [mol] }
+
+si_derived_units:
+  - canonicalName: katal
+    aliases: [kat, katals]
+    prefixable: { metric: [kat] }
+    expansion: mol/s
+
+chemistry:
+  - canonicalName: parts_per_million
+    aliases: [ppm]
+  - canonicalName: percent
+    aliases: [pct, percents]
+    conversion: "10000 parts_per_million"
+
+medicine:
+  - canonicalName: international_unit
+    aliases: [IU, international_units]
+    prefixable: { metric: [IU] }
+  - canonicalName: equivalent
+    aliases: [Eq, equivalents]
+    prefixable: { metric: [Eq] }
+  - canonicalName: osmole
+    aliases: [Osm, osmoles]
+    prefixable: { metric: [Osm] }
+  - canonicalName: enzyme_unit
+    aliases: [U, enzyme_units]
+    prefixable: { metric: [U] }
+    conversion: "1/60000000 katal"

@@ -901,6 +901,8 @@ Add one with **Add from URL**, using its address:
 | Time and calendar units: week, fortnight, decade, century, millennium, the common, leap, Gregorian, tropical and sidereal years, the sidereal day, the lunation, shake, and `kyr`/`Myr`/`Gyr` | `https://psteckler.github.io/daubee/unit-dictionaries/time-and-calendar-units.yaml` |
 | Chemistry units: the molar (`M`, `mM`) and molal, parts per million, billion and trillion, the percent, the bar, the dalton (`Da`, `kDa`), the thermochemical calorie, cubic centimeters, and the SI units they use | `https://psteckler.github.io/daubee/unit-dictionaries/chemistry-units.yaml` |
 | Particle physics units: the electron volt's mass form (`GeV_c2`), the barn (`b`, `pb`, `fb`), the fermi, the elementary charge, the Bohr radius, and the Hartree energy | `https://psteckler.github.io/daubee/unit-dictionaries/particle-physics-units.yaml` |
+| Astronomy units: the astronomical unit, light travel times, solar and planetary masses and radii, `kpc`/`Mpc`/`Gpc` and `kly`/`Mly`/`Gly`, the arcminute and arcsecond, the jansky, and the lunar distance | `https://psteckler.github.io/daubee/unit-dictionaries/astronomy-units.yaml` |
+| Medicine units: the microgram (`mcg`), the equivalent (`mEq`), the osmole (`mOsm`), the international unit (`IU`), the enzyme unit (`U`), the centimeter of water, the nutritional Calorie, and percent | `https://psteckler.github.io/daubee/unit-dictionaries/medicine-units.yaml` |
 
 They repeat the built-in units they depend on, so each works on its own, and
 they can be added together.

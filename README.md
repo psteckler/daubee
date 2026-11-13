@@ -12,7 +12,7 @@ seconds.
 - **[Screenshots](screenshots/)** — what Daubee looks like in Excel.
 - **[Unit dictionaries](#unit-dictionaries)** — ready-made sets of units you
   can add to Daubee: SI derived, imperial, US customary, electrical, time and
-  calendar, chemistry, and particle physics.
+  calendar, chemistry, particle physics, astronomy, and medicine.
 
 ## Screenshots
 
@@ -74,15 +74,13 @@ Daubee comes with built-in units from Excel's `CONVERT` list and built-in
 currency units. This repository's [`unit-dictionaries`](unit-dictionaries/)
 folder has more, as ready-made **unit dictionaries** you can add when you need them:
 
-| Dictionary | 
-| ---  |
-| [SI-derived-units.yaml](unit-dictionaries/SI-derived-units.yaml) |
-| [imperial-units.yaml](unit-dictionaries/imperial-units.yaml) |
-| [US-customary-units.yaml](unit-dictionaries/US-customary-units.yaml) |
-| [electrical-units.yaml](unit-dictionaries/electrical-units.yaml) |
-| [time-and-calendar-units.yaml](unit-dictionaries/time-and-calendar-units.yaml) |
-| [chemistry-units.yaml](unit-dictionaries/chemistry-units.yaml) |
-| [particle-physics-units.yaml](unit-dictionaries/particle-physics-units.yaml) |
+| Dictionaries |  |
+| --- | --- |
+| [SI-derived-units.yaml](unit-dictionaries/SI-derived-units.yaml) | [chemistry-units.yaml](unit-dictionaries/chemistry-units.yaml) |
+| [imperial-units.yaml](unit-dictionaries/imperial-units.yaml) | [particle-physics-units.yaml](unit-dictionaries/particle-physics-units.yaml) |
+| [US-customary-units.yaml](unit-dictionaries/US-customary-units.yaml) | [astronomy-units.yaml](unit-dictionaries/astronomy-units.yaml) |
+| [electrical-units.yaml](unit-dictionaries/electrical-units.yaml) | [medicine-units.yaml](unit-dictionaries/medicine-units.yaml) |
+| [time-and-calendar-units.yaml](unit-dictionaries/time-and-calendar-units.yaml) |  |
 
 **Load a dictionary from its URL.** In Excel, in the Daubee tab, click **Select dictionaries**,
 then **Add from URL**, paste the address of the dictionary, and press the button. The URL is
