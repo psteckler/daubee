@@ -1,0 +1,103 @@
+# Radiation and photometry units, for the Daubee Excel add-in: activity, absorbed
+# dose and dose equivalent, exposure, and the units of light.
+#
+# Add it from the Unit dictionaries dialog ("Add from URL"):
+#   https://psteckler.github.io/daubee/unit-dictionaries/radiation-and-photometry-units.yaml
+#
+# Sources: the SI brochure (BIPM, 9th edition, 2019) for the becquerel, gray,
+# sievert, lumen and lux; NIST Special Publication 811 for the curie (exactly
+# 3.7e10 becquerels), the rem (exactly 0.01 sieverts), the rad (exactly 0.01
+# grays) and the roentgen; ICRP Publication 103 for the quantities the gray and
+# the sievert measure; the CIE for the photometric units (the phot, the stilb,
+# the nit and the talbot); the foot-candle is one lumen per square foot.
+#
+# The old unit of absorbed dose, the rad, is called radiation_absorbed_dose
+# (alias rad_dose) here, since Excel's own list uses the symbol rad for the
+# radian. The gray and the sievert have the same dimensions, but they measure
+# different things (absorbed dose and dose equivalent), so they are separate
+# units with no conversion, as are the becquerel and the hertz; the roentgen
+# (exposure, in coulombs per kilogram) has none either, since its factor to
+# C/kg can't be written as a conversion between two single units. The nit has
+# the expansion cd/m^2, so Check treats `nit` and `cd/m^2` as the same unit.
+# Prefixed forms such as mSv, uSv, mCi, kBq, klx and mR work. Dose rates (mSv/h)
+# and activity concentrations (Bq/L) are compounds.
+#
+# The SI units used here are repeated exactly from the SI derived units
+# dictionary, so that this dictionary works on its own. A dictionary may repeat
+# a unit that is already known when the definition is the same.
+
+distance:
+  - canonicalName: meter
+    aliases: [m, meters]
+    prefixable: { metric: [m] }
+
+time:
+  - canonicalName: second
+    aliases: [s, sec, seconds]
+    prefixable: { metric: [s, sec] }
+
+si_base_units:
+  - canonicalName: candela
+    aliases: [cd, candelas]
+    prefixable: { metric: [cd] }
+
+si_derived_units:
+  - canonicalName: steradian
+    aliases: [sr, steradians]
+  - canonicalName: lumen
+    aliases: [lm, lumens]
+    prefixable: { metric: [lm] }
+    expansion: cd-sr
+  - canonicalName: lux
+    aliases: [lx, luxes]
+    prefixable: { metric: [lx] }
+    expansion: cd-sr/m^2
+  - canonicalName: becquerel
+    aliases: [Bq, becquerels, dps]
+    prefixable: { metric: [Bq] }
+    expansion: s^(-1)
+  - canonicalName: gray
+    aliases: [Gy, grays]
+    prefixable: { metric: [Gy] }
+    expansion: m^2/s^2
+  - canonicalName: sievert
+    aliases: [Sv, sieverts]
+    prefixable: { metric: [Sv] }
+    expansion: m^2/s^2
+
+radiation:
+  - canonicalName: curie
+    aliases: [Ci, curies]
+    prefixable: { metric: [Ci] }
+    conversion: "37000000000 becquerel"
+  - canonicalName: disintegration_per_minute
+    aliases: [dpm, disintegrations_per_minute]
+    conversion: "1/60 becquerel"
+  - canonicalName: radiation_absorbed_dose
+    aliases: [rad_dose, rads_dose]
+    conversion: "0.01 gray"
+  - canonicalName: rem
+    aliases: [rems]
+    prefixable: { metric: [rem] }
+    conversion: "0.01 sievert"
+  - canonicalName: roentgen
+    aliases: [R, roentgens]
+    prefixable: { metric: [R] }
+
+photometry:
+  - canonicalName: foot_candle
+    aliases: [fc, foot_candles]
+    conversion: "10.763910416709722 lux"
+  - canonicalName: phot
+    aliases: [ph, phots]
+    conversion: "10000 lux"
+  - canonicalName: nit
+    aliases: [nt, nits]
+    prefixable: { metric: [nt] }
+    expansion: cd/m^2
+  - canonicalName: stilb
+    aliases: [sb, stilbs]
+    conversion: "10000 nit"
+  - canonicalName: talbot
+    aliases: [talbots]
+    expansion: lm-s

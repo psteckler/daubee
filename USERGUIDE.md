@@ -903,6 +903,8 @@ Add one with **Add from URL**, using its address:
 | Particle physics units: the electron volt's mass form (`GeV_c2`), the barn (`b`, `pb`, `fb`), the fermi, the elementary charge, the Bohr radius, and the Hartree energy | `https://psteckler.github.io/daubee/unit-dictionaries/particle-physics-units.yaml` |
 | Astronomy units: the astronomical unit, light travel times, solar and planetary masses and radii, `kpc`/`Mpc`/`Gpc` and `kly`/`Mly`/`Gly`, the arcminute and arcsecond, the jansky, and the lunar distance | `https://psteckler.github.io/daubee/unit-dictionaries/astronomy-units.yaml` |
 | Medicine units: the microgram (`mcg`), the equivalent (`mEq`), the osmole (`mOsm`), the international unit (`IU`), the enzyme unit (`U`), the centimeter of water, the nutritional Calorie, and percent | `https://psteckler.github.io/daubee/unit-dictionaries/medicine-units.yaml` |
+| Radiation and photometry units: the curie, rem, roentgen and the old rad (as `radiation_absorbed_dose`), the foot-candle, phot, nit, stilb and talbot, and the SI units they use | `https://psteckler.github.io/daubee/unit-dictionaries/radiation-and-photometry-units.yaml` |
+| Typography units: the point (also `points`, `pts`, `bp`) and pica, the printers' point and pica, the Didot point and cicero, the twip, agate and CSS pixel, `dpi`, `gsm` and `tex` | `https://psteckler.github.io/daubee/unit-dictionaries/typography-units.yaml` |
 
 They repeat the built-in units they depend on, so each works on its own, and
 they can be added together.

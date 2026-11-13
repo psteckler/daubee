@@ -1,0 +1,83 @@
+# Typography and print units, for the Daubee Excel add-in: points, picas,
+# the traditional printers' points, the Didot point and cicero, the twip, the
+# agate, the CSS pixel, resolutions, and the units of paper and thread weight.
+#
+# Add it from the Unit dictionaries dialog ("Add from URL"):
+#   https://psteckler.github.io/daubee/unit-dictionaries/typography-units.yaml
+#
+# Sources: the PostScript Language Reference (Adobe) for the point (exactly
+# 1/72 inch) and the pica (12 points); Knuth, The TeXbook, for the traditional
+# printers' point (1/72.27 inch); ISO 80000 and the DIN 16507 tradition for the
+# Didot point (0.375 mm in desktop publishing) and the cicero (12 Didot points,
+# 4.5 mm); the CSS Values and Units specification for the reference pixel
+# (1/96 inch); the twip as Microsoft Word defines it (1/1440 inch).
+#
+# Excel's own list calls the point "Picapt" or "Pica" (its built-in unit
+# pica_postscript) and the pica "pica" (pica_traditional), which is easy to mix
+# up: here the built-in 1/72-inch unit also answers to point, points, pts, bp
+# and big_point, and the pica also to picas. The symbol pt is Excel's for the
+# US pint, so it is not available for the point. The em and en are not here:
+# they are fractions of a font size, not fixed lengths. The CSS pixel (px) is
+# a length, 1/96 inch, which is what a CSS pixel is by definition; it is not the
+# dot of a particular screen.
+#
+# The dots per inch (dpi, ppi) have the expansion in^(-1), the gsm
+# (grams per square meter) the expansion g/m^2, and the tex (grams per
+# kilometer) the expansion g/km, so Check treats each as the compound it
+# stands for.
+#
+# The built-in units used here are repeated exactly, so that this dictionary
+# works on its own. A dictionary may repeat a unit that is already known when
+# the definition is the same.
+
+weight_and_mass:
+  - canonicalName: gram
+    aliases: [g, grams]
+    prefixable: { metric: [g] }
+
+distance:
+  - canonicalName: meter
+    aliases: [m, meters]
+    prefixable: { metric: [m] }
+  - canonicalName: inch
+    aliases: [in, inches]
+    conversion: "0.0254 meter"
+  - canonicalName: pica_postscript
+    aliases: [Picapt, Pica, point, points, pts, bp, big_point]
+    conversion: "1/72 inch"
+  - canonicalName: pica_traditional
+    aliases: [pica, picas]
+    conversion: "1/6 inch"
+  - canonicalName: printers_point
+    aliases: [tex_point, tex_points, printers_points]
+    conversion: "100/7227 inch"
+  - canonicalName: printers_pica
+    aliases: [printers_picas]
+    conversion: "1200/7227 inch"
+  - canonicalName: didot_point
+    aliases: [didot_points]
+    conversion: "0.000375 meter"
+  - canonicalName: cicero
+    aliases: [ciceros]
+    conversion: "0.0045 meter"
+  - canonicalName: twip
+    aliases: [twips]
+    conversion: "1/1440 inch"
+  - canonicalName: agate
+    aliases: [agates]
+    conversion: "1/14 inch"
+  - canonicalName: css_pixel
+    aliases: [px, css_pixels]
+    conversion: "1/96 inch"
+
+typography:
+  - canonicalName: dots_per_inch
+    aliases: [dpi, ppi]
+    expansion: in^(-1)
+  - canonicalName: grams_per_square_meter
+    aliases: [gsm]
+    expansion: g/m^2
+  - canonicalName: tex
+    aliases: [tex_units]
+    prefixable: { metric: [tex] }
+    expansion: g/km
