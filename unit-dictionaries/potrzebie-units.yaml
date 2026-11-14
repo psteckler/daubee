@@ -1,0 +1,293 @@
+# Potrzebie units, for the Daubee Excel add-in: the Potrzebie System of Weights
+# and Measures, which Donald Knuth published as a joke in MAD magazine, issue
+# 33 (1957), when he was a student. A dictionary for fun, and a good test of
+# what Daubee's units can do with a system that has nothing to do with SI.
+#
+# Add it from the Unit dictionaries dialog ("Add from URL"):
+#   https://psteckler.github.io/daubee/unit-dictionaries/potrzebie-units.yaml
+#
+# The system is built on three definitions (all from the article):
+#   - the potrzebie, the thickness of MAD magazine #26: 2.2633484517438173216473
+#     mm (the article printed 2.263348517438173216473, with the eighth digit
+#     dropped; this is the corrected value, as in Wikipedia's article on the
+#     potrzebie and Knuth's "Selected Papers on Fun & Games");
+#   - the ngogn, a cubic dekapotrzebie (1000 cubic potrzebies), the unit of
+#     volume;
+#   - the blintz, the mass of one ngogn of halavah, a form of pie of specific
+#     gravity 3.1416, so 3.1416 times the mass of the water in an ngogn (taken
+#     here as 1 gram per milliliter).
+# The kovac (0.864 seconds, a hundred-thousandth of the clarke, the average
+# rotation of the Earth: one day) is the unit of time. Force is the blintzal
+# (a blintz accelerated by a potrzebie per kovac per kovac), energy the hoo
+# (a blintzal-potrzebie) and the hah (a million hoos), and power the
+# whatmeworry (a hah per kovac). The conversions to ordinary units are worked
+# out from those definitions, to many digits.
+#
+# The eight prefixes (farshimmelt 10^-6, milli, centi, deci, deka, hecto, kilo,
+# furshlugginer 10^6) are written out as units of their own, for the potrzebie,
+# the ngogn and the blintz, since they aren't Excel's metric prefixes. The
+# article's abbreviations (fp, mp, Kp, Fp, n, Kn, ...) are aliases where they
+# don't clash with another unit's name or with a prefixed one; these do, and
+# are left out (the full names always work): p (pascal), b (barn), mn (minute),
+# mi (mile), h (horsepower), hh (horsepower-hour), V (volt), cl (centiliter),
+# and fb, mb, cb and db (the barn's prefixes).
+#
+# Where the article contradicts itself, the definitions win over the table of
+# "basic conversion factors" at the end:
+#   - the wolverton is printed as .00001 clarke, but with 1000 wolvertons to
+#     the kovac, 100 kovacs to the martin, 100 martins to the wood and 10
+#     woods to the clarke it is 10^-8 clarke, which is what is used here (and
+#     the table's 0.864 seconds for the kovac agrees);
+#   - the table gives the blintz as 36.42538631 grams; 3.1416 as the specific
+#     gravity gives 36.425469 (the table's number is 2.3 parts per million
+#     lower, and matches a specific gravity of pi);
+#   - the table gives 3.499651 whatmeworries to the watt; the hah, the kovac
+#     and the aeolipower (38.797 horsepower in the table, which matches) give
+#     3.4565, so the watt's figure is taken to be a misprint;
+#   - the table's 34.330 calories for the vreeable (the heat to warm a blintz
+#     of halavah by one degree Smurdley) is used as printed, since the
+#     degree Smurdley's size isn't clearly given: 100 degrees Smurdley is the
+#     optimum temperature for eating halavah, 27 degrees Celsius, and the
+#     smurdley is taken here as 0.27 Celsius degrees, with a common zero.
+# The mingo is 10 clarkes and the cowznofski ten mingos (a year is 3.6524
+# cowznofskis); a circle is 100 zygos, a zygo 100 zorches and a zorch 100
+# quircis; the MAD is 48 things and the baker's MAD 49 (named MAD_count, since MAD is
+# the Moroccan dirham); the hyme is the quantity
+# of radon in equilibrium with a blintz of radium, so a blintz-in-grams number
+# of curies; and the light-cowznofski is the distance light travels in a
+# cowznofski. The article's date system (the calendar, which starts with MAD's
+# first issue on October 1, 1952), the cosmo, the bumble, the faraday, the
+# electron-ech and the atmosphere are left out: they aren't units with a
+# definition that fits.
+#
+# The built-in units this uses are repeated exactly, so the dictionary works
+# alone. A dictionary may repeat a unit that is already known when the
+# definition is the same.
+
+distance:
+  - canonicalName: meter
+    aliases: [m, meters]
+    prefixable: { metric: [m] }
+  - canonicalName: farshimmelt_potrzebie
+    aliases: [farshimmelt_potrzebies, fp]
+    conversion: "0.000001 potrzebie"
+  - canonicalName: millipotrzebie
+    aliases: [millipotrzebies, mp]
+    conversion: "0.001 potrzebie"
+  - canonicalName: centipotrzebie
+    aliases: [centipotrzebies, cp]
+    conversion: "0.01 potrzebie"
+  - canonicalName: decipotrzebie
+    aliases: [decipotrzebies, dp]
+    conversion: "0.1 potrzebie"
+  - canonicalName: potrzebie
+    aliases: [potrzebies]
+    conversion: "0.0022633484517438173216473 meter"
+  - canonicalName: dekapotrzebie
+    aliases: [dekapotrzebies, Dp]
+    conversion: "10 potrzebie"
+  - canonicalName: hectopotrzebie
+    aliases: [hectopotrzebies, Hp]
+    conversion: "100 potrzebie"
+  - canonicalName: kilopotrzebie
+    aliases: [kilopotrzebies, Kp]
+    conversion: "1000 potrzebie"
+  - canonicalName: furshlugginer_potrzebie
+    aliases: [furshlugginer_potrzebies, Fp]
+    conversion: "1000000 potrzebie"
+  - canonicalName: light_cowznofski
+    aliases: [light_cowznofskis, light_cowz]
+    conversion: "2590206837120000 meter"
+
+volume_and_liquid_measure:
+  - canonicalName: liter
+    aliases: [l, L, lt, liters]
+    prefixable: { metric: [l, L, lt] }
+  - canonicalName: farshimmelt_ngogn
+    aliases: [farshimmelt_ngogns, fn]
+    conversion: "0.000001 ngogn"
+  - canonicalName: millingogn
+    aliases: [millingogns]
+    conversion: "0.001 ngogn"
+  - canonicalName: centingogn
+    aliases: [centingogns, cn]
+    conversion: "0.01 ngogn"
+  - canonicalName: decingogn
+    aliases: [decingogns, dn]
+    conversion: "0.1 ngogn"
+  - canonicalName: ngogn
+    aliases: [ngogns, n]
+    conversion: "0.01159455971215860419294051488498310532213 liter"
+  - canonicalName: dekangogn
+    aliases: [dekangogns, Dn]
+    conversion: "10 ngogn"
+  - canonicalName: hectongogn
+    aliases: [hectongogns, Hn]
+    conversion: "100 ngogn"
+  - canonicalName: kilongogn
+    aliases: [kilongogns, Kn]
+    conversion: "1000 ngogn"
+  - canonicalName: furshlugginer_ngogn
+    aliases: [furshlugginer_ngogns, Fn]
+    conversion: "1000000 ngogn"
+
+weight_and_mass:
+  - canonicalName: gram
+    aliases: [g, grams]
+    prefixable: { metric: [g] }
+  - canonicalName: farshimmelt_blintz
+    aliases: [farshimmelt_blintzs]
+    conversion: "0.000001 blintz"
+  - canonicalName: milliblintz
+    aliases: [milliblintzs]
+    conversion: "0.001 blintz"
+  - canonicalName: centiblintz
+    aliases: [centiblintzs]
+    conversion: "0.01 blintz"
+  - canonicalName: deciblintz
+    aliases: [deciblintzs]
+    conversion: "0.1 blintz"
+  - canonicalName: blintz
+    aliases: [blintzs]
+    conversion: "36.42546879171747093254192156266292368002 gram"
+  - canonicalName: dekablintz
+    aliases: [dekablintzs, Db]
+    conversion: "10 blintz"
+  - canonicalName: hectoblintz
+    aliases: [hectoblintzs, Hb]
+    conversion: "100 blintz"
+  - canonicalName: kiloblintz
+    aliases: [kiloblintzs, Kb]
+    conversion: "1000 blintz"
+  - canonicalName: furshlugginer_blintz
+    aliases: [furshlugginer_blintzs, Fb]
+    conversion: "1000000 blintz"
+
+time:
+  - canonicalName: second
+    aliases: [s, sec, seconds]
+    prefixable: { metric: [s, sec] }
+  - canonicalName: minute
+    aliases: [mn, min, minutes]
+    conversion: "60 second"
+  - canonicalName: hour
+    aliases: [hr, hours]
+    conversion: "60 minute"
+  - canonicalName: day
+    aliases: [d, days]
+    conversion: "24 hour"
+  - canonicalName: wolverton
+    aliases: [wolvertons, wl]
+    conversion: "0.001 kovac"
+  - canonicalName: kovac
+    aliases: [kovacs, kv, kov]
+    conversion: "0.01 martin"
+  - canonicalName: martin
+    aliases: [martins]
+    conversion: "0.01 wood"
+  - canonicalName: wood
+    aliases: [woods, wd]
+    conversion: "0.1 clarke"
+  - canonicalName: clarke
+    aliases: [clarkes]
+    conversion: "1 day"
+  - canonicalName: mingo
+    aliases: [mingos]
+    conversion: "10 clarke"
+  - canonicalName: cowznofski
+    aliases: [cowznofskis, cow]
+    conversion: "10 mingo"
+
+force:
+  - canonicalName: newton
+    aliases: [N, newtons]
+    prefixable: { metric: [N] }
+    expansion: kg-m/s^2
+  - canonicalName: blintzal
+    aliases: [blintzals]
+    conversion: "0.0001104406833978701481336924589391424073242 newton"
+  - canonicalName: furshlugginer_blintzal
+    aliases: [furshlugginer_blintzals, Fbal]
+    conversion: "1000000 blintzal"
+
+energy:
+  - canonicalName: joule
+    aliases: [J, joules]
+    prefixable: { metric: [J] }
+    expansion: kg-m^2/s^2
+  - canonicalName: calorie
+    aliases: [cal, calories]
+    prefixable: { metric: [cal] }
+    conversion: "4.1868 joule"
+  - canonicalName: hoo
+    aliases: [hoos]
+    conversion: "0.000000249965749778098509803434572904406692418527419784007672351632 joule"
+  - canonicalName: hah
+    aliases: [hahs]
+    conversion: "1000000 hoo"
+  - canonicalName: vreeable
+    aliases: [vreeables, v]
+    conversion: "34.330 calorie"
+  - canonicalName: large_vreeable
+    aliases: [large_vreeables]
+    conversion: "1000 vreeable"
+
+power:
+  - canonicalName: watt
+    aliases: [W, w, watts]
+    prefixable: { metric: [W] }
+    expansion: kg-m^2/s^3
+  - canonicalName: whatmeworry
+    aliases: [whatmeworries, WMW]
+    conversion: "0.2893122103913177196799011260467670051140 watt"
+  - canonicalName: kilowhatmeworry
+    aliases: [kilowhatmeworries, KWMW]
+    conversion: "1000 whatmeworry"
+  - canonicalName: aeolipower
+    aliases: [aeolipowers, AP]
+    conversion: "100 kilowhatmeworry"
+
+temperature:
+  - canonicalName: celsius
+    aliases: [C, cel, degC, degreesC]
+  - canonicalName: smurdley
+    aliases: [smurdleys, degS]
+    conversion: "0.27 celsius"
+
+counting:
+  - canonicalName: each
+    aliases: [ea, pcs, piece, pieces]
+  - canonicalName: MAD_count
+    aliases: [MAD_counts]
+    conversion: "48 each"
+  - canonicalName: bakers_MAD_count
+    aliases: [bakers_MAD_counts]
+    conversion: "49 each"
+
+angle:
+  - canonicalName: degree
+    aliases: [deg, degrees]
+  - canonicalName: quirci
+    aliases: [quircis]
+    conversion: "0.00036 degree"
+  - canonicalName: zorch
+    aliases: [zorches]
+    conversion: "0.036 degree"
+  - canonicalName: zygo
+    aliases: [zygos]
+    conversion: "3.6 degree"
+
+si_derived_units:
+  - canonicalName: becquerel
+    aliases: [Bq, becquerels, dps]
+    prefixable: { metric: [Bq] }
+    expansion: s^(-1)
+
+radiation:
+  - canonicalName: curie
+    aliases: [Ci, curies]
+    prefixable: { metric: [Ci] }
+    conversion: "37000000000 becquerel"
+  - canonicalName: hyme
+    aliases: [hymes]
+    conversion: "36.42546879171747093254192156266292368002 curie"
