@@ -325,7 +325,7 @@ button:disabled:hover {
 }
 
 .error-item.error-equality {
-  border-left-color: #d32f2f;
+  border-left-color: #b71c1c;
 }
 
 .error-item.error-propagate {
@@ -333,7 +333,7 @@ button:disabled:hover {
 }
 
 .error-item.error-arg {
-  border-left-color: #ff9800;
+  border-left-color: #ffa000;
 }
 
 .error-item.error-currencyNotFound {
