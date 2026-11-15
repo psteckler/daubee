@@ -1109,7 +1109,7 @@ The list below is not a comprehensive list of every function Daubee understands.
   `ROUNDDOWN` and `TRUNC` are different: they keep the unit of the number,
   and the digit count must be a plain number.)
 
-### Where the unit changes, or goes away
+### Where the unit changes in the result, or is discarded
 
 - **`*`, `/`, `PRODUCT`, `SUMPRODUCT`** — the units multiply: `=A1*B1` with
   `kg` and `m` is in `kg-m`, and `m` times `m^(-1)` is a plain number.
