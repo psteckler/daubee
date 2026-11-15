@@ -28,6 +28,7 @@ formulas where there's unit inconsistency.
 - [Unit dictionaries](#unit-dictionaries)
 - [Audit report](#audit-report)
 - [Tips](#tips)
+- [Function guide](#function-guide)
 
 ## Opening the pane
 
@@ -1069,3 +1070,155 @@ a sheet-by-sheet breakdown table.
   or copy the sheet again with the pane open.
 - **When in doubt, run Check Units.** It's the fastest way to see whether
   your latest edit introduced a problem.
+
+## Function guide
+
+Most functions do what you'd expect: `ABS`, `INT` and `ROUND` keep the unit
+of their argument, `SUM` keeps the unit of what it adds. This section covers
+the ones where Check Units may behave differently from what you might guess.
+The list below is not a comprehensive list of every function Daubee understands.
+
+"Flagged" below means the formula gets a border and an error from Check Units
+(see [Reading the borders](#reading-the-borders)).
+
+### Where the units must agree
+
+- **`+`, `-` and the comparisons (`<`, `>`, `=`, ...)** — both sides need the
+  same unit, and *a bare number is not a number in every unit*: it has no
+  unit at all. `=A1+5` with `A1` in `kg` is flagged, and so is
+  `=IF(A1<5, ...)`. Daubee offers to wrap the number, giving
+  `=A1+WITHUNIT(5, "kilogram")` (see [Wrap dimensionless
+  arguments](#wrap-dimensionless-arguments)). Multiplying or dividing by a
+  bare number is fine: `=A1*2` is still in `kg`.
+- **`IF`, `IFS`, `IFERROR`, `IFNA`, `SWITCH`** — any of the results could be
+  returned, so they must all have one unit, and that is the unit of the
+  formula. `=IF(A1>0, B1, C1)` with `B1` in `USD` and `C1` in `EUR` is
+  flagged; so is `=IF(A1>0, B1, 0)` with `B1` in `USD`, because `0` has no
+  unit. `SWITCH` also needs its case values to have the unit of the
+  expression it tests.
+- **`SUM`, `AVERAGE`, `MIN`, `MAX`, `MEDIAN`, `GCD`, `LCM`, ...** — every
+  argument in one unit, and the result has it. `=SUM(A1:A3)` with `A1:A2` in
+  `kg` and `A3` in `m` is flagged.
+- **`SUMIF`, `SUMIFS`, `AVERAGEIF`, `MAXIFS`, ...** — only the range being
+  summed (or averaged) counts; the criteria ranges and criteria are filters
+  and can be in any unit. `=SUMIF(A1:A9, ">5", B1:B9)` has the unit of
+  `B1:B9`, whatever `A1:A9` is.
+- **`MOD`, `CEILING`, `FLOOR`, `MROUND`** — the number and the divisor or
+  significance must share a unit, and the result has it. `=CEILING(A1, B1)`
+  with `A1` in `m` and `B1` in `s` is flagged. (`ROUND`, `ROUNDUP`,
+  `ROUNDDOWN` and `TRUNC` are different: they keep the unit of the number,
+  and the digit count must be a plain number.)
+
+### Where the unit changes, or goes away
+
+- **`*`, `/`, `PRODUCT`, `SUMPRODUCT`** — the units multiply: `=A1*B1` with
+  `kg` and `m` is in `kg-m`, and `m` times `m^(-1)` is a plain number.
+  `=SUMPRODUCT(A1:A9, B1:B9)` with `kg` and `USD/kg` is in `USD`.
+- **`SQRT`** — halves the exponents, so the unit must be a perfect square:
+  `m^2` becomes `m`, but the square root of `m` is flagged, since no unit
+  formula can say "half a meter". (For `^` and `POWER`, see
+  [Tips](#tips).)
+- **`VAR`, `SUMSQ`, `DEVSQ`** — square the unit: `=VAR(A1:A9)` over `m` is in
+  `m^2`. The functions that measure spread in the original scale keep it:
+  `STDEV`, `AVEDEV`, `GEOMEAN`, `MEDIAN`, `MODE`, `PERCENTILE`, `LARGE`.
+  `SLOPE` is the unit of the y values per the unit of the x values, such as
+  `kg/m`.
+- **`COUNT`, `RANK`, `CORREL`, `SIGN`** — the result is a plain number
+  whatever the units of what they read.
+
+### Where an argument needs a particular unit, or none
+
+- **`SIN`, `COS`, `TAN`, ...** — the argument must be in `radian`, and the
+  result is a plain number. A cell in `degree` is flagged, and so is a plain
+  number. Convert with `RADIANS(A1)` (which takes degrees and returns
+  radians) or wrap it: `=SIN(WITHUNIT(A1, "radian"))`. `DEGREES` goes the
+  other way.
+- **`LN`, `EXP`, `FACT`** — the argument must be a plain number, and so is the
+  result. A ratio of like units counts as plain: `=EXP(A1/A2)` with both in
+  `m` is fine.
+- **`CONVERT`** — the first argument must already be in the `from_unit`, and
+  the result is in the `to_unit`. `=CONVERT(A1, "kg", "lbm")` with `A1` in
+  `kg` gives `lbm`; with `A1` in `m` it's flagged, and so is converting
+  between families (`kg` to `J`). A plain number as the first argument is
+  fixed with `CONVERTUNIT`, see [WITHUNIT](#withunit). Units that Excel's
+  `CONVERT` doesn't know are covered in [Synthesizing units for
+  CONVERT](#synthesizing-units-for-convert).
+- **Text functions (`MID`, `REPT`, `CHAR`, `ROMAN`, `FIXED`, ...)** — a
+  position or count argument must be a plain number: `=MID(A1, B1, 3)` with
+  `B1` in `kg` is flagged. A text result isn't a quantity, so it can't be
+  annotated with a unit; `FIXED(A1, 2)` happily formats a number that has a
+  unit, but the text it returns has none.
+
+### Dates and money
+
+- **Date functions** — a date itself has no unit (it is a position in time).
+  Functions that return a span of time have units: `DAYS`, `DAYS360`, `NETWORKDAYS`
+  and `DATEDIF(..., "d")` give `day`; `DATEDIF(..., "m")` gives `month`;
+  `DATEDIF(..., "y")` and `YEARFRAC` give `year`. `YEAR`, `WEEKDAY` and
+  `HOUR` are plain numbers, and `EDATE`'s month count must be one. Adding a
+  bare number to a duration is flagged like any other: `=A3+5` with `A3` in
+  `day` needs `WITHUNIT(5, "day")`. `TODAY`, `NOW` and `DATEVALUE` give plain
+  numbers, whatever number format the cell has, just like a date you type in.
+- **Financial functions (`PV`, `FV`, `PMT`, `IPMT`, `XNPV`, ...)** — the
+  payments and balances must be in one currency, which is the result's, and
+  the rate and number of periods must be plain numbers. `=FV(0.05, 10, A1, A2)`
+  with `A1` in `USD` and `A2` in `EUR` is flagged, and so is a payment in
+  `kg`. `NPER`, `RATE`, `IRR` and `XIRR` return plain numbers; `DURATION` is
+  in `year`.
+- **Depreciation (`SLN`, `SYD`, `DB`, `DDB`)** — cost and salvage in one
+  currency, which is the result's: `=SLN(A1, A2, 10)` with `USD` and `EUR` is
+  flagged.
+- **Securities pricing (`DOLLARDE`, `TBILLPRICE`, ...)** — these have no
+  currency in their arguments, so their results take the one chosen by the
+  "Use a specific currency for securities-pricing functions" setting (see
+  [Settings](#settings)).
+
+### Lookups, arrays, and LAMBDAs
+
+- **`INDEX`, `VLOOKUP`, `CHOOSE`** — the result has the unit of the cell it
+  returns, not of the whole range: `=INDEX(A1:A2, 2)` with `A1` in `m` and
+  `A2` in `kg` is in `kg`, and `VLOOKUP` takes the unit of the column it
+  reads. The lookup value must match the unit of the column searched:
+  `=VLOOKUP(D1, A1:B9, 2, 0)` is flagged if `D1` is in `s` and `A1:A9` in
+  `m`. `MATCH` returns a position, a plain number, but its lookup value must
+  also match. `CHOOSE` with a literal index takes the unit of the argument it
+  picks.
+- **Functions that spill (`TRANSPOSE`, `HSTACK`, `VSTACK`, `TAKE`, `MMULT`,
+  ...)** — each cell of the result gets the unit of the cell it came from.
+  `MMULT` multiplies the unit of a row by the unit of a column.
+  `SEQUENCE`, `RANDARRAY` and `MUNIT` give plain numbers.
+- **`GROUPBY` and `PIVOTBY`** — the values in the result have the unit of the
+  values you aggregate, including any totals. Which headers appear in the spill
+  follows Excel: with `field_headers` omitted, they are detected when the
+  first value is text and the second a number.
+- **`LET`, named `LAMBDA`s, and `REDUCE`, `SCAN`, `MAP`, `BYROW`, ...** — a
+  `LET` name has the unit of its value, and an applied `LAMBDA` is analyzed
+  with the units of the data you pass it. `REDUCE` with a product compounds
+  the unit once per element: multiplying three values in `m` is `m^3`.
+
+### Data from elsewhere, and what Daubee can't see
+
+- **`IMPORTCSV`, `IMPORTTEXT`** — the data can't be known in advance, so the
+  result is unverifiable: it is left alone, and so is anything that uses it.
+  Their `skip_rows` and `take_rows` arguments must be plain numbers.
+- **`PY`** — Python in Excel runs arbitrary code, which Daubee doesn't read, so
+  the result is unverifiable: it is left alone, and so is anything that uses
+  it, whatever the code does with cells it reads. The output-type argument
+  must be a plain number. If you know the result's unit, annotate the cell
+  and vouch for it with [Assert](#assert).
+- **`GETPIVOTDATA`** — a value read from a PivotTable has the unit of the
+  source column its data field summarizes, changed by how it is aggregated:
+  Sum, Average, Min, Max and the standard deviations keep the unit, Count is
+  a plain number, variances square the unit, and Product can't be known. A
+  "Show Values As" percentage or rank is a plain number.
+- **`FIELDVALUE` and `INDIRECT`** — the result takes the unit of the cell the
+  function ends up reading. `FIELDVALUE` matches a field to a column header
+  by its exact text: a column titled `Language` isn't found by the field
+  `Official language`.
+- **Formulas Daubee doesn't understand** — a function it doesn't know, or
+  text joined with `&`, isn't analyzed. Another formula that uses its result
+  is unverifiable.
+- **`WITHUNIT` and `CONVERTUNIT`** — these are `LAMBDA`s defined by Daubee
+  in the Excel Name Manager. `WITHUNIT` gives a plain number a unit, and
+  refuses a value that already has one; `CONVERTUNIT` converts a plain
+  number from one unit to another. See [WITHUNIT](#withunit).
