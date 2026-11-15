@@ -895,24 +895,23 @@ Add one with **Add from URL**, using its address:
 
 | Dictionary | Address |
 | --- | --- |
-| SI derived units: hertz, coulomb, volt, farad, ohm, siemens, weber, henry, lumen, lux, becquerel, gray, sievert, katal, steradian, and the base units they use | `https://psteckler.github.io/daubee/unit-dictionaries/SI-derived-units.yaml` |
-| British imperial units: chain, furlong, league, fathom, the imperial gill, peck and bushel, troy weights, therm, and more | `https://psteckler.github.io/daubee/unit-dictionaries/imperial-units.yaml` |
-| US customary units: the survey foot, chain and section, the dry measures, jigger, board foot, cord, and more | `https://psteckler.github.io/daubee/unit-dictionaries/US-customary-units.yaml` |
-| Electrical units: ampere-hour, volt-ampere, var, electrical horsepower, the explicit microfarad, nanofarad, picofarad and coulomb sub-units (uF, nF, pF, uC, ...), maxwell, mho, and the SI units they use | `https://psteckler.github.io/daubee/unit-dictionaries/electrical-units.yaml` |
-| Time and calendar units: week, fortnight, decade, century, millennium, the common, leap, Gregorian, tropical and sidereal years, the sidereal day, the lunation, shake, and `kyr`/`Myr`/`Gyr` | `https://psteckler.github.io/daubee/unit-dictionaries/time-and-calendar-units.yaml` |
-| Chemistry units: the molar (`M`, `mM`) and molal, parts per million, billion and trillion, the percent, the bar, the dalton (`Da`, `kDa`), the thermochemical calorie, cubic centimeters, and the SI units they use | `https://psteckler.github.io/daubee/unit-dictionaries/chemistry-units.yaml` |
-| Particle physics units: the electron volt's mass form (`GeV_c2`), the barn (`b`, `pb`, `fb`), the fermi, the elementary charge, the Bohr radius, and the Hartree energy | `https://psteckler.github.io/daubee/unit-dictionaries/particle-physics-units.yaml` |
-| Astronomy units: the astronomical unit, light travel times, solar and planetary masses and radii, `kpc`/`Mpc`/`Gpc` and `kly`/`Mly`/`Gly`, the arcminute and arcsecond, the jansky, and the lunar distance | `https://psteckler.github.io/daubee/unit-dictionaries/astronomy-units.yaml` |
-| Medicine units: the microgram (`mcg`), the equivalent (`mEq`), the osmole (`mOsm`), the international unit (`IU`), the enzyme unit (`U`), the centimeter of water, the nutritional Calorie, and percent | `https://psteckler.github.io/daubee/unit-dictionaries/medicine-units.yaml` |
-| Radiation and photometry units: the curie, rem, roentgen and the old rad (as `radiation_absorbed_dose`), the foot-candle, phot, nit, stilb and talbot, and the SI units they use | `https://psteckler.github.io/daubee/unit-dictionaries/radiation-and-photometry-units.yaml` |
-| Typography units: the point (also `points`, `pts`, `bp`) and pica, the printers' point and pica, the Didot point and cicero, the twip, agate and CSS pixel, `dpi`, `gsm` and `tex` | `https://psteckler.github.io/daubee/unit-dictionaries/typography-units.yaml` |
-| Data rates and communications units: `B` for the byte (`kB`, `MiB`), `bps` and `Bps` with prefixes, `baud`, packets and frames per second, the erlang, `FLOPS` and `IOPS`, and the nibble | `https://psteckler.github.io/daubee/unit-dictionaries/data-rates-and-communications-units.yaml` |
-| Counting and paper units: the dozen, gross, great gross, score and baker's dozen as multiples of `each`, and the sheet, page, leaf, quire, ream, traditional ream and printers' ream, and `gsm` | `https://psteckler.github.io/daubee/unit-dictionaries/counting-and-paper-units.yaml` |
-| Energy and fuel units: the therm, quad, MMBtu, tonne of oil equivalent (`toe`, `Mtoe`), barrel of oil equivalent, tonne (`t`, `Mt`), `Mcf`/`Bcf` of gas, `bbl`, tons of TNT, the ton of refrigeration, boiler horsepower, `mpg`, and the gasoline gallon equivalent | `https://psteckler.github.io/daubee/unit-dictionaries/energy-and-fuel-units.yaml` |
-| Cryptocurrency units: the 35 largest coins by market capitalization (on 2026-11-13) as units of their own, such as `BTC`, `ETH`, `SOL`, `USDT`, with their smallest units (`sat`, `wei`, `gwei`, `lamport`, ...). No conversion between coins or to a currency: the rates change; put a rate in a cell and annotate it `Ethereum/Bitcoin` | `https://psteckler.github.io/daubee/unit-dictionaries/cryptocurrency-units.yaml` |
+| SI derived units | `https://psteckler.github.io/daubee/unit-dictionaries/SI-derived-units.yaml` |
+| British imperial units | `https://psteckler.github.io/daubee/unit-dictionaries/imperial-units.yaml` |
+| US customary units | `https://psteckler.github.io/daubee/unit-dictionaries/US-customary-units.yaml` |
+| Electrical units | `https://psteckler.github.io/daubee/unit-dictionaries/electrical-units.yaml` |
+| Chemistry units | `https://psteckler.github.io/daubee/unit-dictionaries/chemistry-units.yaml` |
+| Time and calendar units | `https://psteckler.github.io/daubee/unit-dictionaries/time-and-calendar-units.yaml` |
+| Particle physics units | `https://psteckler.github.io/daubee/unit-dictionaries/particle-physics-units.yaml` |
+| Astronomy units | `https://psteckler.github.io/daubee/unit-dictionaries/astronomy-units.yaml` |
+| Medicine units | `https://psteckler.github.io/daubee/unit-dictionaries/medicine-units.yaml` |
+| Radiation and photometry units | `https://psteckler.github.io/daubee/unit-dictionaries/radiation-and-photometry-units.yaml` |
+| Typography units | `https://psteckler.github.io/daubee/unit-dictionaries/typography-units.yaml` |
+| Data rates and communications units | `https://psteckler.github.io/daubee/unit-dictionaries/data-rates-and-communications-units.yaml` |
+| Energy and fuel units | `https://psteckler.github.io/daubee/unit-dictionaries/energy-and-fuel-units.yaml` |
+| Counting and paper units | `https://psteckler.github.io/daubee/unit-dictionaries/counting-and-paper-units.yaml` |
+| Cryptocurrency units | `https://psteckler.github.io/daubee/unit-dictionaries/cryptocurrency-units.yaml` |
 
-They repeat the built-in units they depend on, so each works on its own, and
-they can be added together.
+These dictionaries include any built-in units they depend on, so each works on its own.
 
 A dictionary file is just a set of category names, each listing the
 units that belong to it. Here's a small one, defining a new "shipping"
