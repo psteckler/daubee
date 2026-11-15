@@ -333,7 +333,7 @@ button:disabled:hover {
 }
 
 .error-item.error-arg {
-  border-left-color: #ef6c00;
+  border-left-color: #ff9800;
 }
 
 .error-item.error-currencyNotFound {
