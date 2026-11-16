@@ -785,7 +785,9 @@ settings:
 
 - **Apply currency format when adding a currency unit** — when checked,
   the "no format yet" currency offer above happens automatically instead
-  of asking every time.
+  of asking every time. Ticking *Always do this automatically* in that offer
+  turns this on, and also sets the two Settings below to the format you
+  chose in it.
 - **Use three-letter currency code formats by default** — when checked,
   a currency format shows, for example, `USD 42.99` instead of `$42.99`.
   This is the format used when currency formats are applied

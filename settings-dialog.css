@@ -46,14 +46,18 @@ body {
   flex-wrap: wrap;
 }
 
-/* The code-position radios sit under the three-letter-code checkbox, lined
-   up with its text. */
+/* The code-position radios sit under the three-letter-code checkbox. The
+   row starts with an invisible checkbox, the same size as the real ones, so
+   "Put the code" lines up exactly with the text above it. */
 .settings-row-iso-position {
   cursor: default;
   flex-wrap: wrap;
   gap: 10px;
   margin-top: -6px;
-  padding-left: 22px;
+}
+
+.settings-indent-spacer {
+  visibility: hidden;
 }
 
 .settings-checkbox-label {
