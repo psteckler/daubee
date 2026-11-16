@@ -166,6 +166,13 @@ the formula box; click one of the syntax tokens (`-`, `/`, `^`, `(`,
 like `kg-m/s^2` a matter of clicking rather than typing. The **⌫** button removes the last character of the
 formula box, and **Clear** empties it.
 
+To find a unit in a long list, type in the **search box** above it. Every
+word you type has to be found somewhere in a unit's names, aliases, ISO
+code or expansion, or in its category's name, so `btc` and `crypto btc`
+both find Bitcoin, and `us dollar` finds `US_dollar`. Only the units that
+match are shown, in categories that open for you; clear the box to see
+everything again.
+
 A green dot before a unit marks one that takes a metric [magnitude
 prefix](#magnitude-prefixes) such as `k` or `M`, and a black dot one that
 takes a binary prefix such as `Ki` or `Mi` (`bit` and `byte` have both).
