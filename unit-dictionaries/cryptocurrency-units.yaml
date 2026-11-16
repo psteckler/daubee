@@ -7,8 +7,12 @@
 #   https://psteckler.github.io/daubee/unit-dictionaries/cryptocurrency-units.yaml
 #
 # These are units for counting coins, not prices. They are deliberately not in
-# Daubee's `currency` category: a coin has no ISO 4217 code and no currency
-# number format, and none of Daubee's currency checks applies to it. There is
+# Daubee's `currency` category: a coin has no ISO 4217 code, and Daubee's
+# currency checks don't apply to it. The one exception is Bitcoin, which is in
+# the `currency` category (with the code BTC) because Excel has a Bitcoin
+# currency number format (₿ 0.000000, in a prefix and a suffix form): annotating
+# a cell with Bitcoin offers that format, as for any currency, and a cell
+# formatted that way is checked against its unit. There is
 # no conversion between two coins, or between a coin and a currency, because
 # the exchange rates change every moment: a value in BTC and a value in ETH
 # can only be related by an exchange rate that you put in a cell and annotate
@@ -29,13 +33,17 @@
 # is GRAM (its name is Gram_Token). The market-cap list drifts, so a coin that
 # has left the top 35 stays here; it is not removed.
 
+currency:
+  # #1 by market capitalization on 2026-11-13; in this category for Excel's
+  # Bitcoin currency number format (see above)
+  - canonicalName: Bitcoin
+    aliases: [BTC, btc, bitcoin, bitcoins]
+    isoCode: BTC
+
 cryptocurrency:
   # #24 by market capitalization on 2026-11-13
   - canonicalName: Avalanche
     aliases: [AVAX, avax, avalanche]
-  # #1 by market capitalization on 2026-11-13
-  - canonicalName: Bitcoin
-    aliases: [BTC, btc, bitcoin, bitcoins]
   # #21 by market capitalization on 2026-11-13
   - canonicalName: Bitcoin_Cash
     aliases: [BCH, bch, bitcoin_cash]
