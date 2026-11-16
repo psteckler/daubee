@@ -478,8 +478,11 @@ formula with `cm`.
 
 ## Reading the borders
 
-Daubee never changes a cell's value — it only draws a border around a
-cell to show what it found. The border color tells you why:
+Daubee shows what it finds by drawing a border around a cell. It changes
+a cell only in restricted cases: the [wrap buttons](#wrap-dimensionless-arguments)
+rewrite formulas with `WITHUNIT`, and accepting an offer to annotate a cell
+may apply a number format.
+Here's what the border colors tell you:
 
 | Color | Meaning |
 | --- | --- |
