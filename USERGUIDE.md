@@ -117,6 +117,21 @@ in [Settings](#settings)).
 Each unit in the list has a copy icon next to it, which copies the unit
 formula to the clipboard.
 
+**Copying annotations.** When you copy cells in Excel, the annotations stay
+behind (Daubee also clears the border outline that comes along with the paste).
+To carry annotations with them, select the cells and click **Copy units**
+(it is enabled when the selection holds an annotation), then select a cell
+where the copy should start and click **Paste units**. Each annotation lands at
+the same position relative to the first cell as it had in the copied selection:
+copy `B2:B5` annotated `kg`, paste at `D10`, and `D10:D13` is annotated `kg`.
+Only the part of an annotation inside the selection is copied, annotations
+that follow a table or a spill are pasted as fixed ranges (as a table column
+is followed again if you paste exactly onto one), and annotations the paste
+would partly overlap ask first, as when you annotate over them. To move
+cells, copy and paste the units, then delete the old annotations. Copy units
+doesn't copy the cells' values or formats, and it remembers the units only
+until you close the pane.
+
 ## Writing a unit formula
 
 A unit formula is built from unit names combined with a few operators:
