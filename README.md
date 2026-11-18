@@ -78,11 +78,11 @@ folder has more, as ready-made **unit dictionaries** you can add when you need t
 
 |  | Dictionaries |  |
 | --- | --- | --- |
-| [astronomy-units.yaml](unit-dictionaries/astronomy-units.yaml) | [chemistry-units.yaml](unit-dictionaries/chemistry-units.yaml) | [counting-and-paper-units.yaml](unit-dictionaries/counting-and-paper-units.yaml) |
-| [cryptocurrency-units.yaml](unit-dictionaries/cryptocurrency-units.yaml) | [data-rates-and-communications-units.yaml](unit-dictionaries/data-rates-and-communications-units.yaml) | [electrical-units.yaml](unit-dictionaries/electrical-units.yaml) |
-| [energy-and-fuel-units.yaml](unit-dictionaries/energy-and-fuel-units.yaml) | [imperial-units.yaml](unit-dictionaries/imperial-units.yaml) | [medicine-units.yaml](unit-dictionaries/medicine-units.yaml) |
-| [particle-physics-units.yaml](unit-dictionaries/particle-physics-units.yaml) | [radiation-and-photometry-units.yaml](unit-dictionaries/radiation-and-photometry-units.yaml) | [SI-derived-units.yaml](unit-dictionaries/SI-derived-units.yaml) |
-| [time-and-calendar-units.yaml](unit-dictionaries/time-and-calendar-units.yaml) | [typography-units.yaml](unit-dictionaries/typography-units.yaml) | [US-customary-units.yaml](unit-dictionaries/US-customary-units.yaml) |
+| [astronomy-units](unit-dictionaries/astronomy-units.yaml) | [chemistry-units](unit-dictionaries/chemistry-units.yaml) | [counting-and-paper-units](unit-dictionaries/counting-and-paper-units.yaml) |
+| [cryptocurrency-units](unit-dictionaries/cryptocurrency-units.yaml) | [data-rates-and-communications-units](unit-dictionaries/data-rates-and-communications-units.yaml) | [electrical-units](unit-dictionaries/electrical-units.yaml) |
+| [energy-and-fuel-units](unit-dictionaries/energy-and-fuel-units.yaml) | [imperial-units](unit-dictionaries/imperial-units.yaml) | [medicine-units](unit-dictionaries/medicine-units.yaml) |
+| [particle-physics-units](unit-dictionaries/particle-physics-units.yaml) | [radiation-and-photometry-units](unit-dictionaries/radiation-and-photometry-units.yaml) | [SI-derived-units](unit-dictionaries/SI-derived-units.yaml) |
+| [time-and-calendar-units](unit-dictionaries/time-and-calendar-units.yaml) | [typography-units](unit-dictionaries/typography-units.yaml) | [US-customary-units](unit-dictionaries/US-customary-units.yaml) |
 
 **Load a dictionary from its URL.** In Excel, in the Daubee tab, click **Select dictionaries**,
 then **Add from URL**, paste the address of the dictionary, and press the button. The URL is
