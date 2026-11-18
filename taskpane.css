@@ -74,6 +74,14 @@ button:disabled:hover {
   margin: 0 0 8px;
 }
 
+/* The display rules below would otherwise beat the hidden attribute. */
+.button-row[hidden],
+.icon-button[hidden],
+.pane-heading[hidden],
+h3[hidden] {
+  display: none;
+}
+
 .button-row {
   display: flex;
   gap: 8px;

@@ -225,8 +225,8 @@ cell's own result should be. That's Check Units' job.
 
 The **Unit automation** section of the pane, above **Units for selection**,
 holds actions that work out annotations for you. Each is switched on in
-[Settings](#settings) (Automation section), and its button stays disabled
-until it is.
+[Settings](#settings) (Automation section), and its button doesn't appear
+until it is; with none of them switched on, the section isn't shown at all.
 
 ### Scan headers
 
