@@ -72,8 +72,8 @@ last range until you delete or replace it. Annotating anything other than a
 whole column of data (part of a column, a header, several columns) gives an
 ordinary fixed-range annotation, and so does annotating part of a following
 annotation's range later (it is split into fixed pieces). Untick *Follow
-table columns when annotating them* in [Settings](#settings) to always get
-fixed ranges. Import and export write a
+annotated table columns* in [Settings](#settings) to always get fixed ranges
+for the annotations you make from then on. Import and export write a
 following annotation as `Table1[Weight]` (see [Import and export
 units](#import-and-export-units)).
 
@@ -89,8 +89,9 @@ under the annotation, which keeps its last range. This is most useful for
 spills Daubee can't work out itself (imported data, say), since a range
 annotated by hand would go stale when the spill changes size. A spill of one
 cell isn't a spill to Excel, so annotating it gives an ordinary annotation.
-Untick *Follow spill ranges when annotating them* in
-[Settings](#settings) to always get fixed ranges. Check and Infer also read
+Untick *Follow annotated spill ranges* in
+[Settings](#settings) to always get fixed ranges for the annotations you make
+from then on. Check and Infer also read
 `E1#` in formulas, as in `=SUM(E1#)`, as the whole spill.
 
 **Formulas that use table references.** Check and Infer read the table
@@ -838,16 +839,18 @@ settings:
   annotation that matches a named unit's own definition (e.g.
   `kilogram-meter/second^2`) automatically rewrites it to that unit's
   name (`newton`) instead of keeping the expanded form.
-- **Follow table columns when annotating them** — when checked (the
-  default), annotating exactly the data rows of a table column makes the
-  annotation follow the column as rows are added and removed; see
+- **Follow annotated table columns** — when checked (the default),
+  annotating exactly the data rows of a table column makes the annotation
+  follow the column as rows are added and removed; see
   [Annotating a cell with a unit](#annotating-a-cell-with-a-unit). Unticked,
-  such an annotation is a fixed range.
-- **Follow spill ranges when annotating them** — when checked (the default),
+  such an annotation is a fixed range. The setting is read when you
+  annotate: annotations that already follow a column keep following it.
+- **Follow annotated spill ranges** — when checked (the default),
   annotating exactly the cells a formula spills to makes the annotation
   follow the spill as it grows and shrinks; see [Annotating a cell with a
   unit](#annotating-a-cell-with-a-unit). Unticked, such an annotation is a
-  fixed range.
+  fixed range. The setting is read when you annotate: annotations that
+  already follow a spill keep following it.
 - **Remove added formats when deleting units** — when checked (the
   default), deleting an annotation also sets its cells back to the General
   number format, but only where the cell's format is exactly one that
