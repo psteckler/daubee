@@ -108,7 +108,10 @@ outside the table; the formula is then left alone, as any formula Daubee
 can't analyze is, and anything that uses its result is unverifiable.
 
 Once a selection has an annotation, the pane's **Units for selection**
-list shows it, along with a **Delete** button to remove it. If your
+list shows it, along with a **Delete** button to remove it. An annotation
+that only partly overlaps the selection (a block of annotated cells that your
+selection runs past, or a selection that takes in the heading above it) is
+listed too; its **Delete** removes the whole annotation. If your
 selection contains several different annotations, they all show up in
 the list; a **Delete all units within selection** button appears
 above it whenever your selection covers more than one annotation, so you
