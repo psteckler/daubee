@@ -458,7 +458,10 @@ formula cells annotated too, not just its raw inputs. A cell that is still
 in the "General" format also gets the number format that annotating by hand
 would give it: a currency unit offers its [Currency
 format](#currencies) (or applies it, if that Setting is on), and any other
-unit gets the Autoformat unit format when that Setting is on.
+unit gets the Autoformat unit format when that Setting is on. That offer is
+made for each annotation you accept, so when you accept many, choose **Skip
+all** in it to stop the format offers for the rest of the run (the
+annotations are still added).
 
 Cells that don't check out get a colored border instead of an offer —
 see the next section.
