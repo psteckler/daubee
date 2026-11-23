@@ -463,6 +463,13 @@ made for each annotation you accept, so when you accept many, choose **Skip
 all** in it to stop the format offers for the rest of the run (the
 annotations are still added).
 
+When a run adds 100 or more annotations (a long column of formula cells, say),
+it merges the new ones into ranges when it is done, as [Consolidate](#consolidate)
+would: a column of 5,000 cells becomes one annotation with one outline, not
+5,000 boxes of one cell each. Excel on the web can't display a sheet with that
+much cell-by-cell formatting, and the saved annotations and every redraw stay
+small. A smaller run leaves its annotations cell by cell.
+
 Cells that don't check out get a colored border instead of an offer —
 see the next section.
 
