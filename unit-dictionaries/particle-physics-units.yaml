@@ -57,6 +57,7 @@ time:
 area:
   - canonicalName: square_meter
     aliases: [m2]
+    expansion: meter^2
   - canonicalName: barn
     aliases: [b, barns]
     prefixable: { metric: [b] }

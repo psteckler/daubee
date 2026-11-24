@@ -19,7 +19,7 @@
 #
 # Many of these units are in Excel's own list and so are built in; they are
 # repeated here exactly, so that this dictionary works on its own, even if the
-# Excel-native groups are switched off. A dictionary may repeat a unit that is
+# CONVERT unit groups are switched off. A dictionary may repeat a unit that is
 # already known when the definition is the same, and the few units the imperial
 # dictionary shares (thou, hand, fathom, dram, the troy weights, therm) are
 # defined the same way in both.
@@ -130,6 +130,7 @@ volume_and_liquid_measure:
     conversion: "42 gallon"
   - canonicalName: cubic_foot
     aliases: [ft3]
+    expansion: foot^3
     conversion: "28.316846592 liter"
   - canonicalName: us_minim
     aliases: [us_min, us_minims]
@@ -168,6 +169,7 @@ volume_and_liquid_measure:
 area:
   - canonicalName: square_meter
     aliases: [m2]
+    expansion: meter^2
   - canonicalName: international_acre
     aliases: [uk_acre, acre, acres]
     conversion: "4046.8564224 square_meter"

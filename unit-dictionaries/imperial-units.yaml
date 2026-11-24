@@ -16,7 +16,7 @@
 #
 # Many of these units are in Excel's own list and so are built in; they are
 # repeated here exactly, so that this dictionary works on its own, even if the
-# Excel-native groups are switched off. A dictionary may repeat a unit that is
+# CONVERT unit groups are switched off. A dictionary may repeat a unit that is
 # already known when the definition is the same.
 
 distance:
@@ -136,6 +136,7 @@ volume_and_liquid_measure:
 area:
   - canonicalName: square_meter
     aliases: [m2]
+    expansion: meter^2
   - canonicalName: international_acre
     aliases: [uk_acre, acre, acres]
     conversion: "4046.8564224 square_meter"

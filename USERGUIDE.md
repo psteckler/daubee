@@ -179,7 +179,7 @@ dimensions, not by spelling.
 Rather than memorize every unit's exact name, click the **Browse**
 button next to the Unit formula box. This opens the **Available units**
 dialog, which lists every unit Daubee currently knows about, organized
-by category (Currencies, Excel-native units, and any custom dictionaries
+by category (Currencies, CONVERT units, and any custom dictionaries
 you've loaded — see [Unit dictionaries](#unit-dictionaries)). Click any
 unit's canonical name or alias to insert it at your cursor position in
 the formula box; click one of the syntax tokens (`-`, `/`, `^`, `(`,
@@ -690,7 +690,7 @@ conversions.
 
 ### Conversions in the built-in units
 
-Most [Excel-native](#unit-dictionaries) units have a conversion, defined in
+Most [CONVERT](#unit-dictionaries) units have a conversion, defined in
 terms of one other unit; `foot` is `12 inch`, `mile` is `5280 foot`, `inch`
 is `0.0254 meter`, and so on. Chains are followed, so `inch/mile` works.
 The values agree with Excel's `CONVERT` function to better than one part

@@ -77,6 +77,7 @@ volume_and_liquid_measure:
     conversion: "4.54609 liter"
   - canonicalName: cubic_foot
     aliases: [ft3]
+    expansion: foot^3
     conversion: "28.316846592 liter"
   - canonicalName: oil_barrel
     aliases: [barrel, barrels, bbl, bbls]
