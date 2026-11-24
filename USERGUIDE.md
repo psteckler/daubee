@@ -887,7 +887,9 @@ settings:
   format also applies, without asking, a matching Custom number format showing the unit alongside the value (e.g. `0.00
   "kg"`). Choose whether the shown unit uses its canonical name or its
   shortest alias (a capitalized one, if several tie), and how many decimal
-  digits to show.
+  digits to show. With the shortest alias, a squared or cubed unit such as
+  `square_meter` is written as a power, `m^2`, as it also is in annotations
+  that Check and Infer save with the shortest alias.
 - **Use a specific currency for securities-pricing functions** — controls
   what currency functions like `PRICE`, `PV`, and `YIELD` (click
   "securities-pricing functions" to see the full list) expect when
