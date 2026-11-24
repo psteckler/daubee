@@ -268,14 +268,15 @@ C2:C50 (49 cells). Add this annotation?* — with the usual **Add all** /
 - Text such as `Item(s)` (a plural marker attached to a word) is not
   taken for a unit.
 - **Number formats follow the usual rules.** For a currency header such as
-  `(USD)`, Daubee offers a matching currency format for the cells still in
-  the "General" format, exactly as when you annotate by hand (including the
-  choice between the default and three-letter-code format, or applying it
-  automatically if that Setting is on). For any other unit, the *Autoformat
-  with* Setting applies its unit format, but only when every cell is still
-  in "General". A cell already formatted for a *different* currency than
-  its header is left out and mentioned in the offer, rather than being
-  reformatted.
+  `(USD)`, Daubee offers a matching currency format for the cells that
+  have no currency format yet ("General" or a plain "Number" format),
+  exactly as when you annotate by hand (including the choice between the
+  default and three-letter-code format, or applying it automatically if
+  that Setting is on). For any other unit, the *Autoformat with* Setting
+  applies its unit format, but only when every cell is in "General" or a
+  plain "Number" format. A cell already formatted for a *different*
+  currency than its header is left out and mentioned in the offer, rather
+  than being reformatted.
 
 ### Wrap dimensionless arguments
 
@@ -428,11 +429,12 @@ skipped because all their cells were already annotated, and which
 dictionaries were switched on.
 
 After the import, number formats follow the same rules as annotating by
-hand, for cells still in the "General" format: a currency annotation offers
-the Currency format (one question for each currency, or applied without
-asking if that Setting is on), and any other unit gets the Autoformat unit
-format when that Setting is on, as long as every cell it covers is still in
-"General". The [audit report](#audit-report) counts annotations added by
+hand: a currency annotation offers the Currency format for the cells in
+"General" or a plain "Number" format (one question for each currency, or
+applied without asking if that Setting is on), and any other unit gets the
+Autoformat unit format when that Setting is on, as long as every cell it
+covers is in "General" or a plain "Number" format. The
+[audit report](#audit-report) counts annotations added by
 import on their own line.
 
 **Annotating with an AI assistant.** The file format is plain enough that an
@@ -459,13 +461,14 @@ For any formula cell whose unit Check Units can work out for certain but
 that doesn't yet carry that annotation, it offers to add it: *"Add
 'USD' as the unit annotation for cell B4?"* with **Add** / **Skip**.
 Accepting these offers is how a spreadsheet gradually ends up with its
-formula cells annotated too, not just its raw inputs. A cell that is still
-in the "General" format also gets the number format that annotating by hand
-would give it: a currency unit offers its [Currency
-format](#currencies) (or applies it, if that Setting is on), and any other
-unit gets the Autoformat unit format when that Setting is on. That offer is
-made for each annotation you accept, so when you accept many, choose **Skip
-all** in it to stop the format offers for the rest of the run (the
+formula cells annotated too, not just its raw inputs. Such a cell also
+gets the number format that annotating by hand would give it: for a
+currency unit, if it is in "General" or a plain "Number" format, its
+[Currency format](#currencies) is offered (or applied, if that Setting is
+on); any other unit gets the Autoformat unit format when that Setting is
+on, if the cell is in "General" or a plain "Number" format. That offer is
+made for each annotation you accept, so when you accept many, choose
+**Skip all** in it to stop the format offers for the rest of the run (the
 annotations are still added).
 
 When a run adds 100 or more annotations (a long column of formula cells, say),
@@ -736,14 +739,16 @@ as a special case, because Excel's own Currency and Accounting number
 formats display a currency symbol that Daubee can cross-check against
 your annotation:
 
-- **Annotating a cell that's still in Excel's default "General" format**
-  with a currency unit offers to apply a matching Currency number format
+- **Annotating a cell that has no currency format yet** (Excel's default
+  "General" format, or a plain "Number" format such as `#,##0.00`) with a
+  currency unit offers to apply a matching Currency number format
   for you (e.g. formatting the cell as `$42.99`). The offer lets you
   choose between the **Default currency format** (`$42.99`) and a
   three-letter currency code format, with the code **before** the number
   (`USD 42.99`) or **after** it (`42.99 USD`). Declining just
   skips the formatting — your annotation is saved either way.
-  Deleting the annotation later sets the cell back to "General" again if
+  Deleting the annotation later sets the cell back to "General" again (also
+  if it had a "Number" format before) if
   its format is one Daubee would have written for that currency, as long as
   *Remove added formats when deleting units* is ticked in
   [Settings](#settings) (it is by default). A currency format of the same
@@ -877,9 +882,9 @@ settings:
   that you applied yourself is reset too, since Daubee can't tell it apart.
   Uncheck the setting to leave formats untouched when you delete
   annotations.
-- **Autoformat with** — when checked, saving a unit annotation on a
-  still-"General"-formatted, non-currency cell also applies a matching
-  Custom number format showing the unit alongside the value (e.g. `0.00
+- **Autoformat with** — when checked, saving a unit annotation on
+  non-currency cells that are in the "General" format or a plain "Number"
+  format also applies, without asking, a matching Custom number format showing the unit alongside the value (e.g. `0.00
   "kg"`). Choose whether the shown unit uses its canonical name or its
   shortest alias (a capitalized one, if several tie), and how many decimal
   digits to show.
