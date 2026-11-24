@@ -1,1 +1,1 @@
-(()=>{"use strict";Office.onReady(()=>{document.getElementById("about-close").onclick=()=>Office.context.ui.messageParent(JSON.stringify({type:"closed"}))})})();
+(()=>{"use strict";const e=new URLSearchParams(window.location.search).get("built");e&&(document.getElementById("about-built").textContent=` (built ${e})`),Office.onReady(()=>{document.getElementById("about-close").onclick=()=>Office.context.ui.messageParent(JSON.stringify({type:"closed"}))})})();
