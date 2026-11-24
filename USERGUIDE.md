@@ -55,9 +55,9 @@ The selection doesn't have to be contiguous: Ctrl-click (Cmd-click on a
 Mac) several cells, ranges, rows, or columns and annotate them all at
 once. Each selected area gets its own annotation, and the pane's list,
 **Delete all units within selection**, Consolidate, Assert, and **Errors
-for selection** all work across every selected area. An existing
-annotation counts as "within" the selection only if a single selected
-area covers all of it.
+for selection** all work across every selected area. For Consolidate, an
+existing annotation counts as "within" the selection only if a single
+selected area covers all of it.
 
 **Table columns.** If you annotate exactly the data rows of an Excel table
 column (select the column's data and click **Annotate**), the annotation
@@ -114,10 +114,12 @@ selection runs past, or a selection that takes in the heading above it) is
 listed too; its **Delete** removes the whole annotation. If your
 selection contains several different annotations, they all show up in
 the list; a **Delete all units within selection** button appears
-above it whenever your selection covers more than one annotation, so you
-can clear them out in one step. Deleting also removes the number format
-Daubee added for the unit (see *Remove added formats when deleting units*
-in [Settings](#settings)).
+above it whenever your selection includes cells of two or more
+annotations, so you can clear them out in one step. It deletes each of
+those annotations entirely, including one that reaches beyond the
+selection, and the confirmation says how many do. Deleting also removes
+the number format Daubee added for the unit (see *Remove added formats
+when deleting units* in [Settings](#settings)).
 Each unit in the list has a copy icon next to it, which copies the unit
 formula to the clipboard.
 
